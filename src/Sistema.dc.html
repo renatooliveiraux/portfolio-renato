@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Design system v0.2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;font-family:'Manrope',sans-serif;color:#000000}
+a{color:#253CEA}a:hover{color:#1A2BB8}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1900px; box-sizing: border-box; padding: 80px; background: #FFFFFF; display: flex; flex-direction: column; gap: 56px; font-family: 'Manrope', sans-serif; color: #000000">
+
+<div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #000000; padding-bottom: 32px">
+<h1 style="margin: 0; font: 500 80px/0.95 'Geist', sans-serif; letter-spacing: -0.055em">Design <span style="color: #253CEA">system</span></h1>
+<p style="margin: 0; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #5C5C5C">Portfólio · v0.3 · hero em gradiente, dobras sólidas</p>
+</div>
+
+<!-- Marca + motivos -->
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<div style="background: #F7F7F8; height: 220px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><img src="/_blob/dead834c6a2b1ed8a48092e6e2df018f" alt="Logo renatooliveira, versão escura" style="height: 30px; width: auto"></div>
+<div style="height: 220px; border-radius: 24px; display: flex; align-items: center; justify-content: center; background: linear-gradient(205deg, #A9B6FF 0%, #6E80F7 28%, #3A50EE 55%, #253CEA 80%, #1E32D6 100%)"><img src="/_blob/77e3660513b45fd95c29c08184b69ccc" alt="Logo renatooliveira, versão branca" style="height: 30px; width: auto"></div>
+<div style="height: 220px; border-radius: 24px; background: #050A2E; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 20px; box-sizing: border-box">
+<div style="position: absolute; right: -60px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(37,60,234,.85) 0%, rgba(37,60,234,0) 65%)"></div>
+<div style="position: absolute; left: -70px; top: -70px; width: 200px; height: 200px; border: 20px solid #FFFFFF; border-radius: 50%; box-sizing: border-box"></div>
+<p style="position: relative; margin: 0; font: 500 13px 'Geist', sans-serif; color: #C9D1FF">Anel + brilho · só no hero</p>
+</div>
+<div style="height: 220px; border-radius: 24px; overflow: hidden; position: relative; background: #253CEA">
+<img src="/_blob/cd5db177112147b00b526c3e21cac8ce" alt="Exemplo de foto em duotone azul" style="width: 100%; height: 100%; object-fit: cover; object-position: 35% 30%">
+<span style="position: absolute; left: 16px; bottom: 16px; padding: 6px 12px; border-radius: 999px; background: #FFFFFF; font: 600 12px 'Geist', sans-serif; color: #253CEA">Foto duotone</span>
+</div>
+</div>
+
+<!-- Cores -->
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 16px">
+<div><div style="height: 120px; border-radius: 20px; background: #253CEA"></div><p style="margin: 12px 0 2px; font: 600 15px 'Geist', sans-serif">Azul R</p><p style="margin: 0; font-size: 13px; color: #4A4A4A">#253CEA</p></div>
+<div><div style="height: 120px; border-radius: 20px; background: #6E80F7"></div><p style="margin: 12px 0 2px; font: 600 15px 'Geist', sans-serif">Azul médio</p><p style="margin: 0; font-size: 13px; color: #4A4A4A">#6E80F7 · gradiente</p></div>
+<div><div style="height: 120px; border-radius: 20px; background: #A9B6FF"></div><p style="margin: 12px 0 2px; font: 600 15px 'Geist', sans-serif">Azul suave</p><p style="margin: 0; font-size: 13px; color: #4A4A4A">#A9B6FF · gradiente, detalhes no escuro</p></div>
+<div><div style="height: 120px; border-radius: 20px; background: #050A2E"></div><p style="margin: 12px 0 2px; font: 600 15px 'Geist', sans-serif">Navy</p><p style="margin: 0; font-size: 13px; color: #4A4A4A">#050A2E · sombras da foto e do hero</p></div>
+<div><div style="height: 120px; border-radius: 20px; background: #000000"></div><p style="margin: 12px 0 2px; font: 600 15px 'Geist', sans-serif">Preto</p><p style="margin: 0; font-size: 13px; color: #4A4A4A">#000000 · texto, rodapé</p></div>
+<div><div style="height: 120px; border-radius: 20px; background: #FFFFFF; border: 1px solid #DADADA; box-sizing: border-box"></div><p style="margin: 12px 0 2px; font: 600 15px 'Geist', sans-serif">Branco</p><p style="margin: 0; font-size: 13px; color: #4A4A4A">#FFFFFF</p></div>
+<div><div style="height: 120px; border-radius: 20px; background: #F7F7F8; border: 1px solid #EAEAEC; box-sizing: border-box"></div><p style="margin: 12px 0 2px; font: 600 15px 'Geist', sans-serif">Cinza frio</p><p style="margin: 0; font-size: 13px; color: #4A4A4A">#F7F7F8 · seções, campos, superfícies</p></div>
+</div>
+
+<!-- Gradiente -->
+<div style="height: 120px; border-radius: 24px; background: linear-gradient(205deg, #A9B6FF 0%, #6E80F7 28%, #3A50EE 55%, #253CEA 80%, #1E32D6 100%); display: flex; align-items: center; padding: 0 32px; color: #FFFFFF; font: 500 15px 'Geist', sans-serif; box-sizing: border-box">Gradiente · uso exclusivo nos heróis · 205° · #A9B6FF → #6E80F7 → #3A50EE → #253CEA → #1E32D6 · sombra navy na base para o texto branco</div>
+
+<!-- Tipografia + componentes -->
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font: 600 13px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Geist 500 · títulos e interface</p>
+<p style="margin: 0; font: 500 112px/0.92 'Geist', sans-serif; letter-spacing: -0.055em">Display</p>
+<p style="margin: 0; font: 500 64px/1 'Geist', sans-serif; letter-spacing: -0.045em">Seção 64</p>
+<p style="margin: 0; font: 500 28px/1.15 'Geist', sans-serif; letter-spacing: -0.03em">Card 28 · tracking -3%</p>
+<p style="margin: 0; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">Eyebrow 14 · caixa alta</p>
+<p style="margin: 8px 0 0; font: 600 13px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Manrope · textos</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #333333">Corpo 18/1.65 para introduções e parágrafos de case. Corpo 15/1.6 para cards e apoio.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px">
+<p style="margin: 0; font: 600 13px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Botões pill com ponto · a seta gira para ↗ no hover</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 24px; border-radius: 24px; background: linear-gradient(205deg, #6E80F7 0%, #253CEA 70%)">
+<span style="min-height: 48px; padding: 0 20px 0 8px; display: inline-flex; align-items: center; gap: 12px; background: #FFFFFF; color: #000000; border-radius: 999px; font: 600 15px 'Geist', sans-serif"><span style="width: 34px; height: 34px; border-radius: 50%; background: #000000; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>Sobre fundo azul</span>
+<span style="min-height: 44px; padding: 0 16px; display: inline-flex; align-items: center; border: 1px solid rgba(255,255,255,.6); border-radius: 999px; color: #FFFFFF; font: 600 14px 'Geist', sans-serif">Outline claro</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<span style="min-height: 48px; padding: 0 20px 0 8px; display: inline-flex; align-items: center; gap: 12px; background: #253CEA; color: #FFFFFF; border-radius: 999px; font: 600 15px 'Geist', sans-serif"><span style="width: 34px; height: 34px; border-radius: 50%; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>Primário</span>
+<span style="min-height: 48px; padding: 0 20px 0 8px; display: inline-flex; align-items: center; gap: 12px; border: 1px solid #000000; border-radius: 999px; font: 600 15px 'Geist', sans-serif"><span style="width: 34px; height: 34px; border-radius: 50%; background: #000000; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>Secundário</span>
+<span style="width: 48px; height: 48px; border-radius: 50%; background: #253CEA; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font: 600 14px 'Geist', sans-serif">01</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #253CEA; color: #FFFFFF; font: 600 14px 'Geist', sans-serif">Filtro ativo</span>
+<span style="min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid #DADADA; font: 600 14px 'Geist', sans-serif">Filtro</span>
+<span style="padding: 10px 18px; border-radius: 999px; background: #F7F7F8; font: 500 14px 'Geist', sans-serif">Tag</span>
+<span style="padding: 10px 18px; border-radius: 999px; border: 1px solid #000000; font: 500 14px 'Geist', sans-serif">Setor</span>
+</div>
+</div>
+</div>
+
+<!-- Regras -->
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<div style="background: #F7F7F8; border-radius: 24px; padding: 28px"><p style="margin: 0 0 10px; font: 600 16px 'Geist', sans-serif">Raios</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #4A4A4A">16 campos · 20 cards e imagens · 999 pills e chips. Fora do hero, blocos sólidos estruturados por fios de 1px.</p></div>
+<div style="background: #F7F7F8; border-radius: 24px; padding: 28px"><p style="margin: 0 0 10px; font: 600 16px 'Geist', sans-serif">Ritmo de seções</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #4A4A4A">Hero em gradiente → branco → cinza #F7F7F8 → branco → cinza → faixa branca → rodapé preto. Azul só em acentos: números, eyebrows, pontos.</p></div>
+<div style="background: #F7F7F8; border-radius: 24px; padding: 28px"><p style="margin: 0 0 10px; font: 600 16px 'Geist', sans-serif">Fotografia</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #4A4A4A">Sempre duotone azul: sombras navy, luzes azul suave. Recorte sobre gradiente nos heróis; foto inteira em cards.</p></div>
+<div style="background: #F7F7F8; border-radius: 24px; padding: 28px"><p style="margin: 0 0 10px; font: 600 16px 'Geist', sans-serif">Movimento</p><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #4A4A4A">Foto sobe com zoom (1.4s), textos entram de baixo, glow pulsa, cards sobem 6px, setas giram para ↗.</p></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Case · Sistema visual do Grupo Strategi</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#000000;font-family:'Manrope',system-ui,sans-serif}
+*{box-sizing:border-box}
+:root{--sec:clamp(80px,9vw,128px);--sub:clamp(56px,6vw,96px)}
+a{color:#253CEA}a:hover{color:#1A2BB8}
+:focus-visible{outline:2px solid #253CEA;outline-offset:3px}
+.ro-nw{color:#FFFFFF;text-decoration:none;opacity:.82;transition:opacity .2s}
+.ro-nw:hover{color:#FFFFFF;opacity:1}
+.ro-bk{color:#5C5C5C;text-decoration:none;transition:color .2s}
+.ro-bk:hover{color:#000000}
+.ro-bk svg{transition:transform .25s}
+.ro-bk:hover svg{transform:translateX(-4px)}
+.ro-pill{text-decoration:none;transition:transform .25s,box-shadow .25s}
+.ro-pill:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.18)}
+.ro-pill .ro-dot{transition:transform .3s}
+.ro-pill:hover .ro-dot{transform:rotate(-45deg)}
+.ro-back:hover .ro-dot{transform:none}
+.ro-dec .ro-dec-t{transition:color .3s}
+.ro-dec:hover .ro-dec-t{color:#253CEA !important}
+.ro-next{text-decoration:none;color:#FFFFFF}
+.ro-next:hover{color:#FFFFFF}
+.ro-next .ro-dot{transition:transform .35s}
+.ro-next:hover .ro-dot{transform:rotate(-45deg) scale(1.08)}
+@keyframes roUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.ro-up{animation:roUp .9s cubic-bezier(.2,.7,.2,1) both}
+.ro-d1{animation-delay:.08s}.ro-d2{animation-delay:.16s}.ro-d3{animation-delay:.24s}
+@keyframes roGlow{0%,100%{opacity:.55}50%{opacity:.9}}
+.ro-glow{animation:roGlow 6s ease-in-out infinite}
+.ro-nd{color:#000000;text-decoration:none;opacity:.6;transition:opacity .2s,color .2s}
+.ro-nd:hover{color:#253CEA;opacity:1}
+header nav .ro-nw{padding:6px 12px;margin:-6px -12px;border-radius:999px;transition:opacity .2s,background .2s,color .2s}
+header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
+.ro-stk{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid #EAEAEA;transform:translateY(-105%);visibility:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s linear .4s}
+.ro-stk.ro-on{transform:none;visibility:visible;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s}
+@media (prefers-reduced-motion:reduce){.ro-up,.ro-glow{animation:none}.ro-stk,.ro-stk.ro-on{transition:none}}
+.ro-hd{display:grid !important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
+.ro-hd>:first-child{justify-self:start}
+.ro-hd>:last-child{justify-self:end}
+@media (max-width:900px){.ro-hd{display:flex !important}}
+</style>
+</helmet>
+<div lang="{{docLang}}" style="width: 100%; background: #FFFFFF; font-family: 'Manrope', system-ui, sans-serif; color: #000000; overflow-x: hidden">
+
+<!-- MENU FIXO (aparece ao rolar) -->
+<div class="{{stkClass}}">
+<header class="ro-hd" style="max-width: 1280px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px">
+<a href="Main.dc.html" aria-label="Renato Oliveira, início" style="display: flex; align-items: center"><img src="/_blob/dead834c6a2b1ed8a48092e6e2df018f" alt="renatooliveira" style="height: 24px; width: auto; display: block"></a>
+<nav aria-label="Principal (fixo)" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
+<a class="ro-nd" href="Main.dc.html">{{t.navHome}}</a>
+<a class="ro-nd" href="Sobre.dc.html">{{t.navAbout}}</a>
+<a class="ro-nd" href="Projetos.dc.html" aria-current="page" style="opacity: 1">{{t.navWork}}</a>
+<a class="ro-nd" href="Contato.dc.html">{{t.navContact}}</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px">
+<div role="group" aria-label="Idioma" style="display: flex; border: 1px solid #DADADA; border-radius: 999px; padding: 3px">
+<sc-if value="{{isPt}}" hint-placeholder-val="{{true}}">
+<button type="button" aria-pressed="false" onClick="{{setEn}}" lang="en" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer">EN</button>
+<button type="button" aria-pressed="true" lang="pt-BR" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer">PT</button>
+</sc-if>
+<sc-if value="{{isEn}}" hint-placeholder-val="{{false}}">
+<button type="button" aria-pressed="true" lang="en" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer">EN</button>
+<button type="button" aria-pressed="false" onClick="{{setPt}}" lang="pt-BR" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer">PT</button>
+</sc-if>
+</div>
+<a class="ro-pill" href="Contato.dc.html" style="min-height: 44px; padding: 0 18px 0 6px; display: inline-flex; align-items: center; gap: 10px; background: #000000; color: #FFFFFF; border-radius: 999px; font: 600 14px 'Geist', sans-serif"><span class="ro-dot" style="width: 32px; height: 32px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>{{t.talk}}</a>
+</div>
+</header>
+</div>
+
+<!-- CASE HERO -->
+<section style="background: #FFFFFF; color: #000000">
+<header style="border-bottom: 1px solid #EAEAEA">
+<div class="ro-hd" style="max-width: 1280px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
+<a href="Main.dc.html" aria-label="Renato Oliveira, início" style="display: flex; align-items: center"><img src="/_blob/dead834c6a2b1ed8a48092e6e2df018f" alt="renatooliveira" style="height: 26px; width: auto; display: block"></a>
+<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
+<a class="ro-nd" href="Main.dc.html">{{t.navHome}}</a>
+<a class="ro-nd" href="Sobre.dc.html">{{t.navAbout}}</a>
+<a class="ro-nd" href="Projetos.dc.html" aria-current="page" style="opacity: 1">{{t.navWork}}</a>
+<a class="ro-nd" href="Contato.dc.html">{{t.navContact}}</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px">
+<div role="group" aria-label="Idioma" style="display: flex; border: 1px solid #DADADA; border-radius: 999px; padding: 3px">
+<sc-if value="{{isPt}}" hint-placeholder-val="{{true}}">
+<button type="button" aria-pressed="false" onClick="{{setEn}}" lang="en" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer">EN</button>
+<button type="button" aria-pressed="true" lang="pt-BR" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer">PT</button>
+</sc-if>
+<sc-if value="{{isEn}}" hint-placeholder-val="{{false}}">
+<button type="button" aria-pressed="true" lang="en" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer">EN</button>
+<button type="button" aria-pressed="false" onClick="{{setPt}}" lang="pt-BR" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer">PT</button>
+</sc-if>
+</div>
+<a class="ro-pill" href="Contato.dc.html" style="min-height: 44px; padding: 0 18px 0 6px; display: inline-flex; align-items: center; gap: 10px; background: #000000; color: #FFFFFF; border-radius: 999px; font: 600 14px 'Geist', sans-serif"><span class="ro-dot" style="width: 32px; height: 32px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>{{t.talk}}</a>
+</div>
+</div>
+</header>
+
+<div style="max-width: 1280px; margin: 0 auto; padding: 40px 24px 0">
+<a class="ro-bk" href="Projetos.dc.html" style="min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font: 500 14px 'Geist', sans-serif"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>{{t.back}}</a>
+<div class="ro-up" style="margin: 56px 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">{{t.tag}}</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
+<h1 class="ro-up ro-d1" style="margin: 0; max-width: 1000px; font: 500 clamp(48px, 6.6vw, 108px)/0.94 'Geist', sans-serif; letter-spacing: -0.055em">{{t.h1}}</h1>
+<div class="ro-up ro-d2" style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #000000; display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start">
+<p style="flex: 2 1 480px; max-width: 680px; margin: 0; font: 500 clamp(20px, 1.7vw, 24px)/1.45 'Geist', sans-serif; letter-spacing: -0.01em; color: #333333">{{t.lead}}</p>
+<dl style="flex: 1 1 320px; margin: 0">
+<sc-for list="{{meta}}" as="m" hint-placeholder-count="3">
+<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #E4E4E4">
+<dt style="font: 500 12px/1.6 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">{{m.k}}</dt>
+<dd style="margin: 0; font: 500 15px/1.5 'Geist', sans-serif; color: #000000">{{m.v}}</dd>
+</div>
+</sc-for>
+</dl>
+</div>
+</div>
+</section>
+
+<!-- DESAFIO -->
+<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec); display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.chTitle}}</h2>
+</div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 24px">
+<p style="margin: 0; font: 500 clamp(21px, 1.9vw, 26px)/1.45 'Geist', sans-serif; letter-spacing: -0.015em">{{t.ch1}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{fronts}}" as="f" hint-placeholder-count="5"><span style="padding: 10px 18px; border-radius: 999px; background: #F7F7F8; font: 500 14px 'Geist', sans-serif">{{f}}</span></sc-for>
+</div>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.ch2}}</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.ch3}}</p>
+<p style="margin: 0; padding-left: 20px; border-left: 3px solid #253CEA; font: 500 19px/1.6 'Geist', sans-serif; color: #000000">{{t.ch4}}</p>
+</div>
+</section>
+
+<!-- ATUAÇÃO -->
+<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.roleTitle}}</h2>
+</div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 24px">
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.role1}}</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.role2}}</p>
+</div>
+</section>
+
+<!-- COVER -->
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec)">
+<figure style="margin: 0">
+<div style="aspect-ratio: 4 / 3; max-height: 860px; width: 100%; border-radius: 20px; overflow: hidden; background: #F7F7F8">
+<img src="/_blob/e9d6ba4d719df87015e9603c3ea94f09" alt="{{t.coverAlt}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+</div>
+<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{t.coverCap}}</figcaption>
+</figure>
+</div>
+
+<!-- DECISÕES -->
+<section style="background: #F7F7F8">
+<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 32px 64px; margin-bottom: 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.decTitle}}</h2>
+</div>
+<p style="flex: 2 1 560px; max-width: 760px; margin: 0; font: 500 clamp(21px, 1.9vw, 26px)/1.45 'Geist', sans-serif; letter-spacing: -0.015em">{{t.decIntro}}</p>
+</div>
+<div style="border-top: 1px solid #000000">
+<sc-for list="{{decisions}}" as="d" hint-placeholder-count="5">
+<div class="ro-dec" style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-bottom: 1px solid #000000">
+<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #253CEA">{{d.n}}</span>
+<h3 class="ro-dec-t" style="flex: 1 1 280px; margin: 0; font: 500 clamp(28px, 2.8vw, 40px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">{{d.title}}</h3>
+<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">{{d.text}}</p>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- IMAGEM: POSTS -->
+<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px 0">
+<figure style="margin: 0">
+<div style="aspect-ratio: 4 / 3; max-height: 860px; width: 100%; border-radius: 20px; overflow: hidden; background: #F7F7F8">
+<img src="/_blob/774c2015646b11c37cd009c41dda71ef" alt="{{t.postsAlt}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+</div>
+<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{t.postsCap}}</figcaption>
+</figure>
+</div>
+
+<!-- APLICAÇÕES -->
+<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec)">
+<div style="margin-bottom: 64px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.appTitle}}</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: var(--sub)">
+<sc-for list="{{apps}}" as="a" hint-placeholder-count="3">
+<article style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
+<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em">{{a.title}}</h3>
+<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">{{a.text}}</p>
+</div>
+<sc-if value="{{a.hasImgs}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<sc-for list="{{a.imgs}}" as="im" hint-placeholder-count="3">
+<img src="{{im.src}}" alt="{{im.alt}}" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8">
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{a.noImgs}}" hint-placeholder-val="{{true}}">
+<div style="aspect-ratio: 16 / 8; min-height: 260px; border-radius: 20px; background: #F7F7F8; display: flex; align-items: center; justify-content: center">
+<span style="padding: 8px 14px; border-radius: 999px; background: #FFFFFF; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">{{a.ph}}</span>
+</div>
+</sc-if>
+</article>
+</sc-for>
+</div>
+</section>
+
+<!-- RESULTADOS -->
+<section style="background: #F7F7F8">
+<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px">
+<h2 style="margin: 0 0 64px; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.resTitle}}</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 40px; border-top: 1px solid #000000">
+<sc-for list="{{results}}" as="r" hint-placeholder-count="3">
+<div style="padding: 32px 0 0; display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font: 500 26px/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #253CEA">{{r.title}}</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #333333">{{r.text}}</p>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- NEXT + FOOTER -->
+<footer style="position: relative; overflow: hidden; background: #000000; color: #FFFFFF">
+<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px 40px">
+<a class="ro-next" href="Case.dc.html" style="padding-bottom: 72px; border-bottom: 1px solid #262626; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px">
+<div style="flex: 1 1 480px">
+<div style="margin: 0 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #8A8A8A">{{t.next}}</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #333333"></span></div>
+<p style="margin: 0; font: 500 clamp(44px, 6vw, 96px)/0.95 'Geist', sans-serif; letter-spacing: -0.055em; max-width: 900px">{{t.nextTitle}}</p>
+</div>
+<span class="ro-dot" style="width: 88px; height: 88px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+<div style="position: relative; padding: 32px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px">
+
+<img src="/_blob/45a024ad2fa8c9154f2a5a5a69c4d2b1" alt="Renato Oliveira" style="width: 36px; height: 36px; object-fit: contain; display: block">
+<div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px"><a class="ro-nw" href="https://linkedin.com/in/renatooliveiraux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex: none"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg>LinkedIn</a><a class="ro-nw" href="https://instagram.com/renatooliveira.ux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="flex: none"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>Instagram</a><a class="ro-nw" href="https://wa.me/5584981837847?text=Ol%C3%A1!%20Tudo%20bem%3F%20Cheguei%20aqui%20pelo%20seu%20portf%C3%B3lio." target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M3 21l1.6-4.8A9 9 0 1 1 7.8 19.4z"></path><path d="M9 8.6c0 3.5 2.9 6.4 6.4 6.4l1.1-1.5-2.1-1-.9.8a4.6 4.6 0 0 1-2.2-2.2l.8-.9-1-2.1z" fill="currentColor" stroke="none"></path></svg>WhatsApp</a></div>
+<p style="margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font: 500 12px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #BDBDBD">{{t.fRole}}<span style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; color: #8A8A8A">© 2026 Renato Oliveira</span><a class="ro-nw" href="Privacidade.dc.html" style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; text-decoration: underline; text-underline-offset: 3px">{{t.fPriv}}</a></p>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","en","pt"],"default":"auto"},"$preview":{"width":1440,"height":8000}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); var _s=null;try{_s=localStorage.getItem('ro-lang');}catch(e){}var _n='';try{_n=(navigator.language||'').toLowerCase();}catch(e){}this._auto=(_s==='pt'||_s==='en')?_s:(_n.indexOf('pt')===0?'pt':'en'); this.state = { lang: null, stuck: false }; }
+  componentDidMount() {
+    var self = this;
+    this._onScroll = function (e) {
+      var t = e && e.target;
+      var y = (t && t.nodeType === 1) ? t.scrollTop : (window.scrollY || document.documentElement.scrollTop || 0);
+      var on = y > 120;
+      if (on !== self.state.stuck) self.setState({ stuck: on });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true, capture: true });
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll, { capture: true });
+  }
+  renderVals() {
+    var self = this;
+    var lang = this.state.lang || (this.props.lang === 'pt' || this.props.lang === 'en' ? this.props.lang : this._auto) || 'en';
+    var T = {
+      pt: {
+        navHome: 'Home', fRole: 'Designer de Produto', fPriv: 'Política de privacidade', navAbout: 'Sobre', navWork: 'Projetos', navContact: 'Contato', talk: 'Vamos conversar', back: 'Todos os projetos',
+        tag: 'Branding · Sistema visual',
+        h1: 'Sistema visual do Grupo Strategi',
+        lead: 'Uma linguagem visual única e versátil para as cinco frentes do grupo, aplicada das redes sociais aos eventos, com percepção premium e produção ágil.',
+        chTitle: 'O desafio',
+        ch1: 'O Grupo Strategi atua em cinco frentes distintas. Cada área tem seu próprio público, tipo de mensagem e ritmo de comunicação, mas todas precisavam ser reconhecidas como parte da mesma marca, seja nas redes sociais, em apresentações para clientes e parceiros ou em eventos.',
+        ch2: 'Porém, cada peça era criada de forma isolada, sem padrões bem definidos. O resultado era uma comunicação inconsistente, difícil de reconhecer e lenta de produzir.',
+        ch3: 'Para resolver isso, era necessário criar uma linguagem visual versátil o suficiente para sustentar uma produção constante de conteúdo, atendendo a todas as frentes de forma consistente. Ao mesmo tempo, era preciso evitar a monotonia: um feed com muitas publicações sobre temas distintos precisava manter a unidade da marca e continuar visualmente interessante.',
+        ch4: 'Além disso, a comunicação precisava transmitir uma percepção premium, à altura do posicionamento do grupo como fornecedor de soluções de tecnologia de alto valor, voltadas a decisões estratégicas de negócio.',
+        roleTitle: 'Minha atuação',
+        role1: 'Fui responsável direto por definir os elementos do sistema visual, criar os padrões de aplicação e produzir todas as peças.',
+        role2: 'Trabalhei junto com a direção, com base em diagnósticos de necessidades, alinhamentos de expectativas e testes visuais para validar a linguagem e garantir sua aplicação.',
+        coverAlt: 'Sistema visual do Grupo Strategi: peça com card e imagem recortada pelo símbolo, grafismos, texturas e paleta de cores',
+        coverCap: 'Elementos do sistema: grafismos, texturas e paleta aplicados em uma peça.',
+        decTitle: 'Decisões do sistema',
+        decIntro: 'Em vez de criar peças isoladas, o trabalho partiu da definição de um sistema: um conjunto de elementos e regras que pudesse ser reaplicado em qualquer ponto de contato.',
+        postsAlt: 'Dois posts do Grupo Strategi com a mesma mensagem: um com card laranja ao lado da foto, outro com foto central, card azul-grafite e assinatura da marca',
+        postsCap: 'A mesma mensagem em duas composições: o sistema varia o layout sem perder a unidade.',
+        appTitle: 'Aplicações',
+        resTitle: 'Resultados',
+        next: 'Próximo case', nextTitle: 'Identidade e Portal do Hub Sebrae RN'
+      },
+      en: {
+        navHome: 'Home', fRole: 'Product Designer', fPriv: 'Privacy policy', navAbout: 'About', navWork: 'Work', navContact: 'Contact', talk: 'Let’s talk', back: 'All projects',
+        tag: 'Branding · Visual system',
+        h1: 'Grupo Strategi visual system',
+        lead: 'A single, versatile visual language for the group’s five business lines, applied from social media to events, with a premium feel and faster production.',
+        chTitle: 'The challenge',
+        ch1: 'Grupo Strategi operates across five distinct business lines. Each has its own audience, type of message and communication pace, yet all of them needed to be recognized as part of the same brand, whether on social media, in presentations to clients and partners, or at events.',
+        ch2: 'However, each piece was created in isolation, without well-defined standards. The result was inconsistent communication that was hard to recognize and slow to produce.',
+        ch3: 'Solving this required a visual language versatile enough to support a constant flow of content and serve every business line consistently. At the same time, it had to avoid monotony: a feed with many posts on different topics needed to keep brand unity while staying visually interesting.',
+        ch4: 'On top of that, the communication had to convey a premium feel, matching the group’s positioning as a provider of high-value technology solutions for strategic business decisions.',
+        roleTitle: 'My role',
+        role1: 'I was directly responsible for defining the elements of the visual system, creating the application standards and producing every piece.',
+        role2: 'I worked closely with leadership, based on needs assessments, expectation alignment and visual tests to validate the language and ensure it was applied correctly.',
+        coverAlt: 'Grupo Strategi visual system: a piece with a text card and an image masked by the symbol, graphics, textures and color palette',
+        coverCap: 'System elements: graphics, textures and palette applied to a piece.',
+        decTitle: 'System decisions',
+        decIntro: 'Instead of designing isolated pieces, the work started by defining a system: a set of elements and rules that could be reapplied at any touchpoint.',
+        postsAlt: 'Two Grupo Strategi posts with the same message: one with an orange card beside the photo, another with a central photo, a graphite-blue card and the brand signature',
+        postsCap: 'The same message in two compositions: the system varies the layout without losing unity.',
+        appTitle: 'Applications',
+        resTitle: 'Results',
+        next: 'Next case', nextTitle: 'Hub Sebrae RN Identity and Portal'
+      }
+    };
+    var M = {
+      pt: [{ k: 'Empresa', v: 'Grupo Strategi' }, { k: 'Escopo', v: 'Identidade Visual · Comunicação Digital · Material Institucional' }, { k: 'Ano', v: '2024–2025' }],
+      en: [{ k: 'Company', v: 'Grupo Strategi' }, { k: 'Scope', v: 'Visual Identity · Digital Communication · Corporate Materials' }, { k: 'Year', v: '2024–2025' }]
+    };
+    var F = {
+      pt: ['RM', 'Inteligência Artificial', 'Desenvolvimento de Sistemas', 'Automação de Processos', 'Business Intelligence'],
+      en: ['RM', 'Artificial Intelligence', 'Systems Development', 'Process Automation', 'Business Intelligence']
+    };
+    var D = {
+      pt: [
+        { n: '01', title: 'Grafismos', text: 'O sistema se apoia em três grafismos com funções distintas. O padrão de círculos entrelaçados atua como demarcador visual, com formas dinâmicas que transmitem movimento e versatilidade. O símbolo da marca aparece como reforço conceitual, aplicado de forma secundária e com transparência. E o símbolo também funciona como máscara para imagens, criando um reforço conceitual mais dinâmico e trazendo pessoas para dentro da identidade. Com funções bem definidas, os grafismos podem ser combinados de formas diferentes sem perder coerência, o que ajuda a evitar a repetição no feed.' },
+        { n: '02', title: 'Paleta e texturas', text: 'A paleta é contida, com um azul-grafite como base, o laranja da marca como cor de destaque e um azul acinzentado de apoio. O laranja é usado com parcimônia, em pontos de atenção como o símbolo e as chamadas para ação. Texturas de linhas em onda, que remetem a tecnologia e fluxo de dados, e de granulado, que acrescenta profundidade às superfícies, completam a linguagem. Juntas, essas escolhas sustentam a percepção premium da comunicação.' },
+        { n: '03', title: 'Tipografia e hierarquia', text: 'Uma sans-serif geométrica em diferentes pesos organiza a leitura: títulos em negrito para a mensagem principal, texto de apoio em peso regular e informações complementares em tamanho reduzido. A hierarquia clara garante legibilidade em formatos pequenos, como os posts, e mantém um tom moderno e objetivo, coerente com uma empresa de tecnologia.' },
+        { n: '04', title: 'Composição', text: 'As peças combinam um card com cantos arredondados, que concentra o texto, e imagens recortadas pelo símbolo da marca. A assinatura com logo e tagline em posições fixas cria uma moldura reconhecível, enquanto o centro da peça varia de acordo com a mensagem. Nos carrosséis, um indicador de navegação na cor de destaque orienta a leitura.' },
+        { n: '05', title: 'Escalabilidade', text: 'Os modelos foram organizados em uma biblioteca de templates no Figma, disponibilizada para a equipe de social media. Com isso, o time passou a produzir peças com autonomia, aplicando a linguagem visual de forma consistente sem depender da criação de cada peça do zero.' }
+      ],
+      en: [
+        { n: '01', title: 'Graphic elements', text: 'The system relies on three graphic elements with distinct roles. The interlaced-circles pattern acts as a visual marker, with dynamic shapes that convey movement and versatility. The brand symbol appears as a conceptual reinforcement, applied in a secondary role with transparency. The symbol also works as an image mask, creating a more dynamic conceptual reinforcement and bringing people into the identity. With clearly defined roles, the elements can be combined in different ways without losing coherence, which helps avoid repetition in the feed.' },
+        { n: '02', title: 'Palette and textures', text: 'The palette is restrained: a graphite blue as the base, the brand orange as the accent and a greyish blue for support. Orange is used sparingly, at points of attention such as the symbol and calls to action. Wave-line textures, evoking technology and data flow, and grain, which adds depth to surfaces, complete the language. Together, these choices support the premium feel of the communication.' },
+        { n: '03', title: 'Typography and hierarchy', text: 'A geometric sans-serif in different weights structures reading: bold headlines for the main message, regular weight for supporting copy and smaller sizes for complementary information. The clear hierarchy keeps small formats like posts legible and maintains a modern, objective tone that fits a technology company.' },
+        { n: '04', title: 'Composition', text: 'Pieces combine a rounded card that holds the text with images masked by the brand symbol. The signature, with logo and tagline in fixed positions, creates a recognizable frame while the center of each piece changes with the message. In carousels, a navigation indicator in the accent color guides reading.' },
+        { n: '05', title: 'Scalability', text: 'The layouts were organized into a template library in Figma, shared with the social media team. The team could then produce pieces autonomously, applying the visual language consistently without designing each piece from scratch.' }
+      ]
+    };
+    var A = {
+      pt: [
+        { title: 'Canais digitais', text: 'Nas redes sociais, a linguagem foi adaptada para diferentes mensagens e formatos, mantendo unidade entre as publicações e permitindo que a comunicação se desdobrasse conforme a necessidade.', ph: '[Imagens: posts e carrosséis]' },
+        { title: 'Comunicação institucional', text: 'A mesma linguagem estruturou apresentações e materiais usados para apresentar a marca, seus serviços e sua atuação.', ph: '[Imagens: apresentações e materiais institucionais]' },
+        { title: 'A marca fora das telas', text: 'Totens, stands, banners e materiais de identificação estenderam o sistema para eventos e ambientes físicos, conectando a comunicação digital ao contato presencial com a marca.', ph: '[Imagens: totens, stands e banners]' }
+      ],
+      en: [
+        { title: 'Digital channels', text: 'On social media, the language was adapted to different messages and formats, keeping unity across posts and letting the communication unfold as needed.', ph: '[Images: posts and carousels]' },
+        { title: 'Corporate communication', text: 'The same language shaped presentations and materials used to introduce the brand, its services and its work.', ph: '[Images: presentations and corporate materials]' },
+        { title: 'The brand beyond screens', text: 'Standing displays, booths, banners and signage extended the system to events and physical spaces, connecting digital communication with in-person contact with the brand.', ph: '[Images: displays, booths and banners]' }
+      ]
+    };
+    var R = {
+      pt: [
+        { title: 'Uma linguagem para cinco frentes', text: 'O sistema visual passou a sustentar a comunicação das cinco frentes do Grupo Strategi com uma linguagem única, reconhecível em todos os pontos de contato: redes sociais, apresentações para clientes e parceiros, eventos e ambientes físicos.' },
+        { title: 'Autonomia e agilidade', text: 'Com a biblioteca de templates no Figma, a equipe de social media ganhou autonomia para produzir conteúdo sem depender da criação de cada peça do zero. A produção deixou de ser caso a caso e passou a seguir padrões definidos, tornando-se mais ágil e consistente.' },
+        { title: 'Variedade com percepção premium', text: 'A variedade de modelos permitiu manter um volume constante de publicações sobre temas distintos sem tornar o feed repetitivo, enquanto a paleta contida, as texturas e os grafismos reforçaram a percepção premium da marca.' }
+      ],
+      en: [
+        { title: 'One language for five business lines', text: 'The visual system now supports communication for all five Grupo Strategi business lines with a single language, recognizable at every touchpoint: social media, presentations to clients and partners, events and physical spaces.' },
+        { title: 'Autonomy and speed', text: 'With the Figma template library, the social media team gained the autonomy to produce content without designing each piece from scratch. Production moved from case-by-case to defined standards, becoming faster and more consistent.' },
+        { title: 'Variety with a premium feel', text: 'The range of layouts made it possible to keep a steady volume of posts on different topics without a repetitive feed, while the restrained palette, textures and graphic elements reinforced the brand’s premium feel.' }
+      ]
+    };
+    return {
+      docLang: lang === 'en' ? 'en' : 'pt-BR',
+      stkClass: this.state.stuck ? 'ro-stk ro-on' : 'ro-stk',
+      t: T[lang], meta: M[lang], fronts: F[lang], decisions: D[lang], results: R[lang],
+      apps: A[lang].map(function (a, i) {
+        var IMGS = [
+          lang === 'en'
+            ? [
+                { src: '/_blob/316e819ab74c51c84933eb866f5ab3e7', alt: 'Two Grupo Strategi posts: one with a graphite-to-orange gradient and the symbol masking a photo, another with a photo grid and an orange block' },
+                { src: '/_blob/1b94c3f717c4e2ca5d3f09fa2512a082', alt: 'Grupo Strategi carousel post on Instagram, shown on a phone' },
+                { src: '/_blob/1da879ecadbee997e2d1e94a19a9dbbf', alt: 'Two Grupo Strategi vertical pieces, in orange and graphite blue, with the interlaced-circles pattern over the photo' }
+              ]
+            : [
+                { src: '/_blob/316e819ab74c51c84933eb866f5ab3e7', alt: 'Dois posts do Grupo Strategi: um com degradê grafite para laranja e o símbolo recortando a foto, outro com grade de fotos e bloco laranja' },
+                { src: '/_blob/1b94c3f717c4e2ca5d3f09fa2512a082', alt: 'Post em carrossel do Grupo Strategi no Instagram, exibido em um celular' },
+                { src: '/_blob/1da879ecadbee997e2d1e94a19a9dbbf', alt: 'Duas peças verticais do Grupo Strategi, em laranja e azul-grafite, com o padrão de círculos entrelaçados sobre a foto' }
+              ],
+          lang === 'en'
+            ? [
+                { src: '/_blob/9bbac7b386b32d4c12f8c823335d1612', alt: 'Grupo Strategi presentation slide “About us”: orange background, translucent text card and a photo masked by the brand symbol' },
+                { src: '/_blob/92774e03b84a66b1220a9e1beaaa8ac3', alt: 'Two Grupo Strategi presentation slides: a client map of Brazil and an “AI Development” services page with cards' }
+              ]
+            : [
+                { src: '/_blob/9bbac7b386b32d4c12f8c823335d1612', alt: 'Slide de apresentação do Grupo Strategi “About us”: fundo laranja, card translúcido com texto e foto recortada pelo símbolo da marca' },
+                { src: '/_blob/92774e03b84a66b1220a9e1beaaa8ac3', alt: 'Dois slides de apresentação do Grupo Strategi: mapa de clientes no Brasil e página de serviços “AI Development” com cards' }
+              ],
+          lang === 'en'
+            ? [
+                { src: '/_blob/8b23dc6226fcd541b8ee810798ae6622', alt: 'Grupo Strategi ID badges, front and back, with an orange lanyard' },
+                { src: '/_blob/9b7b2dccdfc8776a997b4b1bec62fd0c', alt: 'Grupo Strategi roll-up banner with logo, tagline and the symbol as a watermark' },
+                { src: '/_blob/64ad99a31c1da4533bce4b4ab6773353', alt: 'Event booth combining Hub Sebrae RN on one wall and Grupo Strategi with its service tags on the other' },
+                { src: '/_blob/67a013d920288bb6207ec3951c3a7084', alt: 'Digital totem in a mall showing a Grupo Strategi piece about its Blip partnership' }
+              ]
+            : [
+                { src: '/_blob/8b23dc6226fcd541b8ee810798ae6622', alt: 'Crachás do Grupo Strategi, frente e verso, com cordão laranja' },
+                { src: '/_blob/9b7b2dccdfc8776a997b4b1bec62fd0c', alt: 'Banner roll-up do Grupo Strategi com logo, tagline e o símbolo como marca d’água' },
+                { src: '/_blob/64ad99a31c1da4533bce4b4ab6773353', alt: 'Stand de evento com o Hub Sebrae RN em uma parede e o Grupo Strategi com suas frentes de serviço na outra' },
+                { src: '/_blob/67a013d920288bb6207ec3951c3a7084', alt: 'Totem digital em shopping exibindo peça do Grupo Strategi sobre a parceria com a Blip' }
+              ]
+        ];
+        var imgs = IMGS[i] || [];
+        return Object.assign({}, a, { imgs: imgs, hasImgs: imgs.length > 0, noImgs: imgs.length === 0 });
+      }),
+      isPt: lang === 'pt', isEn: lang === 'en',
+      setPt: function () { try { localStorage.setItem('ro-lang', 'pt'); } catch (e) {} self.setState({ lang: 'pt' }); },
+      setEn: function () { try { localStorage.setItem('ro-lang', 'en'); } catch (e) {} self.setState({ lang: 'en' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

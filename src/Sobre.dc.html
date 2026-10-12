@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Sobre · Renato Oliveira</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#000000;font-family:'Manrope',system-ui,sans-serif}
+*{box-sizing:border-box}
+a{color:#253CEA}a:hover{color:#1A2BB8}
+:focus-visible{outline:2px solid #253CEA;outline-offset:3px}
+.ro-nw{color:#FFFFFF;text-decoration:none;opacity:.82;transition:opacity .2s}
+.ro-nw:hover{color:#FFFFFF;opacity:1}
+.ro-pill{text-decoration:none;transition:transform .25s,box-shadow .25s}
+.ro-pill:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(5,10,46,.22)}
+.ro-pill .ro-dot{transition:transform .3s}
+.ro-pill:hover .ro-dot{transform:rotate(-45deg)}
+.ro-lift{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.ro-lift:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(5,10,46,.10)}
+@keyframes roUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.ro-up{animation:roUp .9s cubic-bezier(.2,.7,.2,1) both}
+.ro-d1{animation-delay:.08s}.ro-d2{animation-delay:.16s}.ro-d3{animation-delay:.24s}
+@keyframes roRise{from{opacity:0;transform:translateY(60px) scale(1.04)}to{opacity:1;transform:none}}
+.ro-rise{animation:roRise 1.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes roGlow{0%,100%{opacity:.55}50%{opacity:.9}}
+.ro-glow{animation:roGlow 6s ease-in-out infinite}
+.ro-nd{color:#000000;text-decoration:none;opacity:.6;transition:opacity .2s,color .2s}
+.ro-nd:hover{color:#253CEA;opacity:1}
+header nav .ro-nw{padding:6px 12px;margin:-6px -12px;border-radius:999px;transition:opacity .2s,background .2s,color .2s}
+header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
+.ro-stk{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid #EAEAEA;transform:translateY(-105%);visibility:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s linear .4s}
+.ro-stk.ro-on{transform:none;visibility:visible;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s}
+@media (prefers-reduced-motion:reduce){.ro-up,.ro-rise,.ro-glow{animation:none}.ro-stk,.ro-stk.ro-on{transition:none}}
+@media (max-width:1200px){.ro-arc{width:440px !important;height:440px !important;border-width:56px !important;right:-180px !important;bottom:-240px !important}}
+@media (max-width:760px){.ro-arc{display:none !important}}
+.ro-hd{display:grid !important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
+.ro-hd>:first-child{justify-self:start}
+.ro-hd>:last-child{justify-self:end}
+@media (max-width:900px){.ro-hd{display:flex !important}}
+</style>
+</helmet>
+<div lang="{{docLang}}" style="width: 100%; background: #FFFFFF; font-family: 'Manrope', system-ui, sans-serif; color: #000000; overflow-x: hidden">
+
+<!-- MENU FIXO (aparece ao rolar) -->
+<div class="{{stkClass}}">
+<header class="ro-hd" style="max-width: 1280px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px">
+<a href="Main.dc.html" aria-label="Renato Oliveira, início" style="display: flex; align-items: center"><img src="/_blob/dead834c6a2b1ed8a48092e6e2df018f" alt="renatooliveira" style="height: 24px; width: auto; display: block"></a>
+<nav aria-label="Principal (fixo)" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
+<a class="ro-nd" href="Main.dc.html">{{t.navHome}}</a>
+<a class="ro-nd" href="Sobre.dc.html" aria-current="page" style="opacity: 1">{{t.navAbout}}</a>
+<a class="ro-nd" href="Projetos.dc.html">{{t.navWork}}</a>
+<a class="ro-nd" href="Contato.dc.html">{{t.navContact}}</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px">
+<div role="group" aria-label="Idioma" style="display: flex; border: 1px solid #DADADA; border-radius: 999px; padding: 3px">
+<sc-if value="{{isPt}}" hint-placeholder-val="{{true}}">
+<button type="button" aria-pressed="false" onClick="{{setEn}}" lang="en" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer">EN</button>
+<button type="button" aria-pressed="true" lang="pt-BR" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer">PT</button>
+</sc-if>
+<sc-if value="{{isEn}}" hint-placeholder-val="{{false}}">
+<button type="button" aria-pressed="true" lang="en" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer">EN</button>
+<button type="button" aria-pressed="false" onClick="{{setPt}}" lang="pt-BR" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer">PT</button>
+</sc-if>
+</div>
+<a class="ro-pill" href="Contato.dc.html" style="min-height: 44px; padding: 0 18px 0 6px; display: inline-flex; align-items: center; gap: 10px; background: #000000; color: #FFFFFF; border-radius: 999px; font: 600 14px 'Geist', sans-serif"><span class="ro-dot" style="width: 32px; height: 32px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>{{t.talk}}</a>
+</div>
+</header>
+</div>
+
+<!-- PAGE HERO -->
+<section style="position: relative; height: 760px; overflow: hidden; color: #FFFFFF; background: linear-gradient(205deg, #A9B6FF 0%, #6E80F7 28%, #3A50EE 55%, #253CEA 80%, #1E32D6 100%)">
+<div class="ro-glow" aria-hidden="true" style="position: absolute; right: 4%; top: 10%; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(214,221,255,.5) 0%, rgba(214,221,255,0) 62%)"></div>
+<div class="ro-arc" aria-hidden="true" style="position: absolute; right: -160px; bottom: -300px; width: 620px; height: 620px; border: 80px solid #FFFFFF; border-radius: 50%"></div>
+<div class="ro-rise" style="position: absolute; inset: 0; display: flex; justify-content: flex-end; align-items: flex-end; padding-right: 4%">
+<img src="/_blob/00279768a85e85a6c5dc80f7289a7651" alt="{{t.photoAlt}}" style="height: 88%; width: auto; max-width: none; display: block">
+</div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,10,46,.7) 0%, rgba(5,10,46,.2) 32%, rgba(5,10,46,0) 55%), linear-gradient(to bottom, rgba(10,20,110,.35) 0%, rgba(10,20,110,0) 18%)"></div>
+
+<header class="ro-hd" style="position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
+<a href="Main.dc.html" aria-label="Renato Oliveira, início" style="display: flex; align-items: center"><img src="/_blob/77e3660513b45fd95c29c08184b69ccc" alt="renatooliveira" style="height: 26px; width: auto; display: block"></a>
+<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
+<a class="ro-nw" href="Main.dc.html">{{t.navHome}}</a>
+<a class="ro-nw" href="Sobre.dc.html" aria-current="page" style="opacity: 1">{{t.navAbout}}</a>
+<a class="ro-nw" href="Projetos.dc.html">{{t.navWork}}</a>
+<a class="ro-nw" href="Contato.dc.html">{{t.navContact}}</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px">
+<div role="group" aria-label="Idioma" style="display: flex; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; padding: 3px">
+<sc-if value="{{isPt}}" hint-placeholder-val="{{true}}">
+<button type="button" aria-pressed="false" onClick="{{setEn}}" lang="en" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer">EN</button>
+<button type="button" aria-pressed="true" lang="pt-BR" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #FFFFFF; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer">PT</button>
+</sc-if>
+<sc-if value="{{isEn}}" hint-placeholder-val="{{false}}">
+<button type="button" aria-pressed="true" lang="en" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #FFFFFF; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer">EN</button>
+<button type="button" aria-pressed="false" onClick="{{setPt}}" lang="pt-BR" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer">PT</button>
+</sc-if>
+</div>
+<a class="ro-pill" href="Contato.dc.html" style="min-height: 44px; padding: 0 18px 0 6px; display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #000000; border-radius: 999px; font: 600 14px 'Geist', sans-serif"><span class="ro-dot" style="width: 32px; height: 32px; border-radius: 50%; background: #000000; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>{{t.talk}}</a>
+</div>
+</header>
+
+<div style="position: absolute; z-index: 2; left: 0; right: 0; bottom: 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px 64px">
+<div class="ro-up" style="margin: 0 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #FFFFFF">{{t.eyebrow}}</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: rgba(255,255,255,.45)"></span></div>
+<h1 class="ro-up ro-d1" style="margin: 0; max-width: 760px; font: 500 clamp(48px, 7vw, 108px)/0.95 'Geist', sans-serif; letter-spacing: -0.05em">{{t.h1a}}<br>{{t.h1b}}</h1>
+</div>
+</div>
+</section>
+
+<!-- INTRO / BIO -->
+<section style="position: relative; max-width: 1280px; margin: 0 auto; padding: 120px 24px; display: flex; flex-wrap: wrap; gap: 64px">
+<span class="ro-haste" aria-hidden="true" style="position: absolute; top: 124px; left: calc(50% - 50vw); width: calc(50vw - 50%); height: 180px; background: #253CEA; clip-path: polygon(45% 0, 100% 0, 0 100%, 0 45%); pointer-events: none"></span>
+<div style="flex: 1 1 320px">
+<h2 style="margin: 0 0 32px; font: 500 clamp(32px, 3.4vw, 48px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em">{{t.bioTitle}}</h2>
+<a class="ro-pill" href="#" style="min-height: 48px; padding: 0 20px 0 8px; display: inline-flex; align-items: center; gap: 12px; background: #253CEA; color: #FFFFFF; border-radius: 999px; font: 600 15px 'Geist', sans-serif"><span class="ro-dot" style="width: 34px; height: 34px; border-radius: 50%; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg></span>{{t.cv}}</a>
+</div>
+<div style="flex: 2 1 480px; display: flex; flex-direction: column; gap: 20px; font-size: 18px; line-height: 1.7; color: #333333">
+<p style="margin: 0; font: 500 clamp(22px, 2vw, 28px)/1.4 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">{{t.intro}}</p>
+<p style="margin: 0">{{t.bio1}}</p>
+<p style="margin: 0">{{t.bio2}}</p>
+<p style="margin: 0; color: #5C5C5C">{{t.bio3}}</p>
+</div>
+</section>
+
+<!-- STATS -->
+<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px 120px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+<div style="border-radius: 24px; padding: 32px; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; background: #253CEA; color: #FFFFFF"><p style="margin: 0; font: 500 72px/1 'Geist', sans-serif; letter-spacing: -0.05em">15</p><p style="margin: 0; font-size: 15px">{{t.stat1}}</p></div>
+<div style="border-radius: 24px; padding: 32px; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; background: #000000; color: #FFFFFF"><p style="margin: 0; font: 500 72px/1 'Geist', sans-serif; letter-spacing: -0.05em">7<span style="color: #A9B6FF">+</span></p><p style="margin: 0; font-size: 15px; color: #C9D1FF">{{t.stat2}}</p></div>
+<div style="border-radius: 24px; padding: 32px; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; background: #F7F7F8"><p style="margin: 0; font: 500 72px/1 'Geist', sans-serif; letter-spacing: -0.05em; color: #253CEA">8</p><p style="margin: 0; font-size: 15px; color: #333333">{{t.stat3}}</p></div>
+</div>
+</section>
+
+<!-- PRINCÍPIOS -->
+<section aria-labelledby="ro-pri" style="background: #F7F7F8">
+<div style="max-width: 1280px; margin: 0 auto; padding: 112px 24px">
+<div style="margin: 0 0 16px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">{{t.priEyebrow}}</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
+<h2 id="ro-pri" style="margin: 0 0 64px; font: 500 clamp(38px, 4.4vw, 64px)/1 'Geist', sans-serif; letter-spacing: -0.045em">{{t.priTitle}}</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 56px 64px">
+<sc-for list="{{principles}}" as="pr" hint-placeholder-count="4">
+<li style="padding-top: 24px; border-top: 1px solid #000000; display: flex; gap: 24px">
+<span style="flex: 0 0 48px; font: 500 clamp(26px, 2.6vw, 36px)/1.1 'Geist', sans-serif; letter-spacing: -0.04em; color: #253CEA">{{pr.n}}</span>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font: 500 clamp(26px, 2.6vw, 36px)/1.1 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">{{pr.title}}</h3>
+<p style="margin: 0; max-width: 480px; font-size: 17px; line-height: 1.65; color: #333333">{{pr.text}}</p>
+</div>
+</li>
+</sc-for>
+</ol>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section style="max-width: 1280px; margin: 0 auto; padding: 112px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px">
+<div>
+<h2 style="margin: 0 0 24px; font: 500 22px 'Geist', sans-serif; letter-spacing: -0.02em">{{t.sectorsTitle}}</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><sc-for list="{{sectors}}" as="s" hint-placeholder-count="5"><span style="padding: 10px 18px; border: 1px solid #000000; border-radius: 999px; font: 500 14px 'Geist', sans-serif">{{s}}</span></sc-for></div>
+</div>
+<div>
+<h2 style="margin: 0 0 24px; font: 500 22px 'Geist', sans-serif; letter-spacing: -0.02em">{{t.skillsTitle}}</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><sc-for list="{{skills}}" as="s" hint-placeholder-count="8"><span style="padding: 10px 18px; background: #F7F7F8; border-radius: 999px; font: 500 14px 'Geist', sans-serif">{{s}}</span></sc-for></div>
+</div>
+<div>
+<h2 style="margin: 0 0 24px; font: 500 22px 'Geist', sans-serif; letter-spacing: -0.02em">{{t.toolsTitle}}</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<span style="padding: 10px 18px; background: #253CEA; color: #FFFFFF; border-radius: 999px; font: 500 14px 'Geist', sans-serif">Figma</span>
+<span style="padding: 10px 18px; background: #253CEA; color: #FFFFFF; border-radius: 999px; font: 500 14px 'Geist', sans-serif">FigJam</span>
+<span style="padding: 10px 18px; background: #253CEA; color: #FFFFFF; border-radius: 999px; font: 500 14px 'Geist', sans-serif">Framer</span>
+<span style="padding: 10px 18px; background: #253CEA; color: #FFFFFF; border-radius: 999px; font: 500 14px 'Geist', sans-serif">WordPress</span>
+<span style="padding: 10px 18px; background: #253CEA; color: #FFFFFF; border-radius: 999px; font: 500 14px 'Geist', sans-serif">Claude</span>
+<span style="padding: 10px 18px; border: 1px dashed #5C5C5C; border-radius: 999px; font: 500 14px 'Geist', sans-serif; color: #5C5C5C">{{t.toolsMore}}</span>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="position: relative; overflow: hidden; background: #000000; color: #FFFFFF">
+<div aria-hidden="true" style="position: absolute; right: -220px; top: -300px; width: 560px; height: 560px; border: 72px solid #253CEA; border-radius: 50%; pointer-events: none"></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 112px 24px 40px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 40px; padding-bottom: 72px; border-bottom: 1px solid #262626">
+<div style="max-width: 820px">
+<h2 style="margin: 0; font: 500 clamp(44px, 6vw, 96px)/0.92 'Geist', sans-serif; letter-spacing: -0.055em">{{t.fCta1}}</h2>
+<p style="margin: 28px 0 0; max-width: 600px; font: 400 clamp(20px, 1.8vw, 26px)/1.4 'Geist', sans-serif; letter-spacing: -0.015em; color: #BDBDBD">{{t.fCta2}}</p>
+</div>
+<a class="ro-pill" href="Contato.dc.html" style="position: relative; min-height: 56px; padding: 0 24px 0 10px; display: inline-flex; align-items: center; gap: 12px; background: #FFFFFF; color: #000000; border-radius: 999px; font: 600 16px 'Geist', sans-serif"><span class="ro-dot" style="width: 38px; height: 38px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>{{t.fBtn}}</a>
+</div>
+<div style="position: relative; padding: 32px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px">
+
+<img src="/_blob/45a024ad2fa8c9154f2a5a5a69c4d2b1" alt="Renato Oliveira" style="width: 36px; height: 36px; object-fit: contain; display: block">
+<div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px"><a class="ro-nw" href="https://linkedin.com/in/renatooliveiraux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex: none"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg>LinkedIn</a><a class="ro-nw" href="https://instagram.com/renatooliveira.ux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="flex: none"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>Instagram</a><a class="ro-nw" href="https://wa.me/5584981837847?text=Ol%C3%A1!%20Tudo%20bem%3F%20Cheguei%20aqui%20pelo%20seu%20portf%C3%B3lio." target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M3 21l1.6-4.8A9 9 0 1 1 7.8 19.4z"></path><path d="M9 8.6c0 3.5 2.9 6.4 6.4 6.4l1.1-1.5-2.1-1-.9.8a4.6 4.6 0 0 1-2.2-2.2l.8-.9-1-2.1z" fill="currentColor" stroke="none"></path></svg>WhatsApp</a></div>
+<p style="margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font: 500 12px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #BDBDBD">{{t.fRole}}<span style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; color: #8A8A8A">© 2026 Renato Oliveira</span><a class="ro-nw" href="Privacidade.dc.html" style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; text-decoration: underline; text-underline-offset: 3px">{{t.fPriv}}</a></p>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","en","pt"],"default":"auto"},"$preview":{"width":1440,"height":3700}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); var _s=null;try{_s=localStorage.getItem('ro-lang');}catch(e){}var _n='';try{_n=(navigator.language||'').toLowerCase();}catch(e){}this._auto=(_s==='pt'||_s==='en')?_s:(_n.indexOf('pt')===0?'pt':'en'); this.state = { lang: null, stuck: false }; }
+  componentDidMount() {
+    var self = this;
+    this._onScroll = function (e) {
+      var t = e && e.target;
+      var y = (t && t.nodeType === 1) ? t.scrollTop : (window.scrollY || document.documentElement.scrollTop || 0);
+      var on = y > 680;
+      if (on !== self.state.stuck) self.setState({ stuck: on });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true, capture: true });
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll, { capture: true });
+  }
+  renderVals() {
+    var lang = this.state.lang || (this.props.lang === 'pt' || this.props.lang === 'en' ? this.props.lang : this._auto) || 'en';
+    var T = {
+      pt: {
+        navHome: 'Home', fRole: 'Designer de Produto', fPriv: 'Política de privacidade', navAbout: 'Sobre', navWork: 'Projetos', navContact: 'Contato', talk: 'Vamos conversar',
+        eyebrow: 'Designer de Produto · da marca à interface', h1a: 'Clareza para', h1b: 'produtos complexos.',
+        photoAlt: 'Retrato de Renato Oliveira em tons de azul',
+        bioTitle: 'Da pesquisa com usuários à interface final.', cv: 'Baixar currículo',
+        intro: 'Designer de Produto com mais de 7 anos em UX/UI e interfaces digitais, dentro de uma trajetória de 15 anos em design, e base acadêmica em Interação Humano-Computador pelo programa de mestrado da UFRN, com pesquisa em testes de usabilidade e métricas de experiência.',
+        bio1: 'Atuo em todo o ciclo de produto, da pesquisa com usuários à entrega de interfaces em alta fidelidade, com experiência em redesign e evolução de SaaS multiperfil, aplicativos mobile, dashboards de BI, Design Systems e liderança de times de design, incorporando IA para acelerar as etapas de descoberta e ideação.',
+        bio2: 'Conecto necessidades dos usuários a objetivos de negócio, trabalhando em proximidade com desenvolvimento, produto e stakeholders.',
+        bio3: 'De 2024 a 2026, atuei como Designer de Produto no Grupo Strategi.',
+        stat1: 'anos de experiência em design', stat2: 'anos em UI/UX e produtos digitais', stat3: 'setores atendidos',
+        priEyebrow: 'Como eu trabalho', priTitle: 'Princípios',
+        sectorsTitle: 'Setores atendidos', skillsTitle: 'Competências', toolsTitle: 'Ferramentas', toolsMore: '[+ outras]',
+        fCta1: 'Vamos começar.', fCta2: 'Você tem um produto, uma ideia ou um desafio para resolver? Conte comigo.', fBtn: 'Iniciar conversa'
+      },
+      en: {
+        navHome: 'Home', fRole: 'Product Designer', fPriv: 'Privacy policy', navAbout: 'About', navWork: 'Work', navContact: 'Contact', talk: 'Let’s talk',
+        eyebrow: 'Product Designer · from brand to interface', h1a: 'Clarity for', h1b: 'complex products.',
+        photoAlt: 'Portrait of Renato Oliveira in shades of blue',
+        bioTitle: 'From user research to the final interface.', cv: 'Download résumé',
+        intro: 'Product Designer with 7+ years in UX/UI and digital interfaces, within a 15-year design career, and a master’s degree in Human-Computer Interaction from UFRN, a federal university in Brazil, with research on usability testing and UX metrics.',
+        bio1: 'I work across the full product lifecycle, from user research to high-fidelity interfaces. My experience includes redesigning and evolving multi-role SaaS platforms, mobile apps, BI dashboards and design systems, as well as leading design teams and using AI to speed up discovery and ideation.',
+        bio2: 'I connect user needs to business goals, working closely with engineering, product and stakeholders.',
+        bio3: 'From 2024 to 2026, I worked as a Product Designer at Grupo Strategi.',
+        stat1: 'years of design experience', stat2: 'years in UI/UX and digital products', stat3: 'industries served',
+        priEyebrow: 'How I work', priTitle: 'Principles',
+        sectorsTitle: 'Industries', skillsTitle: 'Skills', toolsTitle: 'Tools', toolsMore: '[+ more]',
+        fCta1: 'Let’s get started.', fCta2: 'Have a product, an idea or a challenge in mind? Let’s make it happen.', fBtn: 'Start a conversation'
+      }
+    };
+    var PR = {
+      pt: [
+        { n: '01', title: 'Compreensão antes da interface', text: 'Todo projeto começa entendendo pessoas, contexto, objetivos e restrições antes de desenhar qualquer solução.' },
+        { n: '02', title: 'Clareza é uma decisão de design', text: 'O papel do design não é eliminar a complexidade, mas organizá-la para que ela possa ser compreendida.' },
+        { n: '03', title: 'Experiência, design e negócio juntos', text: 'Produtos relevantes surgem quando necessidades das pessoas, estratégia e tecnologia evoluem na mesma direção.' },
+        { n: '04', title: 'Sistemas criam consistência', text: 'Interfaces, identidades e produtos ganham força quando fazem parte de um sistema, e não de decisões isoladas.' }
+      ],
+      en: [
+        { n: '01', title: 'Understanding before interface', text: 'Every project starts by understanding people, context, goals and constraints before designing any solution.' },
+        { n: '02', title: 'Clarity is a design decision', text: 'Design isn’t about removing complexity. It’s about organizing it so people can make sense of it.' },
+        { n: '03', title: 'Experience, design and business together', text: 'Meaningful products happen when people’s needs, strategy and technology move in the same direction.' },
+        { n: '04', title: 'Systems create consistency', text: 'Interfaces, identities and products are stronger as part of a system than as isolated decisions.' }
+      ]
+    };
+    var sectors = lang === 'en' ? ['Tourism', 'Engineering', 'Education', 'Retail', 'Technology', 'Accounting', 'Healthcare', 'Industry'] : ['Turismo', 'Engenharia', 'Educação', 'Varejo', 'Tecnologia', 'Contabilidade', 'Saúde', 'Indústria'];
+    var skills = lang === 'en'
+      ? ['Product Design', 'UX Research', 'UI Design', 'Design Systems', 'Information Architecture', 'Prototyping', 'Branding', 'Web Design']
+      : ['Product Design', 'UX Research', 'UI Design', 'Design System', 'Arquitetura de informação', 'Prototipação', 'Branding', 'Web Design'];
+    var self = this;
+    return {
+      docLang: lang === 'en' ? 'en' : 'pt-BR',
+      stkClass: this.state.stuck ? 'ro-stk ro-on' : 'ro-stk',
+      t: T[lang], principles: PR[lang], sectors: sectors, skills: skills,
+      isPt: lang === 'pt', isEn: lang === 'en',
+      setPt: function () { try { localStorage.setItem('ro-lang', 'pt'); } catch (e) {} self.setState({ lang: 'pt' }); },
+      setEn: function () { try { localStorage.setItem('ro-lang', 'en'); } catch (e) {} self.setState({ lang: 'en' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
