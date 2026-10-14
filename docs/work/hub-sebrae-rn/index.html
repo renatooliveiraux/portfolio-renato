@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hub Sebrae RN Identity and Portal · Renato Oliveira</title>
+<meta name="description" content="Hub Sebrae RN identity and portal, a consulting platform for small businesses. Designed at Grupo Strategi, from brand concept to desktop and mobile UI.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Renato Oliveira">
+<meta property="og:title" content="Hub Sebrae RN Identity and Portal · Renato Oliveira">
+<meta property="og:description" content="Hub Sebrae RN identity and portal, a consulting platform for small businesses. Designed at Grupo Strategi, from brand concept to desktop and mobile UI.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#000000;font-family:'Manrope',system-ui,sans-serif}
+*{box-sizing:border-box}
+:root{--sec:clamp(80px,9vw,128px);--sub:clamp(56px,6vw,96px)}
+a{color:#253CEA}a:hover{color:#1A2BB8}
+:focus-visible{outline:2px solid #253CEA;outline-offset:3px}
+.ro-nw{color:#FFFFFF;text-decoration:none;opacity:.82;transition:opacity .2s}
+.ro-nw:hover{color:#FFFFFF;opacity:1}
+.ro-bk{color:#5C5C5C;text-decoration:none;transition:color .2s}
+.ro-bk:hover{color:#000000}
+.ro-bk svg{transition:transform .25s}
+.ro-bk:hover svg{transform:translateX(-4px)}
+.ro-pill{text-decoration:none;transition:transform .25s,box-shadow .25s}
+.ro-pill:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.18)}
+.ro-pill .ro-dot{transition:transform .3s}
+.ro-pill:hover .ro-dot{transform:rotate(-45deg)}
+.ro-next{text-decoration:none;color:#FFFFFF}
+.ro-next:hover{color:#FFFFFF}
+.ro-next .ro-dot{transition:transform .35s}
+.ro-next:hover .ro-dot{transform:rotate(-45deg) scale(1.08)}
+@keyframes roUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.ro-up{animation:roUp .9s cubic-bezier(.2,.7,.2,1) both}
+.ro-d1{animation-delay:.08s}.ro-d2{animation-delay:.16s}
+.ro-nd{color:#000000;text-decoration:none;opacity:.6;transition:opacity .2s,color .2s}
+.ro-nd:hover{color:#253CEA;opacity:1}
+header nav .ro-nw{padding:6px 12px;margin:-6px -12px;border-radius:999px;transition:opacity .2s,background .2s,color .2s}
+header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
+.ro-stk{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid #EAEAEA;transform:translateY(-105%);visibility:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s linear .4s}
+.ro-stk.ro-on{transform:none;visibility:visible;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s}
+@media (prefers-reduced-motion:reduce){.ro-up{animation:none}.ro-stk,.ro-stk.ro-on{transition:none}}
+@media (max-width:760px){.ro-arc{display:none !important}}
+.ro-hd{display:grid !important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
+.ro-hd>:first-child{justify-self:start}
+.ro-hd>:last-child{justify-self:end}
+@media (max-width:900px){.ro-hd{display:flex !important}}
+[hidden]{display:none !important}
+</style>
+<script src="../../assets/js/site.js" defer></script>
+</head>
+<body data-stk="120">
+<div lang="en" style="width: 100%; background: #FFFFFF; font-family: 'Manrope', system-ui, sans-serif; color: #000000; overflow-x: hidden">
+
+<!-- MENU FIXO (aparece ao rolar) -->
+<div class="ro-stk">
+<header class="ro-hd" style="max-width: 1280px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px">
+<a href="../../" aria-label="Renato Oliveira, início" style="display: flex; align-items: center"><img src="../../assets/img/dead834c6a2b1ed8a48092e6e2df018f.png" alt="renatooliveira" style="height: 24px; width: auto; display: block"></a>
+<nav aria-label="Principal (fixo)" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
+<a class="ro-nd" href="../../">Home</a>
+<a class="ro-nd" href="../../about/">About</a>
+<a class="ro-nd" href="../" aria-current="page" style="opacity: 1">Work</a>
+<a class="ro-nd" href="../../contact/">Contact</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px">
+<div role="group" aria-label="Idioma" style="display: flex; border: 1px solid #DADADA; border-radius: 999px; padding: 3px">
+
+
+<a href="./" hreflang="en" lang="en" data-lang="en" aria-current="true" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none">EN</a>
+<a href="../../pt/projetos/hub-sebrae-rn/" hreflang="pt-BR" lang="pt-BR" data-lang="pt" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none">PT</a>
+
+</div>
+<a class="ro-pill" href="../../contact/" style="min-height: 44px; padding: 0 18px 0 6px; display: inline-flex; align-items: center; gap: 10px; background: #000000; color: #FFFFFF; border-radius: 999px; font: 600 14px 'Geist', sans-serif"><span class="ro-dot" style="width: 32px; height: 32px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>Let’s talk</a>
+</div>
+</header>
+</div>
+
+<!-- HEADER -->
+<section style="background: #FFFFFF; color: #000000">
+<header style="border-bottom: 1px solid #EAEAEA">
+<div class="ro-hd" style="max-width: 1280px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
+<a href="../../" aria-label="Renato Oliveira, início" style="display: flex; align-items: center"><img src="../../assets/img/dead834c6a2b1ed8a48092e6e2df018f.png" alt="renatooliveira" style="height: 26px; width: auto; display: block"></a>
+<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
+<a class="ro-nd" href="../../">Home</a>
+<a class="ro-nd" href="../../about/">About</a>
+<a class="ro-nd" href="../" aria-current="page" style="opacity: 1">Work</a>
+<a class="ro-nd" href="../../contact/">Contact</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px">
+<div role="group" aria-label="Idioma" style="display: flex; border: 1px solid #DADADA; border-radius: 999px; padding: 3px">
+
+
+<a href="./" hreflang="en" lang="en" data-lang="en" aria-current="true" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none">EN</a>
+<a href="../../pt/projetos/hub-sebrae-rn/" hreflang="pt-BR" lang="pt-BR" data-lang="pt" aria-label="Português" title="Português" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: #000000; font: 600 12px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none">PT</a>
+
+</div>
+<a class="ro-pill" href="../../contact/" style="min-height: 44px; padding: 0 18px 0 6px; display: inline-flex; align-items: center; gap: 10px; background: #000000; color: #FFFFFF; border-radius: 999px; font: 600 14px 'Geist', sans-serif"><span class="ro-dot" style="width: 32px; height: 32px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>Let’s talk</a>
+</div>
+</div>
+</header>
+
+<div style="max-width: 1280px; margin: 0 auto; padding: 40px 24px 0">
+<a class="ro-bk" href="../" style="min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font: 500 14px 'Geist', sans-serif"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>All projects</a>
+<div class="ro-up" style="margin: 56px 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">Visual identity · Web portal</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
+<h1 class="ro-up ro-d1" style="margin: 0; max-width: 1000px; font: 500 clamp(48px, 6.6vw, 108px)/0.94 'Geist', sans-serif; letter-spacing: -0.055em">Hub Sebrae RN Identity and Portal</h1>
+<div class="ro-up ro-d2" style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #000000; display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start">
+<p style="flex: 2 1 480px; max-width: 680px; margin: 0; font: 500 clamp(20px, 1.7vw, 24px)/1.45 'Geist', sans-serif; letter-spacing: -0.01em; color: #333333">Brand and portal for a platform that connects micro and small businesses to consulting subsidized by Sebrae RN, with a language closer to the people who run them.</p>
+<dl style="flex: 1 1 320px; margin: 0">
+
+<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #E4E4E4">
+<dt style="font: 500 12px/1.6 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Company</dt>
+<dd style="margin: 0; font: 500 15px/1.5 'Geist', sans-serif; color: #000000">Grupo Strategi + Sebrae RN</dd>
+</div>
+
+<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #E4E4E4">
+<dt style="font: 500 12px/1.6 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Scope</dt>
+<dd style="margin: 0; font: 500 15px/1.5 'Geist', sans-serif; color: #000000">Product Visual Identity · Website/Portal</dd>
+</div>
+
+<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #E4E4E4">
+<dt style="font: 500 12px/1.6 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Year</dt>
+<dd style="margin: 0; font: 500 15px/1.5 'Geist', sans-serif; color: #000000">2024</dd>
+</div>
+
+</dl>
+</div>
+</div>
+</section>
+
+<!-- CONTEXTO E DESAFIO -->
+<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec); display: flex; flex-direction: column; gap: 64px">
+<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 280px"><h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">Context and challenge</h2></div>
+<p style="flex: 2 1 560px; max-width: 760px; margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">From a technological, impersonal language to an experience that connects with the entrepreneur.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: var(--sub)">
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
+<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">Context</h3></div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">Sebrae is Brazil’s national agency supporting micro and small businesses. In the state of Rio Grande do Norte (RN), its Hub connects small businesses with subsidized consulting, bringing companies closer to solutions and accredited professionals.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">By 2023, the operation had already reached more than 300,000 consulting hours and more than 5,000 businesses served.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); border-top: 1px solid #000000">
+
+<div style="padding: 20px 16px 0 0"><p style="margin: 0; font: 500 clamp(40px, 4vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.05em; color: #000000">300k+</p><p style="margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #4A4A4A">consulting hours in 2023</p></div>
+
+<div style="padding: 20px 16px 0 0"><p style="margin: 0; font: 500 clamp(40px, 4vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.05em; color: #000000">5k+</p><p style="margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #4A4A4A">businesses served in 2023</p></div>
+
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
+<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">The starting point</h3></div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px"><p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">The previous experience relied on a predominantly gray, neutral identity built on visual references to technology and computer circuits. The language reinforced the idea of a platform structured for selecting services, but did little to speak to or guide the entrepreneur on the other side of the screen, who needed to discover, choose and hire those services.</p></div>
+</div>
+
+<figure style="margin: 0">
+<img src="../../assets/img/e9e118ca853890e9ef3d8cf1a34df56c.jpg" alt="Two screens from the previous version of Hub Sebrae RN: the home page, with a technology-themed image hero and a three-step guide, and the service listing in blue cards." style="width: 100%; height: auto; border-radius: 20px; display: block; background: #DFE2E6">
+<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">Previous experience: home and service listing.</figcaption>
+</figure>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
+<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">What needed to change</h3></div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<table style="width: 100%; border-collapse: collapse; font-family: 'Geist', sans-serif">
+<caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">What needed to change</caption>
+<thead><tr>
+<th scope="col" style="width: 50%; padding: 0 16px 12px 0; text-align: left; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Before</th>
+<th scope="col" style="width: 50%; padding: 0 0 12px 0; text-align: left; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">New direction</th>
+</tr></thead>
+<tbody>
+
+<tr style="border-top: 1px solid #E4E4E4">
+<td style="padding: 18px 16px 18px 0; vertical-align: top; font-size: 16px; line-height: 1.45; color: #5C5C5C">Institutional language</td>
+<td style="padding: 18px 0; vertical-align: top; font-size: 17px; line-height: 1.45; font-weight: 500; color: #000000"><span aria-hidden="true" style="color: #253CEA; margin-right: 10px">→</span>Closer and more human</td>
+</tr>
+
+<tr style="border-top: 1px solid #E4E4E4">
+<td style="padding: 18px 16px 18px 0; vertical-align: top; font-size: 16px; line-height: 1.45; color: #5C5C5C">Operation-driven experience</td>
+<td style="padding: 18px 0; vertical-align: top; font-size: 17px; line-height: 1.45; font-weight: 500; color: #000000"><span aria-hidden="true" style="color: #253CEA; margin-right: 10px">→</span>User-driven journey</td>
+</tr>
+
+<tr style="border-top: 1px solid #E4E4E4">
+<td style="padding: 18px 16px 18px 0; vertical-align: top; font-size: 16px; line-height: 1.45; color: #5C5C5C">Generic, undifferentiated identity</td>
+<td style="padding: 18px 0; vertical-align: top; font-size: 17px; line-height: 1.45; font-weight: 500; color: #000000"><span aria-hidden="true" style="color: #253CEA; margin-right: 10px">→</span>Distinct, recognizable identity</td>
+</tr>
+
+<tr style="border-top: 1px solid #E4E4E4">
+<td style="padding: 18px 16px 18px 0; vertical-align: top; font-size: 16px; line-height: 1.45; color: #5C5C5C">Perceived complexity</td>
+<td style="padding: 18px 0; vertical-align: top; font-size: 17px; line-height: 1.45; font-weight: 500; color: #000000"><span aria-hidden="true" style="color: #253CEA; margin-right: 10px">→</span>Simpler, guided experience</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
+<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">The design challenge</h3></div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px"><p style="margin: 0; padding-left: 20px; border-left: 3px solid #253CEA; font: 500 clamp(21px, 1.9vw, 26px)/1.45 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">How do you create an identity that conveys innovation and closeness without losing the trust associated with Sebrae — and turn a complex operation into a simple, inviting digital experience?</p></div>
+</div>
+
+<figure style="margin: 0">
+<img src="../../assets/img/4cb226fe695eb1d41bdbf408219b43a7.jpg" alt="New Hub Sebrae RN identity: fingerprint symbol tracing the outline of RN, HUB logotype with the Sebrae RN seal, photo of a smiling entrepreneur, colorful graphics and the color palette with its codes." style="width: 100%; height: auto; border-radius: 20px; display: block; background: #D1E1FB">
+<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">The new identity: symbol, photography, graphics and palette.</figcaption>
+</figure>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px">
+<div style="flex: 1 1 280px"></div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">From this challenge, the project was carried out on two connected fronts:</p>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px">
+
+<li style="padding: 24px; border-radius: 16px; background: #F7F7F8; display: flex; flex-direction: column; gap: 12px">
+<span style="font: 600 12px 'Geist', sans-serif; color: #253CEA">01</span>
+<span style="font: 500 22px/1.2 'Geist', sans-serif; letter-spacing: -0.02em; color: #000000">Identity</span>
+<span style="font-size: 16px; line-height: 1.6; color: #333333">Create a distinctive visual language for the Hub.</span>
+</li>
+
+<li style="padding: 24px; border-radius: 16px; background: #F7F7F8; display: flex; flex-direction: column; gap: 12px">
+<span style="font: 600 12px 'Geist', sans-serif; color: #253CEA">02</span>
+<span style="font: 500 22px/1.2 'Geist', sans-serif; letter-spacing: -0.02em; color: #000000">Experience</span>
+<span style="font-size: 16px; line-height: 1.6; color: #333333">Translate that language into a clearer, more accessible digital journey built around users’ goals.</span>
+</li>
+
+</ol>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 02 ATUAÇÃO -->
+<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">My role</h2>
+</div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">From identity to digital experience</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">I worked on creating the Hub’s visual identity and designing the portal, following the project from the brand concept to the desktop and mobile interfaces.</p>
+<div>
+<h3 style="margin: 0 0 12px; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Scope of work</h3>
+<ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); column-gap: 32px; border-top: 1px solid #000000">
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E4E4E4; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Visual identity</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E4E4E4; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Product visual direction</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E4E4E4; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>UX/UI design</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E4E4E4; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Experience architecture and structure</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E4E4E4; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Prototyping</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E4E4E4; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Desktop and mobile interfaces</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E4E4E4; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Alignment with development</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E4E4E4; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Validation with business and stakeholders</li>
+
+</ul>
+</div>
+<p style="margin: 0; padding-left: 20px; border-left: 3px solid #253CEA; font: 500 19px/1.6 'Geist', sans-serif; color: #000000">The solution was built in collaboration with development, Strategi’s leadership and Sebrae RN’s coordination, balancing experience, business and technical feasibility.</p>
+</div>
+</section>
+
+<!-- COVER -->
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec)">
+<figure style="margin: 0">
+<div style="aspect-ratio: 4 / 3; max-height: 860px; width: 100%; border-radius: 20px; overflow: hidden; background: #D1E1FB">
+<img src="../../assets/img/4cb226fe695eb1d41bdbf408219b43a7.jpg" alt="Hub Sebrae RN identity: logo, key visual and color palette" style="width: 100%; height: 100%; object-fit: cover; display: block">
+</div>
+<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">Hub Sebrae RN logo, key visual and palette.</figcaption>
+</figure>
+</div>
+
+<!-- 03 DECISÕES -->
+<section style="background: #F7F7F8">
+<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 32px 64px; margin-bottom: 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">Design decisions</h2>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: var(--sub)">
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding-top: 32px; border-top: 1px solid #000000">
+<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #5C5C5C">01</span>
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">Brand direction</p>
+<h3 style="margin: 0; font: 500 clamp(26px, 2.6vw, 36px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">An identity of its own, connected to Sebrae</h3>
+</div>
+<div style="flex: 2 1 480px; max-width: 640px; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The identity was designed for digital from the start. The goal was to create a brand with its own personality, yet still recognizable as part of the Sebrae ecosystem.</p>
+
+
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding-top: 24px; border-top: 1px solid #D6D6D6">
+<span aria-hidden="true" style="flex: 0 0 64px"></span>
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">The concept</p>
+<h4 style="margin: 0; font: 500 clamp(22px, 2vw, 28px)/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #000000">Individuality + territory + closeness</h4>
+</div>
+<div style="flex: 2 1 480px; max-width: 640px; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The symbol combines a fingerprint with the outline of Rio Grande do Norte.</p><p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The fingerprint stands for the uniqueness of each business, while the territory reinforces the local, close nature of the service.</p>
+</div>
+</div>
+
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+
+<img src="../../assets/img/7d12821e15a18f716b1c3591b2019ed3.jpg" alt="Hub Sebrae RN logo in white on blue and in color on white, with the fingerprint as a graphic element" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #FFFFFF">
+
+
+
+
+<img src="../../assets/img/52a5296aefdbfba6fdeba9b489f72b0b.jpg" alt="Hub Sebrae RN typography: Audiowide as the logo base, Poppins Bold as primary and Inter Regular for interface" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #FFFFFF">
+
+
+
+</div>
+
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding-top: 32px; border-top: 1px solid #000000">
+<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #5C5C5C">02</span>
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">Visual system</p>
+<h3 style="margin: 0; font: 500 clamp(26px, 2.6vw, 36px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">A more human, dynamic language</h3>
+</div>
+<div style="flex: 2 1 480px; max-width: 640px; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The visual system combines the Hub’s own elements with references from the Sebrae brand:</p>
+
+<ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); column-gap: 32px; border-top: 1px solid #000000">
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D6D6D6; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Fluid shapes</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D6D6D6; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Hexagons</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D6D6D6; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Fingerprint texture</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D6D6D6; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Parallelograms and slanted lines</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D6D6D6; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Photography of entrepreneurs</li>
+
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D6D6D6; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>Expanded palette</li>
+
+</ul>
+
+<p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">Sebrae blue keeps the association with trust and institutional recognition, while cyan, green, yellow, lilac and magenta bring more energy and closeness.</p>
+</div>
+</div>
+
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+
+<img src="../../assets/img/3e7aac78fb2b13d337f954ea1e2a6eb8.jpg" alt="Hub Sebrae RN piece in blue with a smiling entrepreneur, Sebrae seal, hexagons, fluid shapes and the fingerprint texture" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #FFFFFF">
+
+
+
+</div>
+
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- 04 PORTAL -->
+<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec)">
+<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">From identity to experience</h2>
+</div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">An identity designed to work in the product</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">The new identity was not treated as just a visual layer. Its principles — shapes, colors, graphics and photographic language — were built into the portal experience to create clearer, more human and consistent communication.</p>
+<ol aria-label="From identity to experience" style="list-style: none; margin: 0; padding: 20px 0 0; border-top: 1px solid #000000; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px">
+
+<li style="display: flex; align-items: center; gap: 16px; font: 500 clamp(18px, 1.6vw, 22px)/1.2 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000"><span>Identity</span><span aria-hidden="true" style="color: #253CEA">→</span></li>
+
+<li style="display: flex; align-items: center; gap: 16px; font: 500 clamp(18px, 1.6vw, 22px)/1.2 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000"><span>Interface</span><span aria-hidden="true" style="color: #253CEA">→</span></li>
+
+<li style="display: flex; align-items: center; gap: 16px; font: 500 clamp(18px, 1.6vw, 22px)/1.2 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000"><span>Experience</span></li>
+
+</ol>
+</div>
+</div>
+</section>
+
+<!-- IMAGEM · FOTOGRAFIA E PALETA -->
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec)">
+<figure style="margin: 0">
+<img src="../../assets/img/4cb226fe695eb1d41bdbf408219b43a7.jpg" alt="Hub Sebrae RN key visual with a photo of a smiling entrepreneur, graphics and the full palette: Sebrae blue, cyan, green, yellow, lilac, magenta and neutrals." style="width: 100%; height: auto; border-radius: 20px; display: block; background: #D1E1FB">
+</figure>
+</div>
+
+<!-- ARQUITETURA DA EXPERIÊNCIA -->
+<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-direction: column; gap: 64px">
+<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">Experience architecture</h2>
+</div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">One platform. Different needs.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">The Hub connects different players within the same ecosystem. For the public portal, the experience was structured mainly around two goals:</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px">
+
+<div style="padding-top: 20px; border-top: 1px solid #000000; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">Entrepreneur</p>
+<h3 style="margin: 0; font: 500 clamp(22px, 2vw, 28px)/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #000000">Find a solution for the business</h3>
+<p style="margin: 0; font: 500 15px/1.6 'Geist', sans-serif; color: #5C5C5C">Search → learn → request → hire</p>
+</div>
+
+<div style="padding-top: 20px; border-top: 1px solid #000000; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">Provider</p>
+<h3 style="margin: 0; font: 500 clamp(22px, 2vw, 28px)/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #000000">Offer their services</h3>
+<p style="margin: 0; font: 500 15px/1.6 'Geist', sans-serif; color: #5C5C5C">Discover opportunities → list services → serve</p>
+</div>
+
+</div>
+<p style="margin: 0; padding-left: 20px; border-left: 3px solid #253CEA; font: 500 19px/1.6 'Geist', sans-serif; color: #000000">The experience architecture was organized so that each audience could quickly find its way, without turning the platform into an overly complex interface.</p>
+</div>
+</div>
+
+<figure style="margin: 0; padding: clamp(24px, 4vw, 56px); border-radius: 20px; background: #F7F7F8">
+<div style="display: flex; flex-direction: column; gap: 28px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px">
+<p style="flex: 0 0 160px; margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">Entrepreneur</p>
+<ol aria-label="Entrepreneur" style="flex: 1 1 520px; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+
+<li style="display: flex; align-items: center; gap: 10px">
+<span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #FFFFFF; border: 1px solid #DADADA; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Services</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</li>
+
+<li style="display: flex; align-items: center; gap: 10px">
+<span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #FFFFFF; border: 1px solid #DADADA; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Request</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</li>
+
+<li style="display: flex; align-items: center; gap: 10px">
+<span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #FFFFFF; border: 1px solid #DADADA; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Diagnosis</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</li>
+
+<li style="display: flex; align-items: center; gap: 10px">
+<span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #FFFFFF; border: 1px solid #DADADA; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Hiring</span>
+
+</li>
+
+</ol>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px">
+<p style="flex: 0 0 160px; margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">Provider</p>
+<ol aria-label="Provider" style="flex: 1 1 520px; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+
+<li style="display: flex; align-items: center; gap: 10px">
+<span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #FFFFFF; border: 1px solid #DADADA; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Accreditation</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</li>
+
+<li style="display: flex; align-items: center; gap: 10px">
+<span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #FFFFFF; border: 1px solid #DADADA; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Services</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</li>
+
+<li style="display: flex; align-items: center; gap: 10px">
+<span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #FFFFFF; border: 1px solid #DADADA; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Service delivery</span>
+
+</li>
+
+</ol>
+</div>
+
+</div>
+<figcaption style="margin-top: 28px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">The two main paths through the public portal.</figcaption>
+</figure>
+</section>
+
+<!-- PRINCIPAIS DECISÕES DE UX -->
+<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-direction: column; gap: 64px">
+<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">Key UX decisions</h2>
+</div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">From discovery to starting a request</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">The portal is the Hub’s front door. Its role is to help entrepreneurs find a solution, understand the offer and start the request process.</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: var(--sub)">
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding-top: 32px; border-top: 1px solid #000000">
+<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #5C5C5C">01</span>
+<h3 style="flex: 1 1 260px; margin: 0; font: 500 clamp(26px, 2.6vw, 36px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">Find</h3>
+<div style="flex: 2 1 480px; max-width: 640px; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font: 500 19px/1.55 'Geist', sans-serif; letter-spacing: -0.01em; color: #000000">The experience starts with discovering services.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">Search, categories and featured items offer different paths to a solution, even for users who don’t yet know exactly which service they’re looking for.</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+<div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center">
+<span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · Home, search and categories]</span>
+</div>
+
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding-top: 32px; border-top: 1px solid #000000">
+<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #5C5C5C">02</span>
+<h3 style="flex: 1 1 260px; margin: 0; font: 500 clamp(26px, 2.6vw, 36px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">Learn</h3>
+<div style="flex: 2 1 480px; max-width: 640px; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font: 500 19px/1.55 'Geist', sans-serif; letter-spacing: -0.01em; color: #000000">Once they find a solution, users need to understand whether it fits their business.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The service page organizes information such as description, target audience, field and offer details, reducing uncertainty before the next step.</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+<div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center">
+<span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · Service listing]</span>
+</div>
+
+<div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center">
+<span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · Service details]</span>
+</div>
+
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding-top: 32px; border-top: 1px solid #000000">
+<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #5C5C5C">03</span>
+<h3 style="flex: 1 1 260px; margin: 0; font: 500 clamp(26px, 2.6vw, 36px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">Start the request</h3>
+<div style="flex: 2 1 480px; max-width: 640px; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font: 500 19px/1.55 'Geist', sans-serif; letter-spacing: -0.01em; color: #000000">From the chosen service, the portal shows the way to start a request.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">Users are directed to sign in to the platform, where the journey continues.</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+<div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center">
+<span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · CTA and request start]</span>
+</div>
+
+</div>
+</article>
+
+</div>
+
+<figure style="margin: 0; padding: clamp(24px, 4vw, 56px); border-radius: 20px; background: #F7F7F8">
+<div role="img" aria-label="Flow: on the portal, Find, Learn and Start request; then Login; then the Hub Platform, where the journey continues." style="display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<div style="width: 100%; max-width: 760px; padding: 24px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DADADA; display: flex; flex-direction: column; align-items: center; gap: 16px">
+<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">Portal</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px">
+
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #F7F7F8; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Find</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #F7F7F8; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Learn</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #F7F7F8; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Start request</span></span>
+
+</div>
+</div>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+<span style="min-height: 44px; padding: 10px 22px; display: inline-flex; align-items: center; border-radius: 999px; background: #FFFFFF; border: 1px solid #DADADA; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">Login</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+<div style="padding: 18px 28px; border-radius: 16px; background: #253CEA; color: #FFFFFF; display: flex; flex-direction: column; gap: 4px">
+<span style="font: 600 17px/1.2 'Geist', sans-serif">Hub Platform</span>
+<span style="font: 500 13px/1.4 'Geist', sans-serif; opacity: .85">The journey continues</span>
+</div>
+</div>
+<figcaption style="margin-top: 28px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">The portal leads up to starting the request; the journey continues on the platform.</figcaption>
+</figure>
+</section>
+
+<!-- UI & EXPERIÊNCIA DIGITAL -->
+<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-direction: column; gap: 64px">
+<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">UI &amp; digital experience</h2>
+</div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">Identity applied to the experience</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">The new identity was translated into the portal interface, creating a visual language of its own without losing the association with the Sebrae ecosystem.</p>
+<div role="img" aria-label="Identity (colors, shapes, graphics, photography, typography) translated into Product (hierarchy, navigation, components, CTAs, content)." style="display: flex; flex-direction: column; gap: 14px">
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="padding: 20px 0 0; border-top: 1px solid #000000; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">Identity</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">Colors</span><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">Shapes</span><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">Graphics</span><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">Photography</span><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">Typography</span>
+</div>
+</div>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="padding: 20px 0 0; border-top: 1px solid #000000; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">Product</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">Hierarchy</span><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">Navigation</span><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">Components</span><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">CTAs</span><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; font: 500 14px/1.2 'Geist', sans-serif; color: #000000">Content</span>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: var(--sub)">
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
+<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em; color: #000000">Home</h3>
+<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The home page brings together the main discovery paths and presents the Hub in a more visual, entrepreneur-oriented way.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+
+<figure style="margin: 0; padding: clamp(16px, 4vw, 56px); border-radius: 20px; background: #F7F7F8">
+<div style="max-width: 980px; margin: 0 auto; border-radius: 14px; overflow: hidden; background: #FFFFFF; box-shadow: 0 30px 60px rgba(0,0,0,.10); border: 1px solid #E4E4E4">
+<div aria-hidden="true" style="height: 40px; padding: 0 16px; display: flex; align-items: center; gap: 8px; background: #FFFFFF; border-bottom: 1px solid #EAEAEA">
+<span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span>
+<span style="margin-left: 16px; flex: 1; max-width: 320px; height: 22px; border-radius: 999px; background: #F7F7F8"></span>
+</div>
+<div tabindex="0" role="region" aria-label="Portal home page, scroll to see it in full" style="height: min(820px, 80vh); overflow-y: auto; overscroll-behavior: contain">
+<img src="../../assets/img/bb4e355bb2333d8cd98796d84431f26e.jpg" alt="Full Hub Sebrae RN portal home page: hero, search, service categories, recommended lists, How it works section, provider accreditation, about the Hub, testimonials, 2023 figures and footer" style="width: 100%; height: auto; display: block">
+</div>
+</div>
+<figcaption style="margin-top: 20px; text-align: center; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">Desktop home. Scroll inside the window to see the full page.</figcaption>
+</figure>
+
+
+
+
+
+
+<div style="padding: clamp(24px, 4vw, 48px); border-radius: 20px; background: #F7F7F8; display: flex; justify-content: center"><div style="aspect-ratio: 9 / 19; width: min(320px, 100%); border-radius: 28px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · Mobile home]</span></div></div>
+
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
+<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em; color: #000000">Search and categories</h3>
+<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The way services are organized offers different paths to finding solutions.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+
+<div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · Search]</span></div>
+
+
+
+<div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · Categories and service listing]</span></div>
+
+
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
+<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em; color: #000000">Service details</h3>
+<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The page gathers the information needed to understand the offer and decide to start a request.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+
+<div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · Desktop service details]</span></div>
+
+
+
+
+<div style="padding: clamp(24px, 4vw, 48px); border-radius: 20px; background: #F7F7F8; display: flex; justify-content: center"><div style="aspect-ratio: 9 / 19; width: min(320px, 100%); border-radius: 28px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · Mobile service details]</span></div></div>
+
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
+<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em; color: #000000">Starting the request</h3>
+<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The CTA marks the transition between the public portal and the authenticated platform.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+
+<div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Screen · CTA and transition to login]</span></div>
+
+
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
+<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em; color: #000000">Responsive experience</h3>
+<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The same visual language was adapted to different access contexts, preserving hierarchy, content and main paths.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+
+
+<div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">[Composition · Desktop + mobile]</span></div>
+
+
+</div>
+</article>
+
+</div>
+</section>
+
+<!-- RESULTADOS -->
+<section style="background: #F7F7F8">
+<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px; display: flex; flex-direction: column; gap: 64px">
+<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 280px">
+<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">Results</h2>
+</div>
+<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">An identity that evolved with the product</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">The project established a new identity for Hub Sebrae RN and translated it into a digital experience that is closer, clearer and built around the entrepreneur.</p>
+</div>
+</div>
+
+<div style="position: relative; overflow: hidden; border-radius: 24px; background: #253CEA; color: #FFFFFF; padding: clamp(32px, 6vw, 88px) clamp(24px, 5vw, 80px)">
+<div class="ro-arc" aria-hidden="true" style="position: absolute; right: -200px; top: -220px; width: 440px; height: 440px; border: 60px solid #FFFFFF; border-radius: 50%; pointer-events: none"></div>
+<div style="position: relative; display: flex; flex-direction: column; gap: clamp(32px, 4vw, 56px)">
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 10px; font: 500 12px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.75)"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #FFFFFF"></span>Key result</p>
+<p style="margin: 0; max-width: 1000px; font: 500 clamp(40px, 6.2vw, 96px)/0.95 'Geist', sans-serif; letter-spacing: -0.05em; text-transform: uppercase">Identity approved<br>for the SaaS evolution</p>
+<div style="padding-top: 28px; border-top: 1px solid rgba(255,255,255,.3); display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-start">
+<p style="flex: 1 1 360px; max-width: 520px; margin: 0; font: 400 18px/1.65 'Manrope', sans-serif; color: rgba(255,255,255,.9)">The new identity was approved to be incorporated into the Hub’s SaaS, becoming a visual reference for the product’s evolution.</p>
+<ol aria-label="From portal to ecosystem evolution" style="flex: 1 1 420px; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+
+<li style="display: flex; align-items: center; gap: 10px"><span style="min-height: 40px; padding: 8px 16px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,.45); font: 500 14px/1.2 'Geist', sans-serif; color: #FFFFFF">Portal</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></li>
+
+<li style="display: flex; align-items: center; gap: 10px"><span style="min-height: 40px; padding: 8px 16px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,.45); font: 500 14px/1.2 'Geist', sans-serif; color: #FFFFFF">Identity</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></li>
+
+<li style="display: flex; align-items: center; gap: 10px"><span style="min-height: 40px; padding: 8px 16px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,.45); font: 500 14px/1.2 'Geist', sans-serif; color: #FFFFFF">SaaS</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></li>
+
+<li style="display: flex; align-items: center; gap: 10px"><span style="min-height: 40px; padding: 8px 16px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,.45); font: 500 14px/1.2 'Geist', sans-serif; color: #FFFFFF">Hub ecosystem evolution</span></li>
+
+</ol>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 24px">
+<h3 style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Secondary results</h3>
+<ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px">
+
+<li style="padding-top: 20px; border-top: 1px solid #000000; display: flex; flex-direction: column; gap: 10px">
+<span style="font: 600 12px 'Geist', sans-serif; color: #253CEA">01</span>
+<span style="font: 500 20px/1.2 'Geist', sans-serif; letter-spacing: -0.02em; color: #000000">New identity</span>
+<span style="font-size: 15px; line-height: 1.6; color: #333333">A proprietary visual system, connected to the Sebrae brand and closer to the entrepreneur.</span>
+</li>
+
+<li style="padding-top: 20px; border-top: 1px solid #000000; display: flex; flex-direction: column; gap: 10px">
+<span style="font: 600 12px 'Geist', sans-serif; color: #253CEA">02</span>
+<span style="font: 500 20px/1.2 'Geist', sans-serif; letter-spacing: -0.02em; color: #000000">New experience</span>
+<span style="font-size: 15px; line-height: 1.6; color: #333333">A portal structured to make it easier to discover, understand and start requesting services.</span>
+</li>
+
+<li style="padding-top: 20px; border-top: 1px solid #000000; display: flex; flex-direction: column; gap: 10px">
+<span style="font: 600 12px 'Geist', sans-serif; color: #253CEA">03</span>
+<span style="font: 500 20px/1.2 'Geist', sans-serif; letter-spacing: -0.02em; color: #000000">Visual scalability</span>
+<span style="font-size: 15px; line-height: 1.6; color: #333333">A system able to adapt to different contexts and product interfaces.</span>
+</li>
+
+<li style="padding-top: 20px; border-top: 1px solid #000000; display: flex; flex-direction: column; gap: 10px">
+<span style="font: 600 12px 'Geist', sans-serif; color: #253CEA">04</span>
+<span style="font: 500 20px/1.2 'Geist', sans-serif; letter-spacing: -0.02em; color: #000000">Product evolution</span>
+<span style="font-size: 15px; line-height: 1.6; color: #333333">The identity went beyond the portal and began shaping the visual evolution of the SaaS platform.</span>
+</li>
+
+</ul>
+</div>
+</div>
+</section>
+
+<!-- NEXT + FOOTER -->
+<footer style="position: relative; overflow: hidden; background: #000000; color: #FFFFFF">
+<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px 40px">
+<a class="ro-next" href="../strategi/" style="padding-bottom: 72px; border-bottom: 1px solid #262626; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px">
+<div style="flex: 1 1 480px">
+<div style="margin: 0 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #8A8A8A">Next case</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #333333"></span></div>
+<p style="margin: 0; max-width: 900px; font: 500 clamp(44px, 6vw, 96px)/0.95 'Geist', sans-serif; letter-spacing: -0.055em">Grupo Strategi visual system</p>
+</div>
+<span class="ro-dot" style="width: 88px; height: 88px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+<div style="position: relative; padding: 32px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px">
+
+<img src="../../assets/img/45a024ad2fa8c9154f2a5a5a69c4d2b1.png" alt="Renato Oliveira" style="width: 36px; height: 36px; object-fit: contain; display: block">
+<div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px"><a class="ro-nw" href="https://linkedin.com/in/renatooliveiraux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex: none"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg>LinkedIn</a><a class="ro-nw" href="https://instagram.com/renatooliveira.ux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="flex: none"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>Instagram</a><a class="ro-nw" href="https://wa.me/5584981837847?text=Ol%C3%A1!%20Tudo%20bem%3F%20Cheguei%20aqui%20pelo%20seu%20portf%C3%B3lio." target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M3 21l1.6-4.8A9 9 0 1 1 7.8 19.4z"></path><path d="M9 8.6c0 3.5 2.9 6.4 6.4 6.4l1.1-1.5-2.1-1-.9.8a4.6 4.6 0 0 1-2.2-2.2l.8-.9-1-2.1z" fill="currentColor" stroke="none"></path></svg>WhatsApp</a></div>
+<p style="margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font: 500 12px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #BDBDBD">Product Designer<span style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; color: #8A8A8A">© 2026 Renato Oliveira</span><a class="ro-nw" href="../../privacy/" style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; text-decoration: underline; text-underline-offset: 3px">Privacy policy</a></p>
+</div>
+</div>
+</footer>
+</div>
+</body>
+</html>
