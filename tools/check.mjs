@@ -44,10 +44,15 @@ for (const dir of EXPECTED) {
   const dup = ids.filter((id, i) => ids.indexOf(id) !== i);
   if (dup.length) problems.push(where + ': ids duplicados ' + dup.join(', '));
 
-  for (const m of html.matchAll(/<img\b[^>]*>/g)) if (!/ alt="/.test(m[0])) problems.push(where + ': <img> sem alt');
+  for (const m of html.matchAll(/<img\b[^>]*>/g)) {
+    if (!/ alt="/.test(m[0])) problems.push(where + ': <img> sem alt');
+    if (!/ width="\d+" height="\d+"/.test(m[0])) problems.push(where + ': <img> sem width/height');
+    if (/ srcset="/.test(m[0]) !== / sizes="/.test(m[0])) problems.push(where + ': srcset sem sizes (ou o contrário)');
+  }
 
-  for (const m of html.matchAll(/(?:href|src)="([^"]*)"/g)) {
-    const ref = m[1];
+  const refs = [...html.matchAll(/(?:href|src)="([^"]*)"/g)].map((m) => m[1])
+    .concat([...html.matchAll(/srcset="([^"]*)"/g)].flatMap((m) => m[1].split(',').map((s) => s.trim().split(/\s+/)[0])));
+  for (const ref of refs) {
     if (/^(https?:|mailto:)/.test(ref)) { external.add(ref.replace(/&amp;/g, '&')); continue; }
     if (ref === '#') { placeholders.push(where + ': link vazio href="#"'); continue; }
     if (ref.startsWith('/')) { problems.push(where + ': caminho absoluto ' + ref); continue; }

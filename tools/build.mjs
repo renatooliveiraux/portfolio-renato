@@ -1,10 +1,13 @@
 // Gera o site estático em docs/ a partir dos protótipos src/*.dc.html.
 // Ferramenta local (Node 18+, sem dependências). O GitHub Pages publica só docs/.
+// As versões redimensionadas das imagens usam o System.Drawing do Windows
+// (PowerShell); em outro sistema o build segue só com os originais.
 // Uso: node tools/build.mjs
 
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -93,6 +96,26 @@ const DUAL = {
 const FOR_ATTRS = {
   'Projetos.dc.html': { shown: (c) => ({ 'data-cat': c.cat }) }
 };
+// Imagens: carregamento imediato só para o que aparece na primeira tela; o resto
+// é lazy. As demais ganham width/height (proporção) e, quando listadas em SIZES,
+// srcset com versões JPG menores. Os originais em assets/ não são alterados.
+const EAGER = ['dead834c', '77e36605', '00279768'];      // logos do topo e retrato do hero
+const PRIORITY = ['00279768'];                           // retrato do hero: fetchpriority="high"
+const EAGER_BY_PAGE = { 'Projetos.dc.html': ['e9d6ba4d', '4cb226fe'] };  // capas na primeira tela
+const VARIANT_WIDTHS = [800, 1280];
+const CASE_SIZES = '(min-width: 1280px) 1232px, calc(100vw - 48px)';
+const SIZES = {
+  // Capas recortadas em altura fixa (420px e 520px, proporção 4:3): largura efetiva.
+  'Main.dc.html': { e9d6ba4d: '560px', '4cb226fe': '694px' },
+  // Projetos fica sem srcset: com o filtro, um card sozinho ocupa 1232px.
+  'CaseStrategi.dc.html': { '*': CASE_SIZES },
+  'Case.dc.html': { '*': CASE_SIZES, bb4e355b: '(min-width: 1280px) 963px, calc(100vw - 96px)' }
+};
+// Home do portal Hub (1728×6646): recomprimida no tamanho original (qualidade 75,
+// sem diferença visível em 1:1 nos testes) e com uma versão de 1000px.
+const RECOMPRESS = { bb4e355b: { quality: 75, widths: [1000] } };
+const JPEG_QUALITY = 82;
+
 // Atributos extras no <body>, lidos pelo site.js.
 const BODY_DATA = {
   // Mesma ordem do array de filtros em Projetos.dc.html.
@@ -206,6 +229,91 @@ function render(node, scopes, cfg) {
   }).join('');
 }
 
+// Dimensões lidas do cabeçalho do arquivo (JPEG, PNG, WebP), sem dependências.
+const sizeCache = new Map();
+function imageSize(file) {
+  if (sizeCache.has(file)) return sizeCache.get(file);
+  const b = fs.readFileSync(file);
+  let size = null;
+  if (b.readUInt32BE(0) === 0x89504e47) size = [b.readUInt32BE(16), b.readUInt32BE(20)];
+  else if (b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP') {
+    const kind = b.toString('ascii', 12, 16);
+    if (kind === 'VP8X') size = [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+    else if (kind === 'VP8L') { const v = b.readUInt32LE(21); size = [(v & 0x3fff) + 1, ((v >> 14) & 0x3fff) + 1]; }
+    else size = [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+  } else {
+    for (let i = 2; i < b.length - 8;) {
+      const m = b[i + 1];
+      if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) { size = [b.readUInt16BE(i + 7), b.readUInt16BE(i + 5)]; break; }
+      i += 2 + b.readUInt16BE(i + 2);
+    }
+  }
+  if (!size) throw new Error('Dimensões ilegíveis: ' + file);
+  sizeCache.set(file, size);
+  return size;
+}
+
+const CAN_RESIZE = process.platform === 'win32';
+
+// Completa cada <img> com width/height, loading/decoding, prioridade e srcset/sizes.
+function imgAttrs(body, file, dir, jobs) {
+  const imgDir = rel(dir, 'assets/img');
+  return body.replace(/<img ([^>]*)>/g, (tag, attrs) => {
+    const src = attrs.match(/src="([^"]+)"/)[1];
+    const name = src.slice(src.lastIndexOf('/') + 1);
+    const id = name.slice(0, 8), hash = name.slice(0, name.lastIndexOf('.'));
+    const [w, h] = imageSize(path.join(ASSETS, name));
+    const extra = [];
+    const isJpg = name.endsWith('.jpg');
+    const sizes = isJpg && CAN_RESIZE && SIZES[file] ? SIZES[file][id] || SIZES[file]['*'] : null;
+    const rec = isJpg && CAN_RESIZE ? RECOMPRESS[id] : null;
+    let mainName = name;
+    if (rec) {
+      mainName = hash + '-' + w + '.jpg';
+      jobs.set(mainName, { src: path.join(ASSETS, name), w, q: rec.quality });
+    }
+    if (sizes) {
+      const widths = (rec ? rec.widths : VARIANT_WIDTHS).filter((x) => x < w);
+      for (const x of widths) jobs.set(hash + '-' + x + '.jpg', { src: path.join(ASSETS, name), w: x, q: JPEG_QUALITY });
+      const set = widths.map((x) => imgDir + hash + '-' + x + '.jpg ' + x + 'w').concat(imgDir + mainName + ' ' + w + 'w');
+      extra.push('srcset="' + set.join(', ') + '"', 'sizes="' + sizes + '"');
+    }
+    const eager = EAGER.includes(id) || (EAGER_BY_PAGE[file] || []).includes(id);
+    extra.push('width="' + w + '"', 'height="' + h + '"');
+    extra.push(eager ? 'loading="eager"' : 'loading="lazy" decoding="async"');
+    if (PRIORITY.includes(id)) extra.push('fetchpriority="high"');
+    return '<img ' + attrs.replace('src="' + src + '"', 'src="' + imgDir + mainName + '"') + ' ' + extra.join(' ') + '>';
+  });
+}
+
+// Gera as versões JPG em lote com o System.Drawing (sem arquivo .ps1, para não
+// depender da política de execução de scripts).
+function runResizeJobs(jobs, outDir) {
+  if (!jobs.size) return;
+  const list = [...jobs].map(([out, j]) => ({ src: j.src, out: path.join(outDir, out), w: j.w, q: j.q }));
+  const ps = [
+    'Add-Type -AssemblyName System.Drawing',
+    '$codec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $_.MimeType -eq "image/jpeg" }',
+    'foreach ($j in ($env:RO_JOBS | ConvertFrom-Json)) {',
+    '  $img = [System.Drawing.Image]::FromFile($j.src)',
+    '  $h = [int][Math]::Round($img.Height * $j.w / $img.Width)',
+    '  $bmp = New-Object System.Drawing.Bitmap ([int]$j.w), $h',
+    '  $g = [System.Drawing.Graphics]::FromImage($bmp)',
+    '  $g.InterpolationMode = "HighQualityBicubic"; $g.PixelOffsetMode = "HighQuality"; $g.CompositingQuality = "HighQuality"',
+    '  $wrap = New-Object System.Drawing.Imaging.ImageAttributes; $wrap.SetWrapMode("TileFlipXY")',
+    '  $g.DrawImage($img, (New-Object System.Drawing.Rectangle 0, 0, $j.w, $h), 0, 0, $img.Width, $img.Height, "Pixel", $wrap)',
+    '  $ep = New-Object System.Drawing.Imaging.EncoderParameters 1',
+    '  $ep.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter ([System.Drawing.Imaging.Encoder]::Quality), ([long]$j.q)',
+    '  $bmp.Save($j.out, $codec, $ep)',
+    '  $g.Dispose(); $bmp.Dispose(); $img.Dispose(); $wrap.Dispose()',
+    '}'
+  ].join('\n');
+  const encoded = Buffer.from('$ErrorActionPreference = "Stop"\n' + ps, 'utf16le').toString('base64');
+  const r = spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-EncodedCommand', encoded], { env: { ...process.env, RO_JOBS: JSON.stringify(list) }, encoding: 'utf8' });
+  if (r.status !== 0) throw new Error('Falha ao redimensionar imagens:\n' + (r.stderr || r.stdout));
+  for (const j of list) if (!fs.existsSync(j.out)) throw new Error('Imagem não gerada: ' + j.out);
+}
+
 function head(file, lang, page, dir) {
   const [title, desc] = META[file][lang];
   const lines = [
@@ -236,6 +344,8 @@ function head(file, lang, page, dir) {
     lines.push('<script>(function(){var s=null;try{s=localStorage.getItem(\'ro-lang\');}catch(e){}var n=(navigator.language||\'\').toLowerCase();if(s===\'pt\'||(s!==\'en\'&&n.indexOf(\'pt\')===0))location.replace(\'pt/\'+location.search+location.hash);})();</script>');
   }
   lines.push(
+    '<link rel="preconnect" href="https://fonts.googleapis.com">',
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
     page.fontLink,
     '<style>\n' + page.style + '\n[hidden]{display:none !important}' + (EXTRA_CSS[file] ? '\n' + EXTRA_CSS[file] : '') + '\n</style>',
     '<script src="' + rel(dir, 'assets/js') + 'site.js" defer></script>'
@@ -246,6 +356,7 @@ function head(file, lang, page, dir) {
 function build() {
   fs.rmSync(OUT, { recursive: true, force: true });
   const usedImgs = new Set();
+  const jobs = new Map();
   const assetFiles = fs.readdirSync(ASSETS).filter((f) => fs.statSync(path.join(ASSETS, f)).isFile());
   const pages = [];
 
@@ -272,9 +383,10 @@ function build() {
         .replace(/\/_blob\/([0-9a-f]+)/g, (m, id) => {
           const f = assetFiles.find((a) => a.startsWith(id + '.'));
           if (!f) throw new Error('Imagem ausente: ' + id);
-          usedImgs.add(f);
           return rel(dir, 'assets/img') + f;
         });
+      body = imgAttrs(body, file, dir, jobs);
+      for (const m of body.matchAll(/assets\/img\/([0-9a-f]{32}\.\w+)/g)) usedImgs.add(m[1]);
       if (/\{\{|<sc-|on[A-Z][a-z]+="|\.dc\.html|_blob/.test(body)) throw new Error('Resto de template em ' + file + ' (' + lang + ')');
       const bodyAttrs = attrString(Object.assign({ 'data-stk': page.stk }, BODY_DATA[file] ? BODY_DATA[file](vals) : {}));
       const html = '<!doctype html>\n<html lang="' + (lang === 'en' ? 'en' : 'pt-BR') + '">\n<head>\n' +
@@ -288,6 +400,7 @@ function build() {
 
   fs.mkdirSync(path.join(OUT, 'assets/img'), { recursive: true });
   for (const f of usedImgs) fs.copyFileSync(path.join(ASSETS, f), path.join(OUT, 'assets/img', f));
+  runResizeJobs(jobs, path.join(OUT, 'assets/img'));
   fs.mkdirSync(path.join(OUT, 'assets/js'), { recursive: true });
   fs.copyFileSync(path.join(ROOT, 'tools/site.js'), path.join(OUT, 'assets/js/site.js'));
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
@@ -303,7 +416,7 @@ function build() {
     fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + urls + '</urlset>\n');
   }
 
-  console.log(pages.length + ' páginas, ' + usedImgs.size + ' imagens em docs/');
+  console.log(pages.length + ' páginas, ' + usedImgs.size + ' imagens originais e ' + jobs.size + ' versões redimensionadas em docs/');
 }
 
 build();
