@@ -1,0 +1,6 @@
+# Pastas temporárias do build (tools/build.mjs)
+.docs-build/
+.docs-old/
+
+# Log local do Git Credential Manager
+gcm-diagnose.log

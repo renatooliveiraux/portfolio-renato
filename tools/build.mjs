@@ -2,6 +2,8 @@
 // Ferramenta local (Node 18+, sem dependências). O GitHub Pages publica só docs/.
 // As versões redimensionadas das imagens usam o System.Drawing do Windows
 // (PowerShell); em outro sistema o build segue só com os originais.
+// O site é gerado em .docs-build/, validado com tools/check.mjs e só então
+// trocado por docs/. A versão anterior fica em .docs-old/ durante a troca.
 // Uso: node tools/build.mjs
 
 import fs from 'node:fs';
@@ -14,6 +16,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'src');
 const ASSETS = path.join(ROOT, 'assets');
 const OUT = path.join(ROOT, 'docs');
+const STAGE = path.join(ROOT, '.docs-build');
+const OLD = path.join(ROOT, '.docs-old');
 
 // URL pública do site, com barra final. Enquanto estiver vazia, canonical,
 // hreflang, og:url, og:image e sitemap.xml não são gerados (exigem URL absoluta).
@@ -353,8 +357,7 @@ function head(file, lang, page, dir) {
   return lines.join('\n');
 }
 
-function build() {
-  fs.rmSync(OUT, { recursive: true, force: true });
+function build(OUT) {
   const usedImgs = new Set();
   const jobs = new Map();
   const assetFiles = fs.readdirSync(ASSETS).filter((f) => fs.statSync(path.join(ASSETS, f)).isFile());
@@ -416,7 +419,92 @@ function build() {
     fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + urls + '</urlset>\n');
   }
 
-  console.log(pages.length + ' páginas, ' + usedImgs.size + ' imagens originais e ' + jobs.size + ' versões redimensionadas em docs/');
+  const required = Object.values(ROUTES).flatMap((r) => [r.en, r.pt]).map((d) => path.join(d, 'index.html'))
+    .concat('.nojekyll', 'assets/js/site.js', SITE_URL ? ['sitemap.xml'] : [])
+    .concat([...usedImgs, ...jobs.keys()].map((f) => path.join('assets/img', f)));
+  const missing = required.filter((f) => !fs.existsSync(path.join(OUT, f)));
+  if (missing.length) throw new Error('Arquivos ausentes na geração:\n  ' + missing.join('\n  '));
+
+  console.log(pages.length + ' páginas, ' + usedImgs.size + ' imagens originais e ' + jobs.size + ' versões redimensionadas em ' + path.basename(OUT) + '/');
 }
 
-build();
+// No Windows, renomear ou apagar uma pasta falha por instantes se algum arquivo
+// estiver aberto (antivírus, indexador, Explorer). Tenta de novo antes de desistir.
+const sleep = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+function retry(fn) {
+  for (let i = 1; ; i++) {
+    try { return fn(); } catch (e) {
+      if (i >= 8 || !['EPERM', 'EBUSY', 'EACCES', 'ENOTEMPTY'].includes(e.code)) throw e;
+      sleep(200 * i);
+    }
+  }
+}
+const remove = (dir) => retry(() => fs.rmSync(dir, { recursive: true, force: true }));
+const move = (from, to) => retry(() => fs.renameSync(from, to));
+const BUSY = 'Feche o que estiver usando a pasta (terminal aberto dentro dela, Explorer, servidor local) e rode de novo.';
+const RESTORE = 'Para restaurar à mão: 1) feche o que estiver usando as pastas (terminal, Explorer, servidor local); ' +
+  '2) se ainda existir uma pasta docs/, não a apague: renomeie para docs-falha/; 3) renomeie .docs-old/ para docs/; ' +
+  '4) confira com: node tools/check.mjs docs. Não apague .docs-old/ antes de docs/ estar restaurada e validada.';
+
+// Recupera uma execução interrompida. Ordem da troca: docs -> .docs-old,
+// .docs-build -> docs, apaga .docs-old.
+function recover() {
+  const hasOut = fs.existsSync(OUT), hasOld = fs.existsSync(OLD);
+  if (!hasOut && hasOld) {
+    console.log('Execução anterior interrompida no meio da troca: restaurando docs/ a partir de .docs-old/.');
+    try { move(OLD, OUT); } catch (e) {
+      throw new Error('Não foi possível restaurar docs/; a versão anterior continua intacta em .docs-old/. ' + RESTORE + '\n' + e.message);
+    }
+  } else if (hasOld) {
+    // Parece que a troca terminou e só a limpeza não. Antes de apagar a versão
+    // anterior, confirma que docs/ está íntegra.
+    try { validate(OUT); } catch (e) {
+      throw new Error('docs/ e .docs-old/ existem e docs/ não passou na validação; nenhuma das duas foi alterada. ' +
+        'Compare as duas e mantenha a correta. Se .docs-old/ for a boa: ' + RESTORE);
+    }
+    remove(OLD);
+  }
+  remove(STAGE);
+}
+
+function validate(dir) {
+  const r = spawnSync(process.execPath, [path.join(ROOT, 'tools/check.mjs'), dir], { stdio: 'inherit' });
+  if (r.error) throw r.error;
+  if (r.status !== 0) throw new Error('A validação de ' + path.basename(dir) + '/ falhou (veja os problemas acima).');
+}
+
+function swap() {
+  const hadOut = fs.existsSync(OUT);
+  if (hadOut) {
+    try { move(OUT, OLD); } catch (e) { throw new Error('Não foi possível mover docs/ (nada foi alterado). ' + BUSY + '\n' + e.message); }
+  }
+  try {
+    move(STAGE, OUT);
+  } catch (e) {
+    if (hadOut) {
+      try { move(OLD, OUT); } catch (e2) {
+        throw new Error('A troca falhou e docs/ não pôde ser restaurada. A versão anterior está intacta em .docs-old/. ' +
+          'Rodar o build de novo tenta restaurar sozinho. ' + RESTORE + '\n' + e.message + '\n' + e2.message);
+      }
+    }
+    throw new Error('Não foi possível instalar a nova versão; docs/ foi mantida como estava. ' + BUSY + '\n' + e.message);
+  }
+  try { remove(OLD); } catch (e) {
+    console.warn('Aviso: docs/ foi atualizada, mas .docs-old/ não pôde ser apagada agora (' + e.code + '). O próximo build apaga.');
+  }
+}
+
+let phase = 'recover';
+try {
+  recover();
+  phase = 'build';
+  build(STAGE);
+  validate(STAGE);
+  phase = 'swap';
+  swap();
+  console.log('docs/ atualizada.');
+} catch (e) {
+  console.error('\nBuild interrompido: ' + e.message);
+  if (phase === 'build') console.error('docs/ não foi alterada. O resultado da geração ficou em .docs-build/ para inspeção.');
+  process.exitCode = 1;
+}

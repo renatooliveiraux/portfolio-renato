@@ -1,10 +1,16 @@
-// Valida docs/: links e imagens locais, rotas, idioma, metadados e restos de template.
-// Uso: node tools/check.mjs
+// Valida o site gerado: links e imagens locais, rotas, idioma, metadados e restos de template.
+// Uso: node tools/check.mjs [pasta]   (padrão docs/; ex.: node tools/check.mjs .docs-build)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const OUT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../docs');
+const OUT = process.argv[2] ? path.resolve(process.argv[2]) : path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../docs');
+const NAME = path.basename(OUT) + '/';
+if (!fs.existsSync(OUT) || !fs.statSync(OUT).isDirectory()) {
+  console.error('Pasta não encontrada: ' + OUT);
+  process.exit(1);
+}
+console.log('Verificando ' + OUT);
 const EXPECTED = ['', 'about', 'work', 'work/strategi', 'work/hub-sebrae-rn', 'contact', 'privacy',
   'pt', 'pt/sobre', 'pt/projetos', 'pt/projetos/strategi', 'pt/projetos/hub-sebrae-rn', 'pt/contato', 'pt/privacidade'];
 
@@ -58,7 +64,7 @@ for (const dir of EXPECTED) {
     if (ref.startsWith('/')) { problems.push(where + ': caminho absoluto ' + ref); continue; }
     const target = resolveLocal(dir || '.', ref);
     if (!target) continue;
-    if (target.startsWith('..')) { problems.push(where + ': sai de docs/ ' + ref); continue; }
+    if (target.startsWith('..')) { problems.push(where + ': sai de ' + NAME + ' ' + ref); continue; }
     usedFiles.add(target);
     if (!fs.existsSync(path.join(OUT, target))) problems.push(where + ': quebrado ' + ref + ' -> ' + target);
   }
@@ -80,8 +86,10 @@ for (const dir of EXPECTED) {
 for (const [t, w] of titles) if (w.length > 1) problems.push('Título repetido em ' + w.join(', '));
 for (const [t, w] of descs) if (w.length > 1) problems.push('Descrição repetida em ' + w.join(', '));
 
-const imgs = fs.readdirSync(path.join(OUT, 'assets/img'));
-for (const f of imgs) if (!usedFiles.has('assets/img/' + f)) problems.push('Imagem não usada em docs/: ' + f);
+const imgDir = path.join(OUT, 'assets/img');
+const imgs = fs.existsSync(imgDir) ? fs.readdirSync(imgDir) : [];
+if (!imgs.length) problems.push('Pasta assets/img ausente ou vazia em ' + NAME);
+for (const f of imgs) if (!usedFiles.has('assets/img/' + f)) problems.push('Imagem não usada em ' + NAME + ': ' + f);
 
 console.log('Rotas verificadas: ' + EXPECTED.length + ' | imagens: ' + imgs.length + ' | links externos únicos: ' + external.size);
 console.log('\nExternos:\n  ' + [...external].join('\n  '));
