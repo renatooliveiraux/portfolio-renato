@@ -30,6 +30,8 @@ a{color:#253CEA}a:hover{color:#1A2BB8}
 .ro-send:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,60,234,.35)}
 .ro-send .ro-dot{transition:transform .3s}
 .ro-send:hover .ro-dot{transform:rotate(-45deg)}
+.ro-send:disabled{opacity:.7;cursor:progress;transform:none;box-shadow:none}
+.ro-send:disabled .ro-dot{transform:none}
 @keyframes roUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 .ro-up{animation:roUp .9s cubic-bezier(.2,.7,.2,1) both}
 .ro-d1{animation-delay:.08s}.ro-d2{animation-delay:.16s}.ro-d3{animation-delay:.24s}
@@ -135,8 +137,12 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </div>
 </sc-if>
 <sc-if value="{{notSent}}" hint-placeholder-val="{{true}}">
-<form onSubmit="{{submit}}" style="display: flex; flex-direction: column; gap: 22px">
+<form action="https://api.web3forms.com/submit" method="POST" onSubmit="{{submit}}" style="display: flex; flex-direction: column; gap: 22px">
 <h2 style="margin: 0; font: 500 28px 'Geist', sans-serif; letter-spacing: -0.03em">{{t.formTitle}}</h2>
+<input type="hidden" name="access_key" value="{{accessKey}}">
+<input type="hidden" name="subject" value="{{t.subject}}">
+<input type="hidden" name="project_type" value="{{typeLabel}}">
+<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display: none">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
 <div style="display: flex; flex-direction: column; gap: 8px">
 <label for="ro-name" style="font: 600 14px 'Geist', sans-serif">{{t.name}}</label>
@@ -162,9 +168,12 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </fieldset>
 <div style="display: flex; flex-direction: column; gap: 8px">
 <label for="ro-msg" style="font: 600 14px 'Geist', sans-serif">{{t.msg}}</label>
-<textarea class="ro-in" id="ro-msg" name="message" rows="5" placeholder="{{t.msgPh}}" style="padding: 14px 18px; border: 1px solid #DADADA; border-radius: 16px; background: #F7F7F8; font: 400 16px/1.5 'Manrope', sans-serif; resize: vertical"></textarea>
+<textarea class="ro-in" id="ro-msg" name="message" rows="5" required placeholder="{{t.msgPh}}" style="padding: 14px 18px; border: 1px solid #DADADA; border-radius: 16px; background: #F7F7F8; font: 400 16px/1.5 'Manrope', sans-serif; resize: vertical"></textarea>
 </div>
-<button class="ro-send" type="submit" style="min-height: 60px; padding: 0 24px 0 10px; border: 0; border-radius: 999px; background: #253CEA; color: #FFFFFF; font: 600 16px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; gap: 12px"><span class="ro-dot" style="width: 40px; height: 40px; border-radius: 50%; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span><span style="flex: 1; text-align: center">{{t.send}}</span></button>
+<button class="ro-send" type="submit" style="min-height: 60px; padding: 0 24px 0 10px; border: 0; border-radius: 999px; background: #253CEA; color: #FFFFFF; font: 600 16px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; gap: 12px"><span class="ro-dot" style="width: 40px; height: 40px; border-radius: 50%; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span><span class="ro-send-l" style="flex: 1; text-align: center">{{sendLabel}}</span></button>
+<sc-if value="{{failed}}" hint-placeholder-val="{{false}}">
+<p role="alert" style="margin: 0; padding: 14px 18px; border: 1px solid #DADADA; border-radius: 16px; background: #F7F7F8; font-size: 15px; line-height: 1.5; color: #000000">{{t.error}}</p>
+</sc-if>
 <p style="margin: 0; text-align: center; font-size: 13px; line-height: 1.5; color: #5C5C5C">{{t.privNote}} <a href="Privacidade.dc.html" style="color: #253CEA">{{t.fPriv}}</a>.</p>
 </form>
 </sc-if>
@@ -183,7 +192,7 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","en","pt"],"default":"auto"},"$preview":{"width":1440,"height":1900}}'>
 class Component extends DCLogic {
-  constructor(props) { super(props); var _s=null;try{_s=localStorage.getItem('ro-lang');}catch(e){}var _n='';try{_n=(navigator.language||'').toLowerCase();}catch(e){}this._auto=(_s==='pt'||_s==='en')?_s:(_n.indexOf('pt')===0?'pt':'en'); this.state = { lang: null, type: 0, sent: false, stuck: false, copied: false }; }
+  constructor(props) { super(props); var _s=null;try{_s=localStorage.getItem('ro-lang');}catch(e){}var _n='';try{_n=(navigator.language||'').toLowerCase();}catch(e){}this._auto=(_s==='pt'||_s==='en')?_s:(_n.indexOf('pt')===0?'pt':'en'); this.state = { lang: null, type: 0, sent: false, sending: false, failed: false, stuck: false, copied: false }; }
   componentDidMount() {
     var self = this;
     this._onScroll = function (e) {
@@ -201,8 +210,8 @@ class Component extends DCLogic {
     var self = this;
     var lang = this.state.lang || (this.props.lang === 'pt' || this.props.lang === 'en' ? this.props.lang : this._auto) || 'en';
     var T = {
-      pt: { navHome: 'Home', fRole: 'Designer de Produto', fPriv: 'Política de privacidade', navAbout: 'Sobre', navWork: 'Projetos', navContact: 'Contato', eyebrow: 'Contato', h1a: 'Vamos', h1b: 'conversar?', sub: 'Todo bom produto começa antes da primeira tela. Me fale sobre contexto, desafios e onde quer chegar.', formTitle: 'Comece pelo contexto', name: 'Nome', type: 'Como posso ajudar?', msg: 'O que você precisa resolver?', msgPh: 'Contexto, objetivo e prazo, se houver.', send: 'Iniciar conversa', sentTitle: 'Conversa iniciada.', sentText: 'Obrigado por compartilhar o contexto. Respondo no seu e-mail em breve.', again: 'Enviar outra', privNote: 'Ao enviar, você concorda com a', copyLabel: 'Copiar e-mail', copiedMsg: 'E-mail copiado' },
-      en: { navHome: 'Home', fRole: 'Product Designer', fPriv: 'Privacy policy', navAbout: 'About', navWork: 'Work', navContact: 'Contact', eyebrow: 'Contact', h1a: 'Let’s', h1b: 'talk.', sub: 'Every good product starts before the first screen. Tell me about your context, your challenges and where you want to go.', formTitle: 'Start with the context', name: 'Name', type: 'How can I help?', msg: 'What are you trying to solve?', msgPh: 'Context, goals and timeline, if you have one.', send: 'Start a conversation', sentTitle: 'Conversation started.', sentText: 'Thanks for the context. I’ll get back to you by email soon.', again: 'Send another', privNote: 'By sending, you agree to the', copyLabel: 'Copy email', copiedMsg: 'Email copied' }
+      pt: { navHome: 'Home', fRole: 'Designer de Produto', fPriv: 'Política de privacidade', navAbout: 'Sobre', navWork: 'Projetos', navContact: 'Contato', eyebrow: 'Contato', h1a: 'Vamos', h1b: 'conversar?', sub: 'Todo bom produto começa antes da primeira tela. Me fale sobre contexto, desafios e onde quer chegar.', formTitle: 'Comece pelo contexto', name: 'Nome', type: 'Como posso ajudar?', msg: 'O que você precisa resolver?', msgPh: 'Contexto, objetivo e prazo, se houver.', send: 'Iniciar conversa', sentTitle: 'Conversa iniciada.', sentText: 'Obrigado por compartilhar o contexto. Respondo no seu e-mail em breve.', again: 'Enviar outra', sending: 'Enviando sua mensagem…', error: 'Não foi possível enviar sua mensagem. Tente novamente em instantes ou escreva para [renatooliveiraux@gmail.com](mailto:renatooliveiraux@gmail.com).', subject: 'Novo contato pelo portfólio (PT)', privNote: 'Ao enviar, você concorda com a', copyLabel: 'Copiar e-mail', copiedMsg: 'E-mail copiado' },
+      en: { navHome: 'Home', fRole: 'Product Designer', fPriv: 'Privacy policy', navAbout: 'About', navWork: 'Work', navContact: 'Contact', eyebrow: 'Contact', h1a: 'Let’s', h1b: 'talk.', sub: 'Every good product starts before the first screen. Tell me about your context, your challenges and where you want to go.', formTitle: 'Start with the context', name: 'Name', type: 'How can I help?', msg: 'What are you trying to solve?', msgPh: 'Context, goals and timeline, if you have one.', send: 'Start a conversation', sentTitle: 'Conversation started.', sentText: 'Thanks for the context. I’ll get back to you by email soon.', again: 'Send another', sending: 'Sending your message…', error: 'Your message couldn’t be sent. Please try again in a moment or email [renatooliveiraux@gmail.com](mailto:renatooliveiraux@gmail.com).', subject: 'New contact from the portfolio (EN)', privNote: 'By sending, you agree to the', copyLabel: 'Copy email', copiedMsg: 'Email copied' }
     };
     var opts = lang === 'en' ? ['Product Design', 'UI/UX Design', 'Website / Landing page', 'Branding for digital products'] : ['Product Design', 'UI/UX Design', 'Site / Landing page', 'Branding para produtos digitais'];
     var types = opts.map(function (l, i) { return { label: l, on: self.state.type === i, off: self.state.type !== i, pick: function () { self.setState({ type: i }); } }; });
@@ -210,8 +219,21 @@ class Component extends DCLogic {
       docLang: lang === 'en' ? 'en' : 'pt-BR',
       stkClass: this.state.stuck ? 'ro-stk ro-on' : 'ro-stk',
       t: T[lang], types: types, sent: this.state.sent, notSent: !this.state.sent,
-      submit: function (e) { if (e && e.preventDefault) e.preventDefault(); self.setState({ sent: true }); },
-      reset: function () { self.setState({ sent: false }); },
+      // Chave pública do Web3Forms: definida no build (WEB3FORMS_ACCESS_KEY em tools/build.mjs).
+      accessKey: '', typeLabel: opts[this.state.type],
+      sendLabel: this.state.sending ? T[lang].sending : T[lang].send,
+      failed: this.state.failed,
+      submit: function (e) {
+        if (e && e.preventDefault) e.preventDefault();
+        var form = e && e.target;
+        if (!form || self.state.sending) return;
+        self.setState({ sending: true, failed: false });
+        var data = Object.fromEntries(new FormData(form));
+        fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
+          .then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.success) throw new Error(j.message); }); })
+          .then(function () { self.setState({ sending: false, sent: true }); }, function () { self.setState({ sending: false, failed: true }); });
+      },
+      reset: function () { self.setState({ sent: false, failed: false, type: 0 }); },
       copy: function () {
         var mail = 'renatooliveiraux@gmail.com';
         try { if (navigator.clipboard) navigator.clipboard.writeText(mail); } catch (err) {}

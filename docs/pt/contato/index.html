@@ -35,6 +35,8 @@ a{color:#253CEA}a:hover{color:#1A2BB8}
 .ro-send:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,60,234,.35)}
 .ro-send .ro-dot{transition:transform .3s}
 .ro-send:hover .ro-dot{transform:rotate(-45deg)}
+.ro-send:disabled{opacity:.7;cursor:progress;transform:none;box-shadow:none}
+.ro-send:disabled .ro-dot{transform:none}
 @keyframes roUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 .ro-up{animation:roUp .9s cubic-bezier(.2,.7,.2,1) both}
 .ro-d1{animation-delay:.08s}.ro-d2{animation-delay:.16s}.ro-d3{animation-delay:.24s}
@@ -55,7 +57,7 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </style>
 <script src="../../assets/js/site.js" defer></script>
 </head>
-<body data-stk="360" data-msg-copied="E-mail copiado">
+<body data-stk="360" data-msg-copied="E-mail copiado" data-msg-sending="Enviando sua mensagem…">
 <div lang="pt-BR" style="width: 100%; background: #000000; font-family: 'Manrope', system-ui, sans-serif; color: #000000; overflow-x: hidden">
 
 <!-- MENU FIXO (aparece ao rolar) -->
@@ -127,6 +129,78 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </div>
 </div>
 
+<div class="ro-up ro-d2" style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; color: #000000; border-radius: 32px; padding: clamp(28px, 4vw, 48px); box-shadow: 0 40px 80px rgba(5,10,46,.25)">
+
+<div data-if="sent" hidden role="status" style="min-height: 560px; display: flex; flex-direction: column; justify-content: center; gap: 20px">
+<span style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(205deg, #A9B6FF, #253CEA 75%); display: inline-flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+<h2 style="margin: 0; font: 500 44px/1 'Geist', sans-serif; letter-spacing: -0.045em">Conversa iniciada.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #4A4A4A">Obrigado por compartilhar o contexto. Respondo no seu e-mail em breve.</p>
+<button type="button" data-action="reset" style="align-self: flex-start; min-height: 44px; padding: 0 20px; border: 1px solid #000000; border-radius: 999px; background: transparent; font: 600 14px 'Geist', sans-serif; cursor: pointer">Enviar outra</button>
+</div>
+
+
+<form data-if="notSent" action="https://api.web3forms.com/submit" method="POST" data-action="submit" style="display: flex; flex-direction: column; gap: 22px">
+<h2 style="margin: 0; font: 500 28px 'Geist', sans-serif; letter-spacing: -0.03em">Comece pelo contexto</h2>
+<input type="hidden" name="access_key" value="17b90597-e687-4401-8919-5e7657236335">
+<input type="hidden" name="subject" value="Novo contato pelo portfólio (PT)">
+<input type="hidden" name="project_type" value="Product Design">
+<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display: none">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="ro-name" style="font: 600 14px 'Geist', sans-serif">Nome</label>
+<input class="ro-in" id="ro-name" name="name" type="text" autocomplete="name" required style="min-height: 52px; padding: 0 18px; border: 1px solid #DADADA; border-radius: 16px; background: #F7F7F8; font: 400 16px 'Manrope', sans-serif">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="ro-mail" style="font: 600 14px 'Geist', sans-serif">E-mail</label>
+<input class="ro-in" id="ro-mail" name="email" type="email" autocomplete="email" required style="min-height: 52px; padding: 0 18px; border: 1px solid #DADADA; border-radius: 16px; background: #F7F7F8; font: 400 16px 'Manrope', sans-serif">
+</div>
+</div>
+<fieldset style="border: 0; margin: 0; padding: 0">
+<legend style="font: 600 14px 'Geist', sans-serif; padding: 0; margin-bottom: 10px">Como posso ajudar?</legend>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+
+
+<button data-if="o.on" type="button" aria-pressed="true" style="min-height: 44px; padding: 0 16px; border: 1px solid #253CEA; border-radius: 999px; background: #253CEA; color: #FFFFFF; font: 600 14px 'Geist', sans-serif; cursor: pointer">Product Design</button>
+
+
+<button data-if="o.off" hidden type="button" aria-pressed="false" data-action="o.pick" style="min-height: 44px; padding: 0 16px; border: 1px solid #DADADA; border-radius: 999px; background: #FFFFFF; color: #000000; font: 600 14px 'Geist', sans-serif; cursor: pointer">Product Design</button>
+
+
+
+<button data-if="o.on" hidden type="button" aria-pressed="true" style="min-height: 44px; padding: 0 16px; border: 1px solid #253CEA; border-radius: 999px; background: #253CEA; color: #FFFFFF; font: 600 14px 'Geist', sans-serif; cursor: pointer">UI/UX Design</button>
+
+
+<button data-if="o.off" type="button" aria-pressed="false" data-action="o.pick" style="min-height: 44px; padding: 0 16px; border: 1px solid #DADADA; border-radius: 999px; background: #FFFFFF; color: #000000; font: 600 14px 'Geist', sans-serif; cursor: pointer">UI/UX Design</button>
+
+
+
+<button data-if="o.on" hidden type="button" aria-pressed="true" style="min-height: 44px; padding: 0 16px; border: 1px solid #253CEA; border-radius: 999px; background: #253CEA; color: #FFFFFF; font: 600 14px 'Geist', sans-serif; cursor: pointer">Site / Landing page</button>
+
+
+<button data-if="o.off" type="button" aria-pressed="false" data-action="o.pick" style="min-height: 44px; padding: 0 16px; border: 1px solid #DADADA; border-radius: 999px; background: #FFFFFF; color: #000000; font: 600 14px 'Geist', sans-serif; cursor: pointer">Site / Landing page</button>
+
+
+
+<button data-if="o.on" hidden type="button" aria-pressed="true" style="min-height: 44px; padding: 0 16px; border: 1px solid #253CEA; border-radius: 999px; background: #253CEA; color: #FFFFFF; font: 600 14px 'Geist', sans-serif; cursor: pointer">Branding para produtos digitais</button>
+
+
+<button data-if="o.off" type="button" aria-pressed="false" data-action="o.pick" style="min-height: 44px; padding: 0 16px; border: 1px solid #DADADA; border-radius: 999px; background: #FFFFFF; color: #000000; font: 600 14px 'Geist', sans-serif; cursor: pointer">Branding para produtos digitais</button>
+
+
+</div>
+</fieldset>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="ro-msg" style="font: 600 14px 'Geist', sans-serif">O que você precisa resolver?</label>
+<textarea class="ro-in" id="ro-msg" name="message" rows="5" required placeholder="Contexto, objetivo e prazo, se houver." style="padding: 14px 18px; border: 1px solid #DADADA; border-radius: 16px; background: #F7F7F8; font: 400 16px/1.5 'Manrope', sans-serif; resize: vertical"></textarea>
+</div>
+<button class="ro-send" type="submit" style="min-height: 60px; padding: 0 24px 0 10px; border: 0; border-radius: 999px; background: #253CEA; color: #FFFFFF; font: 600 16px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: space-between; gap: 12px"><span class="ro-dot" style="width: 40px; height: 40px; border-radius: 50%; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span><span class="ro-send-l" style="flex: 1; text-align: center">Iniciar conversa</span></button>
+
+<p data-if="failed" hidden role="alert" style="margin: 0; padding: 14px 18px; border: 1px solid #DADADA; border-radius: 16px; background: #F7F7F8; font-size: 15px; line-height: 1.5; color: #000000">Não foi possível enviar sua mensagem. Tente novamente em instantes ou escreva para <a href="mailto:renatooliveiraux@gmail.com" style="color: #253CEA">renatooliveiraux@gmail.com</a>.</p>
+
+<p style="margin: 0; text-align: center; font-size: 13px; line-height: 1.5; color: #5C5C5C">Ao enviar, você concorda com a <a href="../privacidade/" style="color: #253CEA">Política de privacidade</a>.</p>
+</form>
+
+</div>
 </div>
 </section>
 

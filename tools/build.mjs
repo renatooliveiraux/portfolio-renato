@@ -23,6 +23,14 @@ const OLD = path.join(ROOT, '.docs-old');
 // hreflang, og:url, og:image e sitemap.xml não são gerados (exigem URL absoluta).
 const SITE_URL = '';
 
+// Access Key do Web3Forms (formulário de Contato), criada em web3forms.com com o
+// e-mail que deve receber as mensagens. A chave vai para o HTML público por
+// desenho do serviço (o envio é feito pelo navegador). Cole só a chave, no
+// formato UUID. Enquanto estiver vazia, o formulário é gerado, mas o site.js
+// mostra a mensagem de erro em vez de enviar, e o check.mjs lista a pendência.
+const WEB3FORMS_ACCESS_KEY = '17b90597-e687-4401-8919-5e7657236335';
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 // Rotas aprovadas: EN na raiz, PT em /pt/.
 const ROUTES = {
   'Main.dc.html':         { en: '',                   pt: 'pt' },
@@ -78,12 +86,6 @@ const PATCHES = {
   'Projetos.dc.html': [[
     'grid-template-columns: repeat(auto-fit, minmax(340px, 1fr))',
     'grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr))'
-  ]],
-  // Formulário oculto até haver serviço de envio: sem ele, a confirmação seria fictícia.
-  // Para reativar, remova este ajuste e volte 'o.on', 'o.off', 'sent', 'notSent' em DUAL.
-  'Contato.dc.html': [[
-    /\n<div class="ro-up ro-d2" style="flex: 1 1 460px;[\s\S]*?<\/form>\n<\/sc-if>\n<\/div>/,
-    ''
   ]]
 };
 const EXTRA_CSS = {
@@ -94,7 +96,11 @@ const EXTRA_CSS = {
 // inativa recebe `hidden`; assets/js/site.js alterna entre elas.
 const DUAL = {
   'Projetos.dc.html': ['f.on', 'f.off'],
-  'Contato.dc.html': ['copied', 'notCopied']
+  'Contato.dc.html': ['copied', 'notCopied', 'o.on', 'o.off', 'sent', 'notSent', 'failed']
+};
+// Valores definidos no build, sobrepostos aos de renderVals().
+const VALS = {
+  'Contato.dc.html': () => ({ accessKey: WEB3FORMS_ACCESS_KEY })
 };
 // Atributos extras no primeiro elemento de cada item de um <sc-for>.
 const FOR_ATTRS = {
@@ -124,7 +130,7 @@ const JPEG_QUALITY = 82;
 const BODY_DATA = {
   // Mesma ordem do array de filtros em Projetos.dc.html.
   'Projetos.dc.html': () => ({ 'data-filters': 'all,product,web,brand' }),
-  'Contato.dc.html': (v) => ({ 'data-msg-copied': v.t.copiedMsg })
+  'Contato.dc.html': (v) => ({ 'data-msg-copied': v.t.copiedMsg, 'data-msg-sending': v.t.sending })
 };
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -216,7 +222,8 @@ function render(node, scopes, cfg) {
       return c.replace(/\{\{([^}]+)\}\}/g, (m, expr) => {
         const v = lookup(expr.trim(), scopes);
         if (typeof v === 'function' || (v && typeof v === 'object')) throw new Error('Valor não textual em ' + expr);
-        return esc(v == null ? '' : v);
+        // Links [texto](mailto:…) nos textos viram <a>, no mesmo estilo do link da nota de privacidade.
+        return esc(v == null ? '' : v).replace(/\[([^\]]+)\]\((mailto:[^)\s]+)\)/g, '<a href="$2" style="color: #253CEA">$1</a>');
       });
     }
     const v = lookup(c.expr, scopes);
@@ -358,6 +365,10 @@ function head(file, lang, page, dir) {
 }
 
 function build(OUT) {
+  if (WEB3FORMS_ACCESS_KEY && !UUID.test(WEB3FORMS_ACCESS_KEY)) {
+    throw new Error('WEB3FORMS_ACCESS_KEY inválida em tools/build.mjs: use a chave UUID fornecida pelo Web3Forms.');
+  }
+  if (!WEB3FORMS_ACCESS_KEY) console.warn('Aviso: WEB3FORMS_ACCESS_KEY vazia em tools/build.mjs; o formulário de Contato não envia.');
   const usedImgs = new Set();
   const jobs = new Map();
   const assetFiles = fs.readdirSync(ASSETS).filter((f) => fs.statSync(path.join(ASSETS, f)).isFile());
@@ -374,7 +385,7 @@ function build(OUT) {
     const tree = parseTree(tpl);
     for (const lang of ['en', 'pt']) {
       const dir = ROUTES[file][lang];
-      const vals = renderVals(page.script, lang);
+      const vals = Object.assign(renderVals(page.script, lang), VALS[file] ? VALS[file]() : {});
       const cfg = { dual: DUAL[file] || [], forAttrs: FOR_ATTRS[file] || {} };
       let body = render(tree, [vals], cfg).trim();
       body = body

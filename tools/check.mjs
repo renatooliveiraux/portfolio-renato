@@ -1,4 +1,5 @@
-// Valida o site gerado: links e imagens locais, rotas, idioma, metadados e restos de template.
+// Valida o site gerado: links e imagens locais, rotas, idioma, metadados, restos de template
+// e o formulário de Contato (Web3Forms) nas duas versões.
 // Uso: node tools/check.mjs [pasta]   (padrão docs/; ex.: node tools/check.mjs .docs-build)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -81,6 +82,42 @@ for (const dir of EXPECTED) {
   if ((html.match(/aria-current="true"/g) || []).length !== 2) problems.push(where + ': idioma ativo não marcado nos dois seletores');
 
   for (const m of html.matchAll(/>\s*(\[[^\]<]{2,80}\])\s*</g)) placeholders.push(where + ': ' + m[1]);
+
+  if (dir === 'contact' || dir === 'pt/contato') checkForm(html, where);
+}
+
+// Formulário de Contato: envio pelo Web3Forms, com fallback HTML.
+function checkForm(html, where) {
+  const forms = html.match(/<form\b[^>]*>[\s\S]*?<\/form>/g) || [];
+  if (forms.length !== 1) { problems.push(where + ': ' + forms.length + ' formulários (esperado 1)'); return; }
+  const form = forms[0], open = form.match(/<form\b[^>]*>/)[0];
+  if (!/ action="https:\/\/api\.web3forms\.com\/submit"/.test(open)) problems.push(where + ': formulário sem action do Web3Forms');
+  if (!/ method="POST"/i.test(open)) problems.push(where + ': formulário sem method="POST"');
+  if (!/ data-action="submit"/.test(open)) problems.push(where + ': formulário sem data-action="submit" (envio via site.js)');
+  const input = (name) => (form.match(new RegExp('<(?:input|textarea)\\b[^>]*name="' + name + '"[^>]*>')) || [])[0];
+  const value = (tag) => (tag.match(/ value="([^"]*)"/) || [])[1];
+  for (const name of ['access_key', 'subject', 'project_type']) {
+    const tag = input(name);
+    if (!tag) problems.push(where + ': campo ' + name + ' ausente');
+    else if (!/ type="hidden"/.test(tag)) problems.push(where + ': campo ' + name + ' não é oculto');
+    else if (name !== 'access_key' && !value(tag)) problems.push(where + ': campo ' + name + ' sem valor');
+  }
+  const key = input('access_key') && value(input('access_key'));
+  if (input('access_key') && !key) placeholders.push(where + ': Access Key do Web3Forms vazia (WEB3FORMS_ACCESS_KEY em tools/build.mjs)');
+  else if (key && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(key)) problems.push(where + ': Access Key do Web3Forms fora do formato UUID');
+  const bot = input('botcheck');
+  if (!bot) problems.push(where + ': campo botcheck ausente');
+  else if (!/ type="checkbox"/.test(bot) || !/display: ?none/.test(bot)) problems.push(where + ': botcheck deve ser checkbox com display: none');
+  for (const name of ['name', 'email', 'message']) {
+    const tag = input(name);
+    if (!tag) problems.push(where + ': campo ' + name + ' ausente');
+    else if (!/ required[\s>]/.test(tag)) problems.push(where + ': campo ' + name + ' não é obrigatório');
+    else if (!/ id="([^"]+)"/.test(tag) || !form.includes('<label for="' + tag.match(/ id="([^"]+)"/)[1] + '"')) problems.push(where + ': campo ' + name + ' sem <label>');
+  }
+  if (!/<button\b[^>]*type="submit"/.test(form)) problems.push(where + ': formulário sem botão de envio');
+  if (!/<[a-z]+ data-if="failed" hidden role="alert"/.test(form)) problems.push(where + ': mensagem de erro com role="alert" ausente');
+  if (!/data-if="sent" hidden role="status"/.test(html)) problems.push(where + ': estado de sucesso ausente');
+  if (!/ data-msg-sending="[^"]+"/.test(html)) problems.push(where + ': texto de envio (data-msg-sending) ausente');
 }
 
 for (const [t, w] of titles) if (w.length > 1) problems.push('Título repetido em ' + w.join(', '));

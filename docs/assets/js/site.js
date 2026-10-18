@@ -45,8 +45,11 @@
     all('[data-cat]').forEach(function (card) { show(card, keys[i] === 'all' || card.getAttribute('data-cat') === keys[i]); });
   });
 
-  // Contato: tipo de projeto, copiar e-mail e envio (ainda só local).
-  var pickType = choice('o');
+  // Contato: tipo de projeto, copiar e-mail e envio pelo Web3Forms.
+  var typeInput = d.querySelector('input[name="project_type"]');
+  var pickType = choice('o', function (i) {
+    if (typeInput) typeInput.value = all('[data-if="o.on"]')[i].textContent.trim();
+  });
   var copyBtn = d.querySelector('[data-action="copy"]');
   if (copyBtn) {
     var status = copyBtn.parentNode.querySelector('[role="status"]'), timer;
@@ -69,10 +72,49 @@
       all('[data-if="sent"]').forEach(function (el) { show(el, on); });
       all('[data-if="notSent"]').forEach(function (el) { show(el, !on); });
     };
-    form.addEventListener('submit', function (e) { e.preventDefault(); setSent(true); });
+    var sendBtn = form.querySelector('button[type="submit"]');
+    var sendLabel = sendBtn.querySelector('.ro-send-l'), idleText = sendLabel.textContent;
+    var alertBox = form.querySelector('[data-if="failed"]'), errorHtml = alertBox.innerHTML;
+    var sending = false;
+    var setSending = function (on) {
+      sending = on;
+      sendBtn.disabled = on;
+      sendLabel.textContent = on ? b.getAttribute('data-msg-sending') : idleText;
+    };
+    // O alerta aparece vazio e recebe o texto em seguida, para os leitores de tela anunciarem.
+    var setFailed = function (on) {
+      alertBox.textContent = '';
+      show(alertBox, on);
+      if (on) setTimeout(function () { alertBox.innerHTML = errorHtml; }, 50);
+    };
+    // Sem JavaScript, o formulário segue pelo action/method do HTML.
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (sending) return;
+      setFailed(false);
+      if (!form.elements.access_key.value || !window.fetch) { setFailed(true); return; }
+      setSending(true);
+      var data = {};
+      new FormData(form).forEach(function (v, k) { data[k] = v; });
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (r) {
+        return r.json().then(function (j) { if (!r.ok || !j.success) throw new Error(j.message || r.status); });
+      }).then(function () {
+        setSending(false);
+        setSent(true);
+      }, function () {
+        // Mantém o que foi preenchido para a pessoa tentar de novo.
+        setSending(false);
+        setFailed(true);
+      });
+    });
     d.querySelector('[data-action="reset"]').addEventListener('click', function () {
       form.reset();
       pickType(0, false);
+      setFailed(false);
       setSent(false);
     });
   }
