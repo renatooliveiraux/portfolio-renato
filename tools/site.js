@@ -19,6 +19,84 @@
     update();
   }
 
+  // Menu responsivo: os botões .ro-burger vêm do build; o painel é montado aqui
+  // com cópias do logo, dos links, do seletor de idioma e do CTA do menu fixo.
+  var burgers = all('.ro-burger'), src = d.querySelector('.ro-stk .ro-hd');
+  try { if (!burgers.length || !src) throw 0;
+    var labelOpen = burgers[0].getAttribute('aria-label'), labelClose = burgers[0].getAttribute('data-label-close');
+    var menu = d.createElement('div');
+    menu.id = 'ro-menu';
+    menu.className = 'ro-menu';
+    menu.hidden = true;
+    menu.setAttribute('role', 'dialog');
+    menu.setAttribute('aria-modal', 'true');
+    menu.setAttribute('aria-label', 'Menu');
+    var bar = d.createElement('div'), barIn = d.createElement('div');
+    bar.className = 'ro-menu-bar';
+    bar.appendChild(barIn);
+    barIn.appendChild(src.firstElementChild.cloneNode(true));
+    var closeBtn = d.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'ro-burger';
+    closeBtn.setAttribute('aria-label', labelClose);
+    closeBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M5 5l10 10M15 5L5 15"/></svg>';
+    barIn.appendChild(closeBtn);
+    var inner = d.createElement('div'), foot = d.createElement('div');
+    inner.className = 'ro-menu-in';
+    foot.className = 'ro-menu-ft';
+    var nav = src.querySelector('nav').cloneNode(true), mainNav = d.querySelector('.ro-hd nav:not(.ro-stk nav)');
+    nav.removeAttribute('style');  // o layout em lista vem do CSS do painel
+    if (mainNav) nav.setAttribute('aria-label', mainNav.getAttribute('aria-label'));
+    inner.appendChild(nav);
+    // Grupo da direita: seletor de idioma e, quando existe, o CTA.
+    var right = src.lastElementChild;
+    (right.getAttribute('role') === 'group' ? [right] : Array.prototype.slice.call(right.children))
+      .forEach(function (el) { foot.appendChild(el.cloneNode(true)); });
+    inner.appendChild(foot);
+    menu.appendChild(bar);
+    menu.appendChild(inner);
+    b.appendChild(menu);
+
+    var mq = window.matchMedia('(max-width: 960px)'), opener = null;  // = MENU_BP em tools/build.mjs
+    var setOpen = function (on, restoreFocus) {
+      if (on === !menu.hidden) return;
+      menu.hidden = !on;
+      d.documentElement.classList.toggle('ro-menu-lock', on);
+      Array.prototype.forEach.call(b.children, function (el) {
+        if (el !== menu && el.tagName !== 'SCRIPT') { if (on) el.setAttribute('inert', ''); else el.removeAttribute('inert'); }
+      });
+      burgers.forEach(function (bt) {
+        bt.setAttribute('aria-expanded', on ? 'true' : 'false');
+        bt.setAttribute('aria-label', on ? labelClose : labelOpen);
+      });
+      if (on) closeBtn.focus();
+      else if (restoreFocus && opener) opener.focus();
+    };
+    burgers.forEach(function (bt) {
+      bt.addEventListener('click', function () { opener = bt; setOpen(menu.hidden, true); });
+    });
+    closeBtn.addEventListener('click', function () { setOpen(false, true); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false, false); });
+    d.addEventListener('keydown', function (e) {
+      if (menu.hidden) return;
+      if (e.key === 'Escape') { e.preventDefault(); setOpen(false, true); return; }
+      if (e.key !== 'Tab') return;
+      // Mantém o foco dentro do painel (reforço para navegadores sem inert).
+      var items = all('.ro-menu a[href], .ro-menu button');
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && d.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && d.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    // Ao voltar para o layout desktop, o painel não pode continuar aberto.
+    var onMq = function () { if (!mq.matches) setOpen(false, false); };
+    if (mq.addEventListener) mq.addEventListener('change', onMq); else mq.addListener(onMq);
+    // Página restaurada do histórico (bfcache) sempre volta com o painel fechado.
+    window.addEventListener('pageshow', function () { setOpen(false, false); });
+  } catch (e) {
+    // Sem o painel montado, o botão não teria função: volta o cabeçalho original.
+    d.documentElement.classList.remove('ro-js');
+  }
+
   // Seletor de idioma: salva a escolha antes de seguir o link.
   all('a[data-lang]').forEach(function (a) {
     a.addEventListener('click', function () {

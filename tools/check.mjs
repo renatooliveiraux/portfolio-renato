@@ -81,6 +81,11 @@ for (const dir of EXPECTED) {
   }
   if ((html.match(/aria-current="true"/g) || []).length !== 2) problems.push(where + ': idioma ativo não marcado nos dois seletores');
 
+  // Menu responsivo: um botão em cada cabeçalho, com estado e rótulos para leitores de tela.
+  const burgers = html.match(/<button type="button" class="ro-burger[^"]*" aria-expanded="false" aria-controls="ro-menu" aria-label="[^"]+" data-label-close="[^"]+">/g) || [];
+  if (burgers.length !== 2) problems.push(where + ': ' + burgers.length + ' botões de menu (esperado 2)');
+  if (!/classList\.add\('ro-js'\)/.test(html)) problems.push(where + ': sem a ativação do menu responsivo (ro-js)');
+
   for (const m of html.matchAll(/>\s*(\[[^\]<]{2,80}\])\s*</g)) placeholders.push(where + ': ' + m[1]);
 
   if (dir === 'contact' || dir === 'pt/contato') checkForm(html, where);

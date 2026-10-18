@@ -92,6 +92,58 @@ const EXTRA_CSS = {
   'Sobre.dc.html': '@media (max-width:760px){.ro-ey{flex:1 1 auto !important;min-width:0}}'
 };
 
+// Menu responsivo (≤960px): logo à esquerda e botão de menu à direita; o painel
+// é montado pelo site.js a partir do menu fixo. 960px porque, em PT, a grade de
+// 3 colunas do desktop quebra o CTA em duas linhas abaixo de ~940px.
+// Sem JavaScript (sem a classe ro-js), o cabeçalho segue como antes.
+const MENU_BP = 960;
+const MENU_LABELS = { en: ['Open menu', 'Close menu'], pt: ['Abrir menu', 'Fechar menu'] };
+const MENU_ICON = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M3 5.5h14M3 10h14M3 14.5h14"/></svg>';
+const MENU_CSS = [
+  '.ro-burger{display:none;flex:none;margin-left:auto;width:44px;height:44px;padding:0;border:1px solid #DADADA;border-radius:999px;background:transparent;color:#000000;align-items:center;justify-content:center;cursor:pointer;transition:color .2s,border-color .2s,background .2s}',
+  '.ro-burger:hover{color:#253CEA;border-color:#253CEA}',
+  '.ro-burger svg{display:block}',
+  '.ro-burger-w{color:#FFFFFF;border-color:rgba(255,255,255,.5)}',
+  '.ro-burger-w:hover{background:#FFFFFF;border-color:#FFFFFF;color:#253CEA}',
+  '.ro-burger-w:focus-visible{outline-color:#FFFFFF}',
+  '@media (max-width:' + MENU_BP + 'px){.ro-js .ro-hd{display:flex !important;flex-wrap:nowrap !important}.ro-js .ro-hd>nav,.ro-js .ro-hd>.ro-burger~*{display:none !important}.ro-js .ro-burger{display:inline-flex}}',
+  'html.ro-menu-lock{overflow:hidden}',
+  '.ro-menu{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;background:#FFFFFF;color:#000000;overflow-y:auto;overscroll-behavior:contain;animation:roMenuIn .3s cubic-bezier(.2,.7,.2,1) both}',
+  '.ro-menu .ro-burger{display:inline-flex}',
+  '.ro-menu-bar{border-bottom:1px solid #EAEAEA}',
+  '.ro-menu-bar>div,.ro-menu-in{width:100%;max-width:1280px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}',
+  '.ro-menu-in{flex-direction:column;align-items:stretch;justify-content:flex-start;padding:16px 24px 40px}',
+  '.ro-menu nav{display:flex;flex-direction:column}',
+  '.ro-menu nav a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #EAEAEA;color:#000000;opacity:1;text-decoration:none;font:500 clamp(28px,7.5vw,40px)/1.1 \'Geist\',sans-serif;letter-spacing:-.03em}',
+  '.ro-menu nav a:hover,.ro-menu nav a[aria-current="page"]{color:#253CEA}',
+  '.ro-menu nav a[aria-current="page"]::after{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:#253CEA}',
+  '.ro-menu-ft{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:32px}',
+  '@media (max-height:480px){.ro-menu nav a{padding:10px 0;font-size:24px}.ro-menu-in{padding-top:4px}.ro-menu-ft{margin-top:20px}}',
+  '@keyframes roMenuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}',
+  '@media (prefers-reduced-motion:reduce){.ro-menu{animation:none}.ro-burger{transition:none}}'
+].join('\n');
+
+// Insere o botão de menu logo após cada navegação principal (antes do grupo da
+// direita), nos dois cabeçalhos da página. Variante clara sobre o gradiente.
+function addMenuButtons(body, lang, where) {
+  const [open, close] = MENU_LABELS[lang];
+  let n = 0;
+  const out = body.replace(/<nav aria-label="Principal[^"]*"[^>]*>[\s\S]*?<\/nav>/g, (nav) => {
+    n++;
+    return nav + '\n<button type="button" class="ro-burger' + (/class="ro-nw"/.test(nav) ? ' ro-burger-w' : '') +
+      '" aria-expanded="false" aria-controls="ro-menu" aria-label="' + open + '" data-label-close="' + close + '">' + MENU_ICON + '</button>';
+  });
+  if (n !== 2) throw new Error('Esperadas 2 navegações principais em ' + where + ', encontradas ' + n);
+  return out;
+}
+
+// Rótulos de acessibilidade que vêm em português no protótipo (só leitores de tela).
+const A11Y_EN = { 'Principal': 'Main', 'Principal (fixo)': 'Main (sticky)', 'Idioma': 'Language', 'Renato Oliveira, início': 'Renato Oliveira, home' };
+function localizeA11y(body, lang) {
+  if (lang !== 'en') return body;
+  return body.replace(/aria-label="([^"]*)"/g, (m, v) => A11Y_EN[v] ? 'aria-label="' + A11Y_EN[v] + '"' : m);
+}
+
 // Estados interativos: as duas versões de cada <sc-if> listado são geradas e a
 // inativa recebe `hidden`; assets/js/site.js alterna entre elas.
 const DUAL = {
@@ -355,11 +407,14 @@ function head(file, lang, page, dir) {
     lines.push('<script>(function(){var s=null;try{s=localStorage.getItem(\'ro-lang\');}catch(e){}var n=(navigator.language||\'\').toLowerCase();if(s===\'pt\'||(s!==\'en\'&&n.indexOf(\'pt\')===0))location.replace(\'pt/\'+location.search+location.hash);})();</script>');
   }
   lines.push(
+    // Ativa o menu responsivo antes da primeira pintura (sem JavaScript, fica o cabeçalho original).
+    '<script>document.documentElement.classList.add(\'ro-js\');</script>',
     '<link rel="preconnect" href="https://fonts.googleapis.com">',
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
     page.fontLink,
-    '<style>\n' + page.style + '\n[hidden]{display:none !important}' + (EXTRA_CSS[file] ? '\n' + EXTRA_CSS[file] : '') + '\n</style>',
-    '<script src="' + rel(dir, 'assets/js') + 'site.js" defer></script>'
+    '<style>\n' + page.style + '\n[hidden]{display:none !important}\n' + MENU_CSS + (EXTRA_CSS[file] ? '\n' + EXTRA_CSS[file] : '') + '\n</style>',
+    // Se o site.js não carregar, volta o cabeçalho original (sem botão de menu inoperante).
+    '<script src="' + rel(dir, 'assets/js') + 'site.js" defer onerror="document.documentElement.classList.remove(\'ro-js\')"></script>'
   );
   return lines.join('\n');
 }
@@ -399,6 +454,7 @@ function build(OUT) {
           if (!f) throw new Error('Imagem ausente: ' + id);
           return rel(dir, 'assets/img') + f;
         });
+      body = localizeA11y(addMenuButtons(body, lang, file + ' (' + lang + ')'), lang);
       body = imgAttrs(body, file, dir, jobs);
       for (const m of body.matchAll(/assets\/img\/([0-9a-f]{32}\.\w+)/g)) usedImgs.add(m[1]);
       if (/\{\{|<sc-|on[A-Z][a-z]+="|\.dc\.html|_blob/.test(body)) throw new Error('Resto de template em ' + file + ' (' + lang + ')');

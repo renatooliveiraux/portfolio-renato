@@ -11,6 +11,7 @@
 <meta property="og:description" content="Branding: a single visual language for Grupo Strategi’s five business lines, from social media to events, and a Figma template library.">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="pt_BR">
+<script>document.documentElement.classList.add('ro-js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
@@ -54,8 +55,29 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 .ro-hd>:last-child{justify-self:end}
 @media (max-width:900px){.ro-hd{display:flex !important}}
 [hidden]{display:none !important}
+.ro-burger{display:none;flex:none;margin-left:auto;width:44px;height:44px;padding:0;border:1px solid #DADADA;border-radius:999px;background:transparent;color:#000000;align-items:center;justify-content:center;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.ro-burger:hover{color:#253CEA;border-color:#253CEA}
+.ro-burger svg{display:block}
+.ro-burger-w{color:#FFFFFF;border-color:rgba(255,255,255,.5)}
+.ro-burger-w:hover{background:#FFFFFF;border-color:#FFFFFF;color:#253CEA}
+.ro-burger-w:focus-visible{outline-color:#FFFFFF}
+@media (max-width:960px){.ro-js .ro-hd{display:flex !important;flex-wrap:nowrap !important}.ro-js .ro-hd>nav,.ro-js .ro-hd>.ro-burger~*{display:none !important}.ro-js .ro-burger{display:inline-flex}}
+html.ro-menu-lock{overflow:hidden}
+.ro-menu{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;background:#FFFFFF;color:#000000;overflow-y:auto;overscroll-behavior:contain;animation:roMenuIn .3s cubic-bezier(.2,.7,.2,1) both}
+.ro-menu .ro-burger{display:inline-flex}
+.ro-menu-bar{border-bottom:1px solid #EAEAEA}
+.ro-menu-bar>div,.ro-menu-in{width:100%;max-width:1280px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.ro-menu-in{flex-direction:column;align-items:stretch;justify-content:flex-start;padding:16px 24px 40px}
+.ro-menu nav{display:flex;flex-direction:column}
+.ro-menu nav a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #EAEAEA;color:#000000;opacity:1;text-decoration:none;font:500 clamp(28px,7.5vw,40px)/1.1 'Geist',sans-serif;letter-spacing:-.03em}
+.ro-menu nav a:hover,.ro-menu nav a[aria-current="page"]{color:#253CEA}
+.ro-menu nav a[aria-current="page"]::after{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:#253CEA}
+.ro-menu-ft{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:32px}
+@media (max-height:480px){.ro-menu nav a{padding:10px 0;font-size:24px}.ro-menu-in{padding-top:4px}.ro-menu-ft{margin-top:20px}}
+@keyframes roMenuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.ro-menu{animation:none}.ro-burger{transition:none}}
 </style>
-<script src="../../assets/js/site.js" defer></script>
+<script src="../../assets/js/site.js" defer onerror="document.documentElement.classList.remove('ro-js')"></script>
 </head>
 <body data-stk="120">
 <div lang="en" style="width: 100%; background: #FFFFFF; font-family: 'Manrope', system-ui, sans-serif; color: #000000; overflow-x: hidden">
@@ -63,15 +85,16 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 <!-- MENU FIXO (aparece ao rolar) -->
 <div class="ro-stk">
 <header class="ro-hd" style="max-width: 1280px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px">
-<a href="../../" aria-label="Renato Oliveira, início" style="display: flex; align-items: center"><img src="../../assets/img/dead834c6a2b1ed8a48092e6e2df018f.png" alt="renatooliveira" style="height: 24px; width: auto; display: block" width="1508" height="226" loading="eager"></a>
-<nav aria-label="Principal (fixo)" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
+<a href="../../" aria-label="Renato Oliveira, home" style="display: flex; align-items: center"><img src="../../assets/img/dead834c6a2b1ed8a48092e6e2df018f.png" alt="renatooliveira" style="height: 24px; width: auto; display: block" width="1508" height="226" loading="eager"></a>
+<nav aria-label="Main (sticky)" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
 <a class="ro-nd" href="../../">Home</a>
 <a class="ro-nd" href="../../about/">About</a>
 <a class="ro-nd" href="../" aria-current="page" style="opacity: 1">Work</a>
 <a class="ro-nd" href="../../contact/">Contact</a>
 </nav>
+<button type="button" class="ro-burger" aria-expanded="false" aria-controls="ro-menu" aria-label="Open menu" data-label-close="Close menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M3 5.5h14M3 10h14M3 14.5h14"/></svg></button>
 <div style="display: flex; align-items: center; gap: 12px">
-<div role="group" aria-label="Idioma" style="display: flex; border: 1px solid #DADADA; border-radius: 999px; padding: 3px">
+<div role="group" aria-label="Language" style="display: flex; border: 1px solid #DADADA; border-radius: 999px; padding: 3px">
 
 
 <a href="./" hreflang="en" lang="en" data-lang="en" aria-current="true" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none">EN</a>
@@ -87,15 +110,16 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 <section style="background: #FFFFFF; color: #000000">
 <header style="border-bottom: 1px solid #EAEAEA">
 <div class="ro-hd" style="max-width: 1280px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
-<a href="../../" aria-label="Renato Oliveira, início" style="display: flex; align-items: center"><img src="../../assets/img/dead834c6a2b1ed8a48092e6e2df018f.png" alt="renatooliveira" style="height: 26px; width: auto; display: block" width="1508" height="226" loading="eager"></a>
-<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
+<a href="../../" aria-label="Renato Oliveira, home" style="display: flex; align-items: center"><img src="../../assets/img/dead834c6a2b1ed8a48092e6e2df018f.png" alt="renatooliveira" style="height: 26px; width: auto; display: block" width="1508" height="226" loading="eager"></a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font: 500 15px 'Geist', sans-serif">
 <a class="ro-nd" href="../../">Home</a>
 <a class="ro-nd" href="../../about/">About</a>
 <a class="ro-nd" href="../" aria-current="page" style="opacity: 1">Work</a>
 <a class="ro-nd" href="../../contact/">Contact</a>
 </nav>
+<button type="button" class="ro-burger" aria-expanded="false" aria-controls="ro-menu" aria-label="Open menu" data-label-close="Close menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M3 5.5h14M3 10h14M3 14.5h14"/></svg></button>
 <div style="display: flex; align-items: center; gap: 12px">
-<div role="group" aria-label="Idioma" style="display: flex; border: 1px solid #DADADA; border-radius: 999px; padding: 3px">
+<div role="group" aria-label="Language" style="display: flex; border: 1px solid #DADADA; border-radius: 999px; padding: 3px">
 
 
 <a href="./" hreflang="en" lang="en" data-lang="en" aria-current="true" aria-label="English" title="English" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 999px; background: #000000; color: #FFFFFF; font: 600 12px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; text-decoration: none">EN</a>
