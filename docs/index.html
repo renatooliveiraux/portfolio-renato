@@ -11,6 +11,25 @@
 <meta property="og:description" content="Product Designer based in Brazil, available for remote work with international clients. 15 years in design and more than 5 in UI/UX.">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Renato Oliveira · Product Designer, from brand to interface">
+<meta name="twitter:description" content="Product Designer based in Brazil, available for remote work with international clients. 15 years in design and more than 5 in UI/UX.">
+<link rel="icon" href="assets/meta/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/meta/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/meta/icon-192.png">
+<link rel="apple-touch-icon" href="assets/meta/apple-touch-icon.png">
+<link rel="canonical" href="https://www.renatooliveiraux.com.br/">
+<link rel="alternate" hreflang="en" href="https://www.renatooliveiraux.com.br/">
+<link rel="alternate" hreflang="pt-BR" href="https://www.renatooliveiraux.com.br/pt/">
+<link rel="alternate" hreflang="x-default" href="https://www.renatooliveiraux.com.br/">
+<meta property="og:url" content="https://www.renatooliveiraux.com.br/">
+<meta property="og:image" content="https://www.renatooliveiraux.com.br/assets/meta/og-en.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Renato Oliveira — Product Designer. From brand to interface.">
+<meta name="twitter:image" content="https://www.renatooliveiraux.com.br/assets/meta/og-en.jpg">
+<meta name="twitter:image:alt" content="Renato Oliveira — Product Designer. From brand to interface.">
 <script>(function(){var s=null;try{s=localStorage.getItem('ro-lang');}catch(e){}var n=(navigator.language||'').toLowerCase();if(s==='pt'||(s!=='en'&&n.indexOf('pt')===0))location.replace('pt/'+location.search+location.hash);})();</script>
 <script>document.documentElement.classList.add('ro-js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +40,7 @@ body{margin:0;background:#FFFFFF;color:#000000;font-family:'Manrope',system-ui,s
 *{box-sizing:border-box}
 a{color:#253CEA}a:hover{color:#1A2BB8}
 :focus-visible{outline:2px solid #253CEA;outline-offset:3px}
+:focus-visible:not(.ro-burger-w){box-shadow:0 0 0 3px #FFFFFF}
 .ro-nw{color:#FFFFFF;text-decoration:none;opacity:.82;transition:opacity .2s}
 .ro-nw:hover{color:#FFFFFF;opacity:1}
 .ro-fl{color:#FFFFFF;text-decoration:none;opacity:.7;transition:opacity .2s}
@@ -55,10 +75,16 @@ a{color:#253CEA}a:hover{color:#1A2BB8}
 .ro-nd:hover{color:#253CEA;opacity:1}
 header nav .ro-nw{padding:6px 12px;margin:-6px -12px;border-radius:999px;transition:opacity .2s,background .2s,color .2s}
 header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
+header nav .ro-nw:focus-visible{outline-color:#050A2E}
 .ro-stk{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid #EAEAEA;transform:translateY(-105%);visibility:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s linear .4s}
 .ro-stk.ro-on{transform:none;visibility:visible;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s}
 @media (prefers-reduced-motion:reduce){.ro-up,.ro-rise,.ro-glow,.ro-marq{animation:none}.ro-stk,.ro-stk.ro-on{transition:none}}
 @media (max-width:1100px){.ro-arc{display:none !important}}
+@media (max-width:600px){.ro-shade{background:linear-gradient(to top, rgba(5,10,46,.74) 0%, rgba(5,10,46,.45) 35%, rgba(5,10,46,.18) 52%, rgba(5,10,46,0) 65%), linear-gradient(to bottom, rgba(10,20,110,.35) 0%, rgba(10,20,110,0) 18%) !important}}
+:root{--sec:clamp(80px,9vw,128px)}
+@media (max-width:760px){.ro-cunha{width:160px !important;height:172px !important}}
+.ro-svc{container-type:inline-size}
+@container (min-width:484px) and (max-width:871.98px){.ro-svc>div{margin-left:144px}}
 .ro-hd{display:grid !important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
 .ro-hd>:first-child{justify-self:start}
 .ro-hd>:last-child{justify-self:end}
@@ -116,13 +142,13 @@ html.ro-menu-lock{overflow:hidden}
 </div>
 
 <!-- HERO -->
-<section aria-label="Product Designer · UI/UX" style="position: relative; height: 100vh; min-height: 760px; max-height: 960px; overflow: hidden; color: #FFFFFF; background: linear-gradient(205deg, #A9B6FF 0%, #6E80F7 28%, #3A50EE 55%, #253CEA 80%, #1E32D6 100%)">
+<section aria-label="Product Designer · UI/UX" style="position: relative; height: 100vh; min-height: 760px; max-height: 960px; overflow: hidden; color: #FFFFFF; background: #253CEA">
 <div class="ro-glow" aria-hidden="true" style="position: absolute; left: 50%; top: 34%; width: 900px; height: 900px; margin: -450px 0 0 -450px; border-radius: 50%; background: radial-gradient(circle, rgba(214,221,255,.55) 0%, rgba(214,221,255,0) 62%)"></div>
-<div class="ro-arc" aria-hidden="true" style="position: absolute; left: -220px; top: -260px; width: 620px; height: 620px; border: 80px solid #FFFFFF; border-radius: 50%"></div>
+<div class="ro-arc" aria-hidden="true" style="position: absolute; z-index: 1; left: -220px; top: -260px; width: 620px; height: 620px; border: 80px solid #FFFFFF; border-radius: 50%"></div>
 <div class="ro-rise" style="position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-end">
-<img src="assets/img/00279768a85e85a6c5dc80f7289a7651.webp" alt="Portrait of Renato Oliveira in shades of blue" style="height: 94%; width: auto; max-width: none; display: block" width="1208" height="947" loading="eager" fetchpriority="high">
+<img src="assets/img/988a63b4cf91317c6e44acfb8423a2b6.jpg" alt="Portrait of Renato Oliveira in shades of blue" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block" width="1679" height="937" loading="eager" fetchpriority="high">
 </div>
-<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,10,46,.74) 0%, rgba(5,10,46,.28) 30%, rgba(5,10,46,0) 52%), linear-gradient(to bottom, rgba(10,20,110,.35) 0%, rgba(10,20,110,0) 18%)"></div>
+<div class="ro-shade" aria-hidden="true" style="position: absolute; z-index: 1; inset: 0; background: linear-gradient(to top, rgba(5,10,46,.74) 0%, rgba(5,10,46,.28) 30%, rgba(5,10,46,0) 52%), linear-gradient(to bottom, rgba(10,20,110,.35) 0%, rgba(10,20,110,0) 18%)"></div>
 
 <header class="ro-hd" style="position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
 <a href="./" aria-label="Renato Oliveira, home" style="display: flex; align-items: center"><img src="assets/img/77e3660513b45fd95c29c08184b69ccc.png" alt="renatooliveira" style="height: 26px; width: auto; display: block" width="1508" height="226" loading="eager"></a>
@@ -159,9 +185,9 @@ html.ro-menu-lock{overflow:hidden}
 </section>
 
 <!-- INTRO + SHORTCUTS (editorial) -->
-<section aria-label="Shortcuts" style="position: relative; max-width: 1280px; margin: 0 auto; padding: 128px 24px 120px">
-<span class="ro-haste" aria-hidden="true" style="position: absolute; top: 140px; left: calc(50% - 50vw); width: calc(50vw - 50%); height: 200px; background: #253CEA; clip-path: polygon(45% 0, 100% 0, 0 100%, 0 45%); pointer-events: none"></span>
-<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-start; margin-bottom: 88px">
+<section aria-label="Shortcuts" style="position: relative; max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px clamp(72px, 8.4vw, 120px)">
+<span class="ro-haste" aria-hidden="true" style="position: absolute; top: calc(var(--sec) + 12px); left: calc(50% - 50vw); width: calc(50vw - 50%); height: 200px; background: #253CEA; clip-path: polygon(45% 0, 100% 0, 0 100%, 0 45%); pointer-events: none"></span>
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-start; margin-bottom: clamp(56px, 6.1vw, 88px)">
 <p style="flex: 0 0 200px; margin: 6px 0 0; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">Hi, I’m Renato</p>
 <p style="flex: 1 1 560px; margin: 0; font: 500 clamp(30px, 3.4vw, 50px)/1.12 'Geist', sans-serif; letter-spacing: -0.035em; color: #000000">I turn business problems into clear, consistent and easy-to-use digital products.</p>
 </div>
@@ -205,12 +231,12 @@ html.ro-menu-lock{overflow:hidden}
 
 <!-- ABOUT (solid, editorial) -->
 <section aria-labelledby="ro-about" style="position: relative; overflow: hidden; background: #F7F7F8">
-<div aria-hidden="true" style="position: absolute; right: 0; bottom: 0; width: 260px; height: 280px; background: #253CEA; clip-path: polygon(100% 0, 100% 75%, 75% 100%, 0 100%); pointer-events: none"></div>
-<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 128px 24px">
+<div class="ro-cunha" aria-hidden="true" style="position: absolute; right: 0; bottom: 0; width: 260px; height: 280px; background: #253CEA; clip-path: polygon(100% 0, 100% 75%, 75% 100%, 0 100%); pointer-events: none"></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px">
 <div style="display: flex; flex-wrap: wrap; gap: 64px; align-items: stretch">
 <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 56px">
 <div>
-<div style="margin: 0 0 24px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">About</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
+<div style="max-width: 640px; margin: 0 0 24px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">About</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
 <h2 id="ro-about" style="margin: 0; max-width: 640px; font: 500 clamp(24px, 2.3vw, 32px)/1.35 'Geist', sans-serif; letter-spacing: -0.02em; color: #000000">I work across the full product lifecycle, from user research to high-fidelity interfaces, with experience in multi-role SaaS platforms, mobile apps, BI dashboards and design systems. I connect user needs to business goals, working closely with engineering, product and stakeholders. Based in Brazil, working remotely with international clients.</h2>
 </div>
 <a class="ro-pill" href="about/" style="align-self: flex-start; min-height: 48px; padding: 0 20px 0 8px; display: inline-flex; align-items: center; gap: 12px; background: #000000; color: #FFFFFF; border-radius: 999px; font: 600 15px 'Geist', sans-serif"><span class="ro-dot" style="width: 34px; height: 34px; border-radius: 50%; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>See how I work</a>
@@ -250,7 +276,7 @@ html.ro-menu-lock{overflow:hidden}
 </section>
 
 <!-- MARQUEE -->
-<div aria-hidden="true" style="overflow: hidden; padding: 72px 0; background: #F7F7F8">
+<div aria-hidden="true" style="overflow: hidden; padding: clamp(48px, 5vw, 72px) 0; background: #F7F7F8">
 <div class="ro-marq" style="display: flex; width: max-content; gap: 40px; font: 500 44px/1 'Geist', sans-serif; letter-spacing: -0.04em; white-space: nowrap; color: #B8B8B8">
 
 <span style="display: inline-flex; align-items: center; gap: 40px">Product Design<span style="width: 18px; height: 18px; border: 4px solid #D4D4D4; border-radius: 50%; display: inline-block; box-sizing: border-box"></span></span>
@@ -285,11 +311,11 @@ html.ro-menu-lock{overflow:hidden}
 </div>
 
 <!-- SELECTED WORK -->
-<section aria-labelledby="ro-work" style="max-width: 1280px; margin: 0 auto; padding: 128px 24px 112px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 56px">
+<section aria-labelledby="ro-work" style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px clamp(72px, 7.8vw, 112px)">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: clamp(48px, 4.4vw, 64px)">
 <div>
-<div style="margin: 0 0 16px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">Work</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
-<h2 id="ro-work" style="margin: 0; font: 500 clamp(38px, 4.4vw, 64px)/1 'Geist', sans-serif; letter-spacing: -0.045em">Selected work</h2>
+<div style="margin: 0 0 24px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">Work</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
+<h2 id="ro-work" style="margin: 0; font: 500 clamp(44px, 4.4vw, 64px)/1 'Geist', sans-serif; letter-spacing: -0.045em">Selected work</h2>
 </div>
 <a class="ro-pill" href="work/" style="min-height: 48px; padding: 0 20px 0 8px; display: inline-flex; align-items: center; gap: 12px; border: 1px solid #000000; color: #000000; border-radius: 999px; font: 600 15px 'Geist', sans-serif"><span class="ro-dot" style="width: 34px; height: 34px; border-radius: 50%; background: #000000; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>View all</a>
 </div>
@@ -356,10 +382,10 @@ html.ro-menu-lock{overflow:hidden}
 <!-- SERVICES -->
 <section aria-labelledby="ro-serv" style="position: relative; overflow: hidden; background: #F7F7F8">
 <img src="assets/img/f4055127639591f64aa0652c61df6673.png" alt="" aria-hidden="true" style="position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 58%); width: max(1200px, 92vw); max-width: none; height: auto; opacity: .06; pointer-events: none" width="776" height="785" loading="lazy" decoding="async">
-<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 96px 24px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px 32px; margin-bottom: 64px">
-<h2 id="ro-serv" style="margin: 0; font: 500 clamp(38px, 4.4vw, 64px)/1 'Geist', sans-serif; letter-spacing: -0.045em; max-width: 620px">Services</h2>
-<p style="margin: 0; max-width: 420px; font-size: 17px; line-height: 1.6; color: #4A4A4A">From visual positioning to the final interface, with a clear process and dev-ready handoff.</p>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(64px, 6.7vw, 96px) 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 24px 32px; margin-bottom: clamp(48px, 4.4vw, 64px)">
+<h2 id="ro-serv" style="margin: 0; font: 500 clamp(44px, 4.4vw, 64px)/1 'Geist', sans-serif; letter-spacing: -0.045em; max-width: 620px">Services</h2>
+<p style="margin: 0; max-width: 460px; font: 400 clamp(18px, 1.5vw, 21px)/1.45 'Geist', sans-serif; letter-spacing: -0.01em; color: #4A4A4A">From visual positioning to the final interface, with a clear process and dev-ready handoff.</p>
 </div>
 <div>
 

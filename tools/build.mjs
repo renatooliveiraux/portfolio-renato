@@ -19,9 +19,11 @@ const OUT = path.join(ROOT, 'docs');
 const STAGE = path.join(ROOT, '.docs-build');
 const OLD = path.join(ROOT, '.docs-old');
 
-// URL pública do site, com barra final. Enquanto estiver vazia, canonical,
+// URL pública do site, sem barra final. Enquanto estiver vazia, canonical,
 // hreflang, og:url, og:image e sitemap.xml não são gerados (exigem URL absoluta).
-const SITE_URL = '';
+const SITE_URL = 'https://www.renatooliveiraux.com.br';
+// Base para montar as URLs absolutas: SITE_URL com uma única barra no fim.
+const BASE = SITE_URL ? SITE_URL.replace(/\/+$/, '') + '/' : '';
 
 // Access Key do Web3Forms (formulário de Contato), criada em web3forms.com com o
 // e-mail que deve receber as mensagens. A chave vai para o HTML público por
@@ -43,6 +45,12 @@ const ROUTES = {
 };
 
 // Metadados aprovados por Renato em 2026-10-14.
+// Imagem de compartilhamento (assets/meta/og-<idioma>.jpg, 1200×630): texto alternativo por idioma.
+const OG_ALT = {
+  en: 'Renato Oliveira — Product Designer. From brand to interface.',
+  pt: 'Renato Oliveira — Designer de Produto. Da marca à interface.'
+};
+
 const META = {
   'Main.dc.html': {
     en: ['Renato Oliveira · Product Designer, from brand to interface', 'Product Designer based in Brazil, available for remote work with international clients. 15 years in design and more than 5 in UI/UX.'],
@@ -161,8 +169,8 @@ const FOR_ATTRS = {
 // Imagens: carregamento imediato só para o que aparece na primeira tela; o resto
 // é lazy. As demais ganham width/height (proporção) e, quando listadas em SIZES,
 // srcset com versões JPG menores. Os originais em assets/ não são alterados.
-const EAGER = ['dead834c', '77e36605', '00279768'];      // logos do topo e retrato do hero
-const PRIORITY = ['00279768'];                           // retrato do hero: fetchpriority="high"
+const EAGER = ['dead834c', '77e36605', '988a63b4'];      // logos do topo e retrato do hero
+const PRIORITY = ['988a63b4'];                           // retrato do hero: fetchpriority="high"
 const EAGER_BY_PAGE = { 'Projetos.dc.html': ['e9d6ba4d', '4cb226fe'] };  // capas na primeira tela
 const VARIANT_WIDTHS = [800, 1280];
 const CASE_SIZES = '(min-width: 1280px) 1232px, calc(100vw - 48px)';
@@ -389,17 +397,32 @@ function head(file, lang, page, dir) {
     '<meta property="og:title" content="' + esc(title) + '">',
     '<meta property="og:description" content="' + esc(desc) + '">',
     '<meta property="og:locale" content="' + (lang === 'en' ? 'en_US' : 'pt_BR') + '">',
-    '<meta property="og:locale:alternate" content="' + (lang === 'en' ? 'pt_BR' : 'en_US') + '">'
+    '<meta property="og:locale:alternate" content="' + (lang === 'en' ? 'pt_BR' : 'en_US') + '">',
+    '<meta name="twitter:card" content="summary_large_image">',
+    '<meta name="twitter:title" content="' + esc(title) + '">',
+    '<meta name="twitter:description" content="' + esc(desc) + '">',
+    // Favicon e ícones (assets/meta/, copiados pelo build); caminho relativo funciona em qualquer rota.
+    '<link rel="icon" href="' + rel(dir, 'assets/meta') + 'favicon.ico" sizes="any">',
+    '<link rel="icon" type="image/png" sizes="32x32" href="' + rel(dir, 'assets/meta') + 'icon-32.png">',
+    '<link rel="icon" type="image/png" sizes="192x192" href="' + rel(dir, 'assets/meta') + 'icon-192.png">',
+    '<link rel="apple-touch-icon" href="' + rel(dir, 'assets/meta') + 'apple-touch-icon.png">'
   ];
   if (SITE_URL) {
-    const url = (r) => SITE_URL + (r ? r + '/' : '');
+    const url = (r) => BASE + (r ? r + '/' : '');
     lines.push(
       '<link rel="canonical" href="' + url(dir) + '">',
       '<link rel="alternate" hreflang="en" href="' + url(ROUTES[file].en) + '">',
       '<link rel="alternate" hreflang="pt-BR" href="' + url(ROUTES[file].pt) + '">',
       '<link rel="alternate" hreflang="x-default" href="' + url(ROUTES[file].en) + '">',
       '<meta property="og:url" content="' + url(dir) + '">',
-      '<meta property="og:image" content="' + SITE_URL + 'assets/img/00279768a85e85a6c5dc80f7289a7651.webp">'
+      // og:image e twitter:image exigem URL absoluta: só saem quando SITE_URL estiver preenchida.
+      '<meta property="og:image" content="' + BASE + 'assets/meta/og-' + lang + '.jpg">',
+      '<meta property="og:image:type" content="image/jpeg">',
+      '<meta property="og:image:width" content="1200">',
+      '<meta property="og:image:height" content="630">',
+      '<meta property="og:image:alt" content="' + esc(OG_ALT[lang]) + '">',
+      '<meta name="twitter:image" content="' + BASE + 'assets/meta/og-' + lang + '.jpg">',
+      '<meta name="twitter:image:alt" content="' + esc(OG_ALT[lang]) + '">'
     );
   }
   // Só a home EN redireciona: escolha salva primeiro; sem escolha, navegador pt-* vai para /pt/.
@@ -474,20 +497,25 @@ function build(OUT) {
   fs.mkdirSync(path.join(OUT, 'assets/js'), { recursive: true });
   fs.copyFileSync(path.join(ROOT, 'tools/site.js'), path.join(OUT, 'assets/js/site.js'));
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
+  // Favicon, ícones e imagens de compartilhamento: copiados como estão. O favicon.ico também vai para a raiz.
+  fs.mkdirSync(path.join(OUT, 'assets/meta'), { recursive: true });
+  for (const f of fs.readdirSync(path.join(ASSETS, 'meta'))) fs.copyFileSync(path.join(ASSETS, 'meta', f), path.join(OUT, 'assets/meta', f));
+  fs.copyFileSync(path.join(ASSETS, 'meta/favicon.ico'), path.join(OUT, 'favicon.ico'));
 
   if (SITE_URL) {
     const urls = Object.values(ROUTES).map((r) =>
-      '  <url>\n    <loc>' + SITE_URL + (r.en ? r.en + '/' : '') + '</loc>\n' +
-      '    <xhtml:link rel="alternate" hreflang="en" href="' + SITE_URL + (r.en ? r.en + '/' : '') + '"/>\n' +
-      '    <xhtml:link rel="alternate" hreflang="pt-BR" href="' + SITE_URL + r.pt + '/"/>\n  </url>\n' +
-      '  <url>\n    <loc>' + SITE_URL + r.pt + '/</loc>\n' +
-      '    <xhtml:link rel="alternate" hreflang="en" href="' + SITE_URL + (r.en ? r.en + '/' : '') + '"/>\n' +
-      '    <xhtml:link rel="alternate" hreflang="pt-BR" href="' + SITE_URL + r.pt + '/"/>\n  </url>\n').join('');
+      '  <url>\n    <loc>' + BASE + (r.en ? r.en + '/' : '') + '</loc>\n' +
+      '    <xhtml:link rel="alternate" hreflang="en" href="' + BASE + (r.en ? r.en + '/' : '') + '"/>\n' +
+      '    <xhtml:link rel="alternate" hreflang="pt-BR" href="' + BASE + r.pt + '/"/>\n  </url>\n' +
+      '  <url>\n    <loc>' + BASE + r.pt + '/</loc>\n' +
+      '    <xhtml:link rel="alternate" hreflang="en" href="' + BASE + (r.en ? r.en + '/' : '') + '"/>\n' +
+      '    <xhtml:link rel="alternate" hreflang="pt-BR" href="' + BASE + r.pt + '/"/>\n  </url>\n').join('');
     fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + urls + '</urlset>\n');
   }
 
   const required = Object.values(ROUTES).flatMap((r) => [r.en, r.pt]).map((d) => path.join(d, 'index.html'))
-    .concat('.nojekyll', 'assets/js/site.js', SITE_URL ? ['sitemap.xml'] : [])
+    .concat('.nojekyll', 'assets/js/site.js', 'favicon.ico', SITE_URL ? ['sitemap.xml'] : [])
+    .concat(['favicon.ico', 'icon-32.png', 'icon-192.png', 'apple-touch-icon.png', 'og-en.jpg', 'og-pt.jpg'].map((f) => path.join('assets/meta', f)))
     .concat([...usedImgs, ...jobs.keys()].map((f) => path.join('assets/img', f)));
   const missing = required.filter((f) => !fs.existsSync(path.join(OUT, f)));
   if (missing.length) throw new Error('Arquivos ausentes na geração:\n  ' + missing.join('\n  '));
