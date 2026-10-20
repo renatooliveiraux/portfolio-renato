@@ -1,0 +1,63 @@
+<!-- Service cards (Home e Sobre). Incluído com <sc-include name="service-cards"></sc-include>;
+     textos em service-cards.json e estilos em service-cards.css. Referência: service-cards/README.md. -->
+<div class="svc-grid">
+<sc-for list="{{svcCards}}" as="s" hint-placeholder-count="3">
+<article class="{{s.cls}}">
+<div class="svc-card__top"><span class="svc-card__num">{{s.n}}</span><span class="svc-card__rule" aria-hidden="true"></span></div>
+<div class="svc-card__fig">
+<sc-if value="{{s.isFlow}}" hint-placeholder-val="{{true}}">
+<svg viewBox="0 0 320 176" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false">
+<path class="svc-flow-base" d="M36 88 H82 M118 88 H148 M196 88 H220" fill="none" stroke-width="2"></path>
+<path class="svc-flow-draw" pathLength="100" d="M36 88 H82 M118 88 H148 M196 88 H220" fill="none" stroke-width="2"></path>
+<circle class="svc-flow-node" cx="22" cy="88" r="14" stroke-width="2"></circle>
+<path class="svc-flow-node svc-flow-n2" d="M100 70 L118 88 L100 106 L82 88 Z" stroke-width="2" stroke-linejoin="round"></path>
+<rect class="svc-flow-node svc-flow-n3" x="148" y="68" width="48" height="40" rx="9" stroke-width="2"></rect>
+<rect x="220" y="34" width="100" height="108" rx="14" fill="#253CEA"></rect>
+<rect x="234" y="50" width="44" height="7" rx="3.5" fill="#FFFFFF"></rect>
+<rect x="234" y="66" width="72" height="5" rx="2.5" fill="#FFFFFF" opacity=".55"></rect>
+<rect x="234" y="78" width="58" height="5" rx="2.5" fill="#FFFFFF" opacity=".55"></rect>
+<rect x="234" y="98" width="72" height="30" rx="7" fill="#FFFFFF" opacity=".16"></rect>
+</svg>
+</sc-if>
+<sc-if value="{{s.isWire}}" hint-placeholder-val="{{false}}">
+<svg viewBox="0 0 320 176" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false">
+<rect x=".5" y=".5" width="319" height="175" rx="14" fill="#FFFFFF" stroke="#E4E4E8"></rect>
+<circle cx="18" cy="16" r="3.5" fill="#D4D4D8"></circle><circle cx="30" cy="16" r="3.5" fill="#D4D4D8"></circle><circle cx="42" cy="16" r="3.5" fill="#D4D4D8"></circle>
+<path d="M0 32 H320" stroke="#EDEDF0"></path>
+<g class="svc-wf-guide" stroke="#253CEA" stroke-opacity=".35" stroke-dasharray="3 4">
+<path d="M18 40 V164 M68 40 V164 M118 40 V164 M168 40 V164 M218 40 V164 M268 40 V164 M302 40 V164"></path>
+</g>
+<rect x="18" y="50" width="132" height="14" rx="4" fill="#000000"></rect>
+<rect x="18" y="74" width="132" height="7" rx="3.5" fill="#D4D4D8"></rect>
+<rect x="18" y="88" width="100" height="7" rx="3.5" fill="#D4D4D8"></rect>
+<rect class="svc-wf-cta" x="18" y="112" width="64" height="22" rx="11" fill="#253CEA"></rect>
+<rect class="svc-wf-block svc-wf-accent" x="168" y="50" width="134" height="52" rx="8"></rect>
+<rect class="svc-wf-block" x="168" y="110" width="63" height="44" rx="8"></rect>
+<rect class="svc-wf-block" x="239" y="110" width="63" height="44" rx="8"></rect>
+</svg>
+</sc-if>
+<sc-if value="{{s.isBrand}}" hint-placeholder-val="{{false}}">
+<svg viewBox="0 0 320 176" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false">
+<g class="svc-brand-guides" fill="none" stroke="#253CEA">
+<circle cx="96" cy="96" r="70" stroke-opacity=".45"></circle>
+<path d="M4 132 H216 M4 98 H216 M4 52 H216" stroke-opacity=".4" stroke-dasharray="3 4"></path>
+</g>
+<text x="12" y="132" font-family="Geist, sans-serif" font-weight="500" font-size="116" letter-spacing="-6" fill="#000000">Aa</text>
+<circle class="svc-brand-swatch svc-brand-s1" cx="274" cy="44" r="18" fill="#253CEA"></circle>
+<circle class="svc-brand-swatch" cx="274" cy="88" r="18" fill="#000000"></circle>
+<circle class="svc-brand-swatch svc-brand-s3" cx="274" cy="132" r="17.5" fill="#FFFFFF" stroke="#D2D2D6"></circle>
+<path d="M236 20 V156" stroke="#D2D2D6"></path>
+</svg>
+</sc-if>
+</div>
+<div class="svc-card__body">
+<h3 class="svc-card__title">{{s.title}}</h3>
+<p class="svc-card__desc">{{s.desc}}</p>
+</div>
+<dl class="svc-card__aud">
+<dt class="svc-card__aud-label">{{s.audLabel}}</dt>
+<dd class="svc-card__aud-text">{{s.audience}}</dd>
+</dl>
+</article>
+</sc-for>
+</div>

@@ -1,5 +1,5 @@
 // Valida o site gerado: links e imagens locais, rotas, idioma, metadados, restos de template
-// e o formulário de Contato (Web3Forms) nas duas versões.
+// e o formulário da seção de contato da Home (Web3Forms) nas duas versões.
 // Uso: node tools/check.mjs [pasta]   (padrão docs/; ex.: node tools/check.mjs .docs-build)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,8 +12,11 @@ if (!fs.existsSync(OUT) || !fs.statSync(OUT).isDirectory()) {
   process.exit(1);
 }
 console.log('Verificando ' + OUT);
-const EXPECTED = ['', 'about', 'work', 'work/strategi', 'work/hub-sebrae-rn', 'contact', 'privacy',
-  'pt', 'pt/sobre', 'pt/projetos', 'pt/projetos/strategi', 'pt/projetos/hub-sebrae-rn', 'pt/contato', 'pt/privacidade'];
+const EXPECTED = ['', 'about', 'work', 'work/strategi', 'work/hub-sebrae-rn', 'privacy',
+  'pt', 'pt/sobre', 'pt/projetos', 'pt/projetos/strategi', 'pt/projetos/hub-sebrae-rn', 'pt/privacidade'];
+// URLs antigas da página Contato: redirecionam para a seção #contato da Home do mesmo idioma.
+const REDIRECTS = { 'contact': '', 'pt/contato': 'pt' };
+const HALF = EXPECTED.length / 2;
 
 const problems = [], external = new Set(), placeholders = [];
 const usedFiles = new Set();
@@ -73,7 +76,7 @@ for (const dir of EXPECTED) {
   // Seletores de idioma: dois por página, apontando para a rota equivalente.
   const links = [...html.matchAll(/<a href="([^"]+)" hreflang="[^"]+" lang="[^"]+" data-lang="(en|pt)"/g)];
   if (links.length !== 4) problems.push(where + ': ' + links.length + ' links de idioma (esperado 4)');
-  const idx = EXPECTED.indexOf(dir), twin = EXPECTED[idx < 7 ? idx + 7 : idx - 7];
+  const idx = EXPECTED.indexOf(dir), twin = EXPECTED[idx < HALF ? idx + HALF : idx - HALF];
   for (const [, href, l] of links) {
     const want = l === (isPt ? 'pt' : 'en') ? dir : twin;
     const got = resolveLocal(dir || '.', href).replace(/\/?index\.html$/, '').replace(/^\.$/, '');
@@ -88,10 +91,30 @@ for (const dir of EXPECTED) {
 
   for (const m of html.matchAll(/>\s*(\[[^\]<]{2,80}\])\s*</g)) placeholders.push(where + ': ' + m[1]);
 
-  if (dir === 'contact' || dir === 'pt/contato') checkForm(html, where);
+  if (dir === '' || dir === 'pt') {
+    checkForm(html, where);
+    if (!/<section id="contato"/.test(html)) problems.push(where + ': seção #contato ausente');
+  }
+  // Links para a âncora de contato precisam de um destino com id="contato".
+  for (const m of html.matchAll(/href="([^"]*)#contato"/g)) {
+    const page = m[1] ? resolveLocal(dir || '.', m[1]) : path.posix.join(dir, 'index.html');
+    const t = path.join(OUT, page);
+    if (!fs.existsSync(t) || !/ id="contato"/.test(fs.readFileSync(t, 'utf8'))) problems.push(where + ': âncora #contato sem destino em ' + page);
+  }
 }
 
-// Formulário de Contato: envio pelo Web3Forms, com fallback HTML.
+for (const [dir, home] of Object.entries(REDIRECTS)) {
+  const file = path.join(OUT, dir, 'index.html');
+  if (!fs.existsSync(file)) { problems.push('Redirecionamento ausente: /' + dir + '/'); continue; }
+  const html = fs.readFileSync(file, 'utf8');
+  const to = (html.match(/http-equiv="refresh" content="0; url=([^"]+)"/) || [])[1];
+  const want = home ? home + '/index.html' : 'index.html';
+  if (!to || !to.endsWith('#contato') || resolveLocal(dir, to) !== want) problems.push('/' + dir + '/: redireciona para ' + to + ' (esperado a Home com #contato)');
+  if (!/location\.replace\(/.test(html)) problems.push('/' + dir + '/: sem redirecionamento por script');
+  if (!/name="robots" content="noindex"/.test(html)) problems.push('/' + dir + '/: sem noindex');
+}
+
+// Formulário de contato (seção #contato da Home): envio pelo Web3Forms, com fallback HTML.
 function checkForm(html, where) {
   const forms = html.match(/<form\b[^>]*>[\s\S]*?<\/form>/g) || [];
   if (forms.length !== 1) { problems.push(where + ': ' + forms.length + ' formulários (esperado 1)'); return; }

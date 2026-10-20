@@ -104,6 +104,22 @@
     });
   });
 
+  // Home: cards de serviço entram ao aparecer na tela, uma única vez. A classe que os esconde
+  // (.ro-rv-on) só é aplicada aqui; sem JavaScript, sem IntersectionObserver ou com movimento
+  // reduzido, os cards ficam visíveis desde o início.
+  var reveal = all('.ro-rv');
+  if (reveal.length && 'IntersectionObserver' in window && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('ro-rv-in');
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.15 });
+    d.documentElement.classList.add('ro-rv-on');
+    reveal.forEach(function (el) { io.observe(el); });
+  }
+
   // Grupo de botões com versões ativa/inativa geradas lado a lado.
   function choice(prefix, onPick) {
     var on = all('[data-if="' + prefix + '.on"]'), off = all('[data-if="' + prefix + '.off"]');

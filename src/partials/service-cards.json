@@ -1,0 +1,66 @@
+{
+  "pt": {
+    "audLabel": "Público",
+    "items": [
+      {
+        "n": "01",
+        "tone": "dark",
+        "wide": false,
+        "graphic": "flow",
+        "title": "Design de Produto",
+        "desc": "Conecto necessidades dos usuários e objetivos de negócio no desenvolvimento de produtos digitais, da pesquisa e dos fluxos às interfaces e protótipos.",
+        "audience": "Plataformas, sistemas e SaaS."
+      },
+      {
+        "n": "02",
+        "tone": "light",
+        "wide": false,
+        "graphic": "wireframe",
+        "title": "Webdesign",
+        "desc": "Projeto sites institucionais e landing pages que comunicam valor, organizam conteúdo e orientam visitantes à ação.",
+        "audience": "Presença digital e geração de oportunidades comerciais."
+      },
+      {
+        "n": "03",
+        "tone": "light",
+        "wide": true,
+        "graphic": "brand",
+        "title": "Branding Digital",
+        "desc": "Desenvolvo identidades visuais para ambientes digitais, integrando tipografia, cores e elementos gráficos em uma linguagem consistente.",
+        "audience": "Marcas que precisam construir ou evoluir sua identidade digital."
+      }
+    ]
+  },
+  "en": {
+    "audLabel": "For",
+    "items": [
+      {
+        "n": "01",
+        "tone": "dark",
+        "wide": false,
+        "graphic": "flow",
+        "title": "Product Design",
+        "desc": "I connect user needs and business goals to shape digital products, from research and user flows to interfaces and prototypes.",
+        "audience": "Platforms, software systems, and SaaS."
+      },
+      {
+        "n": "02",
+        "tone": "light",
+        "wide": false,
+        "graphic": "wireframe",
+        "title": "Web Design",
+        "desc": "I design corporate websites and landing pages that communicate value, organize content, and guide visitors toward action.",
+        "audience": "Building a digital presence and generating business opportunities."
+      },
+      {
+        "n": "03",
+        "tone": "light",
+        "wide": true,
+        "graphic": "brand",
+        "title": "Digital Branding",
+        "desc": "I develop visual identities for digital environments, combining typography, colors, and graphic elements into a consistent visual language.",
+        "audience": "Brands looking to build or evolve their digital identity."
+      }
+    ]
+  }
+}

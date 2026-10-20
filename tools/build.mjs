@@ -25,7 +25,7 @@ const SITE_URL = 'https://www.renatooliveiraux.com.br';
 // Base para montar as URLs absolutas: SITE_URL com uma única barra no fim.
 const BASE = SITE_URL ? SITE_URL.replace(/\/+$/, '') + '/' : '';
 
-// Access Key do Web3Forms (formulário de Contato), criada em web3forms.com com o
+// Access Key do Web3Forms (formulário da seção de contato da Home), criada em web3forms.com com o
 // e-mail que deve receber as mensagens. A chave vai para o HTML público por
 // desenho do serviço (o envio é feito pelo navegador). Cole só a chave, no
 // formato UUID. Enquanto estiver vazia, o formulário é gerado, mas o site.js
@@ -40,9 +40,12 @@ const ROUTES = {
   'Projetos.dc.html':     { en: 'work',               pt: 'pt/projetos' },
   'CaseStrategi.dc.html': { en: 'work/strategi',      pt: 'pt/projetos/strategi' },
   'Case.dc.html':         { en: 'work/hub-sebrae-rn', pt: 'pt/projetos/hub-sebrae-rn' },
-  'Contato.dc.html':      { en: 'contact',            pt: 'pt/contato' },
   'Privacidade.dc.html':  { en: 'privacy',            pt: 'pt/privacidade' }
 };
+// O contato agora é a seção #contato da Home. Links para Contato.dc.html apontam para ela,
+// e as URLs antigas da página Contato redirecionam para lá (GitHub Pages não tem redirect de servidor).
+const CONTACT_ANCHOR = 'contato';
+const CONTACT_REDIRECTS = { en: 'contact', pt: 'pt/contato' };
 
 // Metadados aprovados por Renato em 2026-10-14.
 // Imagem de compartilhamento (assets/meta/og-<idioma>.jpg, 1200×630): texto alternativo por idioma.
@@ -156,11 +159,21 @@ function localizeA11y(body, lang) {
 // inativa recebe `hidden`; assets/js/site.js alterna entre elas.
 const DUAL = {
   'Projetos.dc.html': ['f.on', 'f.off'],
-  'Contato.dc.html': ['copied', 'notCopied', 'o.on', 'o.off', 'sent', 'notSent', 'failed']
+  'Main.dc.html': ['copied', 'notCopied', 'o.on', 'o.off', 'sent', 'notSent', 'failed']
 };
 // Valores definidos no build, sobrepostos aos de renderVals().
+// Valores dos partials (src/partials/), por idioma.
+const PARTIAL_VALS = {
+  'service-cards': (lang) => {
+    const d = JSON.parse(fs.readFileSync(path.join(SRC, 'partials/service-cards.json'), 'utf8'))[lang];
+    return { svcCards: d.items.map((c) => Object.assign({}, c, {
+      cls: 'svc-card svc-card--' + c.tone + (c.wide ? ' svc-card--wide' : '') + ' ro-rv', audLabel: d.audLabel,
+      isFlow: c.graphic === 'flow', isWire: c.graphic === 'wireframe', isBrand: c.graphic === 'brand'
+    })) };
+  }
+};
 const VALS = {
-  'Contato.dc.html': () => ({ accessKey: WEB3FORMS_ACCESS_KEY })
+  'Main.dc.html': () => ({ accessKey: WEB3FORMS_ACCESS_KEY })
 };
 // Atributos extras no primeiro elemento de cada item de um <sc-for>.
 const FOR_ATTRS = {
@@ -190,7 +203,7 @@ const JPEG_QUALITY = 82;
 const BODY_DATA = {
   // Mesma ordem do array de filtros em Projetos.dc.html.
   'Projetos.dc.html': () => ({ 'data-filters': 'all,product,web,brand' }),
-  'Contato.dc.html': (v) => ({ 'data-msg-copied': v.t.copiedMsg, 'data-msg-sending': v.t.sending })
+  'Main.dc.html': (v) => ({ 'data-msg-copied': v.ct.copiedMsg, 'data-msg-sending': v.ct.sending })
 };
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -200,13 +213,19 @@ function parseDc(file) {
   const html = fs.readFileSync(path.join(SRC, file), 'utf8');
   const xdc = html.match(/<x-dc>([\s\S]*)<\/x-dc>/)[1];
   const helmet = xdc.match(/<helmet>([\s\S]*?)<\/helmet>/)[1];
-  const template = xdc.replace(/<helmet>[\s\S]*?<\/helmet>/, '');
+  // Partials: <sc-include name="x"></sc-include> recebe src/partials/x.html; src/partials/x.css entra uma vez
+  // no <style> da página e PARTIAL_VALS[x] fornece os valores do template.
+  const includes = [];
+  const template = xdc.replace(/<helmet>[\s\S]*?<\/helmet>/, '')
+    .replace(/<sc-include name="([a-z0-9-]+)"><\/sc-include>/g, (m, n) => { includes.push(n); return fs.readFileSync(path.join(SRC, 'partials', n + '.html'), 'utf8').replace(/^<!--[\s\S]*?-->\r?\n/, ''); });
+  const partialCss = [...new Set(includes)].map((n) => path.join(SRC, 'partials', n + '.css')).filter((f) => fs.existsSync(f)).map((f) => fs.readFileSync(f, 'utf8').trim());
   const script = html.match(/<script type="text\/x-dc"[^>]*>([\s\S]*?)<\/script>/)[1];
   const stk = script.match(/var on = y > (\d+);/);
   return {
     template,
     fontLink: helmet.match(/<link [^>]*>/)[0],
-    style: helmet.match(/<style>([\s\S]*?)<\/style>/)[1].trim(),
+    style: [helmet.match(/<style>([\s\S]*?)<\/style>/)[1].trim()].concat(partialCss).join('\n'),
+    includes: [...new Set(includes)],
     script,
     stk: stk ? stk[1] : /var limit = Math\.min\(window\.innerHeight/.test(script) ? 'hero' : null
   };
@@ -446,7 +465,7 @@ function build(OUT) {
   if (WEB3FORMS_ACCESS_KEY && !UUID.test(WEB3FORMS_ACCESS_KEY)) {
     throw new Error('WEB3FORMS_ACCESS_KEY inválida em tools/build.mjs: use a chave UUID fornecida pelo Web3Forms.');
   }
-  if (!WEB3FORMS_ACCESS_KEY) console.warn('Aviso: WEB3FORMS_ACCESS_KEY vazia em tools/build.mjs; o formulário de Contato não envia.');
+  if (!WEB3FORMS_ACCESS_KEY) console.warn('Aviso: WEB3FORMS_ACCESS_KEY vazia em tools/build.mjs; o formulário de contato não envia.');
   const usedImgs = new Set();
   const jobs = new Map();
   const assetFiles = fs.readdirSync(ASSETS).filter((f) => fs.statSync(path.join(ASSETS, f)).isFile());
@@ -463,12 +482,13 @@ function build(OUT) {
     const tree = parseTree(tpl);
     for (const lang of ['en', 'pt']) {
       const dir = ROUTES[file][lang];
-      const vals = Object.assign(renderVals(page.script, lang), VALS[file] ? VALS[file]() : {});
+      const vals = Object.assign(renderVals(page.script, lang), VALS[file] ? VALS[file]() : {}, ...page.includes.map((n) => PARTIAL_VALS[n] ? PARTIAL_VALS[n](lang) : {}));
       const cfg = { dual: DUAL[file] || [], forAttrs: FOR_ATTRS[file] || {} };
       let body = render(tree, [vals], cfg).trim();
       body = body
         .replace(/@@LANG:(en|pt)@@/g, (m, l) => rel(dir, ROUTES[file][l]))
         .replace(/href="([A-Za-z]+\.dc\.html)"/g, (m, f) => {
+          if (f === 'Contato.dc.html') return 'href="' + (file === 'Main.dc.html' ? '' : rel(dir, ROUTES['Main.dc.html'][lang])) + '#' + CONTACT_ANCHOR + '"';
           if (!ROUTES[f]) throw new Error('Link sem rota: ' + f);
           return 'href="' + rel(dir, ROUTES[f][lang]) + '"';
         })
@@ -489,6 +509,18 @@ function build(OUT) {
       fs.writeFileSync(outFile, html);
       pages.push('/' + (dir ? dir + '/' : ''));
     }
+  }
+
+  for (const [lang, dir] of Object.entries(CONTACT_REDIRECTS)) {
+    const to = rel(dir, ROUTES['Main.dc.html'][lang]) + '#' + CONTACT_ANCHOR;
+    const label = lang === 'en' ? 'Contact' : 'Contato';
+    const html = '<!doctype html>\n<html lang="' + (lang === 'en' ? 'en' : 'pt-BR') + '">\n<head>\n<meta charset="utf-8">\n' +
+      '<title>' + esc(META['Contato.dc.html'][lang][0]) + '</title>\n<meta name="robots" content="noindex">\n' +
+      (SITE_URL ? '<link rel="canonical" href="' + BASE + (ROUTES['Main.dc.html'][lang] ? ROUTES['Main.dc.html'][lang] + '/' : '') + '">\n' : '') +
+      '<meta http-equiv="refresh" content="0; url=' + to + '">\n<script>location.replace(\'' + to + '\');</script>\n</head>\n' +
+      '<body>\n<p><a href="' + to + '">' + label + '</a></p>\n</body>\n</html>\n';
+    fs.mkdirSync(path.join(OUT, dir), { recursive: true });
+    fs.writeFileSync(path.join(OUT, dir, 'index.html'), html);
   }
 
   fs.mkdirSync(path.join(OUT, 'assets/img'), { recursive: true });
@@ -513,7 +545,7 @@ function build(OUT) {
     fs.writeFileSync(path.join(OUT, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + urls + '</urlset>\n');
   }
 
-  const required = Object.values(ROUTES).flatMap((r) => [r.en, r.pt]).map((d) => path.join(d, 'index.html'))
+  const required = Object.values(ROUTES).flatMap((r) => [r.en, r.pt]).concat(Object.values(CONTACT_REDIRECTS)).map((d) => path.join(d, 'index.html'))
     .concat('.nojekyll', 'assets/js/site.js', 'favicon.ico', SITE_URL ? ['sitemap.xml'] : [])
     .concat(['favicon.ico', 'icon-32.png', 'icon-192.png', 'apple-touch-icon.png', 'og-en.jpg', 'og-pt.jpg'].map((f) => path.join('assets/meta', f)))
     .concat([...usedImgs, ...jobs.keys()].map((f) => path.join('assets/img', f)));

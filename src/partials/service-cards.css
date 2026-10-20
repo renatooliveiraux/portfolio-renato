@@ -1,0 +1,207 @@
+/* =====================================================================
+   Service Cards · Portfólio Renato Oliveira
+   Componente informativo (não navegável): 3 cards de serviço.
+   Depende de: Geist (500) e Manrope (400) — ver index.html.
+   ===================================================================== */
+
+/* ---------- Tokens ---------- */
+.svc {
+  --svc-blue: #253CEA;          /* azul de marca */
+  --svc-blue-soft: #A9B6FF;     /* número sobre preto */
+  --svc-black: #000000;
+  --svc-white: #FFFFFF;
+  --svc-surface: #F7F7F8;       /* fundo dos cards claros */
+  --svc-line-light: #D2D2D6;
+  --svc-line-dark: #2E2E2E;
+  --svc-border-hover: #E4E4E8;
+  --svc-text-2-light: #4A4A4A;  /* descrição no claro */
+  --svc-text-2-dark: #BDBDBD;   /* descrição no preto */
+  --svc-label-light: #5C5C5C;
+  --svc-label-dark: #8A8A8A;
+  --svc-node: #5C5C5C;          /* nós do fluxo (repouso) */
+  --svc-block: #EFEFF2;         /* blocos do wireframe */
+
+  --svc-radius: 24px;
+  --svc-radius-sm: 20px;
+  --svc-pad: 32px;
+  --svc-gap: 16px;
+  --svc-lift: -6px;
+
+  --svc-ease: cubic-bezier(.2, .7, .2, 1);
+  --svc-dur: .45s;
+  --svc-dur-draw: .9s;
+
+  --svc-shadow-light: 0 28px 56px rgba(5, 10, 46, .08);
+  --svc-shadow-dark: 0 28px 56px rgba(5, 10, 46, .28), inset 0 0 0 1px rgba(37, 60, 234, .55);
+
+  --svc-font-display: 'Geist', system-ui, sans-serif;
+  --svc-font-text: 'Manrope', system-ui, sans-serif;
+
+  /* Os breakpoints usam a largura do próprio grupo (container query),
+     não a da janela: o componente se adapta onde for inserido. */
+  container-type: inline-size;
+  container-name: services;
+}
+
+
+/* ---------- Grid ---------- */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--svc-gap);
+}
+
+/* ---------- Card: anatomia ---------- */
+.svc-card {
+  position: relative;
+  display: grid;
+  grid-template-areas: "top" "fig" "body" "aud";
+  grid-template-rows: auto auto 1fr auto;
+  gap: 32px;
+  min-height: 600px;
+  padding: var(--svc-pad);
+  border-radius: var(--svc-radius);
+  border: 1px solid transparent;
+  cursor: default;                       /* informativo: não parece link */
+  transition:
+    transform var(--svc-dur) var(--svc-ease),
+    box-shadow var(--svc-dur),
+    background-color .35s,
+    border-color .35s;
+}
+.svc-card--light { background: var(--svc-surface); border-color: var(--svc-surface); color: var(--svc-black); }
+.svc-card--dark  { background: var(--svc-black);   border-color: var(--svc-black);   color: var(--svc-white); }
+
+/* número + fio (eyebrow com fio, grafismo da marca) */
+.svc-card__top { grid-area: top; display: flex; align-items: center; gap: 16px; }
+.svc-card__num { flex: none; font: 500 14px/1 var(--svc-font-display); letter-spacing: .12em; }
+.svc-card__rule { flex: 1 1 auto; height: 1px; }
+.svc-card--light .svc-card__num  { color: var(--svc-blue); }
+.svc-card--light .svc-card__rule { background: var(--svc-line-light); }
+.svc-card--dark  .svc-card__num  { color: var(--svc-blue-soft); }
+.svc-card--dark  .svc-card__rule { background: var(--svc-line-dark); }
+
+/* grafismo */
+.svc-card__fig { grid-area: fig; height: 176px; display: flex; align-items: center; }
+.svc-card__fig svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* título + descrição */
+.svc-card__body { grid-area: body; display: flex; flex-direction: column; gap: 16px; }
+.svc-card__title {
+  margin: 0;
+  font: 500 clamp(30px, 2.8vw, 40px)/1.02 var(--svc-font-display);
+  letter-spacing: -0.045em;
+}
+.svc-card__desc { margin: 0; max-width: 34ch; font: 400 16px/1.6 var(--svc-font-text); }
+.svc-card--light .svc-card__desc { color: var(--svc-text-2-light); }
+.svc-card--dark  .svc-card__desc { color: var(--svc-text-2-dark); }
+
+/* público */
+.svc-card__aud {
+  grid-area: aud;
+  display: flex; flex-direction: column; gap: 8px;
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px solid;
+}
+.svc-card--light .svc-card__aud { border-color: var(--svc-line-light); }
+.svc-card--dark  .svc-card__aud { border-color: var(--svc-line-dark); }
+.svc-card__aud-label {
+  margin: 0;
+  font: 500 12px/1 var(--svc-font-display);
+  letter-spacing: .12em; text-transform: uppercase;
+}
+.svc-card--light .svc-card__aud-label { color: var(--svc-label-light); }
+.svc-card--dark  .svc-card__aud-label { color: var(--svc-label-dark); }
+.svc-card__aud-text { margin: 0; font: 500 18px/1.35 var(--svc-font-display); letter-spacing: -0.015em; }
+
+/* ---------- Grafismos: repouso ---------- */
+.svc-card svg * {
+  transition:
+    stroke .4s, fill .4s, opacity var(--svc-dur),
+    transform .55s var(--svc-ease),
+    stroke-dashoffset var(--svc-dur-draw) var(--svc-ease);
+}
+/* 01 · fluxo (Design de Produto) */
+.svc-flow-base { stroke: var(--svc-line-dark); }
+.svc-flow-draw { stroke: var(--svc-blue); stroke-dasharray: 100; stroke-dashoffset: 100; } /* pathLength=100 no SVG */
+.svc-flow-node { stroke: var(--svc-node); fill: var(--svc-black); }
+.svc-flow-n2 { transition-delay: .12s !important; }
+.svc-flow-n3 { transition-delay: .24s !important; }
+/* 02 · wireframe (Webdesign) */
+.svc-wf-guide { opacity: 0; }
+.svc-wf-cta { transform-box: fill-box; transform-origin: left center; }
+.svc-wf-block { fill: var(--svc-block); }
+/* 03 · construção de marca (Branding Digital) */
+.svc-brand-guides { opacity: 0; }
+.svc-brand-swatch { transform-box: fill-box; transform-origin: center; }
+
+/* ---------- Hover ----------
+   Só em dispositivos com ponteiro (evita hover "preso" no toque). */
+@media (hover: hover) {
+  .svc-card:hover { transform: translateY(var(--svc-lift)); }
+  .svc-card--light:hover { background: var(--svc-white); border-color: var(--svc-border-hover); box-shadow: var(--svc-shadow-light); }
+  .svc-card--dark:hover  { box-shadow: var(--svc-shadow-dark); }
+  .svc-card:hover .svc-flow-draw   { stroke-dashoffset: 0; }
+  .svc-card:hover .svc-flow-node   { stroke: var(--svc-blue); }
+  .svc-card:hover .svc-wf-guide    { opacity: 1; }
+  .svc-card:hover .svc-wf-cta      { transform: scaleX(1.32); }
+  .svc-card:hover .svc-wf-accent   { fill: var(--svc-blue); opacity: .14; }
+  .svc-card:hover .svc-brand-guides { opacity: 1; }
+  .svc-card:hover .svc-brand-s1    { transform: translateY(-6px); }
+  .svc-card:hover .svc-brand-s3    { transform: translateY(6px); }
+}
+
+/* ---------- Tablet: 640–1023px (largura do grupo) ----------
+   2 colunas; o 3º card ocupa a linha seguinte em composição horizontal. */
+@container services (max-width: 1023px) {
+  .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .svc-card { min-height: 560px; }
+  .svc-card--wide {
+    grid-column: 1 / -1;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "top top" "fig body" "fig aud";
+    grid-template-rows: auto 1fr auto;
+    column-gap: 48px;
+  }
+  .svc-card--wide .svc-card__fig { height: auto; min-height: 200px; }
+}
+
+/* ---------- Mobile: < 640px ---------- */
+@container services (max-width: 639px) {
+  .svc-grid { grid-template-columns: 1fr; gap: 12px; }
+  .svc-card, .svc-card--wide {
+    grid-column: auto;
+    min-height: 0;
+    padding: 24px;
+    gap: 24px;
+    border-radius: var(--svc-radius-sm);
+    grid-template-columns: 1fr;
+    grid-template-areas: "top" "fig" "body" "aud";
+    grid-template-rows: auto auto auto auto;
+  }
+  .svc-card__fig, .svc-card--wide .svc-card__fig { height: 140px; min-height: 0; }
+  .svc-card__title { font-size: 30px; }
+  .svc-card__desc { max-width: none; }
+}
+
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .svc-card, .svc-card svg * { transition: none; }
+  .svc-card:hover { transform: none; }
+}
+
+/* utilitário: título acessível do grupo */
+.svc-sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+/* Entrada dos cards no scroll (tools/site.js liga .ro-rv-on). Usa animation + translate:
+   não disputa transition nem transform com o hover do componente. */
+@keyframes roRv{from{opacity:0;translate:0 16px}to{opacity:1;translate:0 0}}
+.ro-rv-on .ro-rv{opacity:0}
+.ro-rv-on .ro-rv.ro-rv-in{animation:roRv .5s cubic-bezier(.2,.7,.2,1) both}
+.ro-rv-on .ro-rv:nth-child(2).ro-rv-in{animation-delay:.08s}
+.ro-rv-on .ro-rv:nth-child(3).ro-rv-in{animation-delay:.16s}
+@media (prefers-reduced-motion:reduce),print{.ro-rv-on .ro-rv,.ro-rv-on .ro-rv.ro-rv-in{opacity:1;animation:none}}

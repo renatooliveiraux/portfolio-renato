@@ -136,6 +136,12 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </div>
 </section>
 
+<!-- SERVIÇOS (mesmos cards da Home: src/partials/service-cards.*) -->
+<section class="svc" aria-labelledby="ro-svc" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 120px">
+<h2 id="ro-svc" style="margin: 0 0 64px; font: 500 clamp(38px, 4.4vw, 64px)/1 'Geist', sans-serif; letter-spacing: -0.045em">{{t.servTitle}}</h2>
+<sc-include name="service-cards"></sc-include>
+</section>
+
 <!-- PRINCÍPIOS -->
 <section aria-labelledby="ro-pri" style="background: #F7F7F8">
 <div style="max-width: 1280px; margin: 0 auto; padding: 112px 24px">
@@ -228,7 +234,7 @@ class Component extends DCLogic {
         bio2: 'Conecto necessidades dos usuários a objetivos de negócio, trabalhando em proximidade com desenvolvimento, produto e stakeholders.',
         bio3: 'De 2024 a 2026, atuei como Designer de Produto no Grupo Strategi.',
         stat1: 'anos de experiência em design', stat2: 'anos em UI/UX e produtos digitais', stat3: 'setores atendidos',
-        priEyebrow: 'Como eu trabalho', priTitle: 'Princípios',
+        priEyebrow: 'Como eu trabalho', priTitle: 'Princípios', servTitle: 'Serviços',
         sectorsTitle: 'Setores atendidos', skillsTitle: 'Competências', toolsTitle: 'Ferramentas', toolsMore: '[+ outras]',
         fCta1: 'Vamos começar.', fCta2: 'Você tem um produto, uma ideia ou um desafio para resolver? Conte comigo.', fBtn: 'Iniciar conversa'
       },
@@ -242,7 +248,7 @@ class Component extends DCLogic {
         bio2: 'I connect user needs to business goals, working closely with engineering, product and stakeholders.',
         bio3: 'From 2024 to 2026, I worked as a Product Designer at Grupo Strategi.',
         stat1: 'years of design experience', stat2: 'years in UI/UX and digital products', stat3: 'industries served',
-        priEyebrow: 'How I work', priTitle: 'Principles',
+        priEyebrow: 'How I work', priTitle: 'Principles', servTitle: 'Services',
         sectorsTitle: 'Industries', skillsTitle: 'Skills', toolsTitle: 'Tools', toolsMore: '[+ more]',
         fCta1: 'Let’s get started.', fCta2: 'Have a product, an idea or a challenge in mind? Let’s make it happen.', fBtn: 'Start a conversation'
       }
