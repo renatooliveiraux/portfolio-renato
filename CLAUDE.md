@@ -169,7 +169,7 @@ Nas fontes, os links entre páginas continuam como `Arquivo.dc.html`; o build os
 **Responsivo dos arcos**
 
 - Arco do hero da Home: some abaixo de 1100px.
-- Arco do Sobre: reduz abaixo de 1200px e some abaixo de 760px.
+- Arco do Sobre: reduz abaixo de 1240px e some abaixo de 760px.
 - Arco do resultado do Hub: some abaixo de 760px.
 
 ## Imagens (`assets/`)

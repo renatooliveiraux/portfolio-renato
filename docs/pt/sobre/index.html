@@ -61,40 +61,49 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 .ro-stk{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid #EAEAEA;transform:translateY(-105%);visibility:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s linear .4s}
 .ro-stk.ro-on{transform:none;visibility:visible;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s}
 @media (prefers-reduced-motion:reduce){.ro-up,.ro-rise,.ro-glow{animation:none}.ro-stk,.ro-stk.ro-on{transition:none}}
-@media (max-width:1200px){.ro-arc{width:440px !important;height:440px !important;border-width:56px !important;right:-180px !important;bottom:-240px !important}}
+@media (max-width:1240px){.ro-arc{width:440px !important;height:440px !important;border-width:56px !important;right:-180px !important;bottom:-240px !important}}
 @media (max-width:760px){.ro-arc{display:none !important}}
+/* hero: altura pelo conteúdo, como nos cases (~140px entre header e eyebrow): 600px com o título em 3 linhas (>1200px),
+   480px com 2 linhas; no mobile 600px para o rosto ficar acima do texto */
+@media (max-width:1200px){.ro-phero{height:480px !important}}
+@media (max-width:760px){.ro-phero{height:600px !important}}
 .ro-hd{display:grid !important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
 .ro-hd>:first-child{justify-self:start}
 .ro-hd>:last-child{justify-self:end}
 @media (max-width:900px){.ro-hd{display:flex !important}}
 /* =====================================================================
-   Service Cards · Portfólio Renato Oliveira
+   Service Cards · Portfólio Renato Oliveira · v3
    Componente informativo (não navegável): 3 cards de serviço.
+   Tons: 01 azul · 02 preto · 03 cinza.
    Depende de: Geist (500) e Manrope (400) — ver index.html.
    ===================================================================== */
 
 /* ---------- Tokens ---------- */
 .svc {
-  --svc-blue: #253CEA;          /* azul de marca */
+  --svc-blue: #253CEA;          /* azul de marca: superfície do card 01 e acentos */
+  --svc-blue-mid: #6E80F7;      /* guias de construção sobre preto */
   --svc-blue-soft: #A9B6FF;     /* número sobre preto */
   --svc-black: #000000;
   --svc-white: #FFFFFF;
-  --svc-surface: #F7F7F8;       /* fundo dos cards claros */
+  --svc-surface: #F7F7F8;       /* fundo do card cinza */
   --svc-line-light: #D2D2D6;
   --svc-line-dark: #2E2E2E;
   --svc-border-hover: #E4E4E8;
-  --svc-text-2-light: #4A4A4A;  /* descrição no claro */
-  --svc-text-2-dark: #BDBDBD;   /* descrição no preto */
+  --svc-text-2-light: #4A4A4A;
+  --svc-text-2-dark: #BDBDBD;
   --svc-label-light: #5C5C5C;
   --svc-label-dark: #8A8A8A;
-  --svc-node: #5C5C5C;          /* nós do fluxo (repouso) */
-  --svc-block: #EFEFF2;         /* blocos do wireframe */
+  --svc-on-blue-2: rgba(255, 255, 255, .84);   /* descrição sobre azul */
+  --svc-on-blue-3: rgba(255, 255, 255, .72);   /* número e rótulo sobre azul */
+  --svc-on-blue-line: rgba(255, 255, 255, .28);
 
   --svc-radius: 24px;
   --svc-radius-sm: 20px;
   --svc-pad: 32px;
   --svc-gap: 16px;
   --svc-lift: -6px;
+  --svc-fig-w: 152px;           /* grafismo no canto superior direito */
+  --svc-fig-h: 84px;
 
   --svc-ease: cubic-bezier(.2, .7, .2, 1);
   --svc-dur: .45s;
@@ -102,16 +111,15 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 
   --svc-shadow-light: 0 28px 56px rgba(5, 10, 46, .08);
   --svc-shadow-dark: 0 28px 56px rgba(5, 10, 46, .28), inset 0 0 0 1px rgba(37, 60, 234, .55);
+  --svc-shadow-blue: 0 28px 56px rgba(5, 10, 46, .32);
 
   --svc-font-display: 'Geist', system-ui, sans-serif;
   --svc-font-text: 'Manrope', system-ui, sans-serif;
 
-  /* Os breakpoints usam a largura do próprio grupo (container query),
-     não a da janela: o componente se adapta onde for inserido. */
+  /* Breakpoints pela largura do próprio grupo (container query). */
   container-type: inline-size;
   container-name: services;
 }
-
 
 /* ---------- Grid ---------- */
 .svc-grid {
@@ -124,10 +132,10 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 .svc-card {
   position: relative;
   display: grid;
-  grid-template-areas: "top" "fig" "body" "aud";
-  grid-template-rows: auto auto 1fr auto;
-  gap: 32px;
-  min-height: 600px;
+  grid-template-areas: "top" "body" "aud";
+  grid-template-rows: auto 1fr auto;
+  gap: 40px;
+  min-height: 440px;
   padding: var(--svc-pad);
   border-radius: var(--svc-radius);
   border: 1px solid transparent;
@@ -138,21 +146,23 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
     background-color .35s,
     border-color .35s;
 }
-.svc-card--light { background: var(--svc-surface); border-color: var(--svc-surface); color: var(--svc-black); }
+.svc-card--blue  { background: var(--svc-blue);    border-color: var(--svc-blue);    color: var(--svc-white); }
 .svc-card--dark  { background: var(--svc-black);   border-color: var(--svc-black);   color: var(--svc-white); }
+.svc-card--light { background: var(--svc-surface); border-color: var(--svc-surface); color: var(--svc-black); }
 
-/* número + fio (eyebrow com fio, grafismo da marca) */
+/* cabeçalho: número · fio · grafismo (canto superior direito), num só eixo */
 .svc-card__top { grid-area: top; display: flex; align-items: center; gap: 16px; }
 .svc-card__num { flex: none; font: 500 14px/1 var(--svc-font-display); letter-spacing: .12em; }
 .svc-card__rule { flex: 1 1 auto; height: 1px; }
-.svc-card--light .svc-card__num  { color: var(--svc-blue); }
-.svc-card--light .svc-card__rule { background: var(--svc-line-light); }
+.svc-card__fig { flex: none; width: var(--svc-fig-w); height: var(--svc-fig-h); }
+.svc-card__fig svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.svc-card--blue  .svc-card__num  { color: var(--svc-on-blue-3); }
+.svc-card--blue  .svc-card__rule { background: var(--svc-on-blue-line); }
 .svc-card--dark  .svc-card__num  { color: var(--svc-blue-soft); }
 .svc-card--dark  .svc-card__rule { background: var(--svc-line-dark); }
-
-/* grafismo */
-.svc-card__fig { grid-area: fig; height: 176px; display: flex; align-items: center; }
-.svc-card__fig svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.svc-card--light .svc-card__num  { color: var(--svc-blue); }
+.svc-card--light .svc-card__rule { background: var(--svc-line-light); }
 
 /* título + descrição */
 .svc-card__body { grid-area: body; display: flex; flex-direction: column; gap: 16px; }
@@ -162,10 +172,11 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
   letter-spacing: -0.045em;
 }
 .svc-card__desc { margin: 0; max-width: 34ch; font: 400 16px/1.6 var(--svc-font-text); }
-.svc-card--light .svc-card__desc { color: var(--svc-text-2-light); }
+.svc-card--blue  .svc-card__desc { color: var(--svc-on-blue-2); }
 .svc-card--dark  .svc-card__desc { color: var(--svc-text-2-dark); }
+.svc-card--light .svc-card__desc { color: var(--svc-text-2-light); }
 
-/* público */
+/* aplicação ("Aplicado a") */
 .svc-card__aud {
   grid-area: aud;
   display: flex; flex-direction: column; gap: 8px;
@@ -173,16 +184,18 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
   padding-top: 20px;
   border-top: 1px solid;
 }
-.svc-card--light .svc-card__aud { border-color: var(--svc-line-light); }
-.svc-card--dark  .svc-card__aud { border-color: var(--svc-line-dark); }
 .svc-card__aud-label {
   margin: 0;
   font: 500 12px/1 var(--svc-font-display);
   letter-spacing: .12em; text-transform: uppercase;
 }
-.svc-card--light .svc-card__aud-label { color: var(--svc-label-light); }
-.svc-card--dark  .svc-card__aud-label { color: var(--svc-label-dark); }
 .svc-card__aud-text { margin: 0; font: 500 18px/1.35 var(--svc-font-display); letter-spacing: -0.015em; }
+.svc-card--blue  .svc-card__aud { border-color: var(--svc-on-blue-line); }
+.svc-card--blue  .svc-card__aud-label { color: var(--svc-on-blue-3); }
+.svc-card--dark  .svc-card__aud { border-color: var(--svc-line-dark); }
+.svc-card--dark  .svc-card__aud-label { color: var(--svc-label-dark); }
+.svc-card--light .svc-card__aud { border-color: var(--svc-line-light); }
+.svc-card--light .svc-card__aud-label { color: var(--svc-label-light); }
 
 /* ---------- Grafismos: repouso ---------- */
 .svc-card svg * {
@@ -191,50 +204,77 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
     transform .55s var(--svc-ease),
     stroke-dashoffset var(--svc-dur-draw) var(--svc-ease);
 }
-/* 01 · fluxo (Design de Produto) */
+
+/* 01 · fluxo (Design de Produto) — sobre azul, o acento é branco */
 .svc-flow-base { stroke: var(--svc-line-dark); }
 .svc-flow-draw { stroke: var(--svc-blue); stroke-dasharray: 100; stroke-dashoffset: 100; } /* pathLength=100 no SVG */
-.svc-flow-node { stroke: var(--svc-node); fill: var(--svc-black); }
+.svc-flow-node { stroke: #5C5C5C; fill: var(--svc-black); }
 .svc-flow-n2 { transition-delay: .12s !important; }
 .svc-flow-n3 { transition-delay: .24s !important; }
-/* 02 · wireframe (Webdesign) */
+.svc-flow-screen { fill: var(--svc-blue); }
+.svc-flow-ui { fill: var(--svc-white); }
+.svc-card--blue .svc-flow-base   { stroke: var(--svc-on-blue-line); }
+.svc-card--blue .svc-flow-draw   { stroke: var(--svc-white); }
+.svc-card--blue .svc-flow-node   { stroke: rgba(255, 255, 255, .6); fill: var(--svc-blue); }
+.svc-card--blue .svc-flow-screen { fill: var(--svc-white); }
+.svc-card--blue .svc-flow-ui     { fill: var(--svc-blue); }
+
+/* 02 · wireframe (Webdesign) — versão escura sobre preto */
 .svc-wf-guide { opacity: 0; }
 .svc-wf-cta { transform-box: fill-box; transform-origin: left center; }
-.svc-wf-block { fill: var(--svc-block); }
+.svc-wf-block { fill: #EFEFF2; }
+.svc-card--dark .svc-wf-frame { fill: #111111; stroke: var(--svc-line-dark); }
+.svc-card--dark .svc-wf-dot   { fill: #3A3A3A; }
+.svc-card--dark .svc-wf-sep   { stroke: #242424; }
+.svc-card--dark .svc-wf-head  { fill: var(--svc-white); }
+.svc-card--dark .svc-wf-line  { fill: #3A3A3A; }
+.svc-card--dark .svc-wf-block { fill: #1E1E1E; }
+.svc-card--dark .svc-wf-guide { stroke-opacity: .7; }
+
 /* 03 · construção de marca (Branding Digital) */
 .svc-brand-guides { opacity: 0; }
 .svc-brand-swatch { transform-box: fill-box; transform-origin: center; }
+.svc-card--dark .svc-brand-aa     { fill: var(--svc-white); }
+.svc-card--dark .svc-brand-k      { stroke: #5C5C5C; stroke-width: 2; }
+.svc-card--dark .svc-brand-w      { stroke: var(--svc-white); }
+.svc-card--dark .svc-brand-div    { stroke: var(--svc-line-dark); }
+.svc-card--dark .svc-brand-guides { stroke: var(--svc-blue-mid); }
 
 /* ---------- Hover ----------
-   Só em dispositivos com ponteiro (evita hover "preso" no toque). */
+   Só com ponteiro (evita hover "preso" no toque). */
 @media (hover: hover) {
   .svc-card:hover { transform: translateY(var(--svc-lift)); }
-  .svc-card--light:hover { background: var(--svc-white); border-color: var(--svc-border-hover); box-shadow: var(--svc-shadow-light); }
+  .svc-card--blue:hover  { box-shadow: var(--svc-shadow-blue); }
   .svc-card--dark:hover  { box-shadow: var(--svc-shadow-dark); }
-  .svc-card:hover .svc-flow-draw   { stroke-dashoffset: 0; }
-  .svc-card:hover .svc-flow-node   { stroke: var(--svc-blue); }
-  .svc-card:hover .svc-wf-guide    { opacity: 1; }
-  .svc-card:hover .svc-wf-cta      { transform: scaleX(1.32); }
-  .svc-card:hover .svc-wf-accent   { fill: var(--svc-blue); opacity: .14; }
+  .svc-card--light:hover { background: var(--svc-white); border-color: var(--svc-border-hover); box-shadow: var(--svc-shadow-light); }
+
+  .svc-card:hover .svc-flow-draw { stroke-dashoffset: 0; }
+  .svc-card:hover .svc-flow-node { stroke: var(--svc-blue); }
+  .svc-card--blue:hover .svc-flow-node { stroke: var(--svc-white); }
+
+  .svc-card:hover .svc-wf-guide  { opacity: 1; }
+  .svc-card:hover .svc-wf-cta    { transform: scaleX(1.32); }
+  .svc-card:hover .svc-wf-accent { fill: var(--svc-blue); opacity: .14; }
+  .svc-card--dark:hover .svc-wf-accent { opacity: .38; }
+
   .svc-card:hover .svc-brand-guides { opacity: 1; }
-  .svc-card:hover .svc-brand-s1    { transform: translateY(-6px); }
-  .svc-card:hover .svc-brand-s3    { transform: translateY(6px); }
+  .svc-card:hover .svc-brand-s1 { transform: translateY(-12px); }  /* unidades do viewBox (~6px na tela) */
+  .svc-card:hover .svc-brand-s3 { transform: translateY(12px); }
 }
 
 /* ---------- Tablet: 640–1023px (largura do grupo) ----------
-   2 colunas; o 3º card ocupa a linha seguinte em composição horizontal. */
+   2 colunas; o 3º card ocupa a linha seguinte: texto à esquerda, aplicação à direita. */
 @container services (max-width: 1023px) {
   .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .svc-card { min-height: 560px; }
   .svc-card--wide {
     grid-column: 1 / -1;
     min-height: 0;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-areas: "top top" "fig body" "fig aud";
-    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "top top" "body aud";
+    grid-template-rows: auto auto;
     column-gap: 48px;
+    align-items: end;
   }
-  .svc-card--wide .svc-card__fig { height: auto; min-height: 200px; }
 }
 
 /* ---------- Mobile: < 640px ---------- */
@@ -244,13 +284,14 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
     grid-column: auto;
     min-height: 0;
     padding: 24px;
-    gap: 24px;
+    gap: 28px;
     border-radius: var(--svc-radius-sm);
     grid-template-columns: 1fr;
-    grid-template-areas: "top" "fig" "body" "aud";
-    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "top" "body" "aud";
+    grid-template-rows: auto auto auto;
+    align-items: stretch;
   }
-  .svc-card__fig, .svc-card--wide .svc-card__fig { height: 140px; min-height: 0; }
+  .svc-card__fig { width: 120px; height: 66px; }
   .svc-card__title { font-size: 30px; }
   .svc-card__desc { max-width: none; }
 }
@@ -266,6 +307,7 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
+
 /* Entrada dos cards no scroll (tools/site.js liga .ro-rv-on). Usa animation + translate:
    não disputa transition nem transform com o hover do componente. */
 @keyframes roRv{from{opacity:0;translate:0 16px}to{opacity:1;translate:0 0}}
@@ -328,7 +370,7 @@ html.ro-menu-lock{overflow:hidden}
 </div>
 
 <!-- PAGE HERO -->
-<section style="position: relative; height: 760px; overflow: hidden; color: #FFFFFF; background: #253CEA">
+<section class="ro-phero" style="position: relative; height: 600px; overflow: hidden; color: #FFFFFF; background: #253CEA">
 <div class="ro-glow" aria-hidden="true" style="position: absolute; right: 4%; top: 10%; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(214,221,255,.5) 0%, rgba(214,221,255,0) 62%)"></div>
 <div class="ro-arc" aria-hidden="true" style="position: absolute; z-index: 2; right: -160px; bottom: -300px; width: 620px; height: 620px; border: 80px solid #FFFFFF; border-radius: 50%"></div>
 <div class="ro-rise" style="position: absolute; inset: 0; display: flex; justify-content: flex-end; align-items: flex-end; padding-right: 4%">
@@ -371,6 +413,11 @@ html.ro-menu-lock{overflow:hidden}
 <div style="flex: 1 1 320px">
 <h2 style="margin: 0 0 32px; font: 500 clamp(32px, 3.4vw, 48px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em">Da pesquisa com usuários à interface final.</h2>
 <a class="ro-pill" href="#" style="min-height: 48px; padding: 0 20px 0 8px; display: inline-flex; align-items: center; gap: 12px; background: #253CEA; color: #FFFFFF; border-radius: 999px; font: 600 15px 'Geist', sans-serif"><span class="ro-dot" style="width: 34px; height: 34px; border-radius: 50%; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg></span>Baixar currículo</a>
+<ul class="ro-facts" style="list-style: none; margin: 48px 0 0; padding: 0; border-top: 1px solid #000000">
+<li style="display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid #E4E4E4"><span style="font: 500 44px/1 'Geist', sans-serif; letter-spacing: -0.05em; color: #000000">15</span><span style="font: 500 15px/1.45 'Geist', sans-serif; letter-spacing: -0.005em; color: #4A4A4A">anos de experiência em design</span></li>
+<li style="display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid #E4E4E4"><span style="font: 500 44px/1 'Geist', sans-serif; letter-spacing: -0.05em; color: #000000">5<span style="color: #253CEA">+</span></span><span style="font: 500 15px/1.45 'Geist', sans-serif; letter-spacing: -0.005em; color: #4A4A4A">anos em UI/UX e produtos digitais</span></li>
+<li style="display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid #E4E4E4"><span style="font: 500 44px/1 'Geist', sans-serif; letter-spacing: -0.05em; color: #000000">8</span><span style="font: 500 15px/1.45 'Geist', sans-serif; letter-spacing: -0.005em; color: #4A4A4A">setores atendidos</span></li>
+</ul>
 </div>
 <div style="flex: 2 1 480px; display: flex; flex-direction: column; gap: 20px; font-size: 18px; line-height: 1.7; color: #333333">
 <p style="margin: 0; font: 500 clamp(22px, 2vw, 28px)/1.4 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">Designer de Produto com mais de 5 anos em UI/UX e interfaces digitais, dentro de uma trajetória de 15 anos em design, e base acadêmica em Interação Humano-Computador pelo programa de mestrado da UFRN, com pesquisa em testes de usabilidade e métricas de experiência.</p>
@@ -380,65 +427,61 @@ html.ro-menu-lock{overflow:hidden}
 </div>
 </section>
 
-<!-- STATS -->
-<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px 120px">
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
-<div style="border-radius: 24px; padding: 32px; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; background: #253CEA; color: #FFFFFF"><p style="margin: 0; font: 500 72px/1 'Geist', sans-serif; letter-spacing: -0.05em">15</p><p style="margin: 0; font-size: 15px">anos de experiência em design</p></div>
-<div style="border-radius: 24px; padding: 32px; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; background: #000000; color: #FFFFFF"><p style="margin: 0; font: 500 72px/1 'Geist', sans-serif; letter-spacing: -0.05em">5<span style="color: #A9B6FF">+</span></p><p style="margin: 0; font-size: 15px; color: #C9D1FF">anos em UI/UX e produtos digitais</p></div>
-<div style="border-radius: 24px; padding: 32px; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; background: #F7F7F8"><p style="margin: 0; font: 500 72px/1 'Geist', sans-serif; letter-spacing: -0.05em; color: #253CEA">8</p><p style="margin: 0; font-size: 15px; color: #333333">setores atendidos</p></div>
-</div>
-</section>
-
 <!-- SERVIÇOS (mesmos cards da Home: src/partials/service-cards.*) -->
 <section class="svc" aria-labelledby="ro-svc" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 120px">
 <h2 id="ro-svc" style="margin: 0 0 64px; font: 500 clamp(38px, 4.4vw, 64px)/1 'Geist', sans-serif; letter-spacing: -0.045em">Serviços</h2>
 <div class="svc-grid">
 
-<article class="svc-card svc-card--dark ro-rv">
-<div class="svc-card__top"><span class="svc-card__num">01</span><span class="svc-card__rule" aria-hidden="true"></span></div>
+<article class="svc-card svc-card--blue ro-rv">
+<div class="svc-card__top">
+<span class="svc-card__num">01</span>
+<span class="svc-card__rule" aria-hidden="true"></span>
 <div class="svc-card__fig">
 
-<svg viewBox="0 0 320 176" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false">
-<path class="svc-flow-base" d="M36 88 H82 M118 88 H148 M196 88 H220" fill="none" stroke-width="2"></path>
-<path class="svc-flow-draw" pathLength="100" d="M36 88 H82 M118 88 H148 M196 88 H220" fill="none" stroke-width="2"></path>
-<circle class="svc-flow-node" cx="22" cy="88" r="14" stroke-width="2"></circle>
-<path class="svc-flow-node svc-flow-n2" d="M100 70 L118 88 L100 106 L82 88 Z" stroke-width="2" stroke-linejoin="round"></path>
-<rect class="svc-flow-node svc-flow-n3" x="148" y="68" width="48" height="40" rx="9" stroke-width="2"></rect>
-<rect x="220" y="34" width="100" height="108" rx="14" fill="#253CEA"></rect>
-<rect x="234" y="50" width="44" height="7" rx="3.5" fill="#FFFFFF"></rect>
-<rect x="234" y="66" width="72" height="5" rx="2.5" fill="#FFFFFF" opacity=".55"></rect>
-<rect x="234" y="78" width="58" height="5" rx="2.5" fill="#FFFFFF" opacity=".55"></rect>
-<rect x="234" y="98" width="72" height="30" rx="7" fill="#FFFFFF" opacity=".16"></rect>
+<svg viewBox="0 0 320 176" preserveAspectRatio="xMaxYMid meet" aria-hidden="true" focusable="false">
+<path class="svc-flow-base" d="M36 88 H82 M118 88 H148 M196 88 H220" fill="none" stroke-width="4"></path>
+<path class="svc-flow-draw" pathLength="100" d="M36 88 H82 M118 88 H148 M196 88 H220" fill="none" stroke-width="4"></path>
+<circle class="svc-flow-node" cx="22" cy="88" r="14" stroke-width="4"></circle>
+<path class="svc-flow-node svc-flow-n2" d="M100 70 L118 88 L100 106 L82 88 Z" stroke-width="4" stroke-linejoin="round"></path>
+<rect class="svc-flow-node svc-flow-n3" x="148" y="68" width="48" height="40" rx="9" stroke-width="4"></rect>
+<rect class="svc-flow-screen" x="220" y="34" width="100" height="108" rx="14" fill="#253CEA"></rect>
+<rect class="svc-flow-ui" x="234" y="50" width="44" height="7" rx="3.5" fill="#FFFFFF"></rect>
+<rect class="svc-flow-ui" x="234" y="66" width="72" height="5" rx="2.5" fill="#FFFFFF" opacity=".55"></rect>
+<rect class="svc-flow-ui" x="234" y="78" width="58" height="5" rx="2.5" fill="#FFFFFF" opacity=".55"></rect>
+<rect class="svc-flow-ui" x="234" y="98" width="72" height="30" rx="7" fill="#FFFFFF" opacity=".16"></rect>
 </svg>
 
 
 
+</div>
 </div>
 <div class="svc-card__body">
 <h3 class="svc-card__title">Design de Produto</h3>
 <p class="svc-card__desc">Conecto necessidades dos usuários e objetivos de negócio no desenvolvimento de produtos digitais, da pesquisa e dos fluxos às interfaces e protótipos.</p>
 </div>
 <dl class="svc-card__aud">
-<dt class="svc-card__aud-label">Público</dt>
+<dt class="svc-card__aud-label">Aplicado a</dt>
 <dd class="svc-card__aud-text">Plataformas, sistemas e SaaS.</dd>
 </dl>
 </article>
 
-<article class="svc-card svc-card--light ro-rv">
-<div class="svc-card__top"><span class="svc-card__num">02</span><span class="svc-card__rule" aria-hidden="true"></span></div>
+<article class="svc-card svc-card--dark ro-rv">
+<div class="svc-card__top">
+<span class="svc-card__num">02</span>
+<span class="svc-card__rule" aria-hidden="true"></span>
 <div class="svc-card__fig">
 
 
-<svg viewBox="0 0 320 176" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false">
-<rect x=".5" y=".5" width="319" height="175" rx="14" fill="#FFFFFF" stroke="#E4E4E8"></rect>
-<circle cx="18" cy="16" r="3.5" fill="#D4D4D8"></circle><circle cx="30" cy="16" r="3.5" fill="#D4D4D8"></circle><circle cx="42" cy="16" r="3.5" fill="#D4D4D8"></circle>
-<path d="M0 32 H320" stroke="#EDEDF0"></path>
-<g class="svc-wf-guide" stroke="#253CEA" stroke-opacity=".35" stroke-dasharray="3 4">
+<svg viewBox="0 0 320 176" preserveAspectRatio="xMaxYMid meet" aria-hidden="true" focusable="false">
+<rect class="svc-wf-frame" x=".5" y=".5" width="319" height="175" rx="14" fill="#FFFFFF" stroke="#E4E4E8" stroke-width="2"></rect>
+<circle class="svc-wf-dot" cx="18" cy="16" r="3.5" fill="#D4D4D8"></circle><circle class="svc-wf-dot" cx="30" cy="16" r="3.5" fill="#D4D4D8"></circle><circle class="svc-wf-dot" cx="42" cy="16" r="3.5" fill="#D4D4D8"></circle>
+<path class="svc-wf-sep" d="M0 32 H320" stroke="#EDEDF0" stroke-width="2"></path>
+<g class="svc-wf-guide" stroke="#253CEA" stroke-opacity=".45" stroke-width="2" stroke-dasharray="6 8">
 <path d="M18 40 V164 M68 40 V164 M118 40 V164 M168 40 V164 M218 40 V164 M268 40 V164 M302 40 V164"></path>
 </g>
-<rect x="18" y="50" width="132" height="14" rx="4" fill="#000000"></rect>
-<rect x="18" y="74" width="132" height="7" rx="3.5" fill="#D4D4D8"></rect>
-<rect x="18" y="88" width="100" height="7" rx="3.5" fill="#D4D4D8"></rect>
+<rect class="svc-wf-head" x="18" y="50" width="132" height="14" rx="4" fill="#000000"></rect>
+<rect class="svc-wf-line" x="18" y="74" width="132" height="7" rx="3.5" fill="#D4D4D8"></rect>
+<rect class="svc-wf-line" x="18" y="88" width="100" height="7" rx="3.5" fill="#D4D4D8"></rect>
 <rect class="svc-wf-cta" x="18" y="112" width="64" height="22" rx="11" fill="#253CEA"></rect>
 <rect class="svc-wf-block svc-wf-accent" x="168" y="50" width="134" height="52" rx="8"></rect>
 <rect class="svc-wf-block" x="168" y="110" width="63" height="44" rx="8"></rect>
@@ -447,41 +490,45 @@ html.ro-menu-lock{overflow:hidden}
 
 
 </div>
+</div>
 <div class="svc-card__body">
 <h3 class="svc-card__title">Webdesign</h3>
 <p class="svc-card__desc">Projeto sites institucionais e landing pages que comunicam valor, organizam conteúdo e orientam visitantes à ação.</p>
 </div>
 <dl class="svc-card__aud">
-<dt class="svc-card__aud-label">Público</dt>
+<dt class="svc-card__aud-label">Aplicado a</dt>
 <dd class="svc-card__aud-text">Presença digital e geração de oportunidades comerciais.</dd>
 </dl>
 </article>
 
 <article class="svc-card svc-card--light svc-card--wide ro-rv">
-<div class="svc-card__top"><span class="svc-card__num">03</span><span class="svc-card__rule" aria-hidden="true"></span></div>
+<div class="svc-card__top">
+<span class="svc-card__num">03</span>
+<span class="svc-card__rule" aria-hidden="true"></span>
 <div class="svc-card__fig">
 
 
 
-<svg viewBox="0 0 320 176" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false">
-<g class="svc-brand-guides" fill="none" stroke="#253CEA">
+<svg viewBox="0 0 320 176" preserveAspectRatio="xMaxYMid meet" aria-hidden="true" focusable="false">
+<g class="svc-brand-guides" fill="none" stroke="#253CEA" stroke-width="2">
 <circle cx="96" cy="96" r="70" stroke-opacity=".45"></circle>
-<path d="M4 132 H216 M4 98 H216 M4 52 H216" stroke-opacity=".4" stroke-dasharray="3 4"></path>
+<path d="M4 132 H216 M4 98 H216 M4 52 H216" stroke-opacity=".45" stroke-dasharray="6 8"></path>
 </g>
-<text x="12" y="132" font-family="Geist, sans-serif" font-weight="500" font-size="116" letter-spacing="-6" fill="#000000">Aa</text>
+<text class="svc-brand-aa" x="12" y="132" font-family="Geist, sans-serif" font-weight="500" font-size="116" letter-spacing="-6" fill="#000000">Aa</text>
 <circle class="svc-brand-swatch svc-brand-s1" cx="274" cy="44" r="18" fill="#253CEA"></circle>
-<circle class="svc-brand-swatch" cx="274" cy="88" r="18" fill="#000000"></circle>
-<circle class="svc-brand-swatch svc-brand-s3" cx="274" cy="132" r="17.5" fill="#FFFFFF" stroke="#D2D2D6"></circle>
-<path d="M236 20 V156" stroke="#D2D2D6"></path>
+<circle class="svc-brand-swatch svc-brand-k" cx="274" cy="88" r="18" fill="#000000"></circle>
+<circle class="svc-brand-swatch svc-brand-s3 svc-brand-w" cx="274" cy="132" r="17" fill="#FFFFFF" stroke="#D2D2D6" stroke-width="2"></circle>
+<path class="svc-brand-div" d="M236 20 V156" stroke="#D2D2D6" stroke-width="2"></path>
 </svg>
 
+</div>
 </div>
 <div class="svc-card__body">
 <h3 class="svc-card__title">Branding Digital</h3>
 <p class="svc-card__desc">Desenvolvo identidades visuais para ambientes digitais, integrando tipografia, cores e elementos gráficos em uma linguagem consistente.</p>
 </div>
 <dl class="svc-card__aud">
-<dt class="svc-card__aud-label">Público</dt>
+<dt class="svc-card__aud-label">Aplicado a</dt>
 <dd class="svc-card__aud-text">Marcas que precisam construir ou evoluir sua identidade digital.</dd>
 </dl>
 </article>
