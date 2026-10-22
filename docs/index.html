@@ -74,6 +74,9 @@ header nav .ro-nw:focus-visible{outline-color:#050A2E}
 @media (prefers-reduced-motion:reduce){.ro-up,.ro-rise,.ro-glow,.ro-marq{animation:none}.ro-stk,.ro-stk.ro-on{transition:none}}
 @media (max-width:1100px){.ro-arc{display:none !important}}
 @media (max-width:600px){.ro-shade{background:linear-gradient(to top, rgba(5,10,46,.74) 0%, rgba(5,10,46,.45) 35%, rgba(5,10,46,.18) 52%, rgba(5,10,46,0) 65%), linear-gradient(to bottom, rgba(10,20,110,.35) 0%, rgba(10,20,110,0) 18%) !important}}
+/* hero mobile: 100svh evita que a barra do navegador cubra o CTA; min-height menor mantém o CTA na primeira tela em celulares baixos;
+   lista de áreas mais compacta e min-height com folga para ela, para o bloco de texto não subir sobre o rosto (CTA ainda dentro de 640px) */
+@media (max-width:760px){.ro-hero{height:100svh !important;min-height:720px !important}.ro-hbody{padding-bottom:96px !important}.ro-hcol{gap:32px !important}.ro-hareas li{padding:6px 0 !important}.ro-hareas li>span:last-child{font-size:18px !important}}
 :root{--sec:clamp(80px,9vw,128px)}
 @media (max-width:760px){.ro-cunha{width:160px !important;height:172px !important}}
 .ro-hd{display:grid !important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center}
@@ -393,7 +396,7 @@ html.ro-menu-lock{overflow:hidden}
 </div>
 
 <!-- HERO -->
-<section aria-label="Product Designer · UI/UX" style="position: relative; height: 100vh; min-height: 760px; max-height: 960px; overflow: hidden; color: #FFFFFF; background: #253CEA">
+<section class="ro-hero" aria-label="Product Designer · UI/UX" style="position: relative; height: 100vh; min-height: 760px; max-height: 960px; overflow: hidden; color: #FFFFFF; background: #253CEA">
 <div class="ro-glow" aria-hidden="true" style="position: absolute; left: 50%; top: 34%; width: 900px; height: 900px; margin: -450px 0 0 -450px; border-radius: 50%; background: radial-gradient(circle, rgba(214,221,255,.55) 0%, rgba(214,221,255,0) 62%)"></div>
 <div class="ro-arc" aria-hidden="true" style="position: absolute; z-index: 1; left: -220px; top: -260px; width: 620px; height: 620px; border: 80px solid #FFFFFF; border-radius: 50%"></div>
 <div class="ro-rise" style="position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-end">
@@ -423,12 +426,20 @@ html.ro-menu-lock{overflow:hidden}
 </header>
 
 <div style="position: absolute; z-index: 2; left: 0; right: 0; bottom: 0">
-<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px 64px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px">
+<div class="ro-hbody" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 64px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px">
 <div class="ro-up ro-d2" style="flex: 1 1 560px; max-width: 880px">
 <h1 style="margin: 0; font: 500 clamp(56px, 8.4vw, 132px)/0.95 'Geist', sans-serif; letter-spacing: -0.05em; color: #FFFFFF">Product<br>Designer<span style="display: block; margin-top: 20px; font: 400 clamp(26px, 2.8vw, 44px)/1.1 'Geist', sans-serif; letter-spacing: -0.03em; color: #DCE2FF">from brand to interface.</span></h1>
 </div>
-<div class="ro-up ro-d3" style="flex: 0 1 300px; display: flex; flex-direction: column; gap: 24px">
-<p style="margin: 0; font: 500 clamp(20px, 1.7vw, 24px)/1.35 'Geist', sans-serif; letter-spacing: -0.01em; color: #FFFFFF; height: 142px">Experience, design and business working together to create value.</p>
+<div class="ro-up ro-d3 ro-hcol" style="flex: 0 1 300px; display: flex; flex-direction: column; gap: 24px">
+<ul class="ro-hareas" style="list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(255,255,255,.45)">
+
+<li style="display: grid; grid-template-columns: 40px minmax(0, 1fr); align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.22)"><span aria-hidden="true" style="font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; color: #DCE2FF">01</span><span style="font: 500 clamp(20px, 1.7vw, 24px)/1.2 'Geist', sans-serif; letter-spacing: -0.01em; color: #FFFFFF">Product Design</span></li>
+
+<li style="display: grid; grid-template-columns: 40px minmax(0, 1fr); align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.22)"><span aria-hidden="true" style="font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; color: #DCE2FF">02</span><span style="font: 500 clamp(20px, 1.7vw, 24px)/1.2 'Geist', sans-serif; letter-spacing: -0.01em; color: #FFFFFF">Web Design</span></li>
+
+<li style="display: grid; grid-template-columns: 40px minmax(0, 1fr); align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.22)"><span aria-hidden="true" style="font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; color: #DCE2FF">03</span><span style="font: 500 clamp(20px, 1.7vw, 24px)/1.2 'Geist', sans-serif; letter-spacing: -0.01em; color: #FFFFFF">Digital Branding</span></li>
+
+</ul>
 <a class="ro-pill" href="work/" style="align-self: flex-start; min-height: 48px; padding: 0 20px 0 8px; display: inline-flex; align-items: center; gap: 12px; background: #FFFFFF; color: #000000; border-radius: 999px; font: 600 15px 'Geist', sans-serif"><span class="ro-dot" style="width: 34px; height: 34px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>View work</a>
 </div>
 </div>

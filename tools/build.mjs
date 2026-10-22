@@ -529,6 +529,9 @@ function build(OUT) {
   fs.mkdirSync(path.join(OUT, 'assets/js'), { recursive: true });
   fs.copyFileSync(path.join(ROOT, 'tools/site.js'), path.join(OUT, 'assets/js/site.js'));
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
+  // Domínio personalizado do GitHub Pages: o CNAME não é gerado, então o da versão atual passa para a nova.
+  const cname = path.join(ROOT, 'docs', 'CNAME');
+  if (fs.existsSync(cname)) fs.copyFileSync(cname, path.join(OUT, 'CNAME'));
   // Favicon, ícones e imagens de compartilhamento: copiados como estão. O favicon.ico também vai para a raiz.
   fs.mkdirSync(path.join(OUT, 'assets/meta'), { recursive: true });
   for (const f of fs.readdirSync(path.join(ASSETS, 'meta'))) fs.copyFileSync(path.join(ASSETS, 'meta', f), path.join(OUT, 'assets/meta', f));
