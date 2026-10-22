@@ -45,7 +45,15 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 header nav .ro-nw:focus-visible{outline-color:#050A2E}
 .ro-stk{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid #EAEAEA;transform:translateY(-105%);visibility:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s linear .4s}
 .ro-stk.ro-on{transform:none;visibility:visible;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s}
-@media (prefers-reduced-motion:reduce){.ro-up,.ro-rise,.ro-glow,.ro-marq{animation:none}.ro-stk,.ro-stk.ro-on{transition:none}}
+/* indicador de rolagem: centralizado na base do hero; se o hero passar da altura da tela, sobe até a base visível
+   (no mobile, no máximo até logo abaixo do CTA) */
+.ro-cue{position:absolute;z-index:2;left:50%;bottom:16px;bottom:max(16px, calc(100% - 100svh + 16px));transform:translateX(-50%);width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;color:#FFFFFF;opacity:.72;transition:opacity .2s}
+.ro-cue:hover{opacity:1}
+.ro-cue:focus-visible{opacity:1;outline-color:#050A2E}
+.ro-cue svg{animation:roCue 2.4s ease-in-out infinite}
+@keyframes roCue{0%,100%{transform:none}50%{transform:translateY(4px)}}
+@media (max-width:760px){.ro-cue{bottom:clamp(16px, calc(100% - 100svh + 16px), 44px)}}
+@media (prefers-reduced-motion:reduce){.ro-up,.ro-rise,.ro-glow,.ro-marq,.ro-cue svg{animation:none}.ro-stk,.ro-stk.ro-on{transition:none}}
 @media (max-width:1100px){.ro-arc{display:none !important}}
 @media (max-width:600px){.ro-shade{background:linear-gradient(to top, rgba(5,10,46,.74) 0%, rgba(5,10,46,.45) 35%, rgba(5,10,46,.18) 52%, rgba(5,10,46,0) 65%), linear-gradient(to bottom, rgba(10,20,110,.35) 0%, rgba(10,20,110,0) 18%) !important}}
 /* hero mobile: 100svh evita que a barra do navegador cubra o CTA; min-height menor mantém o CTA na primeira tela em celulares baixos;
@@ -149,10 +157,11 @@ header nav .ro-nw:focus-visible{outline-color:#050A2E}
 </div>
 </div>
 </div>
+<a class="ro-cue" href="#ro-intro" aria-label="{{t.cueLabel}}"><svg width="16" height="28" viewBox="0 0 16 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v23M3 20l5 5 5-5"></path></svg></a>
 </section>
 
 <!-- INTRO + SERVIÇOS (cards informativos) -->
-<section style="position: relative; max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px clamp(72px, 8.4vw, 120px)">
+<section id="ro-intro" style="position: relative; max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px clamp(72px, 8.4vw, 120px); scroll-margin-top: 69px">
 <span class="ro-haste" aria-hidden="true" style="position: absolute; top: calc(var(--sec) + 12px); left: calc(50% - 50vw); width: calc(50vw - 50%); height: 200px; background: #253CEA; clip-path: polygon(45% 0, 100% 0, 0 100%, 0 45%); pointer-events: none"></span>
 <div style="display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-start; margin-bottom: clamp(56px, 6.1vw, 88px)">
 <p style="flex: 0 0 200px; margin: 6px 0 0; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">{{t.introEyebrow}}</p>
@@ -399,7 +408,7 @@ class Component extends DCLogic {
       pt: {
         navHome: 'Home', fRole: 'Designer de Produto', fPriv: 'Política de privacidade', navAbout: 'Sobre', navWork: 'Projetos', navContact: 'Contato',
         heroEyebrow: 'Designer de Produto · UI/UX',
-        heroB1: 'Designer', heroB2: 'de Produto', heroB3: 'da marca à interface.',
+        heroB1: 'Designer', heroB2: 'de Produto', heroB3: 'da marca à interface.', cueLabel: 'Rolar para o conteúdo',
         ctaWork: 'Ver projetos', ctaTalk: 'Vamos conversar',
         photoAlt: 'Retrato de Renato Oliveira em tons de azul',
         stripLabel: 'Atalhos',
@@ -419,7 +428,7 @@ class Component extends DCLogic {
       en: {
         navHome: 'Home', fRole: 'Product Designer', fPriv: 'Privacy policy', navAbout: 'About', navWork: 'Work', navContact: 'Contact',
         heroEyebrow: 'Product Designer · UI/UX',
-        heroB1: 'Product', heroB2: 'Designer', heroB3: 'from brand to interface.',
+        heroB1: 'Product', heroB2: 'Designer', heroB3: 'from brand to interface.', cueLabel: 'Scroll to content',
         ctaWork: 'View work', ctaTalk: 'Let’s talk',
         photoAlt: 'Portrait of Renato Oliveira in shades of blue',
         stripLabel: 'Shortcuts',
