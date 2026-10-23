@@ -359,13 +359,14 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 <span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span>
 <span style="margin-left: 16px; flex: 1; max-width: 320px; height: 22px; border-radius: 999px; background: #F7F7F8"></span>
 </div>
-<div tabindex="0" role="region" aria-label="{{t.portalScroll}}" style="height: min(820px, 80vh); overflow-y: auto; overscroll-behavior: contain">
-<img src="/_blob/bb4e355bb2333d8cd98796d84431f26e" alt="{{t.portalAlt}}" style="width: 100%; height: auto; display: block">
+<div tabindex="0" role="region" aria-label="{{sh.label}}" style="max-height: min(820px, 80vh); overflow-y: auto; overscroll-behavior: contain">
+<img src="{{sh.src}}" alt="{{sh.alt}}" style="width: 100%; height: auto; display: block">
 </div>
 </div>
-<figcaption style="margin-top: 20px; text-align: center; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{t.portalCap}}</figcaption>
+<sc-if value="{{sh.hasCap}}" hint-placeholder-val="{{true}}"><figcaption style="margin-top: 20px; text-align: center; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{sh.cap}}</figcaption></sc-if>
 </figure>
 </sc-if>
+<sc-if value="{{sh.isPhone}}" hint-placeholder-val="{{false}}"><figure style="margin: 0; padding: clamp(24px, 4vw, 48px); border-radius: 20px; background: #F7F7F8; display: flex; justify-content: center"><div tabindex="0" role="region" aria-label="{{sh.label}}" style="aspect-ratio: 9 / 19; width: min(320px, 100%); border-radius: 28px; overflow-y: auto; overscroll-behavior: contain; background: #FFFFFF; border: 1px solid #E4E4E4; box-shadow: 0 30px 60px rgba(0,0,0,.10)"><img src="{{sh.src}}" alt="{{sh.alt}}" style="width: 100%; height: auto; display: block"></div></figure></sc-if>
 <sc-if value="{{sh.isD}}" hint-placeholder-val="{{true}}"><div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">{{sh.ph}}</span></div></sc-if>
 <sc-if value="{{sh.isM}}" hint-placeholder-val="{{false}}"><div style="padding: clamp(24px, 4vw, 48px); border-radius: 20px; background: #F7F7F8; display: flex; justify-content: center"><div style="aspect-ratio: 9 / 19; width: min(320px, 100%); border-radius: 28px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">{{sh.ph}}</span></div></div></sc-if>
 </sc-for>
@@ -641,18 +642,19 @@ class Component extends DCLogic {
       pt: [{ who: 'Empreendedor', goal: 'Encontrar uma solução para o negócio', path: 'Buscar → Escolher → Conhecer → Iniciar a contratação' }, { who: 'Prestador', goal: 'Oferecer seus serviços', path: 'Conhecer oportunidades → Credenciamento' }],
       en: [{ who: 'Entrepreneur', goal: 'Find a solution for the business', path: 'Search → Choose → Learn → Start hiring' }, { who: 'Provider', goal: 'Offer their services', path: 'Discover opportunities → Accreditation' }]
     };
-    // Jornada do empreendedor no portal. Telas: 's' home desktop com rolagem, 'd' placeholder desktop, 'm' placeholder mobile.
+    // Jornada do empreendedor no portal. Telas: 's' janela de navegador com rolagem e 'p' celular com rolagem (imagens em SHOT),
+    // 'd' placeholder desktop e 'm' placeholder mobile.
     var UX = {
       pt: [
-        { n: '01', title: 'Buscar', paras: ['A experiência começa pela descoberta. A home apresenta o Hub de forma visual e orientada ao empreendedor, e reúne busca, categorias e destaques como caminhos diferentes para encontrar uma solução, inclusive para quem ainda não sabe exatamente qual serviço procura.'], shots: [['s', ''], ['m', '[Tela · Home mobile]'], ['d', '[Tela · Busca]']] },
-        { n: '02', title: 'Escolher', paras: ['A organização por categorias e a listagem de serviços permitem comparar opções e identificar as mais adequadas ao negócio.'], shots: [['d', '[Tela · Categorias e listagem de serviços]']] },
-        { n: '03', title: 'Conhecer', paras: ['Antes de avançar, o empreendedor precisa entender se a solução atende à sua necessidade. A página de serviço reúne descrição, público-alvo, área de atuação e características da oferta, reduzindo a incerteza antes da decisão.'], shots: [['d', '[Tela · Detalhamento de serviço desktop]'], ['m', '[Tela · Detalhamento de serviço mobile]']] },
+        { n: '01', title: 'Buscar', paras: ['A experiência começa pela descoberta. A home apresenta o Hub de forma visual e orientada ao empreendedor, e reúne busca, categorias e destaques como caminhos diferentes para encontrar uma solução, inclusive para quem ainda não sabe exatamente qual serviço procura.'], shots: [['s', 'home'], ['p', 'homeMobile'], ['s', 'busca']] },
+        { n: '02', title: 'Escolher', paras: ['A organização por categorias e a listagem de serviços permitem comparar opções e identificar as mais adequadas ao negócio.'], shots: [['s', 'categorias']] },
+        { n: '03', title: 'Conhecer', paras: ['Antes de avançar, o empreendedor precisa entender se a solução atende à sua necessidade. A página de serviço reúne descrição, público-alvo, área de atuação e características da oferta, reduzindo a incerteza antes da decisão.'], shots: [['s', 'detalheDesktop'], ['p', 'detalheMobile']] },
         { n: '04', title: 'Iniciar a contratação', paras: ['A chamada para ação marca a transição entre o portal público e a plataforma autenticada, onde o empreendedor se cadastra ou faz login para continuar a jornada.'], shots: [['d', '[Tela · CTA e transição para login]']] }
       ],
       en: [
-        { n: '01', title: 'Search', paras: ['The experience starts with discovery. The home page presents the Hub in a visual, entrepreneur-oriented way, bringing together search, categories and highlights as different paths to a solution, including for those who don’t yet know exactly which service they need.'], shots: [['s', ''], ['m', '[Screen · Mobile home]'], ['d', '[Screen · Search]']] },
-        { n: '02', title: 'Choose', paras: ['Organizing services by category and listing them makes it possible to compare options and identify the ones that best fit the business.'], shots: [['d', '[Screen · Categories and service listing]']] },
-        { n: '03', title: 'Learn', paras: ['Before moving forward, entrepreneurs need to understand whether the solution meets their needs. The service page brings together description, target audience, area of expertise and offer details, reducing uncertainty before the decision.'], shots: [['d', '[Screen · Desktop service details]'], ['m', '[Screen · Mobile service details]']] },
+        { n: '01', title: 'Search', paras: ['The experience starts with discovery. The home page presents the Hub in a visual, entrepreneur-oriented way, bringing together search, categories and highlights as different paths to a solution, including for those who don’t yet know exactly which service they need.'], shots: [['s', 'home'], ['p', 'homeMobile'], ['s', 'busca']] },
+        { n: '02', title: 'Choose', paras: ['Organizing services by category and listing them makes it possible to compare options and identify the ones that best fit the business.'], shots: [['s', 'categorias']] },
+        { n: '03', title: 'Learn', paras: ['Before moving forward, entrepreneurs need to understand whether the solution meets their needs. The service page brings together description, target audience, area of expertise and offer details, reducing uncertainty before the decision.'], shots: [['s', 'detalheDesktop'], ['p', 'detalheMobile']] },
         { n: '04', title: 'Start hiring', paras: ['The call to action marks the transition from the public portal to the authenticated platform, where the entrepreneur signs up or logs in to continue the journey.'], shots: [['d', '[Screen · CTA and transition to login]']] }
       ]
     };
@@ -692,7 +694,19 @@ class Component extends DCLogic {
     };
     var img = function (k) { var cap = IMG[k].cap ? IMG[k].cap[lang] : ''; return { ph: '', src: IMG[k].src, alt: IMG[k][lang], cap: cap, hasCap: !!cap, has: true, no: false }; };
     var steps = function (l, i, a) { return { label: l, more: i < a.length - 1 }; };
-    var shots = function (x) { return { ph: x[1], isScroll: x[0] === 's', isD: x[0] === 'd', isM: x[0] === 'm' }; };
+    // Telas do portal com rolagem dentro da moldura (originais em assets/hub-sebrae/, JPGs derivados em assets/).
+    var SHOT = {
+      home: { src: '/_blob/bb4e355bb2333d8cd98796d84431f26e', pt: { alt: T.pt.portalAlt, label: T.pt.portalScroll, cap: T.pt.portalCap }, en: { alt: T.en.portalAlt, label: T.en.portalScroll, cap: T.en.portalCap } },
+      homeMobile: { src: '/_blob/333ce80d825b68d49e77bc8286c6c16d', pt: { alt: 'Página inicial do portal Hub Sebrae RN no celular: hero, busca, categorias de serviço, Como funciona, credenciamento de prestadores, sobre o Hub, depoimentos e números de 2023', label: 'Página inicial do portal no celular, role para ver completa' }, en: { alt: 'Hub Sebrae RN portal home page on mobile: hero, search, service categories, How it works, provider accreditation, about the Hub, testimonials and 2023 figures', label: 'Portal home page on mobile, scroll to see it in full' } },
+      busca: { src: '/_blob/0a9d15cb7ab8e6a274c7a41eb48f6fc2', pt: { alt: 'Tela de busca do portal Hub Sebrae RN: campo de busca, filtros por área, 25 resultados em cards de serviço e paginação', label: 'Tela de busca do portal, role para ver completa' }, en: { alt: 'Hub Sebrae RN portal search screen: search field, area filters, 25 results in service cards and pagination', label: 'Portal search screen, scroll to see it in full' } },
+      categorias: { src: '/_blob/471127194d2be1074ca0db80da05ee42', pt: { alt: 'Tela de categorias do portal Hub Sebrae RN: busca e grade com as 17 áreas de atuação, como Design, Inovação e Marketing & Vendas', label: 'Tela de categorias do portal, role para ver completa' }, en: { alt: 'Hub Sebrae RN portal categories screen: search and a grid of the 17 service areas, such as Design, Innovation and Marketing & Sales', label: 'Portal categories screen, scroll to see it in full' } },
+      detalheDesktop: { src: '/_blob/db98f269e4ff39c52b0ca4786f583aca', pt: { alt: 'Página de serviço do portal Hub Sebrae RN no desktop: descrição, valor com subsídio do Sebrae, botão Contratar serviço, público-alvo, observações e a seção Etapas e entregas', label: 'Página de serviço do portal no desktop, role para ver completa' }, en: { alt: 'Hub Sebrae RN portal service page on desktop: description, price with the Sebrae subsidy, Hire service button, target audience, notes and the Stages and deliverables section', label: 'Portal service page on desktop, scroll to see it in full' } },
+      detalheMobile: { src: '/_blob/059b5753dd63beee01005e99dee07998', pt: { alt: 'Página de serviço do portal Hub Sebrae RN no celular: descrição, valor com subsídio do Sebrae, botão Contratar serviço, público-alvo, observações e a seção Etapas e entregas', label: 'Página de serviço do portal no celular, role para ver completa' }, en: { alt: 'Hub Sebrae RN portal service page on mobile: description, price with the Sebrae subsidy, Hire service button, target audience, notes and the Stages and deliverables section', label: 'Portal service page on mobile, scroll to see it in full' } }
+    };
+    var shots = function (x) {
+      var s = SHOT[x[1]], v = s ? s[lang] : {};
+      return { ph: s ? '' : x[1], isScroll: x[0] === 's', isPhone: x[0] === 'p', isD: x[0] === 'd', isM: x[0] === 'm', src: s ? s.src : '', alt: v.alt || '', label: v.label || '', cap: v.cap || '', hasCap: !!v.cap };
+    };
     return {
       docLang: lang === 'en' ? 'en' : 'pt-BR',
       stkClass: this.state.stuck ? 'ro-stk ro-on' : 'ro-stk',

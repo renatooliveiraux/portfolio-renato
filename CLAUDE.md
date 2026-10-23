@@ -143,7 +143,6 @@ Nas fontes, os links entre páginas continuam como `Arquivo.dc.html`; o build os
 - **Arcos:**
   - na entrada dos heroes;
   - nos rodapés de Home, Sobre e Projetos;
-  - no bloco de resultado do case Hub;
   - em Contato, atrás do card do formulário.
 - **Haste diagonal** (ponteiro): intro da Home e bio do Sobre.
 - **Cunha** azul no bloco "Sobre" da Home.
@@ -170,7 +169,6 @@ Nas fontes, os links entre páginas continuam como `Arquivo.dc.html`; o build os
 
 - Arco do hero da Home: some abaixo de 1100px.
 - Arco do Sobre: reduz abaixo de 1240px e some abaixo de 760px.
-- Arco do resultado do Hub: some abaixo de 760px.
 
 ## Imagens (`assets/`)
 
@@ -196,8 +194,8 @@ Nas fontes, os links entre páginas continuam como `Arquivo.dc.html`; o build os
 
 **Imagens (pendências de auditoria, ainda não corrigidas)**
 
-- Case Hub: cerca de 11 placeholders visíveis (`[Tela · …]` / `[Screen · …]` e `[Composição · Desktop + mobile]`).
-- Case Hub: resolvida a repetição da imagem `4cb226fe`. Ela aparece uma única vez (`src/Case.dc.html`, linha 180); a capa duplicada foi removida e a figura que repetia a imagem agora usa `80c99e23` (linha 304). O mapa `SRC` das decisões ainda tem uma entrada `[04 · Cores]` com `4cb226fe`, mas nenhuma decisão a usa, então ela não aparece na página.
+- Case Hub: 2 placeholders visíveis por idioma (`[Tela · CTA e transição para login]` / `[Screen · CTA and transition to login]` e `[Composição · Desktop + mobile]` / `[Composition · Desktop + mobile]`).
+- Case Hub: resolvida a repetição da imagem `4cb226fe`. Ela aparece uma única vez, na seção "02 · Sistema visual", logo após o bloco Paleta (entrada `palette` do mapa `IMG` das decisões, em `src/Case.dc.html`); a capa duplicada foi removida e a figura que repetia a imagem agora usa `80c99e23` (linha 304).
 - Case Strategi: nenhum placeholder visível hoje; todas as seções de Aplicações têm imagens. Os textos `ph` continuam no código só como reserva.
 
 **Links e textos**
