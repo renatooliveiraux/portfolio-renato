@@ -1,0 +1,15 @@
+<!-- Case kit (template de case): CSS do kit (entra aqui, só nas versões que incluem o partial) e o visualizador
+     de figuras, aberto pelo site.js. Usar <sc-include name="case-kit"></sc-include> uma vez, dentro do .ck. -->
+<!--partial-css-->
+<dialog class="ck-lb" aria-modal="true" aria-labelledby="ck-lb-title" data-ck-lightbox data-of="{{ck.of}}">
+<div class="ck-lb__stage" data-ck-lb-stage tabindex="0" role="region" aria-labelledby="ck-lb-title"></div>
+<div class="ck-lb__panel">
+<p class="ck-lb__count" data-ck-lb-count></p>
+<h2 class="ck-lb__title" id="ck-lb-title" data-ck-lb-title></h2>
+<p class="ck-lb__cap" data-ck-lb-cap></p>
+<ol class="ck-lb__notes" data-ck-lb-notes></ol>
+<div class="ck-lb__nav"><button type="button" data-ck-lb-prev aria-label="{{ck.prev}}">←</button><button type="button" data-ck-lb-next aria-label="{{ck.next}}">→</button></div>
+<p class="ck-lb__hint">{{ck.hint}}</p>
+</div>
+<button type="button" class="ck-lb__close" data-ck-lb-close aria-label="{{ck.close}}">×</button>
+</dialog>

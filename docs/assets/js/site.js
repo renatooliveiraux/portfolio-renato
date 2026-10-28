@@ -120,6 +120,135 @@
     reveal.forEach(function (el) { io.observe(el); });
   }
 
+  // Case kit (template de case): barra de seções, índice da jornada e visualizador de figuras.
+  // Só roda nas páginas com .ck; sem JavaScript, as âncoras continuam funcionando.
+  var ck = d.querySelector('.ck');
+  if (ck) {
+    var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var rail = d.querySelector('.ck-rail');
+    // A barra de seções fica logo abaixo do menu fixo global; --ck-stk é a altura dele.
+    var setStk = function () { if (stk) d.documentElement.style.setProperty('--ck-stk', stk.offsetHeight + 'px'); };
+    setStk();
+
+    // Item ativo de uma navegação por âncoras: a última seção cujo topo já passou da linha logo abaixo
+    // das barras fixas. Um IntersectionObserver numa faixa de 1px nessa linha avisa quando algum topo cruza.
+    var spy = function (nav, extra, onChange) {
+      var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+      var targets = links.map(function (a) { return d.getElementById(a.getAttribute('href').slice(1)); });
+      var current = null, io = null;
+      var line = function () { return (stk ? stk.offsetHeight : 0) + (rail ? rail.offsetHeight : 0) + extra() + 24; };
+      var update = function () {
+        var y = line(), on = null;
+        targets.forEach(function (t, k) { if (t && t.getBoundingClientRect().top <= y) on = links[k]; });
+        if (on === current) return;
+        current = on;
+        links.forEach(function (a) { if (a === on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+        if (on && onChange) onChange(on);
+      };
+      var observe = function () {
+        if (io) io.disconnect();
+        var y = line(), h = window.innerHeight || 800;
+        io = new IntersectionObserver(update, { rootMargin: -y + 'px 0px ' + -Math.max(h - y - 1, 0) + 'px 0px' });
+        targets.forEach(function (t) { if (t) io.observe(t); });
+        update();
+      };
+      if ('IntersectionObserver' in window) observe(); else update();
+      // Saltos de rolagem (âncoras, Home/End) podem cruzar a linha sem disparar o observador: confere também na rolagem.
+      var queued = false;
+      window.addEventListener('scroll', function () {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(function () { queued = false; update(); });
+      }, { passive: true });
+      return observe;
+    };
+    var none = function () { return 0; };
+    var refresh = [];
+    if (rail) refresh.push(spy(rail, none, function (a) {
+      // No mobile a barra rola na horizontal: mantém o item ativo à vista.
+      var box = a.parentNode;
+      if (box.scrollWidth <= box.clientWidth) return;
+      var left = a.offsetLeft - 16;
+      if (left < box.scrollLeft || a.offsetLeft + a.offsetWidth > box.scrollLeft + box.clientWidth) box.scrollTo({ left: left, behavior: reduce ? 'auto' : 'smooth' });
+    }));
+    var jr = d.querySelector('.ck-jr__idx');
+    // No mobile o índice vira uma barra de progresso fixa logo abaixo da barra de seções.
+    if (jr) refresh.push(spy(jr, function () { return getComputedStyle(jr).flexDirection === 'row' ? jr.offsetHeight : 0; }));
+    var timer;
+    window.addEventListener('resize', function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () { setStk(); refresh.forEach(function (f) { f(); }); }, 150);
+    });
+
+    // Visualizador: abre qualquer figura em tamanho real (página completa rola dentro dele).
+    var lb = d.querySelector('[data-ck-lightbox]');
+    var zooms = all('[data-ck-zoom]');
+    if (lb && zooms.length && typeof lb.showModal === 'function') {
+      var stage = lb.querySelector('[data-ck-lb-stage]'), count = lb.querySelector('[data-ck-lb-count]');
+      var title = lb.querySelector('[data-ck-lb-title]'), cap = lb.querySelector('[data-ck-lb-cap]'), notes = lb.querySelector('[data-ck-lb-notes]');
+      var prev = lb.querySelector('[data-ck-lb-prev]'), next = lb.querySelector('[data-ck-lb-next]'), closeBtn = lb.querySelector('[data-ck-lb-close]');
+      var at = 0, opener = null;
+      var text = function (el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; };
+      var render = function (i) {
+        at = i;
+        var btn = zooms[i], img = btn.querySelector('img'), fig = btn.closest('figure');
+        var w = +img.getAttribute('width') || img.naturalWidth || 1, h = +img.getAttribute('height') || img.naturalHeight || 1;
+        var big = d.createElement('img');
+        big.alt = img.alt;
+        if (img.getAttribute('srcset')) { big.srcset = img.getAttribute('srcset'); big.sizes = '(max-width: 760px) 100vw, 1100px'; }
+        big.src = img.getAttribute('src');
+        stage.innerHTML = '';
+        stage.appendChild(big);
+        stage.classList.toggle('is-tall', h / w > 1.2);
+        stage.scrollTop = 0;
+        count.textContent = text(fig && fig.querySelector('.ck-cap b')) + ' · ' + (i + 1) + ' ' + lb.getAttribute('data-of') + ' ' + zooms.length;
+        title.textContent = btn.getAttribute('data-ck-title') || img.alt;
+        cap.textContent = text(fig && fig.querySelector('.ck-cap__t'));
+        notes.innerHTML = '';
+        (btn.getAttribute('data-ck-notes') || '').split('|').filter(Boolean).forEach(function (n) {
+          var li = d.createElement('li'), b = d.createElement('b'), s = d.createElement('span');
+          var parts = n.split('::');
+          b.textContent = parts[0]; s.textContent = parts[1] || '';
+          li.appendChild(b); li.appendChild(s); notes.appendChild(li);
+        });
+        prev.disabled = i === 0;
+        next.disabled = i === zooms.length - 1;
+      };
+      var open = function (i, from) {
+        opener = from;
+        render(i);
+        lb.showModal();
+        d.documentElement.style.overflow = 'hidden';
+        closeBtn.focus();
+      };
+      zooms.forEach(function (btn, i) { btn.addEventListener('click', function () { open(i, btn); }); });
+      all('[data-ck-full]').forEach(function (b) {
+        var target = b.parentNode.querySelector('[data-ck-zoom]');
+        b.addEventListener('click', function () { open(zooms.indexOf(target), b); });
+      });
+      prev.addEventListener('click', function () { if (at > 0) render(at - 1); });
+      next.addEventListener('click', function () { if (at < zooms.length - 1) render(at + 1); });
+      closeBtn.addEventListener('click', function () { lb.close(); });
+      lb.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft' && at > 0) { e.preventDefault(); render(at - 1); }
+        if (e.key === 'ArrowRight' && at < zooms.length - 1) { e.preventDefault(); render(at + 1); }
+        // Foco preso no modal: Tab e Shift+Tab circulam entre os controles do visualizador.
+        if (e.key === 'Tab') {
+          var f = Array.prototype.slice.call(lb.querySelectorAll('button, [tabindex="0"]')).filter(function (x) { return !x.disabled; });
+          var i = f.indexOf(d.activeElement);
+          if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+          else if (!e.shiftKey && (i === -1 || i === f.length - 1)) { e.preventDefault(); f[0].focus(); }
+        }
+      });
+      // Esc (cancel) e o botão fecham; o foco volta para quem abriu.
+      lb.addEventListener('close', function () {
+        d.documentElement.style.overflow = '';
+        stage.innerHTML = '';
+        if (opener) opener.focus();
+      });
+    }
+  }
+
   // Grupo de botões com versões ativa/inativa geradas lado a lado.
   function choice(prefix, onPick) {
     var on = all('[data-if="' + prefix + '.on"]'), off = all('[data-if="' + prefix + '.off"]');

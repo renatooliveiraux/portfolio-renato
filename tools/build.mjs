@@ -170,7 +170,10 @@ const PARTIAL_VALS = {
       cls: 'svc-card svc-card--' + c.tone + (c.wide ? ' svc-card--wide' : '') + ' ro-rv', audLabel: d.audLabel,
       isFlow: c.graphic === 'flow', isWire: c.graphic === 'wireframe', isBrand: c.graphic === 'brand'
     })) };
-  }
+  },
+  // Textos por idioma, expostos com o nome do partial abreviado: {{ck.*}} e {{sf.*}}.
+  'case-kit': (lang) => ({ ck: JSON.parse(fs.readFileSync(path.join(SRC, 'partials/case-kit.json'), 'utf8'))[lang] }),
+  'site-footer': (lang) => ({ sf: JSON.parse(fs.readFileSync(path.join(SRC, 'partials/site-footer.json'), 'utf8'))[lang] })
 };
 const VALS = {
   'Main.dc.html': () => ({ accessKey: WEB3FORMS_ACCESS_KEY })
@@ -217,11 +220,20 @@ function parseDc(file) {
   const xdc = html.match(/<x-dc>([\s\S]*)<\/x-dc>/)[1];
   const helmet = xdc.match(/<helmet>([\s\S]*?)<\/helmet>/)[1];
   // Partials: <sc-include name="x"></sc-include> recebe src/partials/x.html; src/partials/x.css entra uma vez
-  // no <style> da página e PARTIAL_VALS[x] fornece os valores do template.
-  const includes = [];
+  // no <style> da página e PARTIAL_VALS[x] fornece os valores do template. Se o x.html tiver o marcador
+  // <!--partial-css-->, o CSS entra ali (dentro do trecho incluído) e não no <style> da página: assim ele só
+  // aparece nas versões que renderizam o partial (ex.: um <sc-if> por idioma).
+  const includes = [], inlined = new Set();
+  const partialCssOf = (n) => { const f = path.join(SRC, 'partials', n + '.css'); return fs.existsSync(f) ? fs.readFileSync(f, 'utf8').trim() : ''; };
   const template = xdc.replace(/<helmet>[\s\S]*?<\/helmet>/, '')
-    .replace(/<sc-include name="([a-z0-9-]+)"><\/sc-include>/g, (m, n) => { includes.push(n); return fs.readFileSync(path.join(SRC, 'partials', n + '.html'), 'utf8').replace(/^<!--[\s\S]*?-->\r?\n/, ''); });
-  const partialCss = [...new Set(includes)].map((n) => path.join(SRC, 'partials', n + '.css')).filter((f) => fs.existsSync(f)).map((f) => fs.readFileSync(f, 'utf8').trim());
+    .replace(/<sc-include name="([a-z0-9-]+)"><\/sc-include>/g, (m, n) => {
+      includes.push(n);
+      const part = fs.readFileSync(path.join(SRC, 'partials', n + '.html'), 'utf8').replace(/^<!--[\s\S]*?-->\r?\n/, '');
+      if (!part.includes('<!--partial-css-->')) return part;
+      inlined.add(n);
+      return part.replace('<!--partial-css-->', () => '<style>' + partialCssOf(n) + '</style>');
+    });
+  const partialCss = [...new Set(includes)].filter((n) => !inlined.has(n)).map(partialCssOf).filter(Boolean);
   const script = html.match(/<script type="text\/x-dc"[^>]*>([\s\S]*?)<\/script>/)[1];
   const stk = script.match(/var on = y > (\d+);/);
   return {

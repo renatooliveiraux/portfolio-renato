@@ -1,0 +1,16 @@
+{
+  "pt": {
+    "cta1": "Vamos começar.",
+    "cta2": "Você tem um produto, uma ideia ou um desafio para resolver? Conte comigo.",
+    "btn": "Iniciar conversa",
+    "role": "Designer de Produto",
+    "priv": "Política de privacidade"
+  },
+  "en": {
+    "cta1": "Let’s get started.",
+    "cta2": "Have a product, an idea or a challenge in mind? Let’s make it happen.",
+    "btn": "Start a conversation",
+    "role": "Product Designer",
+    "priv": "Privacy policy"
+  }
+}

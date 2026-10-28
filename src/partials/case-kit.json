@@ -1,0 +1,42 @@
+{
+  "pt": {
+    "of": "de",
+    "prev": "Figura anterior",
+    "next": "Próxima figura",
+    "close": "Fechar visualizador",
+    "hint": "Esc fecha · setas navegam",
+    "zoom": "Ampliar",
+    "full": "Ver página completa ↗",
+    "go": "Ir para a seção →",
+    "step": "Etapa",
+    "time": "Leitura · 7 min",
+    "rail": "Seções do case",
+    "journey": "Etapas da jornada",
+    "base": "Base",
+    "support": "Apoio",
+    "onWhite": "Texto branco",
+    "onDark": "Texto escuro",
+    "palette": "Paleta principal",
+    "next_case": "Próximo case"
+  },
+  "en": {
+    "of": "of",
+    "prev": "Previous figure",
+    "next": "Next figure",
+    "close": "Close viewer",
+    "hint": "Esc closes · arrows navigate",
+    "zoom": "Enlarge",
+    "full": "View full page ↗",
+    "go": "Go to section →",
+    "step": "Step",
+    "time": "Reading · 7 min",
+    "rail": "Case sections",
+    "journey": "Journey steps",
+    "base": "Base",
+    "support": "Support",
+    "onWhite": "White text",
+    "onDark": "Dark text",
+    "palette": "Main palette",
+    "next_case": "Next case"
+  }
+}

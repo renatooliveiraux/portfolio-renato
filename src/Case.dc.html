@@ -139,7 +139,7 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </div>
 </div>
 
-<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
+<sc-if value="{{isEn}}"><div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
 <div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">{{t.startTitle}}</h3></div>
 <div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px"><p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.start1}}</p></div>
 </div>
@@ -190,8 +190,8 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </ol>
 </div>
 </div>
-</div>
-</section>
+</sc-if></div>
+</section><sc-if value="{{isEn}}">
 
 <!-- 02 ATUAÇÃO -->
 <section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-wrap: wrap; gap: 32px 64px">
@@ -479,7 +479,419 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 <p style="margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font: 500 12px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #BDBDBD">{{t.fRole}}<span style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; color: #8A8A8A">© 2026 Renato Oliveira</span><a class="ro-nw" href="Privacidade.dc.html" style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; text-decoration: underline; text-underline-offset: 3px">{{t.fPriv}}</a></p>
 </div>
 </div>
-</footer>
+</footer></sc-if><sc-if value="{{isPt}}">
+<!-- =====================================================================
+     PT · template de case (case kit, src/partials/case-kit.*): de "O ponto de partida" até o rodapé.
+     A versão EN continua no layout anterior (bloco {{isEn}} acima) até ser migrada.
+     ===================================================================== -->
+<div class="ck">
+<sc-include name="case-kit"></sc-include>
+
+<!-- BARRA DE SEÇÕES -->
+<nav class="ck-rail" aria-label="{{ck.rail}}" data-ck-rail>
+<div class="ck-wrap ck-rail__in">
+<span class="ck-rail__name">{{k.railName}}</span>
+<a href="#contexto">{{k.railCtx}}</a>
+<a href="#atuacao">{{k.railRole}}</a>
+<a href="#identidade">{{k.railId}}</a>
+<a href="#experiencia">{{k.railExp}}</a>
+<a href="#jornada">{{k.railJr}}</a>
+<a href="#resultados">{{k.railRes}}</a>
+<span class="ck-rail__time">{{ck.time}}</span>
+</div>
+</nav>
+
+<!-- O PONTO DE PARTIDA · Fig A -->
+<section id="contexto" class="ck-wrap ck-sec" aria-labelledby="ck-start">
+<div class="ck-split">
+<div class="ck-split__text">
+<p class="ck-ey">{{t.startTitle}}</p>
+<h3 id="ck-start" class="ck-h3">{{k.startH}}</h3>
+<p class="ck-p">{{t.start1}}</p>
+</div>
+<div class="ck-split__main">
+<figure class="ck-fig">
+<div class="ck-frame" style="--h: 520px"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{t.startTitle}}" aria-label="{{ck.zoom}} FIG. 01"><img src="/_blob/e9e118ca853890e9ef3d8cf1a34df56c" alt="{{t.startAlt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 01</b><span class="ck-cap__t">{{t.startCap}}</span></figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<!-- O QUE PRECISAVA MUDAR · tabela -->
+<section class="ck-wrap ck-sec">
+<div class="ck-split">
+<div class="ck-split__text"><h3 class="ck-ey">{{t.chgTitle}}</h3></div>
+<div class="ck-split__main">
+<table class="ck-compare">
+<caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{t.chgTitle}}</caption>
+<thead><tr><th scope="col">{{t.chgBefore}}</th><th scope="col">{{t.chgAfter}}</th></tr></thead>
+<tbody>
+<sc-for list="{{chg}}" as="c" hint-placeholder-count="4"><tr><td>{{c.a}}</td><td>{{c.b}}</td></tr></sc-for>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<!-- O DESAFIO · pull-quote + mapa do case -->
+<section class="ck-wrap ck-sec" aria-labelledby="ck-challenge">
+<h3 id="ck-challenge" class="ck-ey" style="margin-bottom: 28px">{{t.chTitle}}</h3>
+<blockquote class="ck-quote">{{t.chQ}}</blockquote>
+<p class="ck-p" style="margin: 32px 0 24px; max-width: 620px">{{t.frIntro}}</p>
+<div class="ck-map">
+<a href="#identidade"><span class="ck-map__n">01</span><span class="ck-map__t">{{fronts.0.title}}</span><span class="ck-map__p">{{fronts.0.text}}</span><span class="ck-map__go">{{ck.go}}</span></a>
+<a href="#experiencia"><span class="ck-map__n">02</span><span class="ck-map__t">{{fronts.1.title}}</span><span class="ck-map__p">{{fronts.1.text}}</span><span class="ck-map__go">{{ck.go}}</span></a>
+</div>
+</section>
+
+<!-- MINHA ATUAÇÃO -->
+<section id="atuacao" class="ck-wrap ck-sec--main" aria-labelledby="ck-role">
+<div class="ck-split" style="padding-top: 40px; border-top: 1px solid var(--ink); gap: 40px 64px">
+<div class="ck-split__text ck-stack--s">
+<h2 id="ck-role" class="ck-h2">{{t.roleTitle}}</h2>
+<p class="ck-sub">{{t.roleLead}}</p>
+</div>
+<div class="ck-split__main">
+<p class="ck-lead">{{t.role}}</p>
+<div>
+<h3 class="ck-ey" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{t.roleListTitle}}</h3>
+<ul class="ck-list"><sc-for list="{{roles}}" as="r" hint-placeholder-count="8"><li>{{r}}</li></sc-for></ul>
+</div>
+<p class="ck-p" style="font-size: 16px; color: var(--muted); max-width: 640px">{{t.roleCollab}}</p>
+</div>
+</div>
+</section>
+
+<!-- CAPÍTULO 01 · IDENTIDADE -->
+<section id="identidade" class="ck-chapter" aria-labelledby="ck-ch1">
+<div class="ck-chapter__in">
+<p class="ck-chapter__n" aria-hidden="true">01</p>
+<div class="ck-chapter__t">
+<p class="ck-chapter__k">{{k.ch1K}}</p>
+<h2 id="ck-ch1" class="ck-chapter__h">{{fronts.0.title}}</h2>
+<p class="ck-chapter__p">{{k.ch1P}}</p>
+</div>
+</div>
+</section>
+
+<!-- 1.1 DIREÇÃO DE MARCA · Fig A -->
+<section class="ck-wrap ck-sec" aria-labelledby="ck-brand">
+<div class="ck-split ck-split--center">
+<div class="ck-split__text">
+<p class="ck-ey">{{decisions.0.eyebrow}}</p>
+<h3 id="ck-brand" class="ck-h3">{{decisions.0.title}}</h3>
+<p class="ck-p">{{decisions.0.paras.0}}</p>
+</div>
+<div class="ck-split__main">
+<figure class="ck-fig">
+<div class="ck-frame" style="--h: 460px"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{decisions.0.title}}" aria-label="{{ck.zoom}} FIG. 02"><img src="/_blob/7d12821e15a18f716b1c3591b2019ed3" alt="{{decisions.0.subs.0.media.0.alt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 02</b><span class="ck-cap__t">{{k.fig02}}</span></figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<!-- 1.2 CONCEITO + TIPOGRAFIA · Fig B (no mobile, carrossel) -->
+<section class="ck-wrap ck-sec">
+<p class="ck-dual__head" aria-hidden="true">{{k.dualHead}}<span>{{k.swipe}} →</span></p>
+<div class="ck-dual">
+<article class="ck-dual__item" aria-labelledby="ck-concept">
+<figure class="ck-fig">
+<div class="ck-frame ck-frame--ratio ck-ph" style="position: relative">{{k.fig03Ph}}<span class="ck-mark" style="left: 12%; top: 16%">1</span><span class="ck-mark" style="left: 84%; top: 76%">2</span></div>
+<figcaption class="ck-cap"><b>FIG. 03</b><span class="ck-cap__t">{{k.fig03}}</span></figcaption>
+</figure>
+<p class="ck-ey">{{decisions.0.subs.0.eyebrow}}</p>
+<h4 id="ck-concept" class="ck-h4">{{decisions.0.subs.0.title}}</h4>
+<p class="ck-p">{{decisions.0.subs.0.paras.0}}</p>
+<ol class="ck-marks">
+<li><span class="ck-num">1</span><span>{{k.concept1}}</span></li>
+<li><span class="ck-num">2</span><span>{{k.concept2}}</span></li>
+</ol>
+</article>
+<article class="ck-dual__item" aria-labelledby="ck-type">
+<figure class="ck-fig">
+<div class="ck-frame ck-frame--ratio"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{k.typeH}}" aria-label="{{ck.zoom}} FIG. 04"><img src="/_blob/52a5296aefdbfba6fdeba9b489f72b0b" alt="{{decisions.0.subs.1.media.0.alt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 04</b><span class="ck-cap__t">{{k.fig04}}</span></figcaption>
+</figure>
+<p class="ck-ey">{{decisions.0.subs.1.eyebrow}}</p>
+<h4 id="ck-type" class="ck-h4">{{k.typeH}}</h4>
+<p class="ck-p">{{k.typeP}}</p>
+</article>
+</div>
+</section>
+
+<!-- 1.3 SISTEMA VISUAL · chips + Fig C -->
+<section class="ck-wrap ck-sec--main" aria-labelledby="ck-system">
+<div class="ck-split" style="gap: 32px 64px">
+<div class="ck-split__text">
+<p class="ck-ey">{{decisions.1.eyebrow}}</p>
+<h3 id="ck-system" class="ck-h3">{{decisions.1.title}}</h3>
+</div>
+<div class="ck-split__main" style="gap: 20px">
+<p class="ck-p" style="max-width: 640px">{{decisions.1.paras.0}}</p>
+<ul class="ck-chips"><sc-for list="{{decisions.1.list}}" as="chip" hint-placeholder-count="6"><li>{{chip}}</li></sc-for></ul>
+</div>
+</div>
+<div class="ck-bento" style="margin-top: 56px">
+<figure class="ck-fig">
+<div class="ck-frame" style="--h: 520px"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{decisions.1.title}}" aria-label="{{ck.zoom}} FIG. 05"><img src="/_blob/4cb226fe695eb1d41bdbf408219b43a7" alt="{{decisions.1.subs.0.media.0.alt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 05</b><span class="ck-cap__t">{{decisions.1.subs.0.media.0.cap}}</span></figcaption>
+</figure>
+<figure class="ck-fig">
+<div class="ck-frame" style="--h: 520px; --pos: 30% 50%"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{decisions.1.title}}" aria-label="{{ck.zoom}} FIG. 06"><img src="/_blob/3e7aac78fb2b13d337f954ea1e2a6eb8" alt="{{decisions.1.subs.0.media.1.alt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 06</b><span class="ck-cap__t">{{k.fig06}}</span></figcaption>
+</figure>
+</div>
+
+<!-- Paleta: texto + paleta detalhada -->
+<div class="ck-split" style="margin-top: 120px">
+<div class="ck-split__text" style="position: sticky; top: calc(var(--top) + 24px)">
+<p class="ck-ey">{{decisions.1.subs.0.eyebrow}}</p>
+<h4 class="ck-h4">{{k.palH}}</h4>
+</div>
+<div class="ck-split__main" style="gap: 20px; max-width: 680px">
+<p class="ck-lead">{{decisions.1.subs.0.paras.0}}</p>
+<p class="ck-p">{{decisions.1.subs.0.paras.1}}</p>
+<p class="ck-p">{{decisions.1.subs.0.paras.2}}</p>
+<p class="ck-p">{{decisions.1.subs.0.paras.3}}</p>
+</div>
+</div>
+<div class="ck-pal" role="group" aria-label="{{ck.palette}}">
+<sc-for list="{{pal}}" as="pc" hint-placeholder-count="6">
+<sc-if value="{{pc.head}}" hint-placeholder-val="{{false}}"><p class="ck-pal__head"><span class="ck-pal__k">{{pc.k}}</span> · <span class="ck-pal__u">{{pc.u}}</span></p></sc-if>
+<div class="{{pc.cls}}">
+<span class="ck-pal__k">{{pc.k}}</span>
+<span class="ck-pal__u">{{pc.u}}</span>
+<span class="ck-pal__dot" style="background: {{pc.hex}}" aria-hidden="true"></span>
+<span class="ck-pal__n">{{pc.name}}</span>
+<span class="ck-pal__hex"><b>{{pc.hex}}</b><span>{{pc.rgb}}</span></span>
+<span class="ck-pal__aa"><b style="background: {{pc.hex}}; color: {{pc.fg}}" aria-hidden="true">Aa</b>{{pc.aa}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<!-- CAPÍTULO 02 · EXPERIÊNCIA -->
+<section id="experiencia" class="ck-chapter" aria-labelledby="ck-ch2">
+<div class="ck-chapter__in">
+<p class="ck-chapter__n" aria-hidden="true">02</p>
+<div class="ck-chapter__t">
+<p class="ck-chapter__k">{{k.ch2K}}</p>
+<h2 id="ck-ch2" class="ck-chapter__h">{{fronts.1.title}}</h2>
+<p class="ck-chapter__p">{{k.ch2P}}</p>
+</div>
+</div>
+</section>
+
+<!-- DA IDENTIDADE PARA A EXPERIÊNCIA · Fig E -->
+<section class="ck-wrap ck-sec" aria-labelledby="ck-portal">
+<div class="ck-split" style="gap: 32px 64px">
+<div class="ck-split__text">
+<p class="ck-ey">{{t.portalTitle}}</p>
+<h3 id="ck-portal" class="ck-h3">{{t.portalLead}}</h3>
+</div>
+<div class="ck-split__main">
+<p class="ck-p" style="max-width: 640px">{{t.portalText}}</p>
+<ol class="ck-flow" aria-label="{{t.portalFlowLabel}}">
+<sc-for list="{{flow}}" as="fl" hint-placeholder-count="3"><li class="{{fl.cls}}"><span>{{fl.n}}</span> {{fl.label}}</li><sc-if value="{{fl.more}}" hint-placeholder-val="{{true}}"><li aria-hidden="true">→</li></sc-if></sc-for>
+</ol>
+</div>
+</div>
+<figure class="ck-fig" style="margin-top: 56px">
+<div class="ck-respiro"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{t.portalLead}}" aria-label="{{ck.zoom}} FIG. 07"><img src="/_blob/80c99e238f08bbdb391ba4ce579ca54c" alt="{{t.tabletAlt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 07</b><span class="ck-cap__t">{{k.fig07}}</span></figcaption>
+</figure>
+</section>
+
+<!-- ARQUITETURA DA EXPERIÊNCIA · cards de público -->
+<section class="ck-wrap ck-sec--main" aria-labelledby="ck-arch">
+<div class="ck-split" style="gap: 32px 64px">
+<div class="ck-split__text">
+<p class="ck-ey">{{t.archTitle}}</p>
+<h3 id="ck-arch" class="ck-h3">{{t.archLead}}</h3>
+<p class="ck-p">{{t.archIntro}}</p>
+</div>
+<div class="ck-split__main" style="gap: 24px">
+<sc-for list="{{auds}}" as="au" hint-placeholder-count="2">
+<div class="ck-card">
+<span class="ck-card__k">{{au.who}}</span>
+<p class="ck-card__t">{{au.goal}}</p>
+<ol class="ck-steps" aria-label="{{au.who}}"><sc-for list="{{au.steps}}" as="as" hint-placeholder-count="4"><li class="{{as.cls}}">{{as.label}}</li><sc-if value="{{as.more}}" hint-placeholder-val="{{true}}"><li aria-hidden="true">→</li></sc-if></sc-for></ol>
+</div>
+</sc-for>
+<p class="ck-p" style="margin-top: 8px; max-width: 640px">{{t.archClose}}</p>
+<p class="ck-p" style="max-width: 640px">{{t.archNote}}</p>
+</div>
+</div>
+</section>
+
+<!-- JORNADA · narrativa com índice fixo (Fig F) -->
+<section id="jornada" class="ck-wrap ck-sec--main" aria-labelledby="ck-journey">
+<div class="ck-split" style="padding-top: 40px; border-top: 1px solid var(--ink); gap: 24px 64px; margin-bottom: 80px">
+<div class="ck-split__text ck-stack--s">
+<h2 id="ck-journey" class="ck-h2">{{t.uxTitle}}</h2>
+<p class="ck-sub">{{t.uxLead}}</p>
+</div>
+<p class="ck-p" style="flex: 999 1 560px">{{t.uxIntro}}</p>
+</div>
+<div class="ck-jr">
+<nav class="ck-jr__idx" aria-label="{{ck.journey}}" data-ck-journey>
+<a href="#buscar"><span>01</span><span>{{ux.0.title}}</span><span>{{k.jrDesc1}}</span></a>
+<a href="#escolher"><span>02</span><span>{{ux.1.title}}</span></a>
+<a href="#conhecer"><span>03</span><span>{{ux.2.title}}</span></a>
+<a href="#iniciar"><span>04</span><span>{{ux.3.title}}</span></a>
+<a href="#responsiva" class="ck-jr__extra"><span>+</span><span>{{ui.0.title}}</span></a>
+</nav>
+<div class="ck-jr__steps">
+
+<!-- 01 BUSCAR · Fig D + recorte -->
+<article id="buscar" class="ck-step" aria-labelledby="ck-s1">
+<div class="ck-step__head">
+<span class="ck-step__k">{{ck.step}} 01</span>
+<h3 id="ck-s1" class="ck-h3">{{ux.0.title}}</h3>
+<p class="ck-p ck-dt">{{k.buscarP}}</p>
+<p class="ck-p ck-mb">{{k.buscarPm}}</p>
+<ol class="ck-marks ck-marks--row">
+<li><span class="ck-num">1</span>{{k.mark1}}</li>
+<li><span class="ck-num">2</span>{{k.mark2}}</li>
+<li><span class="ck-num">3</span>{{k.mark3}}</li>
+</ol>
+</div>
+<figure class="ck-fig">
+<div class="ck-pair" style="--h: 600px; --mh: 38.5vh">
+<div class="ck-browser">
+<div class="ck-browser__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="ck-browser__view" style="--from: 30%">
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.0.title}} · desktop" data-ck-notes="1::{{k.mark1}}|2::{{k.mark2}}|3::{{k.mark3}}" aria-label="{{ck.zoom}} FIG. 08 · desktop"><img src="/_blob/bb4e355bb2333d8cd98796d84431f26e" alt="{{t.portalAlt}}"></button>
+<span class="ck-mark" style="left: 30%; top: 14cqw" aria-hidden="true">1</span>
+<span class="ck-mark" style="left: 30%; top: 33cqw" aria-hidden="true">2</span>
+<span class="ck-mark" style="left: 70%; top: 45cqw" aria-hidden="true">3</span>
+</div>
+<button type="button" class="ck-full" data-ck-full>{{ck.full}}</button>
+</div>
+<div class="ck-phone"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.0.title}} · mobile" aria-label="{{ck.zoom}} FIG. 08 · mobile"><img src="/_blob/333ce80d825b68d49e77bc8286c6c16d" alt="{{k.homeMobileAlt}}"></button></div>
+</div>
+<figcaption class="ck-cap"><b>FIG. 08</b><span class="ck-cap__t">{{k.fig08}}</span></figcaption>
+</figure>
+<figure class="ck-fig">
+<div class="ck-frame ck-frame--crop" style="--h: 420px; --pos: 50% 0%; --mw: 175%; --mx: -6%"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.0.title}} · busca" aria-label="{{ck.zoom}} FIG. 09"><img src="/_blob/0a9d15cb7ab8e6a274c7a41eb48f6fc2" alt="{{k.buscaAlt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 09</b><span class="ck-cap__t">{{k.fig09}}</span></figcaption>
+</figure>
+</article>
+
+<!-- 02 ESCOLHER · recorte da grade -->
+<article id="escolher" class="ck-step" aria-labelledby="ck-s2">
+<div class="ck-step__head">
+<span class="ck-step__k">{{ck.step}} 02</span>
+<h3 id="ck-s2" class="ck-h3">{{ux.1.title}}</h3>
+<p class="ck-p">{{ux.1.paras.0}}</p>
+</div>
+<figure class="ck-fig">
+<div class="ck-frame ck-frame--crop" style="--h: 460px; --pos: 50% 34%; --mw: 175%; --mx: -6%; --my: -40%"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.1.title}}" aria-label="{{ck.zoom}} FIG. 10"><img src="/_blob/471127194d2be1074ca0db80da05ee42" alt="{{k.categoriasAlt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 10</b><span class="ck-cap__t">{{k.fig10}}</span></figcaption>
+</figure>
+</article>
+
+<!-- 03 CONHECER · Fig D + anotações A/B -->
+<article id="conhecer" class="ck-step" aria-labelledby="ck-s3">
+<div class="ck-step__head">
+<span class="ck-step__k">{{ck.step}} 03</span>
+<h3 id="ck-s3" class="ck-h3">{{ux.2.title}}</h3>
+<p class="ck-p ck-dt">{{ux.2.paras.0}}</p>
+<p class="ck-p ck-mb">{{k.conhecerPm}}</p>
+</div>
+<figure class="ck-fig">
+<div class="ck-pair" style="--h: 560px; --pw: 230px; --mh: 43.5vh">
+<div class="ck-browser">
+<div class="ck-browser__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="ck-browser__view" style="--from: 12%">
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.2.title}} · desktop" data-ck-notes="A::{{k.noteA}}|B::{{k.noteB}}" aria-label="{{ck.zoom}} FIG. 11 · desktop"><img src="/_blob/db98f269e4ff39c52b0ca4786f583aca" alt="{{k.detalheAlt}}"></button>
+<span class="ck-mark" style="left: 23%; top: 32cqw" aria-hidden="true">A</span>
+<span class="ck-mark" style="left: 50%; top: 19cqw" aria-hidden="true">B</span>
+</div>
+<button type="button" class="ck-full" data-ck-full>{{ck.full}}</button>
+</div>
+<div class="ck-phone"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.2.title}} · mobile" aria-label="{{ck.zoom}} FIG. 11 · mobile"><img src="/_blob/059b5753dd63beee01005e99dee07998" alt="{{k.detalheMobileAlt}}"></button></div>
+</div>
+<figcaption class="ck-cap ck-cap--stack">
+<span class="ck-cap__row"><b>FIG. 11</b><span class="ck-cap__t">{{k.fig11}}</span></span>
+<span class="ck-cap__notes"><b>A</b> {{k.noteA}} · <b>B</b> {{k.noteB}}</span>
+</figcaption>
+</figure>
+</article>
+
+<!-- 04 INICIAR A CONTRATAÇÃO · diagrama em HTML + tela a produzir -->
+<article id="iniciar" class="ck-step" aria-labelledby="ck-s4">
+<div class="ck-step__head">
+<span class="ck-step__k">{{ck.step}} 04</span>
+<h3 id="ck-s4" class="ck-h3">{{ux.3.title}}</h3>
+<p class="ck-p">{{ux.3.paras.0}}</p>
+</div>
+<figure class="ck-fig">
+<div class="ck-diagram" role="img" aria-label="{{t.uxDiagLabel}}">
+<div class="ck-diagram__portal">
+<span class="ck-card__k" style="color: var(--muted)">{{k.portalPublic}}</span>
+<ol class="ck-steps"><sc-for list="{{dsteps}}" as="ds" hint-placeholder-count="4"><li class="{{ds.cls}}">{{ds.label}}</li></sc-for></ol>
+</div>
+<span class="ck-diagram__arrow" aria-hidden="true">→</span>
+<div class="ck-diagram__login">{{t.uxDiagLogin}}</div>
+<span class="ck-diagram__arrow" aria-hidden="true">→</span>
+<div class="ck-diagram__hub"><b>{{t.uxDiagHub}}</b><span>{{t.uxDiagCont}}</span></div>
+</div>
+<figcaption class="ck-cap"><b>FIG. 12</b><span class="ck-cap__t">{{t.uxDiagCap}}</span></figcaption>
+</figure>
+<div class="ck-frame ck-ph" style="--h: 360px; background: #E9E9EE">{{k.ctaPh}}</div>
+</article>
+
+<!-- EXPERIÊNCIA RESPONSIVA · trio mobile a produzir -->
+<article id="responsiva" class="ck-step" aria-labelledby="ck-s5">
+<div class="ck-step__head">
+<span class="ck-step__k">{{k.respK}}</span>
+<h3 id="ck-s5" class="ck-h3">{{ui.0.title}}</h3>
+<p class="ck-p">{{ui.0.text}}</p>
+</div>
+<figure class="ck-fig">
+<div class="ck-frame ck-ph ck-ph--blue" style="--h: 520px">{{k.fig13Ph}}</div>
+<figcaption class="ck-cap"><b>FIG. 13</b><span class="ck-cap__t">{{k.fig13}}</span></figcaption>
+</figure>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- RESULTADOS · grafite -->
+<section id="resultados" class="ck-results" aria-labelledby="ck-results">
+<div class="ck-results__in">
+<div class="ck-split" style="gap: 24px 64px">
+<div class="ck-split__text ck-stack--s">
+<h2 id="ck-results" class="ck-h2">{{t.resTitle}}</h2>
+<p class="ck-sub">{{t.resLead}}</p>
+</div>
+<p class="ck-lead" style="flex: 999 1 560px">{{t.resIntro}}</p>
+</div>
+<div class="ck-results__grid">
+<div class="ck-results__col"><span class="ck-n">01</span><h3>{{t.resIdTitle}}</h3><p>{{t.resIdText}}</p></div>
+<div class="ck-results__col"><span class="ck-n">02</span><h3>{{t.resEvoTitle}}</h3><p>{{t.resEvoText}}</p></div>
+<div class="ck-results__col ck-results__num"><strong>{{resNums.0.v}}</strong><div><b>{{k.resNumK}}</b><span>{{k.resNumV}}</span></div></div>
+</div>
+<p class="ck-p">{{t.resEvoClose}}</p>
+</div>
+</section>
+
+<!-- PRÓXIMO CASE · faixa branca -->
+<a class="ck-next" href="CaseStrategi.dc.html">
+<span class="ck-next__in">
+<span style="flex: 1 1 480px"><span class="ck-next__k">{{t.next}}</span><span class="ck-next__t">{{t.nextTitle}}</span></span>
+<span class="ck-next__go"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</span>
+</a>
+</div>
+
+<!-- RODAPÉ PADRÃO DO SITE -->
+<sc-include name="site-footer"></sc-include>
+</sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","en","pt"],"default":"auto"},"$preview":{"width":1440,"height":8000}}'>
@@ -707,7 +1119,60 @@ class Component extends DCLogic {
       var s = SHOT[x[1]], v = s ? s[lang] : {};
       return { ph: s ? '' : x[1], isScroll: x[0] === 's', isPhone: x[0] === 'p', isD: x[0] === 'd', isM: x[0] === 'm', src: s ? s.src : '', alt: v.alt || '', label: v.label || '', cap: v.cap || '', hasCap: !!v.cap };
     };
+    // Template de case (case kit): textos novos do HANDOFF (títulos ✎, legendas FIG, anotações e rótulos).
+    // Por enquanto só em PT; a versão EN ainda usa o layout anterior.
+    var K = {
+      pt: {
+        railName: 'Hub Sebrae RN', railCtx: 'Contexto', railRole: 'Atuação', railId: '01 Identidade', railExp: '02 Experiência', railJr: 'Jornada', railRes: 'Resultados',
+        startH: 'Uma plataforma estruturada, mas distante de quem empreende',
+        ch1K: 'Decisões de design · Frente 1', ch1P: 'Direção de marca, conceito, tipografia e sistema visual.',
+        ch2K: 'Decisões de design · Frente 2', ch2P: 'Da identidade para o produto, arquitetura e jornada do empreendedor.',
+        fig02: 'Logo em versão branca sobre azul e colorida sobre branco.',
+        fig03: 'Construção do símbolo.', fig03Ph: '[Imagem · Construção do símbolo]',
+        concept1: 'A impressão representa a singularidade de cada negócio.', concept2: 'O território reforça o caráter local e próximo do atendimento.',
+        dualHead: 'Conceito e tipografia', swipe: 'Deslize',
+        fig04: 'Tipografia em dois níveis: marca e sistema.',
+        typeH: 'Impacto na marca, legibilidade no sistema',
+        typeP: 'Para a palavra HUB, a Audiowide traz uma abordagem moderna e de impacto: suas formas geométricas reforçam a ideia de inovação e dão presença à marca. Para o restante do sistema, a prioridade foi a legibilidade: a Poppins Bold organiza títulos e destaques com clareza, e a Inter Regular, desenhada para telas, garante leitura confortável nos textos e componentes da interface.',
+        fig06: 'Aplicação em peça de comunicação.',
+        palH: 'Vínculo com o Sebrae, sem a neutralidade de antes',
+        fig07: 'Home do portal: hero com empreendedora, busca e categorias.',
+        jrDesc1: 'Home, busca, resultados', respK: 'Em todos os contextos',
+        buscarP: 'A experiência começa pela descoberta. A home apresenta o Hub de forma visual e orientada ao empreendedor, e reúne três caminhos diferentes para encontrar uma solução, inclusive para quem ainda não sabe exatamente qual serviço procura:',
+        // Textos mobile (referência mobile do HANDOFF), para texto e figura caberem juntos na primeira dobra.
+        buscarPm: 'A home reúne busca, categorias e destaques como caminhos diferentes para encontrar uma solução.',
+        conhecerPm: 'A página de serviço reúne descrição, público-alvo, área de atuação e características da oferta.',
+        mark1: 'Busca', mark2: 'Categorias', mark3: 'Destaques',
+        fig08: 'Home desktop e mobile. A página completa abre em visualizador dedicado.',
+        fig09: 'Tela de busca: filtros por área, 25 resultados em cards e paginação.',
+        fig10: 'Categorias: as 17 áreas de atuação, como Design, Inovação e Marketing & Vendas.',
+        fig11: 'Página de serviço no desktop e no celular.',
+        noteA: 'Valor com subsídio do Sebrae e botão Contratar serviço', noteB: 'Público-alvo, observações, Etapas e entregas',
+        portalPublic: 'Portal público', ctaPh: '[Tela · CTA e transição para login]',
+        fig13: 'Trio de telas mobile sobre o azul.', fig13Ph: '[Composição · Desktop + mobile]',
+        resNumK: 'novas instituições', resNumV: 'Sebrae BA · Sebrae SE · Senac PE',
+        homeMobileAlt: SHOT.homeMobile.pt.alt, buscaAlt: SHOT.busca.pt.alt, categoriasAlt: SHOT.categorias.pt.alt,
+        detalheAlt: SHOT.detalheDesktop.pt.alt, detalheMobileAlt: SHOT.detalheMobile.pt.alt
+      }
+    };
+    // Paleta principal (HANDOFF §6): HEX extraídos da imagem da paleta.
+    var PAL = {
+      pt: [
+        { cls: 'ck-pal__c ck-pal__c--base', k: 'Base', u: 'Fundos, marca e elementos principais', name: 'Azul Sebrae', hex: '#005EB8', rgb: 'RGB 0 · 94 · 184', fg: '#FFFFFF', aa: 'Texto branco · 6,4:1' },
+        { cls: 'ck-pal__c ck-pal__c--first', k: 'Apoio', u: 'Grafismos, destaques e navegação', name: 'Ciano', hex: '#42D8FD', rgb: 'RGB 66 · 216 · 253', fg: '#0A0A0A', aa: 'Texto escuro · 11,8:1' },
+        { cls: 'ck-pal__c', k: '', u: '', name: 'Verde', hex: '#0DDB91', rgb: 'RGB 13 · 219 · 145', fg: '#0A0A0A', aa: 'Texto escuro · 10,9:1' },
+        { cls: 'ck-pal__c', k: '', u: '', name: 'Amarelo', hex: '#FFD71D', rgb: 'RGB 255 · 215 · 29', fg: '#0A0A0A', aa: 'Texto escuro · 14,1:1' },
+        { cls: 'ck-pal__c', k: '', u: '', name: 'Lilás', hex: '#7F6BFF', rgb: 'RGB 127 · 107 · 255', fg: '#0A0A0A', aa: 'Texto escuro · 5,1:1' },
+        { cls: 'ck-pal__c', k: '', u: '', name: 'Magenta', hex: '#DD1FFD', rgb: 'RGB 221 · 31 · 253', fg: '#0A0A0A', aa: 'Texto escuro · 5,4:1' }
+      ]
+    };
+    // Sequências com o último passo em destaque (fluxos, públicos e diagrama).
+    PAL.pt.forEach(function (p, i) { p.head = i === 1; });
+    var chain = function (list) { return list.map(function (l, i, a) { var last = i === a.length - 1; return { n: i + 1, label: l, cls: last ? 'is-on' : '', more: !last }; }); };
     return {
+      k: K[lang] || {}, pal: PAL[lang] || [],
+      flow: chain(PF[lang]), dsteps: chain(US[lang]),
+      auds: AU[lang].map(function (a) { return { who: a.who, goal: a.goal, steps: chain(a.path.split(' → ')) }; }),
       docLang: lang === 'en' ? 'en' : 'pt-BR',
       stkClass: this.state.stuck ? 'ro-stk ro-on' : 'ro-stk',
       t: T[lang], meta: M[lang], nums: NU[lang], resNums: RN[lang], chg: CH[lang], roles: RO[lang], aud: AU[lang], fronts: FR[lang],

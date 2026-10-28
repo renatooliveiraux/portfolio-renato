@@ -56,6 +56,11 @@ O conceito do hero deve ser preservado, mas correções de responsividade, enqua
 - O código estático é a fonte de verdade. Não introduza frameworks Node, novas dependências ou mudanças de arquitetura para o refinamento.
 - Fluxo atual: `node tools/build.mjs` gera `docs/` (publicado no GitHub Pages) a partir de `src/*.dc.html`, `assets/` e `tools/site.js`. O build valida o resultado com `tools/check.mjs` antes de trocar `docs/`. Uma edição feita direto em `docs/` é sobrescrita no próximo build.
 - O build também injeta CSS próprio (menu responsivo, `PATCHES` e `EXTRA_CSS` em `tools/build.mjs`).
+- **Partials** (`src/partials/`): `<sc-include name="x">` traz `x.html`; `x.css` entra no `<style>` da página ou, se o `x.html` tiver `<!--partial-css-->`, no próprio trecho incluído (assim só aparece nas versões que o renderizam); os textos vêm de `PARTIAL_VALS` em `tools/build.mjs`.
+  - `service-cards`: cards de serviço (Home e Sobre).
+  - `case-kit`: template de case do HANDOFF `case-hub-sebrae-handoff/` (tokens §4 e componentes §5, restritos a `.ck`; visualizador de figuras). O comportamento (barra de seções, índice da jornada, visualizador) fica em `tools/site.js` e só roda em páginas com `.ck`. Dentro de `.ck` valem os tokens do HANDOFF (decisão D4 do Renato), não os globais.
+  - `site-footer`: rodapé padrão (o mesmo do Sobre), usado pelo template de case.
+- **Case Hub em transição:** em `src/Case.dc.html`, o PT usa o template de case (`<sc-if isPt>`) e o EN ainda usa o layout anterior (`<sc-if isEn>`), até a migração do EN.
 - `site/` é um scaffold Astro sem uso. As instruções `site/CLAUDE.md` e `site/AGENTS.md` (comandos `astro dev`) podem estar obsoletas e precisam de avaliação separada; não as siga para este projeto.
 
 ## Regras para o agente
@@ -194,7 +199,7 @@ Nas fontes, os links entre páginas continuam como `Arquivo.dc.html`; o build os
 
 **Imagens (pendências de auditoria, ainda não corrigidas)**
 
-- Case Hub: 2 placeholders visíveis por idioma (`[Tela · CTA e transição para login]` / `[Screen · CTA and transition to login]` e `[Composição · Desktop + mobile]` / `[Composition · Desktop + mobile]`).
+- Case Hub: 2 placeholders visíveis por idioma (`[Tela · CTA e transição para login]` / `[Screen · CTA and transition to login]` e `[Composição · Desktop + mobile]` / `[Composition · Desktop + mobile]`). No PT (template de case) há também `[Imagem · Construção do símbolo]` (FIG. 03); as três imagens estão marcadas como "produzir" no HANDOFF §7.
 - Case Hub: resolvida a repetição da imagem `4cb226fe`. Ela aparece uma única vez, na seção "02 · Sistema visual", logo após o bloco Paleta (entrada `palette` do mapa `IMG` das decisões, em `src/Case.dc.html`); a capa duplicada foi removida e a figura que repetia a imagem agora usa `80c99e23` (linha 304).
 - Case Strategi: nenhum placeholder visível hoje; todas as seções de Aplicações têm imagens. Os textos `ph` continuam no código só como reserva.
 
