@@ -100,435 +100,111 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </div>
 </header>
 
-<div style="max-width: 1280px; margin: 0 auto; padding: 40px 24px 0">
-<a class="ro-bk" href="Projetos.dc.html" style="min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font: 500 14px 'Geist', sans-serif"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>{{t.back}}</a>
-<div class="ro-up" style="margin: 56px 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">{{t.tag}}</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
-<h1 class="ro-up ro-d1" style="margin: 0; max-width: 1000px; font: 500 clamp(48px, 6.6vw, 108px)/0.94 'Geist', sans-serif; letter-spacing: -0.055em">{{t.h1}}</h1>
-<div class="ro-up ro-d2" style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #000000; display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start">
-<p style="flex: 2 1 480px; max-width: 680px; margin: 0; font: 500 clamp(20px, 1.7vw, 24px)/1.45 'Geist', sans-serif; letter-spacing: -0.01em; color: #333333">{{t.lead}}</p>
-<dl style="flex: 1 1 320px; margin: 0">
-<sc-for list="{{meta}}" as="m" hint-placeholder-count="3">
-<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #E4E4E4">
-<dt style="font: 500 12px/1.6 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">{{m.k}}</dt>
-<dd style="margin: 0; font: 500 15px/1.5 'Geist', sans-serif; color: #000000">{{m.v}}</dd>
+<div class="ck ck-hero">
+<a class="ck-back" href="Projetos.dc.html">← {{c.back}}</a>
+<p class="ck-hero__tag">{{c.tag}}<i aria-hidden="true"></i><span>{{c.caseN}}</span></p>
+<h1>{{c.h1}}</h1>
+<div class="ck-hero__row">
+<p class="ck-hero__lead">{{c.lead}}</p>
+<div class="ck-hero__aside">
+<span class="ck-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{ck.time}}</span>
+<a href="#resumo">{{ck.summary}}</a>
 </div>
-</sc-for>
+</div>
+<dl class="ck-ficha">
+<sc-for list="{{ficha}}" as="fi" hint-placeholder-count="5"><div class="{{fi.cls}}"><dt>{{fi.k}}</dt><dd>{{fi.v}}</dd></div></sc-for>
 </dl>
-</div>
-</div>
-</section>
+</div></section>
 
 <!-- CONTEXTO E DESAFIO -->
-<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec); display: flex; flex-direction: column; gap: 64px">
-<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px"><h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.ctxTitle}}</h2></div>
-<p style="flex: 2 1 560px; max-width: 760px; margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">{{t.ctxLead}}</p>
-</div>
 
-<div style="display: flex; flex-direction: column; gap: var(--sub)">
-<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
-<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">{{t.ctxSub}}</h3></div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.ctx1}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.ctx2}}</p>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); border-top: 1px solid #000000">
-<sc-for list="{{nums}}" as="n" hint-placeholder-count="2">
-<div style="padding: 20px 16px 0 0"><p style="margin: 0; font: 500 clamp(40px, 4vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.05em; color: #000000">{{n.v}}</p><p style="margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #4A4A4A">{{n.k}}</p></div>
-</sc-for>
-</div>
-</div>
-</div>
-
-<sc-if value="{{isEn}}"><div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
-<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">{{t.startTitle}}</h3></div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px"><p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.start1}}</p></div>
-</div>
-
-<figure style="margin: 0">
-<img src="/_blob/e9e118ca853890e9ef3d8cf1a34df56c" alt="{{t.startAlt}}" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #DFE2E6">
-<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{t.startCap}}</figcaption>
-</figure>
-
-<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
-<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">{{t.chgTitle}}</h3></div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<table style="width: 100%; border-collapse: collapse; font-family: 'Geist', sans-serif">
-<caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{t.chgTitle}}</caption>
-<thead><tr>
-<th scope="col" style="width: 50%; padding: 0 16px 12px 0; text-align: left; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">{{t.chgBefore}}</th>
-<th scope="col" style="width: 50%; padding: 0 0 12px 0; text-align: left; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">{{t.chgAfter}}</th>
-</tr></thead>
-<tbody>
-<sc-for list="{{chg}}" as="c" hint-placeholder-count="4">
-<tr style="border-top: 1px solid #E4E4E4">
-<td style="padding: 18px 16px 18px 0; vertical-align: top; font-size: 16px; line-height: 1.45; color: #5C5C5C">{{c.a}}</td>
-<td style="padding: 18px 0; vertical-align: top; font-size: 17px; line-height: 1.45; font-weight: 500; color: #000000"><span aria-hidden="true" style="color: #253CEA; margin-right: 10px">→</span>{{c.b}}</td>
-</tr>
-</sc-for>
-</tbody>
-</table>
-</div>
-</div>
-
-<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #E4E4E4">
-<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">{{t.chTitle}}</h3></div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px"><p style="margin: 0; padding-left: 20px; border-left: 3px solid #253CEA; font: 500 clamp(21px, 1.9vw, 26px)/1.45 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">{{t.chQ}}</p></div>
-</div>
-
-<div style="display: flex; flex-wrap: wrap; gap: 24px 64px">
-<div style="flex: 1 1 280px"></div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.frIntro}}</p>
-<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px">
-<sc-for list="{{fronts}}" as="f" hint-placeholder-count="2">
-<li style="padding: 24px; border-radius: 16px; background: #F7F7F8; display: flex; flex-direction: column; gap: 12px">
-<span style="font: 600 12px 'Geist', sans-serif; color: #253CEA">{{f.n}}</span>
-<span style="font: 500 22px/1.2 'Geist', sans-serif; letter-spacing: -0.02em; color: #000000">{{f.title}}</span>
-<span style="font-size: 16px; line-height: 1.6; color: #333333">{{f.text}}</span>
-</li>
-</sc-for>
-</ol>
-</div>
-</div>
-</sc-if></div>
-</section><sc-if value="{{isEn}}">
-
-<!-- 02 ATUAÇÃO -->
-<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.roleTitle}}</h2>
-</div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">{{t.roleLead}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.role}}</p>
-<div>
-<h3 style="margin: 0 0 12px; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">{{t.roleListTitle}}</h3>
-<ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); column-gap: 32px; border-top: 1px solid #000000">
-<sc-for list="{{roles}}" as="r" hint-placeholder-count="8">
-<li style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E4E4E4; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>{{r}}</li>
-</sc-for>
-</ul>
-</div>
-<p style="margin: 0; padding-left: 20px; border-left: 3px solid #253CEA; font: 500 19px/1.6 'Geist', sans-serif; color: #000000">{{t.roleCollab}}</p>
-</div>
-</section>
-
-<!-- 03 DECISÕES -->
-<section style="background: #F7F7F8">
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px">
-<div style="display: flex; flex-wrap: wrap; gap: 32px 64px; margin-bottom: 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.decTitle}}</h2>
-</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: var(--sub)">
-<sc-for list="{{decisions}}" as="d" hint-placeholder-count="3">
-<article style="display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding-top: 32px; border-top: 1px solid #000000">
-<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #5C5C5C">{{d.n}}</span>
-<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 12px">
-<sc-if value="{{d.hasEy}}" hint-placeholder-val="{{true}}"><p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">{{d.eyebrow}}</p></sc-if>
-<h3 style="margin: 0; font: 500 clamp(26px, 2.6vw, 36px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">{{d.title}}</h3>
-</div>
-<div style="flex: 2 1 480px; max-width: 640px; display: flex; flex-direction: column; gap: 16px">
-<sc-for list="{{d.paras}}" as="tx" hint-placeholder-count="1"><p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">{{tx}}</p></sc-for>
-<sc-if value="{{d.hasList}}" hint-placeholder-val="{{false}}">
-<ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); column-gap: 32px; border-top: 1px solid #000000">
-<sc-for list="{{d.list}}" as="li" hint-placeholder-count="6">
-<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D6D6D6; font: 500 16px/1.4 'Geist', sans-serif; color: #000000"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; border-radius: 50%; background: #253CEA"></span>{{li}}</li>
-</sc-for>
-</ul>
-</sc-if>
-<sc-for list="{{d.after}}" as="tx" hint-placeholder-count="0"><p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">{{tx}}</p></sc-for>
-</div>
-</div>
-<sc-for list="{{d.subs}}" as="sb" hint-placeholder-count="0">
-<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding-top: 24px; border-top: 1px solid #D6D6D6">
-<span aria-hidden="true" style="flex: 0 0 64px"></span>
-<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 12px">
-<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">{{sb.eyebrow}}</p>
-<sc-if value="{{sb.hasTitle}}" hint-placeholder-val="{{true}}"><h4 style="margin: 0; font: 500 clamp(22px, 2vw, 28px)/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #000000">{{sb.title}}</h4></sc-if>
-</div>
-<div style="flex: 2 1 480px; max-width: 640px; display: flex; flex-direction: column; gap: 16px">
-<sc-for list="{{sb.paras}}" as="tx" hint-placeholder-count="2"><p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">{{tx}}</p></sc-for>
-</div>
-</div>
-<sc-for list="{{sb.media}}" as="md" hint-placeholder-count="1">
-<figure style="margin: 0">
-<img src="{{md.src}}" alt="{{md.alt}}" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #FFFFFF">
-<sc-if value="{{md.hasCap}}" hint-placeholder-val="{{false}}"><figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{md.cap}}</figcaption></sc-if>
-</figure>
-</sc-for>
-</sc-for>
-<sc-if value="{{d.hasMedia}}" hint-placeholder-val="{{true}}">
-<div style="display: flex; flex-direction: column; gap: 16px">
-<sc-for list="{{d.media}}" as="md" hint-placeholder-count="2">
-<sc-if value="{{md.has}}" hint-placeholder-val="{{false}}">
-<img src="{{md.src}}" alt="{{md.alt}}" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #FFFFFF">
-</sc-if>
-<sc-if value="{{md.no}}" hint-placeholder-val="{{true}}">
-<div style="aspect-ratio: 4 / 3; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center">
-<span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">{{md.ph}}</span>
-</div>
-</sc-if>
-</sc-for>
-</div>
-</sc-if>
-</article>
-</sc-for>
-</div>
-</div>
-</section>
-
-<!-- 04 PORTAL -->
-<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec)">
-<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.portalTitle}}</h2>
-</div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">{{t.portalLead}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.portalText}}</p>
-<ol aria-label="{{t.portalFlowLabel}}" style="list-style: none; margin: 0; padding: 20px 0 0; border-top: 1px solid #000000; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px">
-<sc-for list="{{pflow}}" as="pf" hint-placeholder-count="3">
-<li style="display: flex; align-items: center; gap: 16px; font: 500 clamp(18px, 1.6vw, 22px)/1.2 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000"><span>{{pf.label}}</span><sc-if value="{{pf.more}}" hint-placeholder-val="{{true}}"><span aria-hidden="true" style="color: #253CEA">→</span></sc-if></li>
-</sc-for>
-</ol>
-</div>
-</div>
-</section>
-
-<!-- IMAGEM · PORTAL EM TABLET -->
-<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec)">
-<figure style="margin: 0">
-<img src="/_blob/80c99e238f08bbdb391ba4ce579ca54c" alt="{{t.tabletAlt}}" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #D1E1FB">
-</figure>
-</div>
-
-<!-- ARQUITETURA DA EXPERIÊNCIA -->
-<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-direction: column; gap: 64px">
-<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.archTitle}}</h2>
-</div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">{{t.archLead}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.archIntro}}</p>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px">
-<sc-for list="{{aud}}" as="a" hint-placeholder-count="2">
-<div style="padding-top: 20px; border-top: 1px solid #000000; display: flex; flex-direction: column; gap: 12px">
-<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">{{a.who}}</p>
-<h3 style="margin: 0; font: 500 clamp(22px, 2vw, 28px)/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #000000">{{a.goal}}</h3>
-<p style="margin: 0; font: 500 15px/1.6 'Geist', sans-serif; color: #5C5C5C">{{a.path}}</p>
-</div>
-</sc-for>
-</div>
-<p style="margin: 0; padding-left: 20px; border-left: 3px solid #253CEA; font: 500 19px/1.6 'Geist', sans-serif; color: #000000">{{t.archClose}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.archNote}}</p>
-</div>
-</div>
-</section>
-
-<!-- DA DESCOBERTA AO INÍCIO DA CONTRATAÇÃO (jornada do empreendedor no portal) -->
-<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-direction: column; gap: 64px">
-<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.uxTitle}}</h2>
-</div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">{{t.uxLead}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.uxIntro}}</p>
-</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: var(--sub)">
-<sc-for list="{{ux}}" as="u" hint-placeholder-count="4">
-<article style="display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding-top: 32px; border-top: 1px solid #000000">
-<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #5C5C5C">{{u.n}}</span>
-<h3 style="flex: 1 1 260px; margin: 0; font: 500 clamp(26px, 2.6vw, 36px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">{{u.title}}</h3>
-<div style="flex: 2 1 480px; max-width: 640px; display: flex; flex-direction: column; gap: 16px">
-<sc-for list="{{u.paras}}" as="tx" hint-placeholder-count="1"><p style="margin: 0; font-size: 17px; line-height: 1.75; color: #333333">{{tx}}</p></sc-for>
-</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 16px">
-<sc-for list="{{u.shots}}" as="sh" hint-placeholder-count="2">
-<sc-if value="{{sh.isScroll}}" hint-placeholder-val="{{false}}">
-<figure style="margin: 0; padding: clamp(16px, 4vw, 56px); border-radius: 20px; background: #F7F7F8">
-<div style="max-width: 980px; margin: 0 auto; border-radius: 14px; overflow: hidden; background: #FFFFFF; box-shadow: 0 30px 60px rgba(0,0,0,.10); border: 1px solid #E4E4E4">
-<div aria-hidden="true" style="height: 40px; padding: 0 16px; display: flex; align-items: center; gap: 8px; background: #FFFFFF; border-bottom: 1px solid #EAEAEA">
-<span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span>
-<span style="margin-left: 16px; flex: 1; max-width: 320px; height: 22px; border-radius: 999px; background: #F7F7F8"></span>
-</div>
-<div tabindex="0" role="region" aria-label="{{sh.label}}" style="max-height: min(820px, 80vh); overflow-y: auto; overscroll-behavior: contain">
-<img src="{{sh.src}}" alt="{{sh.alt}}" style="width: 100%; height: auto; display: block">
-</div>
-</div>
-<sc-if value="{{sh.hasCap}}" hint-placeholder-val="{{true}}"><figcaption style="margin-top: 20px; text-align: center; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{sh.cap}}</figcaption></sc-if>
-</figure>
-</sc-if>
-<sc-if value="{{sh.isPhone}}" hint-placeholder-val="{{false}}"><figure style="margin: 0; padding: clamp(24px, 4vw, 48px); border-radius: 20px; background: #F7F7F8; display: flex; justify-content: center"><div tabindex="0" role="region" aria-label="{{sh.label}}" style="aspect-ratio: 9 / 19; width: min(320px, 100%); border-radius: 28px; overflow-y: auto; overscroll-behavior: contain; background: #FFFFFF; border: 1px solid #E4E4E4; box-shadow: 0 30px 60px rgba(0,0,0,.10)"><img src="{{sh.src}}" alt="{{sh.alt}}" style="width: 100%; height: auto; display: block"></div></figure></sc-if>
-<sc-if value="{{sh.isD}}" hint-placeholder-val="{{true}}"><div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">{{sh.ph}}</span></div></sc-if>
-<sc-if value="{{sh.isM}}" hint-placeholder-val="{{false}}"><div style="padding: clamp(24px, 4vw, 48px); border-radius: 20px; background: #F7F7F8; display: flex; justify-content: center"><div style="aspect-ratio: 9 / 19; width: min(320px, 100%); border-radius: 28px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">{{sh.ph}}</span></div></div></sc-if>
-</sc-for>
-</div>
-</article>
-</sc-for>
-</div>
-
-<figure style="margin: 0; padding: clamp(24px, 4vw, 56px); border-radius: 20px; background: #F7F7F8">
-<div role="img" aria-label="{{t.uxDiagLabel}}" style="display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
-<div style="width: 100%; max-width: 760px; padding: 24px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DADADA; display: flex; flex-direction: column; align-items: center; gap: 16px">
-<p style="margin: 0; font: 500 12px 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #253CEA">{{t.uxDiagPortal}}</p>
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px">
-<sc-for list="{{uxSteps}}" as="us" hint-placeholder-count="3">
-<span style="display: inline-flex; align-items: center; gap: 10px"><span style="min-height: 44px; padding: 10px 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #F7F7F8; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">{{us.label}}</span><sc-if value="{{us.more}}" hint-placeholder-val="{{true}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></sc-if></span>
-</sc-for>
-</div>
-</div>
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
-<span style="min-height: 44px; padding: 10px 22px; display: inline-flex; align-items: center; border-radius: 999px; background: #FFFFFF; border: 1px solid #DADADA; font: 500 15px/1.2 'Geist', sans-serif; color: #000000">{{t.uxDiagLogin}}</span>
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#253CEA" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
-<div style="padding: 18px 28px; border-radius: 16px; background: #253CEA; color: #FFFFFF; display: flex; flex-direction: column; gap: 4px">
-<span style="font: 600 17px/1.2 'Geist', sans-serif">{{t.uxDiagHub}}</span>
-<span style="font: 500 13px/1.4 'Geist', sans-serif; opacity: .85">{{t.uxDiagCont}}</span>
-</div>
-</div>
-<figcaption style="margin-top: 28px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{t.uxDiagCap}}</figcaption>
-</figure>
-
-<sc-for list="{{ui}}" as="v" hint-placeholder-count="1">
-<article style="display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
-<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em; color: #000000">{{v.title}}</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">{{v.text}}</p>
-</div>
-<div style="display: flex; flex-direction: column; gap: 16px">
-<sc-for list="{{v.shots}}" as="sh" hint-placeholder-count="2">
-<sc-if value="{{sh.isScroll}}" hint-placeholder-val="{{false}}">
-<figure style="margin: 0; padding: clamp(16px, 4vw, 56px); border-radius: 20px; background: #F7F7F8">
-<div style="max-width: 980px; margin: 0 auto; border-radius: 14px; overflow: hidden; background: #FFFFFF; box-shadow: 0 30px 60px rgba(0,0,0,.10); border: 1px solid #E4E4E4">
-<div aria-hidden="true" style="height: 40px; padding: 0 16px; display: flex; align-items: center; gap: 8px; background: #FFFFFF; border-bottom: 1px solid #EAEAEA">
-<span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #DADADA"></span>
-<span style="margin-left: 16px; flex: 1; max-width: 320px; height: 22px; border-radius: 999px; background: #F7F7F8"></span>
-</div>
-<div tabindex="0" role="region" aria-label="{{t.portalScroll}}" style="height: min(820px, 80vh); overflow-y: auto; overscroll-behavior: contain">
-<img src="/_blob/bb4e355bb2333d8cd98796d84431f26e" alt="{{t.portalAlt}}" style="width: 100%; height: auto; display: block">
-</div>
-</div>
-<figcaption style="margin-top: 20px; text-align: center; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{t.portalCap}}</figcaption>
-</figure>
-</sc-if>
-<sc-if value="{{sh.isD}}" hint-placeholder-val="{{true}}"><div style="aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">{{sh.ph}}</span></div></sc-if>
-<sc-if value="{{sh.isM}}" hint-placeholder-val="{{false}}"><div style="padding: clamp(24px, 4vw, 48px); border-radius: 20px; background: #F7F7F8; display: flex; justify-content: center"><div style="aspect-ratio: 9 / 19; width: min(320px, 100%); border-radius: 28px; background: #FFFFFF; border: 1px dashed #C9C9C9; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center"><span style="padding: 8px 14px; border-radius: 999px; background: #F7F7F8; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">{{sh.ph}}</span></div></div></sc-if>
-</sc-for>
-</div>
-</article>
-</sc-for>
-</section>
-
-<!-- RESULTADOS -->
-<section style="background: #F7F7F8">
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px; display: flex; flex-direction: column; gap: 64px">
-<div style="display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.resTitle}}</h2>
-</div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font: 500 clamp(24px, 2.3vw, 32px)/1.3 'Geist', sans-serif; letter-spacing: -0.025em; color: #000000">{{t.resLead}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.resIntro}}</p>
-</div>
-</div>
-
-<div style="display: flex; flex-direction: column; gap: var(--sub)">
-<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #D6D6D6">
-<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">{{t.resIdTitle}}</h3></div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.resIdText}}</p>
-</div>
-</div>
-<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; padding-top: 32px; border-top: 1px solid #D6D6D6">
-<div style="flex: 1 1 280px"><h3 style="margin: 0; font: 500 clamp(20px, 1.6vw, 22px)/1.3 'Geist', sans-serif; letter-spacing: -0.015em; color: #000000">{{t.resEvoTitle}}</h3></div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 28px">
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.resEvoText}}</p>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); border-top: 1px solid #000000">
-<sc-for list="{{resNums}}" as="n" hint-placeholder-count="1">
-<div style="padding: 20px 16px 0 0"><p style="margin: 0; font: 500 clamp(40px, 4vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.05em; color: #000000">{{n.v}}</p><p style="margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #4A4A4A">{{n.k}}</p></div>
-</sc-for>
-</div>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.resEvoClose}}</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- NEXT + FOOTER -->
-<footer style="position: relative; overflow: hidden; background: #000000; color: #FFFFFF">
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px 40px">
-<a class="ro-next" href="CaseStrategi.dc.html" style="padding-bottom: 72px; border-bottom: 1px solid #262626; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px">
-<div style="flex: 1 1 480px">
-<div style="margin: 0 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #8A8A8A">{{t.next}}</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #333333"></span></div>
-<p style="margin: 0; max-width: 900px; font: 500 clamp(44px, 6vw, 96px)/0.95 'Geist', sans-serif; letter-spacing: -0.055em">{{t.nextTitle}}</p>
-</div>
-<span class="ro-dot" style="width: 88px; height: 88px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-</a>
-<div style="position: relative; padding: 32px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px">
-
-<img src="/_blob/45a024ad2fa8c9154f2a5a5a69c4d2b1" alt="Renato Oliveira" style="width: 36px; height: 36px; object-fit: contain; display: block">
-<div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px"><a class="ro-nw" href="https://linkedin.com/in/renatooliveiraux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex: none"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg>LinkedIn</a><a class="ro-nw" href="https://instagram.com/renatooliveira.ux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="flex: none"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>Instagram</a><a class="ro-nw" href="https://wa.me/5584981837847?text=Ol%C3%A1!%20Tudo%20bem%3F%20Cheguei%20aqui%20pelo%20seu%20portf%C3%B3lio." target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M3 21l1.6-4.8A9 9 0 1 1 7.8 19.4z"></path><path d="M9 8.6c0 3.5 2.9 6.4 6.4 6.4l1.1-1.5-2.1-1-.9.8a4.6 4.6 0 0 1-2.2-2.2l.8-.9-1-2.1z" fill="currentColor" stroke="none"></path></svg>WhatsApp</a></div>
-<p style="margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font: 500 12px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #BDBDBD">{{t.fRole}}<span style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; color: #8A8A8A">© 2026 Renato Oliveira</span><a class="ro-nw" href="Privacidade.dc.html" style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; text-decoration: underline; text-underline-offset: 3px">{{t.fPriv}}</a></p>
-</div>
-</div>
-</footer></sc-if><sc-if value="{{isPt}}">
 <!-- =====================================================================
-     PT · template de case (case kit, src/partials/case-kit.*): de "O ponto de partida" até o rodapé.
-     A versão EN continua no layout anterior (bloco {{isEn}} acima) até ser migrada.
+     PT · template de case (case kit, src/partials/case-kit.*; handoff case-hub-sebrae-handoff-02):
+     da capa até o rodapé. A versão EN continua no layout anterior (blocos {{isEn}}) até ser migrada.
      ===================================================================== -->
 <div class="ck">
 <sc-include name="case-kit"></sc-include>
 
+<!-- CAPA · respiro -->
+<div class="ck-wrap ck-cover"><div class="ck-cover__img"><img src="{{cover.src}}" alt="{{cover.alt}}"></div></div>
+
+<!-- EM RESUMO -->
+<section id="resumo" class="ck-wrap ck-summary" aria-labelledby="ck-summary">
+<h2 id="ck-summary" class="ck-ey">{{c.sumTitle}}</h2>
+<div class="ck-summary__grid">
+<sc-for list="{{summary}}" as="sm" hint-placeholder-count="3"><a href="{{sm.href}}"><b>{{sm.k}}</b><span>{{sm.v}}</span></a></sc-for>
+</div>
+</section>
+
 <!-- BARRA DE SEÇÕES -->
 <nav class="ck-rail" aria-label="{{ck.rail}}" data-ck-rail>
 <div class="ck-wrap ck-rail__in">
-<span class="ck-rail__name">{{k.railName}}</span>
-<a href="#contexto">{{k.railCtx}}</a>
-<a href="#atuacao">{{k.railRole}}</a>
-<a href="#identidade">{{k.railId}}</a>
-<a href="#experiencia">{{k.railExp}}</a>
-<a href="#jornada">{{k.railJr}}</a>
-<a href="#resultados">{{k.railRes}}</a>
-<span class="ck-rail__time">{{ck.time}}</span>
+<span class="ck-rail__name">{{c.railName}}</span>
+<sc-for list="{{rail}}" as="rl" hint-placeholder-count="6"><a href="#{{rl.id}}">{{rl.label}}</a></sc-for>
+<span class="ck-rail__time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span><b>{{ck.timeShort}}</b> {{c.railTimeRest}}</span></span>
+</div>
+<div class="ck-rail__m">
+<span class="ck-rail__n" data-ck-n>1/5</span>
+<span class="ck-rail__cur" data-ck-cur>{{railM.0.label}}</span>
+<span class="ck-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{ck.timeShort}}</span>
+<button type="button" class="ck-rail__btn" data-ck-sheet-btn aria-expanded="false" aria-controls="ck-sheet">{{ck.sections}}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+</div>
+<div class="ck-progress" aria-hidden="true"><i></i></div>
+<div class="ck-sheet" id="ck-sheet" data-ck-sheet hidden>
+<sc-for list="{{railM}}" as="rm" hint-placeholder-count="5"><a href="#{{rm.id}}"><span>{{rm.n}}</span><span data-name>{{rm.label}}</span></a></sc-for>
 </div>
 </nav>
 
-<!-- O PONTO DE PARTIDA · Fig A -->
-<section id="contexto" class="ck-wrap ck-sec" aria-labelledby="ck-start">
+<!-- CONTEXTO E DESAFIO (conteúdo mantido) -->
+<section id="contexto" class="ck-wrap ck-sec" aria-labelledby="ck-ctx">
+<div class="ck-head">
+<div class="ck-head__t"><h2 id="ck-ctx" class="ck-h2">{{t.ctxTitle}}</h2></div>
+<p class="ck-lead" style="flex: 999 1 560px; font: 500 clamp(20px, 2vw, 28px)/1.35 'Geist', sans-serif; letter-spacing: -0.01em">{{t.ctxLead}}</p>
+</div>
+<div class="ck-split" style="margin-top: 96px; gap: 32px 64px">
+<div class="ck-split__text">
+<p class="ck-ey">{{t.ctxSub}}</p>
+<h3 class="ck-h3">{{c.ctxH}}</h3>
+</div>
+<div class="ck-split__main" style="gap: 20px; max-width: 760px">
+<p class="ck-p">{{t.ctx1}}</p>
+<p class="ck-p">{{t.ctx2}}</p>
+<div class="ck-metrics">
+<sc-for list="{{metrics}}" as="mt" hint-placeholder-count="2"><div><strong>{{mt.v}}<span>+</span></strong><span>{{mt.k}}</span></div></sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<!-- O PONTO DE PARTIDA · FIG. 01 em camadas -->
+<section class="ck-wrap ck-sec" aria-labelledby="ck-start">
 <div class="ck-split">
 <div class="ck-split__text">
 <p class="ck-ey">{{t.startTitle}}</p>
-<h3 id="ck-start" class="ck-h3">{{k.startH}}</h3>
+<h3 id="ck-start" class="ck-h3">{{c.startH}}</h3>
 <p class="ck-p">{{t.start1}}</p>
 </div>
-<div class="ck-split__main">
-<figure class="ck-fig">
-<div class="ck-frame" style="--h: 520px"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{t.startTitle}}" aria-label="{{ck.zoom}} FIG. 01"><img src="/_blob/e9e118ca853890e9ef3d8cf1a34df56c" alt="{{t.startAlt}}"></button></div>
-<figcaption class="ck-cap"><b>FIG. 01</b><span class="ck-cap__t">{{t.startCap}}</span></figcaption>
-</figure>
+<figure class="ck-fig ck-split__main" style="gap: 14px">
+<div class="ck-layers">
+<span class="ck-layers__ghost" aria-hidden="true"></span>
+<button type="button" class="ck-zoom ck-layers__home" data-ck-zoom data-ck-g="{{f01.0.g}}" data-ck-fig="{{f01.0.fig}}" data-ck-name="{{f01.0.cap}}" data-ck-step="{{f01.0.step}}" data-ck-title="{{f01.0.ver}}" data-ck-text="{{f01.0.cap}}" data-ck-v="{{f01.0.v}}" data-ck-src="{{f01.0.src}}" data-ck-w="{{f01.0.w}}" data-ck-h="{{f01.0.h}}" data-ck-notes="{{f01.0.notes}}" aria-label="{{f01.0.aria}}"><img src="{{f01.0.src}}" alt="{{f01.0.alt}}"><span class="ck-tagpill">{{f01.0.label}}</span></button>
+<button type="button" class="ck-zoom ck-layers__list" data-ck-zoom data-ck-g="{{f01.1.g}}" data-ck-fig="{{f01.1.fig}}" data-ck-name="{{f01.1.cap}}" data-ck-step="{{f01.1.step}}" data-ck-title="{{f01.1.ver}}" data-ck-text="{{f01.1.cap}}" data-ck-v="{{f01.1.v}}" data-ck-src="{{f01.1.src}}" data-ck-w="{{f01.1.w}}" data-ck-h="{{f01.1.h}}" data-ck-notes="{{f01.1.notes}}" aria-label="{{f01.1.aria}}"><img src="{{f01.1.src}}" alt="{{f01.1.alt}}"><span class="ck-tagpill">{{f01.1.label}}</span></button>
+<button type="button" class="ck-zoom ck-layers__cat" data-ck-zoom data-ck-g="{{f01.2.g}}" data-ck-fig="{{f01.2.fig}}" data-ck-name="{{f01.2.cap}}" data-ck-step="{{f01.2.step}}" data-ck-title="{{f01.2.ver}}" data-ck-text="{{f01.2.cap}}" data-ck-v="{{f01.2.v}}" data-ck-src="{{f01.2.src}}" data-ck-w="{{f01.2.w}}" data-ck-h="{{f01.2.h}}" data-ck-notes="{{f01.2.notes}}" aria-label="{{f01.2.aria}}"><img src="{{f01.2.src}}" alt="{{f01.2.alt}}"><span class="ck-tagpill">{{f01.2.label}}</span></button>
 </div>
+<figcaption class="ck-cap"><b>FIG. 01</b><span>{{c.fig01}}</span></figcaption>
+</figure>
 </div>
 </section>
 
 <!-- O QUE PRECISAVA MUDAR · tabela -->
 <section class="ck-wrap ck-sec">
-<div class="ck-split">
+<div class="ck-split" style="gap: 32px 64px">
 <div class="ck-split__text"><h3 class="ck-ey">{{t.chgTitle}}</h3></div>
 <div class="ck-split__main">
 <table class="ck-compare">
-<caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{t.chgTitle}}</caption>
+<caption class="ck-sr">{{t.chgTitle}}</caption>
 <thead><tr><th scope="col">{{t.chgBefore}}</th><th scope="col">{{t.chgAfter}}</th></tr></thead>
-<tbody>
-<sc-for list="{{chg}}" as="c" hint-placeholder-count="4"><tr><td>{{c.a}}</td><td>{{c.b}}</td></tr></sc-for>
-</tbody>
+<tbody><sc-for list="{{chg}}" as="cg" hint-placeholder-count="4"><tr><td>{{cg.a}}</td><td>{{cg.b}}</td></tr></sc-for></tbody>
 </table>
 </div>
 </div>
@@ -538,7 +214,7 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 <section class="ck-wrap ck-sec" aria-labelledby="ck-challenge">
 <h3 id="ck-challenge" class="ck-ey" style="margin-bottom: 28px">{{t.chTitle}}</h3>
 <blockquote class="ck-quote">{{t.chQ}}</blockquote>
-<p class="ck-p" style="margin: 32px 0 24px; max-width: 620px">{{t.frIntro}}</p>
+<p class="ck-p" style="margin: 32px 0 24px">{{t.frIntro}}</p>
 <div class="ck-map">
 <a href="#identidade"><span class="ck-map__n">01</span><span class="ck-map__t">{{fronts.0.title}}</span><span class="ck-map__p">{{fronts.0.text}}</span><span class="ck-map__go">{{ck.go}}</span></a>
 <a href="#experiencia"><span class="ck-map__n">02</span><span class="ck-map__t">{{fronts.1.title}}</span><span class="ck-map__p">{{fronts.1.text}}</span><span class="ck-map__go">{{ck.go}}</span></a>
@@ -547,18 +223,13 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 
 <!-- MINHA ATUAÇÃO -->
 <section id="atuacao" class="ck-wrap ck-sec--main" aria-labelledby="ck-role">
-<div class="ck-split" style="padding-top: 40px; border-top: 1px solid var(--ink); gap: 40px 64px">
-<div class="ck-split__text ck-stack--s">
-<h2 id="ck-role" class="ck-h2">{{t.roleTitle}}</h2>
-<p class="ck-sub">{{t.roleLead}}</p>
-</div>
+<div class="ck-head" style="gap: 40px 64px">
+<div class="ck-head__t"><h2 id="ck-role" class="ck-h2">{{t.roleTitle}}</h2><p class="ck-sub">{{t.roleLead}}</p></div>
 <div class="ck-split__main">
 <p class="ck-lead">{{t.role}}</p>
-<div>
-<h3 class="ck-ey" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{t.roleListTitle}}</h3>
+<h3 class="ck-sr">{{t.roleListTitle}}</h3>
 <ul class="ck-list"><sc-for list="{{roles}}" as="r" hint-placeholder-count="8"><li>{{r}}</li></sc-for></ul>
-</div>
-<p class="ck-p" style="font-size: 16px; color: var(--muted); max-width: 640px">{{t.roleCollab}}</p>
+<p class="ck-p" style="font-size: 16px; color: var(--muted)">{{t.roleCollab}}</p>
 </div>
 </div>
 </section>
@@ -567,15 +238,11 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 <section id="identidade" class="ck-chapter" aria-labelledby="ck-ch1">
 <div class="ck-chapter__in">
 <p class="ck-chapter__n" aria-hidden="true">01</p>
-<div class="ck-chapter__t">
-<p class="ck-chapter__k">{{k.ch1K}}</p>
-<h2 id="ck-ch1" class="ck-chapter__h">{{fronts.0.title}}</h2>
-<p class="ck-chapter__p">{{k.ch1P}}</p>
-</div>
+<div class="ck-chapter__t"><p class="ck-chapter__k">{{c.ch1K}}</p><h2 id="ck-ch1" class="ck-chapter__h">{{fronts.0.title}}</h2><p class="ck-chapter__p">{{c.ch1P}}</p></div>
 </div>
 </section>
 
-<!-- 1.1 DIREÇÃO DE MARCA · Fig A -->
+<!-- 1.1 DIREÇÃO DE MARCA · FIG. 02 -->
 <section class="ck-wrap ck-sec" aria-labelledby="ck-brand">
 <div class="ck-split ck-split--center">
 <div class="ck-split__text">
@@ -583,72 +250,62 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 <h3 id="ck-brand" class="ck-h3">{{decisions.0.title}}</h3>
 <p class="ck-p">{{decisions.0.paras.0}}</p>
 </div>
-<div class="ck-split__main">
-<figure class="ck-fig">
-<div class="ck-frame" style="--h: 460px"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{decisions.0.title}}" aria-label="{{ck.zoom}} FIG. 02"><img src="/_blob/7d12821e15a18f716b1c3591b2019ed3" alt="{{decisions.0.subs.0.media.0.alt}}"></button></div>
-<figcaption class="ck-cap"><b>FIG. 02</b><span class="ck-cap__t">{{k.fig02}}</span></figcaption>
-</figure>
+<figure class="ck-fig ck-split__main" style="gap: 14px">
+<div class="ck-logos">
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{f02.0.g}}" data-ck-fig="{{f02.0.fig}}" data-ck-name="{{f02.0.cap}}" data-ck-step="{{f02.0.step}}" data-ck-title="{{f02.0.ver}}" data-ck-text="{{f02.0.cap}}" data-ck-v="{{f02.0.v}}" data-ck-src="{{f02.0.src}}" data-ck-w="{{f02.0.w}}" data-ck-h="{{f02.0.h}}" data-ck-notes="{{f02.0.notes}}" aria-label="{{f02.0.aria}}"><img src="{{f02.0.src}}" alt="{{f02.0.alt}}"></button>
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{f02.1.g}}" data-ck-fig="{{f02.1.fig}}" data-ck-name="{{f02.1.cap}}" data-ck-step="{{f02.1.step}}" data-ck-title="{{f02.1.ver}}" data-ck-text="{{f02.1.cap}}" data-ck-v="{{f02.1.v}}" data-ck-src="{{f02.1.src}}" data-ck-w="{{f02.1.w}}" data-ck-h="{{f02.1.h}}" data-ck-notes="{{f02.1.notes}}" aria-label="{{f02.1.aria}}"><img src="{{f02.1.src}}" alt="{{f02.1.alt}}"></button>
 </div>
+<figcaption class="ck-cap"><b>FIG. 02</b><span>{{c.fig02}}</span></figcaption>
+</figure>
 </div>
 </section>
 
-<!-- 1.2 CONCEITO + TIPOGRAFIA · Fig B (no mobile, carrossel) -->
+<!-- 1.2 CONCEITO + TIPOGRAFIA · dupla editorial (no celular, carrossel) -->
 <section class="ck-wrap ck-sec">
-<p class="ck-dual__head" aria-hidden="true">{{k.dualHead}}<span>{{k.swipe}} →</span></p>
+<p class="ck-dual__head" aria-hidden="true">{{c.dualHead}}<span>1 / 2 →</span></p>
 <div class="ck-dual">
 <article class="ck-dual__item" aria-labelledby="ck-concept">
 <figure class="ck-fig">
-<div class="ck-frame ck-frame--ratio ck-ph" style="position: relative">{{k.fig03Ph}}<span class="ck-mark" style="left: 12%; top: 16%">1</span><span class="ck-mark" style="left: 84%; top: 76%">2</span></div>
-<figcaption class="ck-cap"><b>FIG. 03</b><span class="ck-cap__t">{{k.fig03}}</span></figcaption>
+<div class="ck-frame43 ck-frame43--symbol"><button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{f03.g}}" data-ck-fig="{{f03.fig}}" data-ck-name="{{f03.cap}}" data-ck-step="{{f03.step}}" data-ck-title="{{f03.ver}}" data-ck-text="{{f03.cap}}" data-ck-v="{{f03.v}}" data-ck-src="{{f03.src}}" data-ck-w="{{f03.w}}" data-ck-h="{{f03.h}}" data-ck-notes="{{f03.notes}}" aria-label="{{f03.aria}}"><img src="{{f03.src}}" alt="{{f03.alt}}"><span class="ck-mark ck-mark--dark" style="left: 36%; top: 84%" aria-hidden="true">1</span><span class="ck-mark ck-mark--dark" style="left: 71%; top: 61%" aria-hidden="true">2</span></button></div>
+<figcaption class="ck-cap"><b>FIG. 03</b><span>{{c.fig03}}</span></figcaption>
 </figure>
 <p class="ck-ey">{{decisions.0.subs.0.eyebrow}}</p>
 <h4 id="ck-concept" class="ck-h4">{{decisions.0.subs.0.title}}</h4>
 <p class="ck-p">{{decisions.0.subs.0.paras.0}}</p>
-<ol class="ck-marks">
-<li><span class="ck-num">1</span><span>{{k.concept1}}</span></li>
-<li><span class="ck-num">2</span><span>{{k.concept2}}</span></li>
-</ol>
+<ol class="ck-marks"><li><span class="ck-num">1</span><span>{{c.concept1}}</span></li><li><span class="ck-num">2</span><span>{{c.concept2}}</span></li></ol>
 </article>
 <article class="ck-dual__item" aria-labelledby="ck-type">
 <figure class="ck-fig">
-<div class="ck-frame ck-frame--ratio"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{k.typeH}}" aria-label="{{ck.zoom}} FIG. 04"><img src="/_blob/52a5296aefdbfba6fdeba9b489f72b0b" alt="{{decisions.0.subs.1.media.0.alt}}"></button></div>
-<figcaption class="ck-cap"><b>FIG. 04</b><span class="ck-cap__t">{{k.fig04}}</span></figcaption>
+<div class="ck-frame43 ck-frame43--type"><button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{f04.g}}" data-ck-fig="{{f04.fig}}" data-ck-name="{{f04.cap}}" data-ck-step="{{f04.step}}" data-ck-title="{{f04.ver}}" data-ck-text="{{f04.cap}}" data-ck-v="{{f04.v}}" data-ck-src="{{f04.src}}" data-ck-w="{{f04.w}}" data-ck-h="{{f04.h}}" data-ck-notes="{{f04.notes}}" aria-label="{{f04.aria}}"><img src="{{f04.src}}" alt="{{f04.alt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 04</b><span>{{c.fig04}}</span></figcaption>
 </figure>
 <p class="ck-ey">{{decisions.0.subs.1.eyebrow}}</p>
-<h4 id="ck-type" class="ck-h4">{{k.typeH}}</h4>
-<p class="ck-p">{{k.typeP}}</p>
+<h4 id="ck-type" class="ck-h4">{{c.typeH}}</h4>
+<p class="ck-p">{{c.typeP}}</p>
 </article>
 </div>
 </section>
 
-<!-- 1.3 SISTEMA VISUAL · chips + Fig C -->
+<!-- 1.3 SISTEMA VISUAL · FIG. 05 split -->
 <section class="ck-wrap ck-sec--main" aria-labelledby="ck-system">
-<div class="ck-split" style="gap: 32px 64px">
-<div class="ck-split__text">
+<div class="ck-split ck-split--center">
+<div class="ck-split__text" style="max-width: 460px">
 <p class="ck-ey">{{decisions.1.eyebrow}}</p>
 <h3 id="ck-system" class="ck-h3">{{decisions.1.title}}</h3>
-</div>
-<div class="ck-split__main" style="gap: 20px">
-<p class="ck-p" style="max-width: 640px">{{decisions.1.paras.0}}</p>
+<p class="ck-p">{{decisions.1.paras.0}}</p>
 <ul class="ck-chips"><sc-for list="{{decisions.1.list}}" as="chip" hint-placeholder-count="6"><li>{{chip}}</li></sc-for></ul>
 </div>
-</div>
-<div class="ck-bento" style="margin-top: 56px">
-<figure class="ck-fig">
-<div class="ck-frame" style="--h: 520px"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{decisions.1.title}}" aria-label="{{ck.zoom}} FIG. 05"><img src="/_blob/4cb226fe695eb1d41bdbf408219b43a7" alt="{{decisions.1.subs.0.media.0.alt}}"></button></div>
-<figcaption class="ck-cap"><b>FIG. 05</b><span class="ck-cap__t">{{decisions.1.subs.0.media.0.cap}}</span></figcaption>
-</figure>
-<figure class="ck-fig">
-<div class="ck-frame" style="--h: 520px; --pos: 30% 50%"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{decisions.1.title}}" aria-label="{{ck.zoom}} FIG. 06"><img src="/_blob/3e7aac78fb2b13d337f954ea1e2a6eb8" alt="{{decisions.1.subs.0.media.1.alt}}"></button></div>
-<figcaption class="ck-cap"><b>FIG. 06</b><span class="ck-cap__t">{{k.fig06}}</span></figcaption>
+<figure class="ck-fig" style="flex: 999 1 420px">
+<button type="button" class="ck-zoom ck-piece" data-ck-zoom data-ck-g="{{f05.g}}" data-ck-fig="{{f05.fig}}" data-ck-name="{{f05.cap}}" data-ck-step="{{f05.step}}" data-ck-title="{{f05.ver}}" data-ck-text="{{f05.cap}}" data-ck-v="{{f05.v}}" data-ck-src="{{f05.src}}" data-ck-w="{{f05.w}}" data-ck-h="{{f05.h}}" data-ck-notes="{{f05.notes}}" aria-label="{{f05.aria}}"><img src="{{f05.src}}" alt="{{f05.alt}}"></button>
+<figcaption class="ck-cap"><b>FIG. 05</b><span>{{c.fig05}}</span></figcaption>
 </figure>
 </div>
 
-<!-- Paleta: texto + paleta detalhada -->
+<!-- Paleta: texto + paleta detalhada + neutros -->
 <div class="ck-split" style="margin-top: 120px">
-<div class="ck-split__text" style="position: sticky; top: calc(var(--top) + 24px)">
+<div class="ck-split__text ck-split__text--stick">
 <p class="ck-ey">{{decisions.1.subs.0.eyebrow}}</p>
-<h4 class="ck-h4">{{k.palH}}</h4>
+<h4 class="ck-h4">{{c.palH}}</h4>
 </div>
 <div class="ck-split__main" style="gap: 20px; max-width: 680px">
 <p class="ck-lead">{{decisions.1.subs.0.paras.0}}</p>
@@ -670,21 +327,23 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </div>
 </sc-for>
 </div>
+<div class="ck-neutral" role="group" aria-label="{{ck.neutrals}}">
+<p class="ck-pal__k" style="margin: 0">{{c.neutrals}}</p>
+<div class="ck-neutral__grid">
+<sc-for list="{{neutrals}}" as="nt" hint-placeholder-count="6"><div><span class="ck-neutral__dot" style="background: {{nt.hex}}; border: {{nt.border}}" aria-hidden="true"></span><p><b>{{nt.hex}}</b><span>{{nt.rgb}}</span><span>{{nt.aa}}</span></p></div></sc-for>
+</div>
+</div>
 </section>
 
 <!-- CAPÍTULO 02 · EXPERIÊNCIA -->
 <section id="experiencia" class="ck-chapter" aria-labelledby="ck-ch2">
 <div class="ck-chapter__in">
 <p class="ck-chapter__n" aria-hidden="true">02</p>
-<div class="ck-chapter__t">
-<p class="ck-chapter__k">{{k.ch2K}}</p>
-<h2 id="ck-ch2" class="ck-chapter__h">{{fronts.1.title}}</h2>
-<p class="ck-chapter__p">{{k.ch2P}}</p>
-</div>
+<div class="ck-chapter__t"><p class="ck-chapter__k">{{c.ch2K}}</p><h2 id="ck-ch2" class="ck-chapter__h">{{fronts.1.title}}</h2><p class="ck-chapter__p">{{c.ch2P}}</p></div>
 </div>
 </section>
 
-<!-- DA IDENTIDADE PARA A EXPERIÊNCIA · Fig E -->
+<!-- DA IDENTIDADE PARA A EXPERIÊNCIA · marcador conceitual + FIG. 06 respiro -->
 <section class="ck-wrap ck-sec" aria-labelledby="ck-portal">
 <div class="ck-split" style="gap: 32px 64px">
 <div class="ck-split__text">
@@ -692,19 +351,17 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 <h3 id="ck-portal" class="ck-h3">{{t.portalLead}}</h3>
 </div>
 <div class="ck-split__main">
-<p class="ck-p" style="max-width: 640px">{{t.portalText}}</p>
-<ol class="ck-flow" aria-label="{{t.portalFlowLabel}}">
-<sc-for list="{{flow}}" as="fl" hint-placeholder-count="3"><li class="{{fl.cls}}"><span>{{fl.n}}</span> {{fl.label}}</li><sc-if value="{{fl.more}}" hint-placeholder-val="{{true}}"><li aria-hidden="true">→</li></sc-if></sc-for>
-</ol>
+<p class="ck-p">{{t.portalText}}</p>
+<ol class="ck-concept" aria-label="{{t.portalFlowLabel}}"><sc-for list="{{concept}}" as="cc" hint-placeholder-count="3"><li>{{cc.label}}</li><sc-if value="{{cc.more}}" hint-placeholder-val="{{true}}"><li aria-hidden="true">→</li></sc-if></sc-for></ol>
 </div>
 </div>
 <figure class="ck-fig" style="margin-top: 56px">
-<div class="ck-respiro"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{t.portalLead}}" aria-label="{{ck.zoom}} FIG. 07"><img src="/_blob/80c99e238f08bbdb391ba4ce579ca54c" alt="{{t.tabletAlt}}"></button></div>
-<figcaption class="ck-cap"><b>FIG. 07</b><span class="ck-cap__t">{{k.fig07}}</span></figcaption>
+<div class="ck-respiro"><button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{f06.g}}" data-ck-fig="{{f06.fig}}" data-ck-name="{{f06.cap}}" data-ck-step="{{f06.step}}" data-ck-title="{{f06.ver}}" data-ck-text="{{f06.cap}}" data-ck-v="{{f06.v}}" data-ck-src="{{f06.src}}" data-ck-w="{{f06.w}}" data-ck-h="{{f06.h}}" data-ck-notes="{{f06.notes}}" aria-label="{{f06.aria}}"><img src="{{f06.src}}" alt="{{f06.alt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 06</b><span>{{c.fig06}}</span></figcaption>
 </figure>
 </section>
 
-<!-- ARQUITETURA DA EXPERIÊNCIA · cards de público -->
+<!-- ARQUITETURA DA EXPERIÊNCIA · personas -->
 <section class="ck-wrap ck-sec--main" aria-labelledby="ck-arch">
 <div class="ck-split" style="gap: 32px 64px">
 <div class="ck-split__text">
@@ -714,30 +371,24 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </div>
 <div class="ck-split__main" style="gap: 24px">
 <sc-for list="{{auds}}" as="au" hint-placeholder-count="2">
-<div class="ck-card">
-<span class="ck-card__k">{{au.who}}</span>
-<p class="ck-card__t">{{au.goal}}</p>
-<ol class="ck-steps" aria-label="{{au.who}}"><sc-for list="{{au.steps}}" as="as" hint-placeholder-count="4"><li class="{{as.cls}}">{{as.label}}</li><sc-if value="{{as.more}}" hint-placeholder-val="{{true}}"><li aria-hidden="true">→</li></sc-if></sc-for></ol>
-</div>
+<div class="ck-card"><span class="ck-card__k">{{au.who}}</span><p class="ck-card__t">{{au.goal}}</p>
+<ol class="ck-steps" aria-label="{{au.who}}"><sc-for list="{{au.steps}}" as="as" hint-placeholder-count="4"><li class="{{as.cls}}">{{as.label}}</li><sc-if value="{{as.more}}" hint-placeholder-val="{{true}}"><li aria-hidden="true">→</li></sc-if></sc-for></ol></div>
 </sc-for>
-<p class="ck-p" style="margin-top: 8px; max-width: 640px">{{t.archClose}}</p>
-<p class="ck-p" style="max-width: 640px">{{t.archNote}}</p>
+<p class="ck-p" style="margin-top: 8px">{{t.archClose}}</p>
+<p class="ck-p">{{t.archNote}}</p>
 </div>
 </div>
 </section>
 
-<!-- JORNADA · narrativa com índice fixo (Fig F) -->
+<!-- JORNADA · narrativa com índice fixo -->
 <section id="jornada" class="ck-wrap ck-sec--main" aria-labelledby="ck-journey">
-<div class="ck-split" style="padding-top: 40px; border-top: 1px solid var(--ink); gap: 24px 64px; margin-bottom: 80px">
-<div class="ck-split__text ck-stack--s">
-<h2 id="ck-journey" class="ck-h2">{{t.uxTitle}}</h2>
-<p class="ck-sub">{{t.uxLead}}</p>
-</div>
+<div class="ck-head" style="margin-bottom: 80px">
+<div class="ck-head__t"><h2 id="ck-journey" class="ck-h2">{{t.uxTitle}}</h2><p class="ck-sub">{{t.uxLead}}</p></div>
 <p class="ck-p" style="flex: 999 1 560px">{{t.uxIntro}}</p>
 </div>
 <div class="ck-jr">
 <nav class="ck-jr__idx" aria-label="{{ck.journey}}" data-ck-journey>
-<a href="#buscar"><span>01</span><span>{{ux.0.title}}</span><span>{{k.jrDesc1}}</span></a>
+<a href="#buscar"><span>01</span><span>{{ux.0.title}}</span><span>{{c.jrDesc1}}</span></a>
 <a href="#escolher"><span>02</span><span>{{ux.1.title}}</span></a>
 <a href="#conhecer"><span>03</span><span>{{ux.2.title}}</span></a>
 <a href="#iniciar"><span>04</span><span>{{ux.3.title}}</span></a>
@@ -745,115 +396,164 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </nav>
 <div class="ck-jr__steps">
 
-<!-- 01 BUSCAR · Fig D + recorte -->
-<article id="buscar" class="ck-step" aria-labelledby="ck-s1">
+<!-- 01 BUSCAR · FIG. 07 e FIG. 08 -->
+<article id="buscar" class="ck-step" aria-labelledby="ck-s01">
 <div class="ck-step__head">
 <span class="ck-step__k">{{ck.step}} 01</span>
-<h3 id="ck-s1" class="ck-h3">{{ux.0.title}}</h3>
-<p class="ck-p ck-dt">{{k.buscarP}}</p>
-<p class="ck-p ck-mb">{{k.buscarPm}}</p>
-<ol class="ck-marks ck-marks--row">
-<li><span class="ck-num">1</span>{{k.mark1}}</li>
-<li><span class="ck-num">2</span>{{k.mark2}}</li>
-<li><span class="ck-num">3</span>{{k.mark3}}</li>
-</ol>
+<h3 id="ck-s01" class="ck-h3">{{ux.0.title}}</h3>
+<p class="ck-p ck-dt">{{c.buscarP}}</p>
+<p class="ck-p ck-mb">{{c.buscarPm}}</p>
+<ol class="ck-marks ck-marks--row"><li><span class="ck-num">1</span>{{c.mark1}}</li><li><span class="ck-num">2</span>{{c.mark2}}</li><li><span class="ck-num">3</span>{{c.mark3}}</li></ol>
 </div>
 <figure class="ck-fig">
-<div class="ck-pair" style="--h: 600px; --mh: 38.5vh">
-<div class="ck-browser">
-<div class="ck-browser__bar" aria-hidden="true"><i></i><i></i><i></i></div>
-<div class="ck-browser__view" style="--from: 30%">
-<button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.0.title}} · desktop" data-ck-notes="1::{{k.mark1}}|2::{{k.mark2}}|3::{{k.mark3}}" aria-label="{{ck.zoom}} FIG. 08 · desktop"><img src="/_blob/bb4e355bb2333d8cd98796d84431f26e" alt="{{t.portalAlt}}"></button>
-<span class="ck-mark" style="left: 30%; top: 14cqw" aria-hidden="true">1</span>
-<span class="ck-mark" style="left: 30%; top: 33cqw" aria-hidden="true">2</span>
-<span class="ck-mark" style="left: 70%; top: 45cqw" aria-hidden="true">3</span>
+<div class="{{ap07.cls}}">
+<div class="ck-ap__row">
+<div class="ck-win">
+<span class="ck-win__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{ap07.d.g}}" data-ck-fig="{{ap07.d.fig}}" data-ck-name="{{ap07.d.cap}}" data-ck-step="{{ap07.d.step}}" data-ck-title="{{ap07.d.ver}}" data-ck-text="{{ap07.d.cap}}" data-ck-v="{{ap07.d.v}}" data-ck-src="{{ap07.d.src}}" data-ck-w="{{ap07.d.w}}" data-ck-h="{{ap07.d.h}}" data-ck-notes="{{ap07.d.notes}}" aria-label="{{ap07.d.aria}}"><span class="ck-shot"><img src="{{ap07.d.src}}" alt="{{ap07.d.alt}}"><sc-for list="{{ap07.d.marks}}" as="mk" hint-placeholder-count="3"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for></span><span class="ck-fade"><small>{{ck.fold}} {{ap07.screens}} {{ck.screens}}</small><span>{{ck.full}}</span></span></button>
 </div>
-<button type="button" class="ck-full" data-ck-full>{{ck.full}}</button>
+<div class="ck-ruler" aria-hidden="true"><span class="ck-ruler__page"><img src="{{ap07.d.src}}" alt=""><span class="ck-ruler__vis" style="--vis: {{ap07.vis}}%"></span><sc-for list="{{ap07.rulerMarks}}" as="rm" hint-placeholder-count="0"><span class="ck-ruler__mark" style="top: {{rm.y}}%">{{rm.n}}</span></sc-for></span><small>{{ap07.vis}}% {{ck.visible}}</small></div>
+<div class="{{ap07.phoneCls}}" style="--mh: {{ap07.mh}}px; --mx: {{ap07.mx}}px">
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{ap07.m.g}}" data-ck-fig="{{ap07.m.fig}}" data-ck-name="{{ap07.m.cap}}" data-ck-step="{{ap07.m.step}}" data-ck-title="{{ap07.m.ver}}" data-ck-text="{{ap07.m.cap}}" data-ck-v="{{ap07.m.v}}" data-ck-src="{{ap07.m.src}}" data-ck-w="{{ap07.m.w}}" data-ck-h="{{ap07.m.h}}" data-ck-notes="{{ap07.m.notes}}" aria-label="{{ap07.m.aria}}"><span class="ck-shot"><img src="{{ap07.m.src}}" alt="{{ap07.m.alt}}"><sc-for list="{{ap07.m.marks}}" as="mk" hint-placeholder-count="3"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for></span></button>
+<small>{{ck.foldM}} {{ap07.screensM}} {{ck.foldMn}}</small>
+<span class="ck-phone__m" aria-hidden="true"><small>{{ck.foldM}} {{ap07.screensM}} {{ck.foldMn}}</small><span>{{ck.fullM}}</span></span>
 </div>
-<div class="ck-phone"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.0.title}} · mobile" aria-label="{{ck.zoom}} FIG. 08 · mobile"><img src="/_blob/333ce80d825b68d49e77bc8286c6c16d" alt="{{k.homeMobileAlt}}"></button></div>
 </div>
-<figcaption class="ck-cap"><b>FIG. 08</b><span class="ck-cap__t">{{k.fig08}}</span></figcaption>
+<sc-if value="{{ap07.hasLegend}}" hint-placeholder-val="{{true}}"><ol class="{{ap07.legendCls}}">
+<sc-for list="{{ap07.legend}}" as="lg" hint-placeholder-count="3"><li><span class="ck-num">{{lg.n}}</span><b>{{lg.t}}<sc-if value="{{lg.hasOff}}" hint-placeholder-val="{{false}}"> <small>· {{lg.off}}</small></sc-if><sc-if value="{{lg.hasSub}}" hint-placeholder-val="{{false}}"><em>{{lg.sub}}</em></sc-if></b></li></sc-for>
+<li class="ck-legend__hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 21 21M11 8v6M8 11h6"></path></svg><span class="ck-dt">{{ap07.hint}}</span><span class="ck-mb">{{ck.tap}}</span></li>
+</ol></sc-if>
+</div>
+<figcaption class="ck-cap"><b>{{ap07.fig}}</b><span>{{ap07.cap}}</span></figcaption>
 </figure>
 <figure class="ck-fig">
-<div class="ck-frame ck-frame--crop" style="--h: 420px; --pos: 50% 0%; --mw: 175%; --mx: -6%"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.0.title}} · busca" aria-label="{{ck.zoom}} FIG. 09"><img src="/_blob/0a9d15cb7ab8e6a274c7a41eb48f6fc2" alt="{{k.buscaAlt}}"></button></div>
-<figcaption class="ck-cap"><b>FIG. 09</b><span class="ck-cap__t">{{k.fig09}}</span></figcaption>
+<div class="{{ap08.cls}}">
+<div class="ck-ap__row">
+<div class="ck-win">
+<span class="ck-win__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{ap08.d.g}}" data-ck-fig="{{ap08.d.fig}}" data-ck-name="{{ap08.d.cap}}" data-ck-step="{{ap08.d.step}}" data-ck-title="{{ap08.d.ver}}" data-ck-text="{{ap08.d.cap}}" data-ck-v="{{ap08.d.v}}" data-ck-src="{{ap08.d.src}}" data-ck-w="{{ap08.d.w}}" data-ck-h="{{ap08.d.h}}" data-ck-notes="{{ap08.d.notes}}" aria-label="{{ap08.d.aria}}"><span class="ck-shot"><img src="{{ap08.d.src}}" alt="{{ap08.d.alt}}"><sc-for list="{{ap08.d.marks}}" as="mk" hint-placeholder-count="3"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for></span><span class="ck-fade"><small>{{ck.fold}} {{ap08.screens}} {{ck.screens}}</small><span>{{ck.full}}</span></span></button>
+</div>
+<div class="ck-ruler" aria-hidden="true"><span class="ck-ruler__page"><img src="{{ap08.d.src}}" alt=""><span class="ck-ruler__vis" style="--vis: {{ap08.vis}}%"></span><sc-for list="{{ap08.rulerMarks}}" as="rm" hint-placeholder-count="0"><span class="ck-ruler__mark" style="top: {{rm.y}}%">{{rm.n}}</span></sc-for></span><small>{{ap08.vis}}% {{ck.visible}}</small></div>
+<div class="{{ap08.phoneCls}}" style="--mh: {{ap08.mh}}px; --mx: {{ap08.mx}}px">
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{ap08.m.g}}" data-ck-fig="{{ap08.m.fig}}" data-ck-name="{{ap08.m.cap}}" data-ck-step="{{ap08.m.step}}" data-ck-title="{{ap08.m.ver}}" data-ck-text="{{ap08.m.cap}}" data-ck-v="{{ap08.m.v}}" data-ck-src="{{ap08.m.src}}" data-ck-w="{{ap08.m.w}}" data-ck-h="{{ap08.m.h}}" data-ck-notes="{{ap08.m.notes}}" aria-label="{{ap08.m.aria}}"><span class="ck-shot"><img src="{{ap08.m.src}}" alt="{{ap08.m.alt}}"><sc-for list="{{ap08.m.marks}}" as="mk" hint-placeholder-count="3"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for></span></button>
+<small>{{ck.foldM}} {{ap08.screensM}} {{ck.foldMn}}</small>
+<span class="ck-phone__m" aria-hidden="true"><small>{{ck.foldM}} {{ap08.screensM}} {{ck.foldMn}}</small><span>{{ck.fullM}}</span></span>
+</div>
+</div>
+<sc-if value="{{ap08.hasLegend}}" hint-placeholder-val="{{true}}"><ol class="{{ap08.legendCls}}">
+<sc-for list="{{ap08.legend}}" as="lg" hint-placeholder-count="3"><li><span class="ck-num">{{lg.n}}</span><b>{{lg.t}}<sc-if value="{{lg.hasOff}}" hint-placeholder-val="{{false}}"> <small>· {{lg.off}}</small></sc-if><sc-if value="{{lg.hasSub}}" hint-placeholder-val="{{false}}"><em>{{lg.sub}}</em></sc-if></b></li></sc-for>
+<li class="ck-legend__hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 21 21M11 8v6M8 11h6"></path></svg><span class="ck-dt">{{ap08.hint}}</span><span class="ck-mb">{{ck.tap}}</span></li>
+</ol></sc-if>
+</div>
+<figcaption class="ck-cap"><b>{{ap08.fig}}</b><span>{{ap08.cap}}</span></figcaption>
 </figure>
 </article>
 
-<!-- 02 ESCOLHER · recorte da grade -->
-<article id="escolher" class="ck-step" aria-labelledby="ck-s2">
+<!-- 02 ESCOLHER · FIG. 09 -->
+<article id="escolher" class="ck-step" aria-labelledby="ck-s02">
 <div class="ck-step__head">
 <span class="ck-step__k">{{ck.step}} 02</span>
-<h3 id="ck-s2" class="ck-h3">{{ux.1.title}}</h3>
+<h3 id="ck-s02" class="ck-h3">{{ux.1.title}}</h3>
 <p class="ck-p">{{ux.1.paras.0}}</p>
 </div>
 <figure class="ck-fig">
-<div class="ck-frame ck-frame--crop" style="--h: 460px; --pos: 50% 34%; --mw: 175%; --mx: -6%; --my: -40%"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.1.title}}" aria-label="{{ck.zoom}} FIG. 10"><img src="/_blob/471127194d2be1074ca0db80da05ee42" alt="{{k.categoriasAlt}}"></button></div>
-<figcaption class="ck-cap"><b>FIG. 10</b><span class="ck-cap__t">{{k.fig10}}</span></figcaption>
+<div class="{{ap09.cls}}">
+<div class="ck-ap__row">
+<div class="ck-win">
+<span class="ck-win__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{ap09.d.g}}" data-ck-fig="{{ap09.d.fig}}" data-ck-name="{{ap09.d.cap}}" data-ck-step="{{ap09.d.step}}" data-ck-title="{{ap09.d.ver}}" data-ck-text="{{ap09.d.cap}}" data-ck-v="{{ap09.d.v}}" data-ck-src="{{ap09.d.src}}" data-ck-w="{{ap09.d.w}}" data-ck-h="{{ap09.d.h}}" data-ck-notes="{{ap09.d.notes}}" aria-label="{{ap09.d.aria}}"><span class="ck-shot"><img src="{{ap09.d.src}}" alt="{{ap09.d.alt}}"><sc-for list="{{ap09.d.marks}}" as="mk" hint-placeholder-count="3"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for></span><span class="ck-fade"><small>{{ck.fold}} {{ap09.screens}} {{ck.screens}}</small><span>{{ck.full}}</span></span></button>
+</div>
+<div class="ck-ruler" aria-hidden="true"><span class="ck-ruler__page"><img src="{{ap09.d.src}}" alt=""><span class="ck-ruler__vis" style="--vis: {{ap09.vis}}%"></span><sc-for list="{{ap09.rulerMarks}}" as="rm" hint-placeholder-count="0"><span class="ck-ruler__mark" style="top: {{rm.y}}%">{{rm.n}}</span></sc-for></span><small>{{ap09.vis}}% {{ck.visible}}</small></div>
+<div class="{{ap09.phoneCls}}" style="--mh: {{ap09.mh}}px; --mx: {{ap09.mx}}px">
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{ap09.m.g}}" data-ck-fig="{{ap09.m.fig}}" data-ck-name="{{ap09.m.cap}}" data-ck-step="{{ap09.m.step}}" data-ck-title="{{ap09.m.ver}}" data-ck-text="{{ap09.m.cap}}" data-ck-v="{{ap09.m.v}}" data-ck-src="{{ap09.m.src}}" data-ck-w="{{ap09.m.w}}" data-ck-h="{{ap09.m.h}}" data-ck-notes="{{ap09.m.notes}}" aria-label="{{ap09.m.aria}}"><span class="ck-shot"><img src="{{ap09.m.src}}" alt="{{ap09.m.alt}}"><sc-for list="{{ap09.m.marks}}" as="mk" hint-placeholder-count="3"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for></span></button>
+<small>{{ck.foldM}} {{ap09.screensM}} {{ck.foldMn}}</small>
+<span class="ck-phone__m" aria-hidden="true"><small>{{ck.foldM}} {{ap09.screensM}} {{ck.foldMn}}</small><span>{{ck.fullM}}</span></span>
+</div>
+</div>
+<sc-if value="{{ap09.hasLegend}}" hint-placeholder-val="{{true}}"><ol class="{{ap09.legendCls}}">
+<sc-for list="{{ap09.legend}}" as="lg" hint-placeholder-count="3"><li><span class="ck-num">{{lg.n}}</span><b>{{lg.t}}<sc-if value="{{lg.hasOff}}" hint-placeholder-val="{{false}}"> <small>· {{lg.off}}</small></sc-if><sc-if value="{{lg.hasSub}}" hint-placeholder-val="{{false}}"><em>{{lg.sub}}</em></sc-if></b></li></sc-for>
+<li class="ck-legend__hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 21 21M11 8v6M8 11h6"></path></svg><span class="ck-dt">{{ap09.hint}}</span><span class="ck-mb">{{ck.tap}}</span></li>
+</ol></sc-if>
+</div>
+<figcaption class="ck-cap"><b>{{ap09.fig}}</b><span>{{ap09.cap}}</span></figcaption>
 </figure>
 </article>
 
-<!-- 03 CONHECER · Fig D + anotações A/B -->
-<article id="conhecer" class="ck-step" aria-labelledby="ck-s3">
+<!-- 03 CONHECER · FIG. 10 -->
+<article id="conhecer" class="ck-step" aria-labelledby="ck-s03">
 <div class="ck-step__head">
 <span class="ck-step__k">{{ck.step}} 03</span>
-<h3 id="ck-s3" class="ck-h3">{{ux.2.title}}</h3>
+<h3 id="ck-s03" class="ck-h3">{{ux.2.title}}</h3>
 <p class="ck-p ck-dt">{{ux.2.paras.0}}</p>
-<p class="ck-p ck-mb">{{k.conhecerPm}}</p>
+<p class="ck-p ck-mb">{{c.conhecerPm}}</p>
 </div>
 <figure class="ck-fig">
-<div class="ck-pair" style="--h: 560px; --pw: 230px; --mh: 43.5vh">
-<div class="ck-browser">
-<div class="ck-browser__bar" aria-hidden="true"><i></i><i></i><i></i></div>
-<div class="ck-browser__view" style="--from: 12%">
-<button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.2.title}} · desktop" data-ck-notes="A::{{k.noteA}}|B::{{k.noteB}}" aria-label="{{ck.zoom}} FIG. 11 · desktop"><img src="/_blob/db98f269e4ff39c52b0ca4786f583aca" alt="{{k.detalheAlt}}"></button>
-<span class="ck-mark" style="left: 23%; top: 32cqw" aria-hidden="true">A</span>
-<span class="ck-mark" style="left: 50%; top: 19cqw" aria-hidden="true">B</span>
+<div class="{{ap10.cls}}">
+<div class="ck-ap__row">
+<div class="ck-win">
+<span class="ck-win__bar" aria-hidden="true"><i></i><i></i><i></i></span>
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{ap10.d.g}}" data-ck-fig="{{ap10.d.fig}}" data-ck-name="{{ap10.d.cap}}" data-ck-step="{{ap10.d.step}}" data-ck-title="{{ap10.d.ver}}" data-ck-text="{{ap10.d.cap}}" data-ck-v="{{ap10.d.v}}" data-ck-src="{{ap10.d.src}}" data-ck-w="{{ap10.d.w}}" data-ck-h="{{ap10.d.h}}" data-ck-notes="{{ap10.d.notes}}" aria-label="{{ap10.d.aria}}"><span class="ck-shot"><img src="{{ap10.d.src}}" alt="{{ap10.d.alt}}"><sc-for list="{{ap10.d.marks}}" as="mk" hint-placeholder-count="3"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for></span><span class="ck-fade"><small>{{ck.fold}} {{ap10.screens}} {{ck.screens}}</small><span>{{ck.full}}</span></span></button>
 </div>
-<button type="button" class="ck-full" data-ck-full>{{ck.full}}</button>
+<div class="ck-ruler" aria-hidden="true"><span class="ck-ruler__page"><img src="{{ap10.d.src}}" alt=""><span class="ck-ruler__vis" style="--vis: {{ap10.vis}}%"></span><sc-for list="{{ap10.rulerMarks}}" as="rm" hint-placeholder-count="0"><span class="ck-ruler__mark" style="top: {{rm.y}}%">{{rm.n}}</span></sc-for></span><small>{{ap10.vis}}% {{ck.visible}}</small></div>
+<div class="{{ap10.phoneCls}}" style="--mh: {{ap10.mh}}px; --mx: {{ap10.mx}}px">
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{ap10.m.g}}" data-ck-fig="{{ap10.m.fig}}" data-ck-name="{{ap10.m.cap}}" data-ck-step="{{ap10.m.step}}" data-ck-title="{{ap10.m.ver}}" data-ck-text="{{ap10.m.cap}}" data-ck-v="{{ap10.m.v}}" data-ck-src="{{ap10.m.src}}" data-ck-w="{{ap10.m.w}}" data-ck-h="{{ap10.m.h}}" data-ck-notes="{{ap10.m.notes}}" aria-label="{{ap10.m.aria}}"><span class="ck-shot"><img src="{{ap10.m.src}}" alt="{{ap10.m.alt}}"><sc-for list="{{ap10.m.marks}}" as="mk" hint-placeholder-count="3"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for></span></button>
+<small>{{ck.foldM}} {{ap10.screensM}} {{ck.foldMn}}</small>
+<span class="ck-phone__m" aria-hidden="true"><small>{{ck.foldM}} {{ap10.screensM}} {{ck.foldMn}}</small><span>{{ck.fullM}}</span></span>
 </div>
-<div class="ck-phone"><button type="button" class="ck-zoom" data-ck-zoom data-ck-title="{{ux.2.title}} · mobile" aria-label="{{ck.zoom}} FIG. 11 · mobile"><img src="/_blob/059b5753dd63beee01005e99dee07998" alt="{{k.detalheMobileAlt}}"></button></div>
 </div>
-<figcaption class="ck-cap ck-cap--stack">
-<span class="ck-cap__row"><b>FIG. 11</b><span class="ck-cap__t">{{k.fig11}}</span></span>
-<span class="ck-cap__notes"><b>A</b> {{k.noteA}} · <b>B</b> {{k.noteB}}</span>
-</figcaption>
+<sc-if value="{{ap10.hasLegend}}" hint-placeholder-val="{{true}}"><ol class="{{ap10.legendCls}}">
+<sc-for list="{{ap10.legend}}" as="lg" hint-placeholder-count="3"><li><span class="ck-num">{{lg.n}}</span><b>{{lg.t}}<sc-if value="{{lg.hasOff}}" hint-placeholder-val="{{false}}"> <small>· {{lg.off}}</small></sc-if><sc-if value="{{lg.hasSub}}" hint-placeholder-val="{{false}}"><em>{{lg.sub}}</em></sc-if></b></li></sc-for>
+<li class="ck-legend__hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 21 21M11 8v6M8 11h6"></path></svg><span class="ck-dt">{{ap10.hint}}</span><span class="ck-mb">{{ck.tap}}</span></li>
+</ol></sc-if>
+</div>
+<figcaption class="ck-cap"><b>{{ap10.fig}}</b><span>{{ap10.cap}}</span></figcaption>
 </figure>
 </article>
 
-<!-- 04 INICIAR A CONTRATAÇÃO · diagrama em HTML + tela a produzir -->
-<article id="iniciar" class="ck-step" aria-labelledby="ck-s4">
+<!-- 04 INICIAR A CONTRATAÇÃO · FIG. 11 fluxo + detalhe -->
+<article id="iniciar" class="ck-step" aria-labelledby="ck-s04">
 <div class="ck-step__head">
 <span class="ck-step__k">{{ck.step}} 04</span>
-<h3 id="ck-s4" class="ck-h3">{{ux.3.title}}</h3>
+<h3 id="ck-s04" class="ck-h3">{{ux.3.title}}</h3>
 <p class="ck-p">{{ux.3.paras.0}}</p>
 </div>
 <figure class="ck-fig">
-<div class="ck-diagram" role="img" aria-label="{{t.uxDiagLabel}}">
-<div class="ck-diagram__portal">
-<span class="ck-card__k" style="color: var(--muted)">{{k.portalPublic}}</span>
-<ol class="ck-steps"><sc-for list="{{dsteps}}" as="ds" hint-placeholder-count="4"><li class="{{ds.cls}}">{{ds.label}}</li></sc-for></ol>
+<div class="ck-flow11">
+<ol class="ck-chain" aria-label="{{c.flowLabel}}">
+<sc-for list="{{chain}}" as="ch" hint-placeholder-count="7"><li class="{{ch.cls}}"><sc-if value="{{ch.hasN}}" hint-placeholder-val="{{false}}"><i>{{ch.n}}</i></sc-if>{{ch.label}}</li></sc-for>
+</ol>
+<div class="ck-stage11">
+<button type="button" class="ck-zoom ck-stage11__desk" data-ck-zoom data-ck-g="{{f11.0.g}}" data-ck-fig="{{f11.0.fig}}" data-ck-name="{{f11.0.cap}}" data-ck-step="{{f11.0.step}}" data-ck-title="{{f11.0.ver}}" data-ck-text="{{f11.0.cap}}" data-ck-v="{{f11.0.v}}" data-ck-src="{{f11.0.src}}" data-ck-w="{{f11.0.w}}" data-ck-h="{{f11.0.h}}" data-ck-notes="{{f11.0.notes}}" aria-label="{{f11.0.aria}}"><img src="{{f11.0.src}}" alt="{{f11.0.alt}}"></button>
+<button type="button" class="ck-zoom ck-stage11__card" data-ck-zoom data-ck-g="{{f11.2.g}}" data-ck-fig="{{f11.2.fig}}" data-ck-name="{{f11.2.cap}}" data-ck-step="{{f11.2.step}}" data-ck-title="{{f11.2.ver}}" data-ck-text="{{f11.2.cap}}" data-ck-v="{{f11.2.v}}" data-ck-src="{{f11.2.src}}" data-ck-w="{{f11.2.w}}" data-ck-h="{{f11.2.h}}" data-ck-notes="{{f11.2.notes}}" aria-label="{{f11.2.aria}}"><img src="{{f11.2.src}}" alt="{{f11.2.alt}}"></button>
+<span class="ck-stage11__down" aria-hidden="true">↓</span>
+<button type="button" class="ck-zoom ck-stage11__mob" data-ck-zoom data-ck-g="{{f11.1.g}}" data-ck-fig="{{f11.1.fig}}" data-ck-name="{{f11.1.cap}}" data-ck-step="{{f11.1.step}}" data-ck-title="{{f11.1.ver}}" data-ck-text="{{f11.1.cap}}" data-ck-v="{{f11.1.v}}" data-ck-src="{{f11.1.src}}" data-ck-w="{{f11.1.w}}" data-ck-h="{{f11.1.h}}" data-ck-notes="{{f11.1.notes}}" aria-label="{{f11.1.aria}}"><img src="{{f11.1.src}}" alt="{{f11.1.alt}}"></button>
+<span class="ck-seal ck-seal--1" aria-hidden="true">1</span>
+<span class="ck-seal ck-seal--go" aria-hidden="true">→</span>
+<span class="ck-seal ck-seal--2" aria-hidden="true">2</span>
 </div>
-<span class="ck-diagram__arrow" aria-hidden="true">→</span>
-<div class="ck-diagram__login">{{t.uxDiagLogin}}</div>
-<span class="ck-diagram__arrow" aria-hidden="true">→</span>
-<div class="ck-diagram__hub"><b>{{t.uxDiagHub}}</b><span>{{t.uxDiagCont}}</span></div>
+<ol class="ck-legend ck-legend--s">
+<li><span class="ck-num">1</span><b>{{c.flow1}}</b></li>
+<li><span class="ck-num ck-num--ink">2</span><b>{{c.flow2}}</b></li>
+</ol>
 </div>
-<figcaption class="ck-cap"><b>FIG. 12</b><span class="ck-cap__t">{{t.uxDiagCap}}</span></figcaption>
+<figcaption class="ck-cap"><b>FIG. 11</b><span>{{c.fig11}}</span></figcaption>
 </figure>
-<div class="ck-frame ck-ph" style="--h: 360px; background: #E9E9EE">{{k.ctaPh}}</div>
 </article>
 
-<!-- EXPERIÊNCIA RESPONSIVA · trio mobile a produzir -->
-<article id="responsiva" class="ck-step" aria-labelledby="ck-s5">
+<!-- EXPERIÊNCIA RESPONSIVA · FIG. 12 e FIG. 13 -->
+<article id="responsiva" class="ck-step" aria-labelledby="ck-s05">
 <div class="ck-step__head">
-<span class="ck-step__k">{{k.respK}}</span>
-<h3 id="ck-s5" class="ck-h3">{{ui.0.title}}</h3>
+<span class="ck-step__k">{{c.respK}}</span>
+<h3 id="ck-s05" class="ck-h3">{{ui.0.title}}</h3>
 <p class="ck-p">{{ui.0.text}}</p>
 </div>
 <figure class="ck-fig">
-<div class="ck-frame ck-ph ck-ph--blue" style="--h: 520px">{{k.fig13Ph}}</div>
-<figcaption class="ck-cap"><b>FIG. 13</b><span class="ck-cap__t">{{k.fig13}}</span></figcaption>
+<div class="ck-full"><button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{f12.g}}" data-ck-fig="{{f12.fig}}" data-ck-name="{{f12.cap}}" data-ck-step="{{f12.step}}" data-ck-title="{{f12.ver}}" data-ck-text="{{f12.cap}}" data-ck-v="{{f12.v}}" data-ck-src="{{f12.src}}" data-ck-w="{{f12.w}}" data-ck-h="{{f12.h}}" data-ck-notes="{{f12.notes}}" aria-label="{{f12.aria}}"><img src="{{f12.src}}" alt="{{f12.alt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 12</b><span>{{c.fig12}}</span></figcaption>
+</figure>
+<figure class="ck-fig">
+<div class="ck-full"><button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{f13.g}}" data-ck-fig="{{f13.fig}}" data-ck-name="{{f13.cap}}" data-ck-step="{{f13.step}}" data-ck-title="{{f13.ver}}" data-ck-text="{{f13.cap}}" data-ck-v="{{f13.v}}" data-ck-src="{{f13.src}}" data-ck-w="{{f13.w}}" data-ck-h="{{f13.h}}" data-ck-notes="{{f13.notes}}" aria-label="{{f13.aria}}"><img src="{{f13.src}}" alt="{{f13.alt}}"></button></div>
+<figcaption class="ck-cap"><b>FIG. 13</b><span>{{c.fig13}}</span></figcaption>
 </figure>
 </article>
 
@@ -865,16 +565,13 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 <section id="resultados" class="ck-results" aria-labelledby="ck-results">
 <div class="ck-results__in">
 <div class="ck-split" style="gap: 24px 64px">
-<div class="ck-split__text ck-stack--s">
-<h2 id="ck-results" class="ck-h2">{{t.resTitle}}</h2>
-<p class="ck-sub">{{t.resLead}}</p>
-</div>
+<div class="ck-split__text" style="gap: 12px"><h2 id="ck-results" class="ck-h2">{{t.resTitle}}</h2><p class="ck-sub">{{t.resLead}}</p></div>
 <p class="ck-lead" style="flex: 999 1 560px">{{t.resIntro}}</p>
 </div>
 <div class="ck-results__grid">
 <div class="ck-results__col"><span class="ck-n">01</span><h3>{{t.resIdTitle}}</h3><p>{{t.resIdText}}</p></div>
 <div class="ck-results__col"><span class="ck-n">02</span><h3>{{t.resEvoTitle}}</h3><p>{{t.resEvoText}}</p></div>
-<div class="ck-results__col ck-results__num"><strong>{{resNums.0.v}}</strong><div><b>{{k.resNumK}}</b><span>{{k.resNumV}}</span></div></div>
+<div class="ck-results__col ck-results__num"><strong>{{resNums.0.v}}</strong><div><b>{{c.resNumK}}</b><span>{{c.resNumV}}</span></div></div>
 </div>
 <p class="ck-p">{{t.resEvoClose}}</p>
 </div>
@@ -891,7 +588,7 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 
 <!-- RODAPÉ PADRÃO DO SITE -->
 <sc-include name="site-footer"></sc-include>
-</sc-if>
+
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","en","pt"],"default":"auto"},"$preview":{"width":1440,"height":8000}}'>
@@ -968,7 +665,7 @@ class Component extends DCLogic {
         resIdText: 'O Hub passou a ter um sistema visual proprietário, conectado ao ecossistema Sebrae e mais próximo do empreendedor, capaz de se adaptar a diferentes interfaces e pontos de contato. A identidade foi aprovada para ser incorporada ao SaaS, tornando-se referência visual para todo o produto.',
         resEvoTitle: 'Evolução do produto',
         resEvoText: 'A identidade e o portal fundamentaram a proposta de redesign do SaaS do Hub, que acompanhou a expansão da plataforma para além do Rio Grande do Norte.',
-        resEvoClose: 'A chegada a novas unidades do Sebrae e a uma instituição de fora do sistema, o Senac, mostra que o produto passou a ser replicável em diferentes contextos. A expansão ampliou a base de usuários e as fontes de receita, levando o Hub de uma solução regional a uma plataforma com potencial de escala.',
+        resEvoClose: 'A adoção em novas instituições ampliou o alcance do Hub para além do contexto regional inicial.',
         next: 'Próximo case', nextTitle: 'Sistema visual do Grupo Strategi'
       },
       en: {
@@ -1025,7 +722,7 @@ class Component extends DCLogic {
         resIdText: 'The Hub gained a proprietary visual system, connected to the Sebrae ecosystem and closer to entrepreneurs, able to adapt to different interfaces and touchpoints. The identity was approved to be incorporated into the SaaS, becoming the visual reference for the entire product.',
         resEvoTitle: 'Product evolution',
         resEvoText: 'The identity and the portal laid the groundwork for the Hub SaaS redesign proposal, which accompanied the platform’s expansion beyond Rio Grande do Norte.',
-        resEvoClose: 'Reaching new Sebrae units and an institution outside the Sebrae system, Senac, shows the product became replicable across different contexts. The expansion grew the user base and revenue streams, taking the Hub from a regional solution to a platform with potential to scale.',
+        resEvoClose: 'Adoption by new institutions extended the Hub’s reach beyond its initial regional context.',
         next: 'Next case', nextTitle: 'Grupo Strategi visual system'
       }
     };
@@ -1119,42 +816,6 @@ class Component extends DCLogic {
       var s = SHOT[x[1]], v = s ? s[lang] : {};
       return { ph: s ? '' : x[1], isScroll: x[0] === 's', isPhone: x[0] === 'p', isD: x[0] === 'd', isM: x[0] === 'm', src: s ? s.src : '', alt: v.alt || '', label: v.label || '', cap: v.cap || '', hasCap: !!v.cap };
     };
-    // Template de case (case kit): textos novos do HANDOFF (títulos ✎, legendas FIG, anotações e rótulos).
-    // Por enquanto só em PT; a versão EN ainda usa o layout anterior.
-    var K = {
-      pt: {
-        railName: 'Hub Sebrae RN', railCtx: 'Contexto', railRole: 'Atuação', railId: '01 Identidade', railExp: '02 Experiência', railJr: 'Jornada', railRes: 'Resultados',
-        startH: 'Uma plataforma estruturada, mas distante de quem empreende',
-        ch1K: 'Decisões de design · Frente 1', ch1P: 'Direção de marca, conceito, tipografia e sistema visual.',
-        ch2K: 'Decisões de design · Frente 2', ch2P: 'Da identidade para o produto, arquitetura e jornada do empreendedor.',
-        fig02: 'Logo em versão branca sobre azul e colorida sobre branco.',
-        fig03: 'Construção do símbolo.', fig03Ph: '[Imagem · Construção do símbolo]',
-        concept1: 'A impressão representa a singularidade de cada negócio.', concept2: 'O território reforça o caráter local e próximo do atendimento.',
-        dualHead: 'Conceito e tipografia', swipe: 'Deslize',
-        fig04: 'Tipografia em dois níveis: marca e sistema.',
-        typeH: 'Impacto na marca, legibilidade no sistema',
-        typeP: 'Para a palavra HUB, a Audiowide traz uma abordagem moderna e de impacto: suas formas geométricas reforçam a ideia de inovação e dão presença à marca. Para o restante do sistema, a prioridade foi a legibilidade: a Poppins Bold organiza títulos e destaques com clareza, e a Inter Regular, desenhada para telas, garante leitura confortável nos textos e componentes da interface.',
-        fig06: 'Aplicação em peça de comunicação.',
-        palH: 'Vínculo com o Sebrae, sem a neutralidade de antes',
-        fig07: 'Home do portal: hero com empreendedora, busca e categorias.',
-        jrDesc1: 'Home, busca, resultados', respK: 'Em todos os contextos',
-        buscarP: 'A experiência começa pela descoberta. A home apresenta o Hub de forma visual e orientada ao empreendedor, e reúne três caminhos diferentes para encontrar uma solução, inclusive para quem ainda não sabe exatamente qual serviço procura:',
-        // Textos mobile (referência mobile do HANDOFF), para texto e figura caberem juntos na primeira dobra.
-        buscarPm: 'A home reúne busca, categorias e destaques como caminhos diferentes para encontrar uma solução.',
-        conhecerPm: 'A página de serviço reúne descrição, público-alvo, área de atuação e características da oferta.',
-        mark1: 'Busca', mark2: 'Categorias', mark3: 'Destaques',
-        fig08: 'Home desktop e mobile. A página completa abre em visualizador dedicado.',
-        fig09: 'Tela de busca: filtros por área, 25 resultados em cards e paginação.',
-        fig10: 'Categorias: as 17 áreas de atuação, como Design, Inovação e Marketing & Vendas.',
-        fig11: 'Página de serviço no desktop e no celular.',
-        noteA: 'Valor com subsídio do Sebrae e botão Contratar serviço', noteB: 'Público-alvo, observações, Etapas e entregas',
-        portalPublic: 'Portal público', ctaPh: '[Tela · CTA e transição para login]',
-        fig13: 'Trio de telas mobile sobre o azul.', fig13Ph: '[Composição · Desktop + mobile]',
-        resNumK: 'novas instituições', resNumV: 'Sebrae BA · Sebrae SE · Senac PE',
-        homeMobileAlt: SHOT.homeMobile.pt.alt, buscaAlt: SHOT.busca.pt.alt, categoriasAlt: SHOT.categorias.pt.alt,
-        detalheAlt: SHOT.detalheDesktop.pt.alt, detalheMobileAlt: SHOT.detalheMobile.pt.alt
-      }
-    };
     // Paleta principal (HANDOFF §6): HEX extraídos da imagem da paleta.
     var PAL = {
       pt: [
@@ -1166,13 +827,222 @@ class Component extends DCLogic {
         { cls: 'ck-pal__c', k: '', u: '', name: 'Magenta', hex: '#DD1FFD', rgb: 'RGB 221 · 31 · 253', fg: '#0A0A0A', aa: 'Texto escuro · 5,4:1' }
       ]
     };
-    // Sequências com o último passo em destaque (fluxos, públicos e diagrama).
+    PAL.en = PAL.pt.map(function (p, i) {
+      var en = [['Sebrae Blue', 'Backgrounds, brand and main elements'], ['Cyan', 'Graphics, highlights and navigation'], ['Green'], ['Yellow'], ['Lilac'], ['Magenta']][i];
+      return Object.assign({}, p, { k: p.k === 'Apoio' ? 'Support' : p.k, u: p.u ? en[1] : '', name: en[0], aa: p.aa.replace('Texto branco', 'White text').replace('Texto escuro', 'Dark text').replace(',', '.') });
+    });
     PAL.pt.forEach(function (p, i) { p.head = i === 1; });
-    var chain = function (list) { return list.map(function (l, i, a) { var last = i === a.length - 1; return { n: i + 1, label: l, cls: last ? 'is-on' : '', more: !last }; }); };
-    return {
-      k: K[lang] || {}, pal: PAL[lang] || [],
-      flow: chain(PF[lang]), dsteps: chain(US[lang]),
-      auds: AU[lang].map(function (a) { return { who: a.who, goal: a.goal, steps: chain(a.path.split(' → ')) }; }),
+    PAL.en.forEach(function (p, i) { p.head = i === 1; });
+    // Template de case (handoff case-hub-sebrae-handoff-02): textos de copy.pt-en.md ([novo] e [ajustado];
+    // os [site] vêm de T) e o mapa de imagens (HANDOFF §7), em PT e EN.
+    var C = {
+      pt: {
+        back: 'Todos os projetos', tag: 'Identidade visual · Portal web', caseN: 'Case 02', h1: 'Identidade e Portal do Hub Sebrae RN',
+        lead: 'Marca e portal de uma plataforma que conecta micro e pequenas empresas a consultorias subsidiadas pelo Sebrae RN, com uma linguagem mais próxima de quem empreende.',
+        sumTitle: 'Em resumo',
+        railName: 'Hub Sebrae RN', railTimeRest: 'de leitura',
+        ctxH: 'Uma operação já em escala',
+        startH: 'Uma plataforma estruturada, mas distante de quem empreende',
+        fig01: 'Experiência anterior: home, listagem e catálogo de serviços.',
+        ch1K: '01 · Decisões de design · Frente 1', ch1P: 'Direção de marca, conceito, tipografia e sistema visual.',
+        fig02: 'Logo em versão branca sobre azul e colorida sobre branco.',
+        concept1: 'A impressão representa a singularidade de cada negócio.', concept2: 'O território reforça o caráter local e próximo do atendimento.',
+        fig03: 'Construção do símbolo.', dualHead: 'Conceito e tipografia',
+        typeH: 'Impacto na marca, legibilidade no sistema',
+        typeP: 'Para a palavra HUB, a Audiowide traz uma abordagem moderna e de impacto: suas formas geométricas reforçam a ideia de inovação e dão presença à marca. Para o restante do sistema, a prioridade foi a legibilidade: a Poppins Bold organiza títulos e destaques com clareza, e a Manrope Regular garante leitura confortável nos textos e componentes da interface.',
+        fig04: 'Tipografia em dois níveis: marca e sistema.',
+        fig05: 'Peça do Hub com empreendedora, selo Sebrae, hexágonos, formas fluidas e a textura da impressão digital.',
+        palH: 'Vínculo com o Sebrae, sem a neutralidade de antes', neutrals: 'Neutros',
+        ch2K: '02 · Decisões de design · Frente 2', ch2P: 'Da identidade para o produto, arquitetura e jornada do empreendedor.',
+        fig06: 'A home do portal em uso: hero com empreendedora, busca e categorias de serviços.',
+        jrDesc1: 'Home, busca, resultados',
+        buscarP: 'A experiência começa pela descoberta. A home apresenta o Hub de forma visual e orientada ao empreendedor, e reúne três caminhos diferentes para encontrar uma solução, inclusive para quem ainda não sabe exatamente qual serviço procura:',
+        // Textos curtos só no celular (prancha mobile), já aprovados na etapa anterior.
+        buscarPm: 'A home reúne busca, categorias e destaques como caminhos diferentes para encontrar uma solução.',
+        conhecerPm: 'A página de serviço reúne descrição, público-alvo, área de atuação e características da oferta.',
+        mark1: 'Busca', mark2: 'Categorias', mark3: 'Destaques',
+        fig07: 'Home desktop e mobile. Clique em qualquer imagem para ver a página completa.',
+        fig08: 'Tela de busca: filtros por área, 25 resultados em cards e paginação.',
+        fig09: 'Categorias: as 17 áreas de atuação, como Design, Inovação e Marketing & Vendas.',
+        fig10: 'Página de serviço no desktop e no celular, na 1ª dobra. Clique para ver a página completa.',
+        flowLabel: 'Fluxo da jornada', flow1: 'No portal, o botão Contratar serviço inicia a contratação', flow2: 'Na plataforma, cadastro ou login, no desktop e no celular',
+        fig11: 'Do botão Contratar serviço, no portal, ao login da plataforma; a jornada continua na plataforma.',
+        respK: 'Em todos os contextos',
+        fig12: 'Mobile: home, menu e login com a mesma identidade e acesso direto às ações principais.',
+        fig13: 'Serviços no desktop e no mobile: as 17 áreas em grade responsiva, com a busca em destaque.',
+        resNumK: 'novas instituições', resNumV: 'Sebrae BA · Sebrae SE · Senac PE',
+        ficha: [['Empresa', 'Grupo Strategi'], ['Cliente da Strategi', 'Sebrae RN'], ['Meu papel', 'Lead Designer'], ['Escopo', 'Identidade Visual do Produto · Site/Portal'], ['Ano', '2024']],
+        summary: [['#contexto', 'Desafio', 'Fazer o Hub deixar de parecer um sistema de seleção de serviços e virar um caminho claro até a consultoria certa.'], ['#identidade', 'Entrega', 'Identidade visual própria e portal público, do conceito da marca às interfaces desktop e mobile.'], ['#resultados', 'Resultado', 'Identidade aprovada para o SaaS. O Hub ampliou seu alcance para além do contexto regional inicial.']],
+        rail: [['contexto', 'Contexto'], ['atuacao', 'Atuação'], ['identidade', '01 Identidade'], ['experiencia', '02 Experiência'], ['jornada', 'Jornada'], ['resultados', 'Resultados']],
+        metrics: [['300 mil', 'horas de consultoria em 2023'], ['5 mil', 'empresas atendidas em 2023']],
+        concept: ['Identidade', 'Interface', 'Experiência'],
+        chain: [['', 'Buscar'], ['', 'Escolher'], ['', 'Conhecer'], ['is-blue', 'Iniciar a contratação', '1'], ['arrow', '→'], ['is-ink', 'Login', '2'], ['arrow', '→'], ['is-dash', 'Plataforma Hub']],
+        steps: ['Etapa 01 · Buscar', 'Etapa 02 · Escolher', 'Etapa 03 · Conhecer', 'Etapa 04 · Iniciar a contratação'],
+        // Texto alternativo e rótulos das figuras (pranchas em reference/).
+        alt: {
+          cover: 'Identidade do Hub Sebrae RN: símbolo de impressão digital com o contorno do RN, logotipo HUB com selo Sebrae RN e empreendedora sorrindo entre grafismos coloridos',
+          f01: ['Home da versão anterior do Hub Sebrae RN: hero com imagens de tecnologia e passo a passo em três etapas', 'Listagem de serviços da versão anterior em cards com foto, categoria e botões', 'Catálogo de serviços da versão anterior: busca e cards azuis com foto, categoria e link Ver detalhes'],
+          f01l: ['Home', 'Listagem de serviços', 'Catálogo'],
+          f01a: ['Ampliar a home da versão anterior', 'Ampliar a listagem de serviços da versão anterior', 'Ampliar o catálogo de serviços da versão anterior'],
+          f02: ['Logo Hub Sebrae RN em versão branca sobre fundo azul', 'Logo Hub Sebrae RN em versão colorida sobre fundo branco'],
+          f02a: ['Ampliar a logo em versão branca', 'Ampliar a logo em versão colorida'],
+          f03: 'Símbolo do Hub Sebrae RN ampliado: impressão digital desenhada sobre o contorno do Rio Grande do Norte', f03a: 'Ampliar o símbolo',
+          f04: 'Tipografia do Hub Sebrae RN: Audiowide Regular na base da logo, Poppins Bold como principal e de interface, Manrope Regular nos textos', f04a: 'Ampliar a tipografia',
+          f05: 'Peça do Hub Sebrae: empreendedora sorrindo com notebook, selo Sebrae em círculo verde, hexágonos, paralelogramos e textura da impressão digital, com a frase Você está há poucos passos de elevar seu negócio a outro patamar', f05a: 'Ampliar a peça de comunicação',
+          f06: 'Duas pessoas diante de um monitor com a home do portal Hub Sebrae RN: hero com empreendedora, busca e categorias de serviços; uma delas aponta para a categoria Design', f06a: 'Ampliar a home do portal em uso',
+          ap07: ['Página inicial do portal Hub Sebrae RN no desktop', 'Página inicial do portal Hub Sebrae RN no celular', 'Abrir a home desktop completa no visualizador', 'Abrir a home mobile completa no visualizador'],
+          ap08: ['Tela de busca do portal Hub Sebrae RN: campo de busca, filtros por área, 25 resultados em cards de serviço e paginação', 'Tela de busca do portal no celular: campo de busca, 25 resultados, filtros por área e cards de serviço', 'Abrir a tela de busca completa no visualizador', 'Abrir a tela de busca completa no celular'],
+          ap09: ['Tela de categorias do portal Hub Sebrae RN: busca e grade com as 17 áreas de atuação', 'Tela de categorias do portal no celular: busca e grade com as 17 áreas de atuação', 'Abrir a tela de categorias completa no visualizador', 'Abrir a tela de categorias completa no celular'],
+          ap10: ['Página de serviço do portal Hub Sebrae RN no desktop: descrição, valor com subsídio do Sebrae, botão Contratar serviço, público-alvo, observações e Etapas e entregas', 'Página de serviço do portal Hub Sebrae RN no celular', 'Abrir a página de serviço completa no visualizador', 'Abrir a página de serviço completa no celular'],
+          f11: ['Tela de login da plataforma Hub no desktop: foto de empreendedor, mensagem de boas-vindas e formulário com e-mail, senha, Entrar e Quero criar minha conta', 'Tela de login da plataforma Hub no celular', 'Bloco de valor da página de serviço: valor máximo, parte Sebrae, total a pagar, selo de subsídio de 30% e os botões Contratar serviço e Adicionar ao carrinho'],
+          f11a: ['Ampliar a tela de login no desktop', 'Ampliar a tela de login no celular', 'Ampliar o detalhe do botão Contratar serviço'],
+          f12: 'Proposta de interface mobile do Hub Sebrae RN: três celulares com a home, o menu aberto e a tela de login, sob o título Da home ao login, tudo na palma da mão', f12a: 'Ampliar a proposta de interface mobile',
+          f13: 'Proposta de interface da página de serviços: notebook e celular com a grade das 17 áreas de atuação e a busca em destaque, sob o título Todas as áreas, em qualquer tela', f13a: 'Ampliar a proposta da página de serviços'
+        },
+        // Legendas abaixo do par de telas (FIG. 08 a 10).
+        lg08: [['A', 'Campo de busca'], ['B', 'Filtros por área'], ['C', 'Resultados em cards de serviço'], ['D', 'Paginação', 'na página completa']],
+        lg09: [['A', 'Busca'], ['B', 'Grade com as 17 áreas de atuação', '', 'Como Design, Inovação e Marketing & Vendas.']],
+        lg10: [['A', 'Valor com subsídio do Sebrae e botão Contratar serviço'], ['B', 'Público-alvo, observações, Etapas e entregas']],
+        clickOne: 'Clique na tela para ampliar', clickMany: 'Clique nas telas para ampliar'
+      },
+      en: {
+        back: 'All projects', tag: 'Visual identity · Web portal', caseN: 'Case 02', h1: 'Hub Sebrae RN Identity and Portal',
+        lead: 'Brand and portal for a platform that connects micro and small businesses to consulting services subsidized by Sebrae RN, with a language closer to the people who run them.',
+        sumTitle: 'In short',
+        railName: 'Hub Sebrae RN', railTimeRest: 'read',
+        ctxH: 'An operation already at scale',
+        startH: 'A structured platform, but distant from entrepreneurs',
+        fig01: 'Previous experience: home, service listing and catalog.',
+        ch1K: '01 · Design decisions · Front 1', ch1P: 'Brand direction, concept, typography and visual system.',
+        fig02: 'Logo in white on blue and in color on white.',
+        concept1: 'The fingerprint represents the uniqueness of each business.', concept2: 'The territory reinforces the local, close nature of the service.',
+        fig03: 'Building the symbol.', dualHead: 'Concept and typography',
+        typeH: 'Impact in the brand, legibility in the system',
+        typeP: 'For the word HUB, Audiowide brings a modern, high-impact approach: its geometric shapes reinforce the idea of innovation and give the brand presence. For the rest of the system, legibility came first: Poppins Bold organizes headings and highlights clearly, and Manrope Regular ensures comfortable reading in body text and interface components.',
+        fig04: 'Typography on two levels: brand and system.',
+        fig05: 'Hub piece with an entrepreneur, the Sebrae seal, hexagons, fluid shapes and the fingerprint texture.',
+        palH: 'Tied to Sebrae, without the old neutrality', neutrals: 'Neutrals',
+        ch2K: '02 · Design decisions · Front 2', ch2P: 'From identity to product, architecture and the entrepreneur’s journey.',
+        fig06: 'The portal home in use: hero with an entrepreneur, search and service categories.',
+        jrDesc1: 'Home, search, results',
+        buscarP: 'The experience starts with discovery. The home presents the Hub visually and with the entrepreneur in mind, offering three different paths to a solution, even for those who don’t yet know exactly which service they need:',
+        // Sem versão curta aprovada em EN: o celular repete o texto completo (conhecerPm vem de UX abaixo).
+        buscarPm: 'The experience starts with discovery. The home presents the Hub visually and with the entrepreneur in mind, offering three different paths to a solution, even for those who don’t yet know exactly which service they need:',
+        conhecerPm: '',
+        mark1: 'Search', mark2: 'Categories', mark3: 'Highlights',
+        fig07: 'Home on desktop and mobile. Click either image to see the full page.',
+        fig08: 'Search screen: filters by area, 25 results as cards and pagination.',
+        fig09: 'Categories: the 17 areas of expertise, such as Design, Innovation and Marketing & Sales.',
+        fig10: 'Service page on desktop and mobile, above the fold. Click to see the full page.',
+        flowLabel: 'Journey flow', flow1: 'On the portal, the Hire service button starts hiring', flow2: 'On the platform, sign-up or login, on desktop and mobile',
+        fig11: 'From the Hire service button on the portal to the platform login; the journey continues on the platform.',
+        respK: 'In every context',
+        fig12: 'Mobile: home, menu and login with the same identity and direct access to the main actions.',
+        fig13: 'Services on desktop and mobile: the 17 areas in a responsive grid, with search up front.',
+        resNumK: 'new institutions', resNumV: 'Sebrae BA · Sebrae SE · Senac PE',
+        ficha: [['Company', 'Grupo Strategi'], ['Strategi’s client', 'Sebrae RN'], ['My role', 'Lead Designer'], ['Scope', 'Product Visual Identity · Website/Portal'], ['Year', '2024']],
+        summary: [['#contexto', 'Challenge', 'Turn the Hub from something that felt like a service-selection system into a clear path to the right consultancy.'], ['#identidade', 'Delivery', 'Its own visual identity and public portal, from brand concept to desktop and mobile interfaces.'], ['#resultados', 'Outcome', 'Identity approved for the SaaS. The Hub extended its reach beyond its initial regional context.']],
+        rail: [['contexto', 'Context'], ['atuacao', 'My role'], ['identidade', '01 Identity'], ['experiencia', '02 Experience'], ['jornada', 'Journey'], ['resultados', 'Results']],
+        metrics: [['300k', 'consulting hours in 2023'], ['5k', 'companies served in 2023']],
+        concept: ['Identity', 'Interface', 'Experience'],
+        chain: [['', 'Search'], ['', 'Choose'], ['', 'Learn'], ['is-blue', 'Start hiring', '1'], ['arrow', '→'], ['is-ink', 'Login', '2'], ['arrow', '→'], ['is-dash', 'Hub Platform']],
+        steps: ['Step 01 · Search', 'Step 02 · Choose', 'Step 03 · Learn', 'Step 04 · Start hiring'],
+        alt: {
+          cover: 'Hub Sebrae RN identity: fingerprint symbol with the outline of Rio Grande do Norte, HUB logotype with the Sebrae RN seal and a smiling entrepreneur among colorful graphics',
+          f01: ['Home page of the previous Hub Sebrae RN: hero with technology images and a three-step guide', 'Service listing of the previous version in cards with photo, category and buttons', 'Service catalog of the previous version: search and blue cards with photo, category and a See details link'],
+          f01l: ['Home', 'Service listing', 'Catalog'],
+          f01a: ['Enlarge the previous home page', 'Enlarge the previous service listing', 'Enlarge the previous service catalog'],
+          f02: ['Hub Sebrae RN logo in white on a blue background', 'Hub Sebrae RN logo in color on a white background'],
+          f02a: ['Enlarge the white logo', 'Enlarge the color logo'],
+          f03: 'Hub Sebrae RN symbol enlarged: a fingerprint drawn over the outline of Rio Grande do Norte', f03a: 'Enlarge the symbol',
+          f04: 'Hub Sebrae RN typography: Audiowide Regular at the base of the logo, Poppins Bold as the main and interface typeface, Manrope Regular for text', f04a: 'Enlarge the typography',
+          f05: 'Hub Sebrae piece: smiling entrepreneur with a laptop, Sebrae seal in a green circle, hexagons, parallelograms and the fingerprint texture, with a Portuguese headline saying you are a few steps away from taking your business to the next level', f05a: 'Enlarge the communication piece',
+          f06: 'Two people in front of a monitor showing the Hub Sebrae RN portal home: hero with an entrepreneur, search and service categories; one of them points to the Design category', f06a: 'Enlarge the portal home in use',
+          ap07: ['Hub Sebrae RN portal home page on desktop', 'Hub Sebrae RN portal home page on mobile', 'Open the full desktop home in the viewer', 'Open the full mobile home in the viewer'],
+          ap08: ['Hub Sebrae RN portal search screen: search field, filters by area, 25 results as service cards and pagination', 'Portal search screen on mobile: search field, 25 results, filters by area and service cards', 'Open the full search screen in the viewer', 'Open the full search screen on mobile'],
+          ap09: ['Hub Sebrae RN portal categories screen: search and a grid with the 17 areas of expertise', 'Portal categories screen on mobile: search and a grid with the 17 areas of expertise', 'Open the full categories screen in the viewer', 'Open the full categories screen on mobile'],
+          ap10: ['Hub Sebrae RN portal service page on desktop: description, price with Sebrae subsidy, Hire service button, target audience, notes and Steps and deliverables', 'Hub Sebrae RN portal service page on mobile', 'Open the full service page in the viewer', 'Open the full service page on mobile'],
+          f11: ['Hub platform login screen on desktop: photo of an entrepreneur, welcome message and a form with email, password, Sign in and Create my account', 'Hub platform login screen on mobile', 'Price block of the service page: maximum price, Sebrae share, total to pay, 30% subsidy seal and the Hire service and Add to cart buttons'],
+          f11a: ['Enlarge the desktop login screen', 'Enlarge the mobile login screen', 'Enlarge the Hire service button detail'],
+          f12: 'Hub Sebrae RN mobile interface proposal: three phones with the home, the open menu and the login screen, under a Portuguese headline about going from home to login in the palm of your hand', f12a: 'Enlarge the mobile interface proposal',
+          f13: 'Services page interface proposal: laptop and phone with the grid of the 17 areas of expertise and search up front, under a Portuguese headline about every area on any screen', f13a: 'Enlarge the services page proposal'
+        },
+        lg08: [['A', 'Search field'], ['B', 'Filters by area'], ['C', 'Results as service cards'], ['D', 'Pagination', 'on the full page']],
+        lg09: [['A', 'Search'], ['B', 'Grid with the 17 areas of expertise', '', 'Such as Design, Innovation and Marketing & Sales.']],
+        lg10: [['A', 'Price with Sebrae subsidy and Hire service button'], ['B', 'Target audience, notes, Steps and deliverables']],
+        clickOne: 'Click the screen to enlarge', clickMany: 'Click the screens to enlarge'
+      }
+    };
+    var c = C[lang] || C.pt;
+    if (!c.conhecerPm) c.conhecerPm = UX[lang][2].paras[0];
+    // Imagens finais (case-hub-sebrae-handoff-02/images, copiadas para assets/<md5>): id, largura, altura.
+    var IMG2 = {
+      cover: ['a727831e21932bb6e3e0d042a337c89e', 1920, 914],
+      f01: [['4a96d7f456be6aefc9e68981154b0ba3', 1346, 1121], ['19e642db9c14452da88a29a0aae398e2', 1346, 744], ['67519a6a8be0ea24627a6f0d6ccf8744', 1263, 1140]],
+      f02: [['dfaf40c90e50b1af728e05a22ef3ea54', 1358, 1018], ['5a967a1eecf0153e23199d29e7df5179', 1358, 1018]],
+      f03: ['e651a733c2f9704feb873d694d34adaa', 1358, 1018],
+      f04: ['665691343601af499af71965999f4e8e', 1920, 2160],
+      f05: ['d3d913b4b7de1b24c5043f8a26513d04', 1728, 1326],
+      f06: ['2ed865d8265f64399e7b73ddbe4c7099', 1672, 941],
+      ap07: [['8ae49585d74084f5797f96a54986936a', 1728, 6646], ['096bfb46dcfd8673190574442788ac29', 780, 10640]],
+      ap08: [['86ed614783217566abbd8e4a9bdacf62', 2880, 5082], ['45459a072ae1a7f6ed6f5a42b96da72f', 780, 5520]],
+      ap09: [['fe033db3652f5ff033ca3513f6ebd628', 2880, 3680], ['162280715e35193e0c7afa89f88e28d1', 780, 4960]],
+      ap10: [['90e81c12ac2c48b55b678076ec63f8b6', 2880, 3600], ['4c255afe26a45a70f93c58811d8cf7eb', 780, 5120]],
+      f11: [['012bb3c72cf125a583097731657c173a', 1728, 1326], ['bbd7148fc888fb131a05a159213e853c', 780, 1688], ['b33fc0b05cd242b7f03c30cc272e5055', 1280, 1320]],
+      f12: ['a4542243c5b581ef001f467b367f44ff', 3360, 2200],
+      f13: ['84343606e075bc7a1efc2b0734836d77', 3360, 2200]
+    };
+    var blob = function (id) { return '/_blob/' + id; };
+    // Uma versão de figura para o visualizador: mesma figura (g) = abas; marcadores "n|x|y|rótulo".
+    var fig = function (n, step, i, v, a, notes) {
+      return { g: n, fig: 'FIG. ' + n, cap: c['fig' + n], step: step || '', ver: v === 'desktop' ? 'Desktop' : v === 'mobile' ? 'Mobile' : '', v: v || '', src: blob(i[0]), w: i[1], h: i[2], alt: a[0], aria: a[1], notes: notes || '' };
+    };
+    var marks = function (list) { return list.map(function (m) { return { n: m[0], x: m[1], y: m[2] }; }); };
+    var noteStr = function (list, labels) { return list.map(function (m) { return m[0] + '|' + m[1] + '|' + m[2] + '|' + (labels[m[0]] || ''); }).join(';'); };
+    // Figuras A+ (§6.1 e §7): rótulos da janela, régua e celular; marcadores em % da imagem original.
+    var AP = {
+      ap07: { n: '07', step: 0, screens: 6, vis: 18, screensM: 7, mh: 420, mx: 455, solo: true, md: [['1', 50, 11.3], ['2', 12, 16.5], ['3', 72, 19.8]], mm: [], labels: { 1: c.mark1, 2: c.mark2, 3: c.mark3 }, ruler: [] },
+      ap08: { n: '08', step: 0, screens: 3, vis: 42, screensM: 4, mh: 480, md: [['A', 50, 9.9], ['B', 25, 14.9], ['C', 50, 34.8]], mm: [['A', 50, 9.8], ['B', 30, 14.9], ['C', 55, 22.8]], labels: { A: c.lg08[0][1], B: c.lg08[1][1], C: c.lg08[2][1], D: c.lg08[3][1] }, ruler: [['D', 76.7]], legend: c.lg08, hint: c.clickOne, notesExtra: [['D', 80, 76.7]] },
+      ap09: { n: '09', step: 1, screens: 2, vis: 59, screensM: 3, mh: 520, md: [['A', 50, 13.7], ['B', 12, 22.0]], mm: [['A', 50, 11.4], ['B', 25, 17.6]], labels: { A: c.lg09[0][1], B: c.lg09[1][1] }, ruler: [], legend: c.lg09, hint: c.clickOne },
+      ap10: { n: '10', step: 2, screens: 2, vis: 60, screensM: 3, mh: 480, tall: true, md: [['A', 18, 42.4], ['B', 45, 25.1]], mm: [['A', 50, 34.2]], labels: { A: c.lg10[0][1], B: c.lg10[1][1] }, ruler: [], legend: c.lg10, hint: c.clickMany }
+    };
+    var apVals = function (k) {
+      var o = AP[k], im = IMG2[k], a = c.alt[k], st = c.steps[o.step];
+      var d = fig(o.n, st, im[0], 'desktop', [a[0], a[2]], noteStr(o.md.concat(o.notesExtra || []), o.labels));
+      var m = fig(o.n, st, im[1], 'mobile', [a[1], a[3]], noteStr(o.mm, o.labels));
+      d.marks = marks(o.md); m.marks = marks(o.mm);
+      return {
+        fig: 'FIG. ' + o.n, cap: c['fig' + o.n], d: d, m: m,
+        cls: 'ck-ap' + (o.solo ? ' ck-ap--solo' : ''), phoneCls: 'ck-phone' + (o.tall ? ' ck-phone--tall' : ''),
+        screens: o.screens, vis: o.vis, screensM: o.screensM, mh: o.mh, mx: o.mx || 420,
+        rulerMarks: o.ruler.map(function (r) { return { n: r[0], y: r[1] }; }),
+        hasLegend: !!o.legend, legendCls: 'ck-legend' + (k === 'ap10' ? ' ck-legend--s' : ''), hint: o.hint || '',
+        legend: (o.legend || []).map(function (l) { return { n: l[0], t: l[1], off: l[2] || '', hasOff: !!l[2], sub: l[3] || '', hasSub: !!l[3] }; })
+      };
+    };
+    var one = function (k, n) { var i = IMG2[k]; return fig(n, '', i, '', [c.alt[k], c.alt[k + 'a']]); };
+    var hub2 = {
+      c: c,
+      ficha: c.ficha.map(function (f, i, a) { return { k: f[0], v: f[1], cls: i === 3 ? 'is-scope' : i === a.length - 1 ? 'is-year' : '' }; }),
+      cover: { src: blob(IMG2.cover[0]), alt: c.alt.cover },
+      summary: c.summary.map(function (s) { return { href: s[0], k: s[1], v: s[2] }; }),
+      rail: c.rail.map(function (r) { return { id: r[0], label: r[1] }; }),
+      railM: c.rail.filter(function (r) { return r[0] !== 'atuacao'; }).map(function (r, i) { return { id: r[0], label: r[1], n: '0' + (i + 1) }; }),
+      metrics: c.metrics.map(function (m) { return { v: m[0], k: m[1] }; }),
+      concept: c.concept.map(function (l, i, a) { return { label: l, more: i < a.length - 1 }; }),
+      chain: c.chain.map(function (ch) { return { cls: ch[0] === 'arrow' ? '' : ch[0], label: ch[1], n: ch[2] || '', hasN: !!ch[2] }; }),
+      f01: IMG2.f01.map(function (im, i) { var f = fig('01', '', im, '', [c.alt.f01[i], c.alt.f01a[i]]); f.label = c.alt.f01l[i]; return f; }),
+      f02: IMG2.f02.map(function (im, i) { return fig('02', '', im, '', [c.alt.f02[i], c.alt.f02a[i]]); }),
+      f03: (function () { var f = one('f03', '03'); f.notes = '1|36|84|' + c.concept1 + ';2|71|61|' + c.concept2; return f; })(),
+      f04: one('f04', '04'), f05: one('f05', '05'), f06: one('f06', '06'),
+      ap07: apVals('ap07'), ap08: apVals('ap08'), ap09: apVals('ap09'), ap10: apVals('ap10'),
+      f11: IMG2.f11.map(function (im, i) { return fig('11', c.steps[3], im, '', [c.alt.f11[i], c.alt.f11a[i]]); }),
+      f12: one('f12', '12'), f13: one('f13', '13'),
+      pal: PAL[lang],
+      neutrals: [['#04294C', 'RGB 4 · 41 · 76', 'texto branco · 14,7:1'], ['#000000', 'RGB 0 · 0 · 0', 'texto branco · 21:1'], ['#5E6A7B', 'RGB 94 · 106 · 123', 'texto branco · 5,5:1'], ['#7F96B4', 'RGB 127 · 150 · 180', 'texto escuro · 6,5:1'], ['#D1E1FB', 'RGB 209 · 225 · 251', 'texto escuro · 15:1'], ['#FFFFFF', 'RGB 255 · 255 · 255', 'texto escuro · 19,8:1']].map(function (n) { return { hex: n[0], rgb: n[1], aa: lang === 'en' ? n[2].replace('texto branco', 'white text').replace('texto escuro', 'dark text').replace(',', '.') : n[2], border: n[0] === '#FFFFFF' ? '1px solid #D4D4DA' : '0' }; }),
+      auds: AU[lang].map(function (a) { return { who: a.who, goal: a.goal, steps: a.path.split(' → ').map(function (l, i, arr) { var last = i === arr.length - 1; return { label: l, cls: last ? 'is-on' : '', more: !last }; }) }; })
+    };
+    return Object.assign(hub2, {
       docLang: lang === 'en' ? 'en' : 'pt-BR',
       stkClass: this.state.stuck ? 'ro-stk ro-on' : 'ro-stk',
       t: T[lang], meta: M[lang], nums: NU[lang], resNums: RN[lang], chg: CH[lang], roles: RO[lang], aud: AU[lang], fronts: FR[lang],
@@ -1187,7 +1057,7 @@ class Component extends DCLogic {
       isPt: lang === 'pt', isEn: lang === 'en',
       setPt: function () { try { localStorage.setItem('ro-lang', 'pt'); } catch (e) {} self.setState({ lang: 'pt' }); },
       setEn: function () { try { localStorage.setItem('ro-lang', 'en'); } catch (e) {} self.setState({ lang: 'en' }); }
-    };
+    });
   }
 }
 </script>

@@ -186,11 +186,13 @@ const FOR_ATTRS = {
 // é lazy. As demais ganham width/height (proporção) e, quando listadas em SIZES,
 // srcset com versões JPG menores. Os originais em assets/ não são alterados.
 const EAGER = ['dead834c', '77e36605', '988a63b4'];      // logos do topo e retrato do hero
-const PRIORITY = ['988a63b4'];                           // retrato do hero: fetchpriority="high"
-const EAGER_BY_PAGE = { 'Projetos.dc.html': ['e9d6ba4d', '4cb226fe'] };  // capas na primeira tela
+const PRIORITY = ['988a63b4', 'a727831e'];               // retrato do hero e capa do case Hub: fetchpriority="high"
+const EAGER_BY_PAGE = { 'Projetos.dc.html': ['e9d6ba4d', '4cb226fe'], 'Case.dc.html': ['a727831e'] };  // capas na primeira tela
 const VARIANT_WIDTHS = [800, 1280];
 const CASE_SIZES = '(min-width: 1280px) 1232px, calc(100vw - 48px)';
 const BROWSER_SIZES = '(min-width: 1280px) 963px, calc(100vw - 96px)';
+// Janela desktop das figuras A+ do template de case (até 620px; some no celular).
+const WINDOW_SIZES = '(min-width: 761px) 620px, 100vw';
 const PHONE_SIZES = '(min-width: 400px) 320px, calc(100vw - 96px)';
 const SIZES = {
   // Capas recortadas em altura fixa (420px e 520px, proporção 4:3): largura efetiva.
@@ -198,7 +200,7 @@ const SIZES = {
   // Projetos fica sem srcset: com o filtro, um card sozinho ocupa 1232px.
   'CaseStrategi.dc.html': { '*': CASE_SIZES },
   // Telas do portal: janela de navegador (até 963px) e moldura de celular (até 320px).
-  'Case.dc.html': { '*': CASE_SIZES, bb4e355b: BROWSER_SIZES, '0a9d15cb': BROWSER_SIZES, '47112719': BROWSER_SIZES, db98f269: BROWSER_SIZES, '333ce80d': PHONE_SIZES, '059b5753': PHONE_SIZES }
+  'Case.dc.html': { '*': CASE_SIZES, '8ae49585': WINDOW_SIZES, '86ed6147': WINDOW_SIZES, fe033db3: WINDOW_SIZES, '90e81c12': WINDOW_SIZES, bb4e355b: BROWSER_SIZES, '0a9d15cb': BROWSER_SIZES, '47112719': BROWSER_SIZES, db98f269: BROWSER_SIZES, '333ce80d': PHONE_SIZES, '059b5753': PHONE_SIZES }
 };
 // Home do portal Hub (1728×6646): recomprimida no tamanho original (qualidade 75,
 // sem diferença visível em 1:1 nos testes) e com uma versão de 1000px.

@@ -1,15 +1,30 @@
 <!-- Case kit (template de case): CSS do kit (entra aqui, só nas versões que incluem o partial) e o visualizador
      de figuras, aberto pelo site.js. Usar <sc-include name="case-kit"></sc-include> uma vez, dentro do .ck. -->
 <!--partial-css-->
-<dialog class="ck-lb" aria-modal="true" aria-labelledby="ck-lb-title" data-ck-lightbox data-of="{{ck.of}}">
-<div class="ck-lb__stage" data-ck-lb-stage tabindex="0" role="region" aria-labelledby="ck-lb-title"></div>
-<div class="ck-lb__panel">
-<p class="ck-lb__count" data-ck-lb-count></p>
+<dialog class="ck-lb" aria-modal="true" aria-labelledby="ck-lb-title" data-ck-lightbox data-of="{{ck.of}}" data-fit="{{ck.scaleFit}}" data-real="{{ck.scaleReal}}" data-notes="{{ck.notesN}}" data-page="{{ck.pagePct}}" data-pinch="{{ck.pinch}}" data-open="{{ck.detailsOpen}}" data-close="{{ck.detailsClose}}">
+<div class="ck-lb__top">
+<span class="ck-lb__fig" data-ck-lb-fig></span>
 <h2 class="ck-lb__title" id="ck-lb-title" data-ck-lb-title></h2>
-<p class="ck-lb__cap" data-ck-lb-cap></p>
-<ol class="ck-lb__notes" data-ck-lb-notes></ol>
-<div class="ck-lb__nav"><button type="button" data-ck-lb-prev aria-label="{{ck.prev}}">←</button><button type="button" data-ck-lb-next aria-label="{{ck.next}}">→</button></div>
-<p class="ck-lb__hint">{{ck.hint}}</p>
+<span class="ck-lb__count" data-ck-lb-count></span>
+<div class="ck-lb__tools">
+<div class="ck-seg" role="group" aria-label="{{ck.version}}"><button type="button" data-ck-lb-tab="desktop" aria-pressed="false">Desktop</button><button type="button" data-ck-lb-tab="mobile" aria-pressed="false">Mobile</button></div>
+<div class="ck-seg ck-lb__fit" role="group" aria-label="{{ck.scale}}"><button type="button" data-ck-lb-fit="fit" aria-pressed="true">{{ck.fit}}</button><button type="button" data-ck-lb-fit="real" aria-pressed="false">100%</button></div>
 </div>
 <button type="button" class="ck-lb__close" data-ck-lb-close aria-label="{{ck.close}}">×</button>
+</div>
+<div class="ck-lb__bar" aria-hidden="true"><i data-ck-lb-progress></i></div>
+<div class="ck-lb__body">
+<button type="button" class="ck-lb__arrow ck-lb__prev" data-ck-lb-prev aria-label="{{ck.prev}}">←</button>
+<div class="ck-lb__stage" data-ck-lb-stage tabindex="0" role="region" aria-labelledby="ck-lb-title"><div class="ck-lb__page" data-ck-lb-page></div></div>
+<button type="button" class="ck-lb__arrow ck-lb__next" data-ck-lb-next aria-label="{{ck.next}}">→</button>
+</div>
+<div class="ck-lb__side" data-ck-lb-side>
+<p class="ck-lb__step" data-ck-lb-step></p>
+<p class="ck-lb__h" data-ck-lb-h></p>
+<p class="ck-lb__text" data-ck-lb-text></p>
+<ol class="ck-lb__notes" data-ck-lb-notes></ol>
+<div class="ck-lb__map" aria-hidden="true"><span class="ck-lb__mini" data-ck-lb-mini><span class="ck-lb__rect" data-ck-lb-rect></span></span><p class="ck-lb__where"><b>{{ck.here}}</b><span data-ck-lb-pct></span><span data-ck-lb-scale></span></p></div>
+<p class="ck-lb__hint">{{ck.hint}}</p>
+<button type="button" class="ck-lb__more" data-ck-lb-more aria-expanded="false">{{ck.detailsOpen}}</button>
+</div>
 </dialog>
