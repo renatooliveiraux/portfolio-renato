@@ -105,154 +105,264 @@ header nav .ro-nw:hover{background:#FFFFFF;color:#253CEA;opacity:1}
 </div>
 </header>
 
-<div style="max-width: 1280px; margin: 0 auto; padding: 40px 24px 0">
-<a class="ro-bk" href="Projetos.dc.html" style="min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font: 500 14px 'Geist', sans-serif"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>{{t.back}}</a>
-<div class="ro-up" style="margin: 56px 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">{{t.tag}}</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
-<h1 class="ro-up ro-d1" style="margin: 0; max-width: 1000px; font: 500 clamp(48px, 6.6vw, 108px)/0.94 'Geist', sans-serif; letter-spacing: -0.055em">{{t.h1}}</h1>
-<div class="ro-up ro-d2" style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #000000; display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start">
-<p style="flex: 2 1 480px; max-width: 680px; margin: 0; font: 500 clamp(20px, 1.7vw, 24px)/1.45 'Geist', sans-serif; letter-spacing: -0.01em; color: #333333">{{t.lead}}</p>
-<dl style="flex: 1 1 320px; margin: 0">
-<sc-for list="{{meta}}" as="m" hint-placeholder-count="3">
-<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #E4E4E4">
-<dt style="font: 500 12px/1.6 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">{{m.k}}</dt>
-<dd style="margin: 0; font: 500 15px/1.5 'Geist', sans-serif; color: #000000">{{m.v}}</dd>
+<div class="ck ck-hero">
+<a class="ck-back" href="Projetos.dc.html">← {{s.back}}</a>
+<p class="ck-hero__tag">{{s.tag}}<i aria-hidden="true"></i><span>{{s.caseN}}</span></p>
+<h1>{{s.h1}}</h1>
+<div class="ck-hero__row">
+<p class="ck-hero__lead">{{s.lead}}</p>
+<div class="ck-hero__aside">
+<span class="ck-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{s.time}}</span>
+<a href="#resumo">{{ck.summary}}</a>
 </div>
-</sc-for>
+</div>
+<dl class="ck-ficha">
+<sc-for list="{{s.ficha}}" as="fi" hint-placeholder-count="4"><div class="{{fi.cls}}"><dt>{{fi.k}}</dt><dd>{{fi.v}}</dd></div></sc-for>
 </dl>
 </div>
+</section>
+
+<!-- =====================================================================
+     Template de case (case kit + strategi kit; handoff case-strategi-handoff), da capa até o rodapé,
+     nas duas línguas.
+     ===================================================================== -->
+<div class="ck">
+<sc-include name="case-kit"></sc-include>
+<sc-include name="strategi-kit"></sc-include>
+
+<!-- CAPA · respiro -->
+<div class="ck-wrap ck-cover st-cover"><div class="ck-cover__img"><img src="{{s.cover.src}}" alt="{{s.cover.alt}}"></div></div>
+
+<!-- EM RESUMO -->
+<section id="resumo" class="ck-wrap ck-summary" aria-labelledby="ck-summary">
+<h2 id="ck-summary" class="ck-ey">{{s.sumTitle}}</h2>
+<div class="ck-summary__grid">
+<sc-for list="{{s.summary}}" as="sm" hint-placeholder-count="3"><a href="{{sm.href}}"><b>{{sm.k}}</b><span>{{sm.v}}</span></a></sc-for>
 </div>
 </section>
 
-<!-- DESAFIO -->
-<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec); display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.chTitle}}</h2>
+<!-- BARRA DE SEÇÕES -->
+<nav class="ck-rail" aria-label="{{ck.rail}}" data-ck-rail>
+<div class="ck-wrap ck-rail__in">
+<span class="ck-rail__name">{{s.railName}}</span>
+<sc-for list="{{s.rail}}" as="rl" hint-placeholder-count="5"><a href="#{{rl.id}}">{{rl.label}}</a></sc-for>
+<span class="ck-rail__time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span><b>{{s.timeShort}}</b> {{s.railTimeRest}}</span></span>
 </div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 24px">
-<p style="margin: 0; font: 500 clamp(21px, 1.9vw, 26px)/1.45 'Geist', sans-serif; letter-spacing: -0.015em">{{t.ch1}}</p>
-<div style="display: flex; flex-wrap: wrap; gap: 8px">
-<sc-for list="{{fronts}}" as="f" hint-placeholder-count="5"><span style="padding: 10px 18px; border-radius: 999px; background: #F7F7F8; font: 500 14px 'Geist', sans-serif">{{f}}</span></sc-for>
+<div class="ck-rail__m">
+<span class="ck-rail__n" data-ck-n>1/5</span>
+<span class="ck-rail__cur" data-ck-cur>{{s.rail.0.label}}</span>
+<span class="ck-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{s.timeShort}}</span>
+<button type="button" class="ck-rail__btn" data-ck-sheet-btn aria-expanded="false" aria-controls="ck-sheet">{{ck.sections}}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
 </div>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.ch2}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.ch3}}</p>
-<p style="margin: 0; padding-left: 20px; border-left: 3px solid #253CEA; font: 500 19px/1.6 'Geist', sans-serif; color: #000000">{{t.ch4}}</p>
+<div class="ck-progress" aria-hidden="true"><i></i></div>
+<div class="ck-sheet" id="ck-sheet" data-ck-sheet hidden>
+<sc-for list="{{s.rail}}" as="rm" hint-placeholder-count="5"><a href="#{{rm.id}}"><span>{{rm.n}}</span><span data-name>{{rm.label}}</span></a></sc-for>
+</div>
+</nav>
+
+<!-- O DESAFIO -->
+<section id="desafio" class="ck-wrap ck-sec--main" aria-labelledby="st-challenge">
+<div class="ck-head" style="gap: 40px 64px">
+<div class="ck-head__t"><h2 id="st-challenge" class="ck-h2">{{s.des.h2}}</h2><p class="ck-sub">{{s.des.sub}}</p></div>
+<div class="ck-split__main" style="gap: 20px">
+<p class="ck-lead" style="font: 500 clamp(20px, 2vw, 26px)/1.4 'Geist', sans-serif; letter-spacing: -0.01em">{{s.des.lead}}</p>
+<p class="ck-p">{{s.des.p1}}</p>
+<p class="ck-p">{{s.des.p2}}</p>
+</div>
 </div>
 </section>
 
-<!-- ATUAÇÃO -->
-<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.roleTitle}}</h2>
+<!-- O QUE PRECISAVA MUDAR · tabela -->
+<section class="ck-wrap ck-sec" aria-labelledby="st-change">
+<div class="ck-split" style="gap: 32px 64px">
+<div class="ck-split__text"><h3 id="st-change" class="ck-ey">{{s.chg.ey}}</h3><p class="ck-p">{{s.chg.p}}</p></div>
+<div class="ck-split__main">
+<table class="ck-compare">
+<caption class="ck-sr">{{s.chg.ey}}</caption>
+<thead><tr><th scope="col">{{s.chg.before}}</th><th scope="col">{{s.chg.after}}</th></tr></thead>
+<tbody><sc-for list="{{s.chg.rows}}" as="cg" hint-placeholder-count="5"><tr><td>{{cg.a}}</td><td>{{cg.b}}</td></tr></sc-for></tbody>
+</table>
 </div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 24px">
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.role1}}</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">{{t.role2}}</p>
 </div>
 </section>
 
-<!-- COVER -->
-<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec)">
-<figure style="margin: 0">
-<div style="aspect-ratio: 4 / 3; max-height: 860px; width: 100%; border-radius: 20px; overflow: hidden; background: #F7F7F8">
-<img src="/_blob/e9d6ba4d719df87015e9603c3ea94f09" alt="{{t.coverAlt}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+<!-- MINHA ATUAÇÃO -->
+<section id="atuacao" class="ck-wrap ck-sec--main" aria-labelledby="st-role">
+<div class="ck-head" style="gap: 40px 64px">
+<div class="ck-head__t"><h2 id="st-role" class="ck-h2">{{s.role.h2}}</h2><p class="ck-sub">{{s.role.sub}}</p></div>
+<div class="ck-split__main">
+<p class="ck-lead">{{s.role.lead}}</p>
+<ul class="ck-list"><sc-for list="{{s.role.list}}" as="r" hint-placeholder-count="6"><li>{{r}}</li></sc-for></ul>
+<p class="ck-p" style="font-size: 16px; color: var(--muted)">{{s.role.p}}</p>
 </div>
-<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{t.coverCap}}</figcaption>
+</div>
+</section>
+
+<!-- CAPÍTULO 01 · SISTEMA -->
+<section id="sistema" class="ck-chapter" aria-labelledby="st-ch1">
+<div class="ck-chapter__in">
+<p class="ck-chapter__n" aria-hidden="true">01</p>
+<div class="ck-chapter__t"><p class="ck-chapter__k">{{s.ch.k}}</p><h2 id="st-ch1" class="ck-chapter__h">{{s.ch.h}}</h2><p class="ck-chapter__p">{{s.ch.p}}</p></div>
+</div>
+</section>
+
+<!-- ANATOMIA · FIG. 01 -->
+<section id="anatomia" class="ck-wrap ck-sec" aria-labelledby="st-anat">
+<div class="ck-head" style="border-top: 0; padding-top: 0; margin-bottom: 32px">
+<div class="ck-head__t"><p class="ck-ey">{{s.anat.ey}}</p><h3 id="st-anat" class="ck-h3">{{s.anat.h3}}</h3></div>
+<p class="ck-p" style="flex: 999 1 560px; align-self: flex-end">{{s.anat.p}}</p>
+</div>
+<figure class="ck-fig">
+<div class="st-stage st-anat">
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="{{s.anat.img.g}}" data-ck-fig="{{s.anat.img.fig}}" data-ck-name="{{s.anat.img.cap}}" data-ck-step="{{s.anat.img.step}}" data-ck-title="{{s.anat.img.title}}" data-ck-text="{{s.anat.img.cap}}" data-ck-v="" data-ck-src="{{s.anat.img.src}}" data-ck-w="{{s.anat.img.w}}" data-ck-h="{{s.anat.img.h}}" data-ck-notes="{{s.anat.img.notes}}" aria-label="{{s.anat.img.aria}}"><img src="{{s.anat.img.src}}" alt="{{s.anat.img.alt}}"><sc-for list="{{s.anat.img.marks}}" as="mk" hint-placeholder-count="2"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for></button>
+<ul class="st-legend"><sc-for list="{{s.anat.legend}}" as="lg" hint-placeholder-count="6"><li><span class="ck-num">{{lg.n}}</span><div><b>{{lg.t}}</b><span>{{lg.f}}</span></div></li></sc-for></ul>
+</div>
+<figcaption class="ck-cap"><b>FIG. 01</b><span>{{s.anat.cap}}</span></figcaption>
 </figure>
-</div>
-
-<!-- DECISÕES -->
-<section style="background: #F7F7F8">
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px">
-<div style="display: flex; flex-wrap: wrap; gap: 32px 64px; margin-bottom: 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.decTitle}}</h2>
-</div>
-<p style="flex: 2 1 560px; max-width: 760px; margin: 0; font: 500 clamp(21px, 1.9vw, 26px)/1.45 'Geist', sans-serif; letter-spacing: -0.015em">{{t.decIntro}}</p>
-</div>
-<div style="border-top: 1px solid #000000">
-<sc-for list="{{decisions}}" as="d" hint-placeholder-count="5">
-<div class="ro-dec" style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-bottom: 1px solid #000000">
-<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #253CEA">{{d.n}}</span>
-<h3 class="ro-dec-t" style="flex: 1 1 280px; margin: 0; font: 500 clamp(28px, 2.8vw, 40px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">{{d.title}}</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">{{d.text}}</p>
-</div>
-</sc-for>
-</div>
-</div>
 </section>
 
-<!-- IMAGEM: POSTS -->
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px 0">
-<figure style="margin: 0">
-<div style="aspect-ratio: 4 / 3; max-height: 860px; width: 100%; border-radius: 20px; overflow: hidden; background: #F7F7F8">
-<img src="/_blob/774c2015646b11c37cd009c41dda71ef" alt="{{t.postsAlt}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
-</div>
-<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">{{t.postsCap}}</figcaption>
-</figure>
-</div>
+<!-- DECISÕES · índice fixo -->
+<section class="ck-wrap ck-sec" aria-label="{{s.idxLabel}}">
+<div class="ck-jr">
+<nav class="ck-jr__idx" aria-label="{{s.idxLabel}}" data-ck-journey>
+<sc-for list="{{s.idx}}" as="ix" hint-placeholder-count="5"><a href="#{{ix.id}}"><span>{{ix.n}}</span><span>{{ix.t}}</span><span>{{ix.d}}</span></a></sc-for>
+</nav>
+<div class="ck-jr__steps">
 
-<!-- APLICAÇÕES -->
-<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec)">
-<div style="margin-bottom: 64px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.appTitle}}</h2>
+<!-- 01 GRAFISMOS · FIG. 02 -->
+<article id="grafismos" class="ck-step" aria-labelledby="st-d1">
+<div class="ck-step__head"><span class="ck-step__k">{{s.dk}} 01</span><h3 id="st-d1" class="ck-h3">{{s.d1.t}}</h3><p class="ck-p">{{s.d1.p}}</p></div>
+<figure class="ck-fig">
+<div class="st-stage st-stage--car">
+<ul class="st-trio"><sc-for list="{{s.d1.posts}}" as="z" hint-placeholder-count="3"><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="{{z.g}}" data-ck-fig="{{z.fig}}" data-ck-name="{{z.cap}}" data-ck-step="{{z.step}}" data-ck-title="{{z.title}}" data-ck-text="{{z.cap}}" data-ck-v="" data-ck-src="{{z.src}}" data-ck-w="{{z.w}}" data-ck-h="{{z.h}}" data-ck-notes="{{z.notes}}" aria-label="{{z.aria}}"><img src="{{z.src}}" alt="{{z.alt}}"></button><div class="st-trio__t"><span class="ck-num">{{z.n}}</span><div><b>{{z.title}}</b><span>{{z.desc}}</span></div></div></li></sc-for></ul>
 </div>
-<div style="display: flex; flex-direction: column; gap: var(--sub)">
-<sc-for list="{{apps}}" as="a" hint-placeholder-count="3">
-<article style="display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
-<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em">{{a.title}}</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">{{a.text}}</p>
-</div>
-<sc-if value="{{a.hasImgs}}" hint-placeholder-val="{{false}}">
-<div style="display: flex; flex-direction: column; gap: 16px">
-<sc-for list="{{a.imgs}}" as="im" hint-placeholder-count="3">
-<img src="{{im.src}}" alt="{{im.alt}}" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8">
-</sc-for>
-</div>
-</sc-if>
-<sc-if value="{{a.noImgs}}" hint-placeholder-val="{{true}}">
-<div style="aspect-ratio: 16 / 8; min-height: 260px; border-radius: 20px; background: #F7F7F8; display: flex; align-items: center; justify-content: center">
-<span style="padding: 8px 14px; border-radius: 999px; background: #FFFFFF; color: #5C5C5C; font: 500 13px 'Geist', sans-serif">{{a.ph}}</span>
-</div>
-</sc-if>
+<figcaption class="ck-cap"><b>FIG. 02</b><span>{{s.d1.cap}}</span></figcaption>
+</figure>
 </article>
-</sc-for>
+
+<!-- 02 PALETA E TEXTURAS · FIG. 03 -->
+<article id="paleta" class="ck-step" aria-labelledby="st-d2">
+<div class="ck-step__head"><span class="ck-step__k">{{s.dk}} 02</span><h3 id="st-d2" class="ck-h3">{{s.d2.t}}</h3><p class="ck-p">{{s.d2.p}}</p></div>
+<figure class="ck-fig">
+<div class="st-palbox">
+<div class="ck-pal" role="group" aria-label="{{s.d2.t}}">
+<sc-for list="{{s.d2.pal}}" as="pc" hint-placeholder-count="3"><div class="ck-pal__c">
+<span class="ck-pal__k">{{pc.k}}</span>
+<span class="ck-pal__u">{{pc.u}}</span>
+<span class="ck-pal__dot" style="background: {{pc.hex}}" aria-hidden="true"></span>
+<span class="ck-pal__n">{{pc.name}}</span>
+<span class="ck-pal__hex"><b>{{pc.hex}}</b><span>{{pc.rgb}}</span></span>
+<span class="ck-pal__aa"><b style="background: {{pc.hex}}; color: {{pc.fg}}" aria-hidden="true">Aa</b>{{pc.aa}}</span>
+</div></sc-for>
+</div>
+<p class="st-palbox__note">{{s.d2.note}}</p>
+</div>
+<figcaption class="ck-cap"><b>FIG. 03</b><span>{{s.d2.cap}}</span></figcaption>
+</figure>
+</article>
+
+<!-- 03 TIPOGRAFIA E HIERARQUIA · FIG. 04 -->
+<article id="tipografia" class="ck-step" aria-labelledby="st-d3">
+<div class="ck-step__head"><span class="ck-step__k">{{s.dk}} 03</span><h3 id="st-d3" class="ck-h3">{{s.d3.t}}</h3><p class="ck-p">{{s.d3.p}}</p></div>
+<figure class="ck-fig">
+<div class="st-type">
+<div class="st-type__lv">
+<div><span class="st-type__t1">{{s.d3.s1}}</span><small>{{s.d3.l1}}</small></div>
+<div><span class="st-type__t2">{{s.d3.s2}}</span><small>{{s.d3.l2}}</small></div>
+<div><span class="st-type__t3">{{s.d3.s3}}</span><small>{{s.d3.l3}}</small></div>
+</div>
+<div class="st-type__aa">
+<div><span class="st-type__p" aria-hidden="true">Aa</span><b>Poppins</b><small>{{s.d3.r1}}</small></div>
+<div><span class="st-type__i" aria-hidden="true">Aa</span><b>Inter</b><small>{{s.d3.r2}}</small></div>
+</div>
+</div>
+<figcaption class="ck-cap"><b>FIG. 04</b><span>{{s.d3.cap}}</span></figcaption>
+</figure>
+</article>
+
+<!-- 04 COMPOSIÇÃO · FIG. 05 -->
+<article id="composicao" class="ck-step" aria-labelledby="st-d4">
+<div class="ck-step__head"><span class="ck-step__k">{{s.dk}} 04</span><h3 id="st-d4" class="ck-h3">{{s.d4.t}}</h3><p class="ck-p">{{s.d4.p}}</p></div>
+<figure class="ck-fig">
+<div class="st-stage">
+<div class="st-pair"><sc-for list="{{s.d4.posts}}" as="z" hint-placeholder-count="2"><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="{{z.g}}" data-ck-fig="{{z.fig}}" data-ck-name="{{z.cap}}" data-ck-step="{{z.step}}" data-ck-title="{{z.title}}" data-ck-text="{{z.cap}}" data-ck-v="" data-ck-src="{{z.src}}" data-ck-w="{{z.w}}" data-ck-h="{{z.h}}" data-ck-notes="{{z.notes}}" aria-label="{{z.aria}}"><img src="{{z.src}}" alt="{{z.alt}}"><sc-for list="{{z.marks}}" as="mk" hint-placeholder-count="2"><span class="ck-mark" style="left: {{mk.x}}%; top: {{mk.y}}%" aria-hidden="true">{{mk.n}}</span></sc-for><span class="ck-tagpill">{{z.title}}</span></button></sc-for></div>
+<div class="st-fv">
+<div><p>{{s.d4.fixK}}</p><ul><sc-for list="{{s.d4.fix}}" as="it" hint-placeholder-count="4"><li><sc-if value="{{it.hasN}}" hint-placeholder-val="{{true}}"><span class="ck-num">{{it.n}}</span></sc-if><sc-if value="{{it.noN}}" hint-placeholder-val="{{false}}"><span class="st-dot" aria-hidden="true"></span></sc-if><span>{{it.t}}</span></li></sc-for></ul></div>
+<div><p>{{s.d4.varK}}</p><ul><sc-for list="{{s.d4.var}}" as="it" hint-placeholder-count="3"><li><span class="st-dot" aria-hidden="true"></span><span>{{it}}</span></li></sc-for></ul></div>
+</div>
+</div>
+<figcaption class="ck-cap"><b>FIG. 05</b><span>{{s.d4.cap}}</span></figcaption>
+</figure>
+</article>
+
+<!-- 05 ESCALABILIDADE · FIG. 06 e FIG. 07 -->
+<article id="escalabilidade" class="ck-step" aria-labelledby="st-d5">
+<div class="ck-step__head"><span class="ck-step__k">{{s.dk}} 05</span><h3 id="st-d5" class="ck-h3">{{s.d5.t}}</h3><p class="ck-p">{{s.d5.p}}</p></div>
+<figure class="ck-fig st-fig6">
+<div class="st-stage st-stage--car">
+<ul class="st-grid6"><sc-for list="{{s.d5.models}}" as="z" hint-placeholder-count="6"><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="{{z.g}}" data-ck-fig="{{z.fig}}" data-ck-name="{{z.cap}}" data-ck-step="{{z.step}}" data-ck-title="{{z.title}}" data-ck-text="{{z.cap}}" data-ck-v="" data-ck-src="{{z.src}}" data-ck-w="{{z.w}}" data-ck-h="{{z.h}}" data-ck-notes="{{z.notes}}" aria-label="{{z.aria}}"><img src="{{z.src}}" alt="{{z.alt}}"></button><span class="ck-num st-n" aria-hidden="true">{{z.n}}</span><div class="st-grid6__t"><span>{{z.k}}</span><b>{{z.title}}</b></div></li></sc-for></ul>
+<ul class="st-legend st-legend6"><sc-for list="{{s.d5.models}}" as="z" hint-placeholder-count="6"><li><span class="ck-num">{{z.n}}</span><div><b>{{z.title}}</b><span>{{z.k}}</span></div></li></sc-for></ul>
+</div>
+<figcaption class="ck-cap"><b>FIG. 06</b><span>{{s.d5.cap}}</span></figcaption>
+</figure>
+<figure class="ck-fig">
+<button type="button" class="ck-zoom st-feed" data-ck-zoom data-ck-g="{{s.d5.feed.g}}" data-ck-fig="{{s.d5.feed.fig}}" data-ck-name="{{s.d5.feed.cap}}" data-ck-step="{{s.d5.feed.step}}" data-ck-title="{{s.d5.feed.title}}" data-ck-text="{{s.d5.feed.cap}}" data-ck-v="" data-ck-src="{{s.d5.feed.src}}" data-ck-w="{{s.d5.feed.w}}" data-ck-h="{{s.d5.feed.h}}" data-ck-notes="{{s.d5.feed.notes}}" aria-label="{{s.d5.feed.aria}}"><img src="{{s.d5.feed.src}}" alt="{{s.d5.feed.alt}}"></button>
+<figcaption class="ck-cap"><b>FIG. 07</b><span>{{s.d5.cap7}}</span></figcaption>
+</figure>
+</article>
+
+</div>
 </div>
 </section>
 
-<!-- RESULTADOS -->
-<section style="background: #F7F7F8">
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px">
-<h2 style="margin: 0 0 64px; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">{{t.resTitle}}</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 40px; border-top: 1px solid #000000">
-<sc-for list="{{results}}" as="r" hint-placeholder-count="3">
-<div style="padding: 32px 0 0; display: flex; flex-direction: column; gap: 16px">
-<h3 style="margin: 0; font: 500 26px/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #253CEA">{{r.title}}</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #333333">{{r.text}}</p>
+<!-- APLICAÇÕES · ALÉM DO FEED -->
+<section id="aplicacoes" class="ck-wrap ck-sec--main" aria-labelledby="st-apps">
+<div class="ck-head" style="margin-bottom: 80px">
+<div class="ck-head__t"><h2 id="st-apps" class="ck-h2">{{s.app.h2}}</h2><p class="ck-sub">{{s.app.sub}}</p></div>
+<p class="ck-p" style="flex: 999 1 560px">{{s.app.p}}</p>
 </div>
-</sc-for>
+<div class="ck-split" style="gap: 32px 64px">
+<div class="ck-split__text"><span class="st-k">{{s.app.k1}}</span><h3 class="ck-h3">{{s.app.h1}}</h3><p class="ck-p">{{s.app.p1}}</p></div>
+<figure class="ck-fig ck-split__main" style="gap: 14px">
+<div class="st-duo"><sc-for list="{{s.app.duo}}" as="z" hint-placeholder-count="2"><button type="button" class="ck-zoom st-zoom st-43 {{z.cls}}" data-ck-zoom data-ck-g="{{z.g}}" data-ck-fig="{{z.fig}}" data-ck-name="{{z.cap}}" data-ck-step="{{z.step}}" data-ck-title="{{z.title}}" data-ck-text="{{z.cap}}" data-ck-v="" data-ck-src="{{z.src}}" data-ck-w="{{z.w}}" data-ck-h="{{z.h}}" data-ck-notes="{{z.notes}}" aria-label="{{z.aria}}"><img src="{{z.src}}" alt="{{z.alt}}"><sc-if value="{{z.pill}}" hint-placeholder-val="{{false}}"><span class="st-pill" aria-hidden="true">{{z.pillT}}</span></sc-if></button></sc-for></div>
+<figcaption class="ck-cap"><b>FIG. 08</b><span>{{s.app.cap8}}</span></figcaption>
+</figure>
+</div>
+<div class="ck-split st-split9" style="margin-top: 120px; gap: 32px 64px">
+<div class="ck-split__text"><span class="st-k">{{s.app.k2}}</span><h3 class="ck-h3">{{s.app.h2b}}</h3><p class="ck-p">{{s.app.p2}}</p></div>
+<figure class="ck-fig ck-split__main" style="gap: 14px">
+<div class="st-stage st-stage--car">
+<div class="st-grid4"><sc-for list="{{s.app.grid}}" as="z" hint-placeholder-count="4"><button type="button" class="ck-zoom st-zoom st-43" data-ck-zoom data-ck-g="{{z.g}}" data-ck-fig="{{z.fig}}" data-ck-name="{{z.cap}}" data-ck-step="{{z.step}}" data-ck-title="{{z.title}}" data-ck-text="{{z.cap}}" data-ck-v="" data-ck-src="{{z.src}}" data-ck-w="{{z.w}}" data-ck-h="{{z.h}}" data-ck-notes="{{z.notes}}" aria-label="{{z.aria}}"><img src="{{z.src}}" alt="{{z.alt}}"><span class="ck-tagpill">{{z.title}}</span></button></sc-for></div>
+</div>
+<figcaption class="ck-cap"><b>FIG. 09</b><span>{{s.app.cap9}}</span></figcaption>
+</figure>
+</div>
+</section>
+
+<!-- RESULTADOS · grafite -->
+<section id="resultados" class="ck-results" aria-labelledby="st-results">
+<div class="ck-results__in">
+<div class="ck-split" style="gap: 24px 64px">
+<div class="ck-split__text" style="gap: 12px"><h2 id="st-results" class="ck-h2">{{s.res.h2}}</h2><p class="ck-sub">{{s.res.sub}}</p></div>
+<p class="ck-lead" style="flex: 999 1 560px">{{s.res.lead}}</p>
+</div>
+<div class="ck-results__grid">
+<sc-for list="{{s.res.cards}}" as="rc" hint-placeholder-count="3"><div class="ck-results__col"><span class="ck-n">{{rc.n}}</span><h3>{{rc.t}}</h3><p>{{rc.p}}</p></div></sc-for>
 </div>
 </div>
 </section>
 
-<!-- NEXT + FOOTER -->
-<footer style="position: relative; overflow: hidden; background: #000000; color: #FFFFFF">
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px 40px">
-<a class="ro-next" href="Case.dc.html" style="padding-bottom: 72px; border-bottom: 1px solid #262626; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px">
-<div style="flex: 1 1 480px">
-<div style="margin: 0 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #8A8A8A">{{t.next}}</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #333333"></span></div>
-<p style="margin: 0; font: 500 clamp(44px, 6vw, 96px)/0.95 'Geist', sans-serif; letter-spacing: -0.055em; max-width: 900px">{{t.nextTitle}}</p>
-</div>
-<span class="ro-dot" style="width: 88px; height: 88px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+<!-- PRÓXIMO CASE · faixa branca -->
+<a class="ck-next" href="Case.dc.html">
+<span class="ck-next__in">
+<span style="flex: 1 1 480px"><span class="ck-next__k">{{t.next}}</span><span class="ck-next__t">{{t.nextTitle}}</span></span>
+<span class="ck-next__go"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</span>
 </a>
-<div style="position: relative; padding: 32px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px">
+</div>
 
-<img src="/_blob/45a024ad2fa8c9154f2a5a5a69c4d2b1" alt="Renato Oliveira" style="width: 36px; height: 36px; object-fit: contain; display: block">
-<div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px"><a class="ro-nw" href="https://linkedin.com/in/renatooliveiraux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex: none"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg>LinkedIn</a><a class="ro-nw" href="https://instagram.com/renatooliveira.ux" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="flex: none"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>Instagram</a><a class="ro-nw" href="https://wa.me/5584981837847?text=Ol%C3%A1!%20Tudo%20bem%3F%20Cheguei%20aqui%20pelo%20seu%20portf%C3%B3lio." target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M3 21l1.6-4.8A9 9 0 1 1 7.8 19.4z"></path><path d="M9 8.6c0 3.5 2.9 6.4 6.4 6.4l1.1-1.5-2.1-1-.9.8a4.6 4.6 0 0 1-2.2-2.2l.8-.9-1-2.1z" fill="currentColor" stroke="none"></path></svg>WhatsApp</a></div>
-<p style="margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font: 500 12px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #BDBDBD">{{t.fRole}}<span style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; color: #8A8A8A">© 2026 Renato Oliveira</span><a class="ro-nw" href="Privacidade.dc.html" style="font: 400 13px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; text-decoration: underline; text-underline-offset: 3px">{{t.fPriv}}</a></p>
-</div>
-</div>
-</footer>
+<!-- RODAPÉ PADRÃO DO SITE -->
+<sc-include name="site-footer"></sc-include>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","en","pt"],"default":"auto"},"$preview":{"width":1440,"height":8000}}'>
@@ -275,144 +385,284 @@ class Component extends DCLogic {
     var self = this;
     var lang = this.state.lang || (this.props.lang === 'pt' || this.props.lang === 'en' ? this.props.lang : this._auto) || 'en';
     var T = {
+      pt: { navHome: 'Home', navAbout: 'Sobre', navWork: 'Projetos', navContact: 'Contato', talk: 'Vamos conversar', next: 'Próximo case', nextTitle: 'Identidade e Portal do Hub Sebrae RN' },
+      en: { navHome: 'Home', navAbout: 'About', navWork: 'Work', navContact: 'Contact', talk: 'Let’s talk', next: 'Next case', nextTitle: 'Hub Sebrae RN Identity and Portal' }
+    };
+    // Template de case (handoff case-strategi-handoff): textos de copy.pt-en.md ([site] mantém o texto já publicado
+    // na página de cada língua, [ajustado] e [novo] vêm do copy) e o mapa de imagens (HANDOFF §7).
+    var C = {
       pt: {
-        navHome: 'Home', fRole: 'Designer de Produto', fPriv: 'Política de privacidade', navAbout: 'Sobre', navWork: 'Projetos', navContact: 'Contato', talk: 'Vamos conversar', back: 'Todos os projetos',
-        tag: 'Branding · Sistema visual',
-        h1: 'Sistema visual do Grupo Strategi',
-        lead: 'Uma linguagem visual única e versátil para as cinco frentes do grupo, aplicada das redes sociais aos eventos, com percepção premium e produção ágil.',
-        chTitle: 'O desafio',
-        ch1: 'O Grupo Strategi atua em cinco frentes distintas. Cada área tem seu próprio público, tipo de mensagem e ritmo de comunicação, mas todas precisavam ser reconhecidas como parte da mesma marca, seja nas redes sociais, em apresentações para clientes e parceiros ou em eventos.',
-        ch2: 'Porém, cada peça era criada de forma isolada, sem padrões bem definidos. O resultado era uma comunicação inconsistente, difícil de reconhecer e lenta de produzir.',
-        ch3: 'Para resolver isso, era necessário criar uma linguagem visual versátil o suficiente para sustentar uma produção constante de conteúdo, atendendo a todas as frentes de forma consistente. Ao mesmo tempo, era preciso evitar a monotonia: um feed com muitas publicações sobre temas distintos precisava manter a unidade da marca e continuar visualmente interessante.',
-        ch4: 'Além disso, a comunicação precisava transmitir uma percepção premium, à altura do posicionamento do grupo como fornecedor de soluções de tecnologia de alto valor, voltadas a decisões estratégicas de negócio.',
-        roleTitle: 'Minha atuação',
-        role1: 'Fui responsável direto por definir os elementos do sistema visual, criar os padrões de aplicação e produzir todas as peças.',
-        role2: 'Trabalhei junto com a direção, com base em diagnósticos de necessidades, alinhamentos de expectativas e testes visuais para validar a linguagem e garantir sua aplicação.',
-        coverAlt: 'Sistema visual do Grupo Strategi: peça com card e imagem recortada pelo símbolo, grafismos, texturas e paleta de cores',
-        coverCap: 'Elementos do sistema: grafismos, texturas e paleta aplicados em uma peça.',
-        decTitle: 'Decisões do sistema',
-        decIntro: 'Em vez de criar peças isoladas, o trabalho partiu da definição de um sistema: um conjunto de elementos e regras que pudesse ser reaplicado em qualquer ponto de contato.',
-        postsAlt: 'Dois posts do Grupo Strategi com a mesma mensagem: um com card laranja ao lado da foto, outro com foto central, card azul-grafite e assinatura da marca',
-        postsCap: 'A mesma mensagem em duas composições: o sistema varia o layout sem perder a unidade.',
-        appTitle: 'Aplicações',
-        resTitle: 'Resultados',
-        next: 'Próximo case', nextTitle: 'Identidade e Portal do Hub Sebrae RN'
+        back: 'Todos os projetos', tag: 'Branding · Sistema visual', caseN: 'Case 03', h1: 'Sistema visual do Grupo Strategi',
+        lead: 'Uma linguagem visual versátil com foco em percepção premium para as cinco frentes do grupo, aplicada das redes sociais a materiais institucionais e eventos.',
+        time: '4 min de leitura', timeShort: '4 min', railTimeRest: 'de leitura', railName: 'Grupo Strategi',
+        ficha: [['Empresa', 'Grupo Strategi'], ['Meu papel', 'Designer'], ['Escopo', 'Identidade Visual · Comunicação Digital · Material Institucional'], ['Ano', '2024–2025']],
+        sumTitle: 'Em resumo',
+        summary: [['#desafio', 'Desafio', 'Dar unidade à comunicação do grupo sem tornar o feed monótono.'], ['#sistema', 'Entrega', 'Sistema visual, padrões de aplicação, biblioteca de templates no Figma e todas as peças.'], ['#resultados', 'Resultado', 'Uma linguagem reconhecível em todos os pontos de contato; biblioteca de padrões de posts para otimizar o tempo de produção da equipe de design e social media.']],
+        rail: [['desafio', 'Desafio'], ['atuacao', 'Atuação'], ['sistema', 'Sistema'], ['aplicacoes', 'Aplicações'], ['resultados', 'Resultados']],
+        des: {
+          h2: 'O desafio', sub: 'Uma marca, muitos tipos de conteúdo',
+          lead: 'Uma produção constante, com conteúdos de naturezas diferentes, precisava ser reconhecida como uma única marca.',
+          p1: 'O Grupo Strategi atua em cinco frentes distintas. Cada área tem seu próprio público, tipo de mensagem e ritmo de comunicação, mas todas precisavam ser reconhecidas como parte da mesma marca, seja nas redes sociais, em apresentações para clientes e parceiros ou em eventos.',
+          p2: 'Porém, a comunicação estava ficando ultrapassada diante da expansão da marca, e os padrões existentes não acompanhavam a variedade de conteúdo exigida por cada área.'
+        },
+        chg: {
+          ey: 'O que precisava mudar',
+          p: 'A linguagem precisava ser versátil o suficiente para sustentar uma produção constante. Nas redes sociais, precisava evitar a monotonia num feed com temas distintos e, de modo geral, transmitir uma percepção premium, à altura de um fornecedor de tecnologia de alto valor, em todos os pontos de contato com a marca.',
+          before: 'Antes', after: 'Nova direção',
+          rows: [['Comunicação ultrapassada diante da expansão da marca', 'Uma linguagem à altura do novo momento da marca'], ['Padrões que não acompanhavam a variedade de conteúdo', 'Um repertório de modelos para conteúdos variados'], ['Produção lenta, peça a peça', 'Produção ágil, com padrões e templates usados pela equipe'], ['Risco de feed repetitivo', 'Variedade sem perder a unidade'], ['Percepção comum', 'Percepção premium, à altura do posicionamento']]
+        },
+        role: {
+          h2: 'Minha atuação', sub: 'Do sistema às peças',
+          lead: 'Fui responsável direto por definir os elementos do sistema visual, criar os padrões de aplicação e produzir todas as peças.',
+          list: ['Definição dos elementos do sistema', 'Padrões de aplicação', 'Produção de todas as peças', 'Biblioteca de templates no Figma', 'Diagnóstico de necessidades com a direção', 'Testes visuais de validação'],
+          p: 'Trabalhei junto com a direção, com base em diagnósticos de necessidades, alinhamentos de expectativas e testes visuais para validar a linguagem e garantir sua aplicação.'
+        },
+        ch: { k: 'Decisões do sistema', h: 'Sistema', p: 'Em vez de criar peças isoladas, o trabalho partiu da definição de um sistema: um conjunto de elementos e regras que pudesse ser reaplicado em qualquer ponto de contato.' },
+        anat: {
+          ey: 'Anatomia', h3: 'Seis elementos, uma peça',
+          p: 'A peça à esquerda reúne os elementos do sistema; à direita, cada grafismo e cada textura aparecem isolados, com sua função.',
+          legend: [['A', 'Padrão de círculos entrelaçados', 'demarcador visual'], ['B', 'Símbolo com transparência', 'reforço conceitual'], ['C', 'Símbolo como máscara', 'traz pessoas para a identidade'], ['D', 'Card de cantos arredondados', 'concentra o texto'], ['E', 'Assinatura: logo + tagline', 'moldura fixa'], ['F', 'Texturas: ondas e granulado', 'profundidade e tecnologia']],
+          cap: 'Anatomia do sistema: os elementos aplicados em uma peça e apresentados isoladamente, com suas funções.',
+          title: 'Anatomia do sistema'
+        },
+        idxLabel: 'Decisões do sistema', dk: 'Decisão',
+        idx: [['grafismos', 'Grafismos', 'três funções'], ['paleta', 'Paleta e texturas', ''], ['tipografia', 'Tipografia e hierarquia', ''], ['composicao', 'Composição', ''], ['escalabilidade', 'Escalabilidade', '']],
+        d1: {
+          t: 'Grafismos',
+          p: 'O sistema se apoia em três grafismos com funções distintas, apresentados isoladamente na anatomia (FIG. 01). Com funções bem definidas, eles podem ser combinados de formas diferentes sem perder coerência, o que ajuda a evitar a repetição no feed.',
+          posts: [['Padrão de círculos entrelaçados', 'Como demarcador visual, ao lado do título.'], ['Símbolo com transparência', 'Em grande escala e em segundo plano, como reforço conceitual da marca.'], ['Símbolo como máscara', 'Recortando a foto e trazendo a pessoa para dentro da marca.']],
+          cap: 'Os grafismos em uso: a mesma mensagem com cada grafismo em sua função.'
+        },
+        d2: {
+          t: 'Paleta e texturas',
+          p: 'A paleta é contida, com um azul-grafite como base, o laranja da marca como cor de destaque e um azul acinzentado de apoio. A predominância varia conforme o padrão de post: ora o laranja, ora o azul-grafite ou o branco. Texturas de linhas em onda e de granulado, apresentadas na anatomia (FIG. 01), completam a linguagem.',
+          pal: [['Base', 'Fundos, cards e símbolo', 'Azul-grafite', '#38424E', 'RGB 56 · 66 · 78', '#FFFFFF', 'Texto branco · 10,2:1'], ['Destaque', 'Símbolo, chamadas e fundos', 'Laranja Strategi', '#ED6E1A', 'RGB 237 · 110 · 26', '#0A0A0A', 'Texto escuro · 6,5:1 · branco 3,1:1 só em títulos grandes'], ['Apoio', 'Degradês e textos de apoio', 'Azul acinzentado', '#7F96B5', 'RGB 127 · 150 · 181', '#0A0A0A', 'Texto escuro · 6,5:1']],
+          note: 'Não há uma proporção fixa: conforme o padrão de post, predomina o laranja, o azul-grafite ou o branco. HEX extraídos das peças finais.',
+          cap: 'Paleta: azul-grafite, laranja e azul acinzentado, sem proporção fixa entre os padrões.'
+        },
+        d3: {
+          t: 'Tipografia e hierarquia',
+          p: 'A Poppins, uma sans-serif geométrica, assume os títulos em negrito; a Inter sustenta o texto de apoio e as informações complementares. A hierarquia clara garante legibilidade em formatos pequenos, como os posts, e mantém um tom moderno e objetivo, coerente com uma empresa de tecnologia.',
+          // Amostras da prancha (s2 e s3 não constam do copy).
+          s1: 'Tecnologia para decisões estratégicas', l1: 'Título · Poppins Bold · mensagem principal',
+          s2: 'Texto de apoio em peso regular, que desenvolve a mensagem.', l2: 'Apoio · Inter Regular',
+          s3: 'Informações complementares em tamanho reduzido', l3: 'Complementar · Inter Regular, tamanho reduzido',
+          r1: 'principal · títulos', r2: 'apoio · textos e informações',
+          cap: 'Poppins nos títulos e Inter no apoio: três níveis de hierarquia, legíveis mesmo em formatos pequenos.'
+        },
+        d4: {
+          t: 'Composição',
+          // Texto do site mantido integralmente (decisão do Renato, HANDOFF §9).
+          p: 'As peças combinam um card com cantos arredondados, que concentra o texto, e imagens recortadas pelo símbolo da marca. A assinatura com logo e tagline em posições fixas cria uma moldura reconhecível, enquanto o centro da peça varia de acordo com a mensagem. Nos carrosséis, um indicador de navegação na cor de destaque orienta a leitura.',
+          posts: ['Post A', 'Post B'], marks: ['Símbolo da marca no topo', 'Assinatura com logo e tagline'],
+          fixK: 'Fixo · garante a unidade', fix: [['1', 'Símbolo da marca no topo'], ['2', 'Assinatura com logo e tagline'], ['', 'Card de cantos arredondados'], ['', 'Paleta e tipografia']],
+          varK: 'Varia · evita a repetição', var: ['Arranjo de foto e card', 'Cor dominante: laranja, azul-grafite ou branco', 'Grafismo aplicado'],
+          cap: 'A mesma mensagem em duas composições: o sistema varia o layout sem perder a unidade.'
+        },
+        d5: {
+          t: 'Escalabilidade',
+          p: 'Em vez de associar cada modelo a um tipo de conteúdo, o sistema oferece um repertório de arquiteturas visuais: o social media escolhe o modelo que melhor serve a cada publicação. Os modelos foram organizados em uma biblioteca de templates no Figma, disponibilizada para a equipe de social media. Com isso, o time passou a produzir peças com autonomia, aplicando a linguagem visual de forma consistente sem depender da criação de cada peça do zero.',
+          mk: 'Modelo', models: ['Foto com degradê laranja', 'Painel branco + foto lateral', 'Grade de fotos e blocos', 'Card + símbolo como máscara', 'Foto ampla + blocos', 'Fundo laranja + foto no símbolo'],
+          cap: 'Repertório de arquiteturas visuais: a mesma mensagem em seis modelos. A equipe escolhe o que melhor serve a cada conteúdo.',
+          cap7: 'Do template ao feed: a peça produzida pela equipe, publicada no Instagram.', feedTitle: 'Post no Instagram'
+        },
+        app: {
+          h2: 'Aplicações', sub: 'Além do feed',
+          p: 'Além das redes sociais, o sistema estruturou a comunicação institucional e levou a marca para eventos e ambientes físicos.',
+          k1: 'Contexto 01', h1: 'Comunicação institucional', p1: 'A mesma linguagem estruturou apresentações e materiais usados para apresentar a marca, seus serviços e sua atuação.',
+          pill: 'Ver as 2 peças ↗', duo: ['Slides de clientes e serviços', 'Slide About us'],
+          cap8: 'Apresentações institucionais estruturadas pelo mesmo sistema.',
+          k2: 'Contexto 02', h2b: 'A marca fora das telas', p2: 'Totens, stands, banners e materiais de identificação estenderam o sistema para eventos e ambientes físicos, conectando a comunicação digital ao contato presencial com a marca.',
+          grid: ['Stand de evento', 'Totem digital', 'Roll-up', 'Crachás'],
+          cap9: 'Eventos e ambientes físicos: stand, totem, roll-up e crachás.'
+        },
+        res: {
+          h2: 'Resultados', sub: 'Unidade, autonomia e percepção premium',
+          lead: 'Uma linguagem única para toda a comunicação do grupo, produzida com mais agilidade e autonomia pela equipe, sem perder a variedade.',
+          cards: [['Uma linguagem para cinco frentes', 'O sistema visual passou a sustentar a comunicação das cinco frentes do Grupo Strategi com uma linguagem única, reconhecível em todos os pontos de contato: redes sociais, apresentações para clientes e parceiros, eventos e ambientes físicos.'], ['Autonomia e agilidade', 'Com a biblioteca de templates no Figma, a equipe de social media ganhou autonomia para produzir conteúdo sem depender da criação de cada peça do zero. A produção deixou de ser caso a caso e passou a seguir padrões definidos, tornando-se mais ágil e consistente.'], ['Variedade com percepção premium', 'A variedade de modelos permitiu manter um volume constante de publicações sobre temas distintos sem tornar o feed repetitivo, enquanto a paleta contida, as texturas e os grafismos reforçaram a percepção premium da marca.']]
+        },
+        zoom: 'Ampliar: ',
+        // Texto alternativo das imagens (pranchas do handoff).
+        alt: {
+          cover: 'Capa do case Grupo Strategi: card inclinado sobre fundo laranja e azul, com um post do sistema (foto recortada pelo símbolo e card azul-grafite) ao lado dos grafismos, das texturas e da paleta',
+          anat: 'Sistema visual do Grupo Strategi: à esquerda, um post com card azul-grafite, foto recortada pelo símbolo, logo e tagline; à direita, os três grafismos com suas funções e as texturas de ondas e granulado',
+          d1: ['Post quadrado com o padrão de círculos entrelaçados em laranja ao lado do título Reduza erros e aumente produtividade', 'Post quadrado laranja com o símbolo da marca em grande escala recortando a peça', 'Post quadrado azul-acinzentado com o símbolo da marca em segundo plano, atrás do card laranja e da foto'],
+          d4: ['Post A: card laranja à esquerda com o título Reduza erros e aumente produtividade, foto da profissional à direita com o padrão de círculos e a assinatura no rodapé', 'Post B: a mesma mensagem com a foto em destaque no centro, card azul-grafite embaixo e a assinatura com logo à direita'],
+          d5: ['Post com a foto coberta por um degradê laranja, título em branco e o símbolo em grande escala na base', 'Post com painel branco à esquerda, foto à direita, rodapé azul-grafite e o padrão de círculos', 'Post em fundo azul-grafite com grade de duas fotos e blocos branco e laranja', 'Post em fundo branco com card azul-grafite sobre a foto recortada pelo símbolo', 'Post com foto ampla no topo e blocos branco e laranja com a assinatura na base', 'Post em fundo laranja com a foto dentro do símbolo e o padrão de círculos no rodapé'],
+          feed: 'Celular sobre um sofá laranja exibindo, no Instagram, um post do Grupo Strategi com card azul-grafite e foto recortada pelo símbolo',
+          duo: ['Dois slides de apresentação do Grupo Strategi: mapa de clientes no Brasil e página de serviços AI Development com cards', 'Slide About us do Grupo Strategi: fundo laranja, card translúcido com texto e foto recortada pelo símbolo da marca'],
+          grid: ['Stand de evento com o Hub Sebrae RN em uma parede e o Grupo Strategi com suas frentes de serviço na outra', 'Totem digital em shopping exibindo peça do Grupo Strategi sobre a parceria com a Blip', 'Banner roll-up do Grupo Strategi com logo, tagline e o símbolo como marca d’água', 'Crachás do Grupo Strategi, frente e verso, com cordão laranja']
+        }
       },
       en: {
-        navHome: 'Home', fRole: 'Product Designer', fPriv: 'Privacy policy', navAbout: 'About', navWork: 'Work', navContact: 'Contact', talk: 'Let’s talk', back: 'All projects',
-        tag: 'Branding · Visual system',
-        h1: 'Grupo Strategi visual system',
-        lead: 'A single, versatile visual language for the group’s five business lines, applied from social media to events, with a premium feel and faster production.',
-        chTitle: 'The challenge',
-        ch1: 'Grupo Strategi operates across five distinct business lines. Each has its own audience, type of message and communication pace, yet all of them needed to be recognized as part of the same brand, whether on social media, in presentations to clients and partners, or at events.',
-        ch2: 'However, each piece was created in isolation, without well-defined standards. The result was inconsistent communication that was hard to recognize and slow to produce.',
-        ch3: 'Solving this required a visual language versatile enough to support a constant flow of content and serve every business line consistently. At the same time, it had to avoid monotony: a feed with many posts on different topics needed to keep brand unity while staying visually interesting.',
-        ch4: 'On top of that, the communication had to convey a premium feel, matching the group’s positioning as a provider of high-value technology solutions for strategic business decisions.',
-        roleTitle: 'My role',
-        role1: 'I was directly responsible for defining the elements of the visual system, creating the application standards and producing every piece.',
-        role2: 'I worked closely with leadership, based on needs assessments, expectation alignment and visual tests to validate the language and ensure it was applied correctly.',
-        coverAlt: 'Grupo Strategi visual system: a piece with a text card and an image masked by the symbol, graphics, textures and color palette',
-        coverCap: 'System elements: graphics, textures and palette applied to a piece.',
-        decTitle: 'System decisions',
-        decIntro: 'Instead of designing isolated pieces, the work started by defining a system: a set of elements and rules that could be reapplied at any touchpoint.',
-        postsAlt: 'Two Grupo Strategi posts with the same message: one with an orange card beside the photo, another with a central photo, a graphite-blue card and the brand signature',
-        postsCap: 'The same message in two compositions: the system varies the layout without losing unity.',
-        appTitle: 'Applications',
-        resTitle: 'Results',
-        next: 'Next case', nextTitle: 'Hub Sebrae RN Identity and Portal'
+        back: 'All projects', tag: 'Branding · Visual system', caseN: 'Case 03', h1: 'Grupo Strategi visual system',
+        lead: 'A versatile visual language focused on premium perception for the group’s five business fronts, applied from social media to institutional materials and events.',
+        time: '4 min read', timeShort: '4 min', railTimeRest: 'read', railName: 'Grupo Strategi',
+        ficha: [['Company', 'Grupo Strategi'], ['My role', 'Designer'], ['Scope', 'Visual Identity · Digital Communication · Corporate Materials'], ['Year', '2024–2025']],
+        sumTitle: 'In short',
+        summary: [['#desafio', 'Challenge', 'Unify the group’s communication without making the feed monotonous.'], ['#sistema', 'Delivery', 'Visual system, application patterns, a Figma template library and every piece.'], ['#resultados', 'Outcome', 'A recognizable language across every touchpoint; a library of post patterns that optimizes production time for the design and social media team.']],
+        rail: [['desafio', 'Challenge'], ['atuacao', 'My role'], ['sistema', 'System'], ['aplicacoes', 'Applications'], ['resultados', 'Results']],
+        des: {
+          h2: 'The challenge', sub: 'One brand, many kinds of content',
+          lead: 'Constant production, with content of different kinds, had to be recognized as a single brand.',
+          p1: 'Grupo Strategi operates across five distinct business lines. Each has its own audience, type of message and communication pace, yet all of them needed to be recognized as part of the same brand, whether on social media, in presentations to clients and partners, or at events.',
+          p2: 'However, the communication was becoming outdated as the brand expanded, and the existing patterns could not keep up with the variety of content each area required.'
+        },
+        chg: {
+          ey: 'What needed to change',
+          p: 'The language had to be versatile enough to sustain constant production. On social media, it had to avoid monotony in a feed with diverse topics and, more broadly, convey a premium perception worthy of a high-value technology provider across every brand touchpoint.',
+          before: 'Before', after: 'New direction',
+          rows: [['Communication outdated as the brand expanded', 'A language that matches the brand’s new moment'], ['Patterns that couldn’t keep up with content variety', 'A repertoire of templates for varied content'], ['Slow, piece-by-piece production', 'Agile production, with patterns and templates used by the team'], ['Risk of a repetitive feed', 'Variety without losing unity'], ['Ordinary perception', 'Premium perception, matching the positioning']]
+        },
+        role: {
+          h2: 'My role', sub: 'From system to pieces',
+          lead: 'I was directly responsible for defining the elements of the visual system, creating the application standards and producing every piece.',
+          list: ['Defining the system’s elements', 'Application patterns', 'Producing every piece', 'Figma template library', 'Needs assessment with leadership', 'Visual validation tests'],
+          p: 'I worked closely with leadership, based on needs assessments, expectation alignment and visual tests to validate the language and ensure it was applied correctly.'
+        },
+        ch: { k: 'System decisions', h: 'System', p: 'Instead of designing isolated pieces, the work started by defining a system: a set of elements and rules that could be reapplied at any touchpoint.' },
+        anat: {
+          ey: 'Anatomy', h3: 'Six elements, one piece',
+          p: 'The piece on the left brings the system’s elements together; on the right, each graphic and texture appears on its own, with its role.',
+          legend: [['A', 'Interlaced circles pattern', 'visual marker'], ['B', 'Symbol with transparency', 'conceptual reinforcement'], ['C', 'Symbol as a mask', 'brings people into the identity'], ['D', 'Rounded-corner card', 'holds the text'], ['E', 'Signature: logo + tagline', 'fixed frame'], ['F', 'Textures: waves and grain', 'depth and technology']],
+          cap: 'System anatomy: the elements applied in one piece and shown on their own, with their roles.',
+          title: 'System anatomy'
+        },
+        idxLabel: 'System decisions', dk: 'Decision',
+        idx: [['grafismos', 'Graphics', 'three roles'], ['paleta', 'Palette and textures', ''], ['tipografia', 'Typography and hierarchy', ''], ['composicao', 'Composition', ''], ['escalabilidade', 'Scalability', '']],
+        d1: {
+          t: 'Graphics',
+          p: 'The system relies on three graphics with distinct roles, shown on their own in the anatomy (FIG. 01). With well-defined roles, they can be combined in different ways without losing coherence, which helps avoid repetition in the feed.',
+          posts: [['Interlaced circles pattern', 'As a visual marker, next to the headline.'], ['Symbol with transparency', 'At large scale and in the background, as conceptual reinforcement of the brand.'], ['Symbol as a mask', 'Cropping the photo and bringing the person into the brand.']],
+          cap: 'The graphics in use: the same message with each graphic in its role.'
+        },
+        d2: {
+          t: 'Palette and textures',
+          p: 'The palette is restrained, with a graphite blue as the base, the brand’s orange as the accent and a grayish blue in support. Which color dominates depends on the post pattern: sometimes orange, sometimes graphite blue or white. Wave-line and grain textures, shown in the anatomy (FIG. 01), complete the language.',
+          pal: [['Base', 'Backgrounds, cards and symbol', 'Graphite blue', '#38424E', 'RGB 56 · 66 · 78', '#FFFFFF', 'White text · 10.2:1'], ['Accent', 'Symbol, calls to action and backgrounds', 'Strategi orange', '#ED6E1A', 'RGB 237 · 110 · 26', '#0A0A0A', 'Dark text · 6.5:1 · white 3.1:1 for large headings only'], ['Support', 'Gradients and supporting text', 'Grayish blue', '#7F96B5', 'RGB 127 · 150 · 181', '#0A0A0A', 'Dark text · 6.5:1']],
+          note: 'There is no fixed proportion: depending on the post pattern, orange, graphite blue or white dominates. HEX values taken from the final pieces.',
+          cap: 'Palette: graphite blue, orange and grayish blue, with no fixed proportion across patterns.'
+        },
+        d3: {
+          t: 'Typography and hierarchy',
+          p: 'Poppins, a geometric sans-serif, takes the headings in bold; Inter carries the supporting text and complementary information. The clear hierarchy ensures legibility in small formats such as posts and keeps a modern, objective tone, consistent with a technology company.',
+          // Amostras da prancha: s2 e s3 não constam do copy; traduzidas a pedido do Renato.
+          s1: 'Technology for strategic decisions', l1: 'Heading · Poppins Bold · main message',
+          s2: 'Supporting text in regular weight that develops the message.', l2: 'Support · Inter Regular',
+          s3: 'Complementary information in a smaller size', l3: 'Complementary · Inter Regular, smaller size',
+          r1: 'primary · headings', r2: 'support · text and information',
+          cap: 'Poppins for headings and Inter for support: three levels of hierarchy, legible even in small formats.'
+        },
+        d4: {
+          t: 'Composition',
+          // Texto EN do site mantido ([site]; HANDOFF §9).
+          p: 'Pieces combine a rounded card that holds the text with images masked by the brand symbol. The signature, with logo and tagline in fixed positions, creates a recognizable frame while the center of each piece changes with the message. In carousels, a navigation indicator in the accent color guides reading.',
+          posts: ['Post A', 'Post B'], marks: ['Brand symbol at the top', 'Signature with logo and tagline'],
+          fixK: 'Fixed · keeps unity', fix: [['1', 'Brand symbol at the top'], ['2', 'Signature with logo and tagline'], ['', 'Rounded-corner card'], ['', 'Palette and typography']],
+          varK: 'Varies · avoids repetition', var: ['Photo and card arrangement', 'Dominant color: orange, graphite blue or white', 'Graphic applied'],
+          cap: 'The same message in two compositions: the system varies the layout without losing unity.'
+        },
+        d5: {
+          t: 'Scalability',
+          p: 'Instead of tying each template to a type of content, the system offers a repertoire of visual architectures: the social media team picks the template that best serves each post. The templates were organized into a Figma library made available to the social media team. As a result, the team started producing pieces autonomously, applying the visual language consistently without having to create each piece from scratch.',
+          mk: 'Template', models: ['Photo with orange gradient', 'White panel + side photo', 'Photo grid and blocks', 'Card + symbol as a mask', 'Wide photo + blocks', 'Orange background + photo in the symbol'],
+          cap: 'A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content.',
+          cap7: 'From template to feed: the piece produced by the team, published on Instagram.', feedTitle: 'Instagram post'
+        },
+        app: {
+          h2: 'Applications', sub: 'Beyond the feed',
+          p: 'Beyond social media, the system structured institutional communication and took the brand to events and physical spaces.',
+          k1: 'Context 01', h1: 'Corporate communication', p1: 'The same language shaped presentations and materials used to introduce the brand, its services and its work.',
+          pill: 'See both pieces ↗', duo: ['Client and services slides', 'About us slide'],
+          cap8: 'Institutional presentations structured by the same system.',
+          k2: 'Context 02', h2b: 'The brand beyond screens', p2: 'Standing displays, booths, banners and signage extended the system to events and physical spaces, connecting digital communication with in-person contact with the brand.',
+          grid: ['Event booth', 'Digital totem', 'Roll-up banner', 'ID badges'],
+          cap9: 'Events and physical spaces: booth, totem, roll-up and badges.'
+        },
+        res: {
+          h2: 'Results', sub: 'Unity, autonomy and premium perception',
+          lead: 'A single language for all of the group’s communication, produced with more agility and autonomy by the team, without losing variety.',
+          cards: [['One language for five business lines', 'The visual system now supports communication for all five Grupo Strategi business lines with a single language, recognizable at every touchpoint: social media, presentations to clients and partners, events and physical spaces.'], ['Autonomy and speed', 'With the Figma template library, the social media team gained the autonomy to produce content without designing each piece from scratch. Production moved from case-by-case to defined standards, becoming faster and more consistent.'], ['Variety with a premium feel', 'The range of layouts made it possible to keep a steady volume of posts on different topics without a repetitive feed, while the restrained palette, textures and graphic elements reinforced the brand’s premium feel.']]
+        },
+        zoom: 'Enlarge: ',
+        alt: {
+          cover: 'Grupo Strategi case cover: a tilted card over an orange and blue background, with a system post (photo cropped by the symbol and a graphite-blue card) beside the graphics, textures and palette',
+          anat: 'Grupo Strategi visual system: on the left, a post with a graphite-blue card, a photo cropped by the symbol, logo and tagline; on the right, the three graphics with their roles and the wave and grain textures',
+          d1: ['Square post with the orange interlaced circles pattern next to the headline Reduce errors and increase productivity', 'Orange square post with the brand symbol at large scale cutting across the piece', 'Grayish-blue square post with the brand symbol in the background, behind the orange card and the photo'],
+          d4: ['Post A: orange card on the left with the headline Reduce errors and increase productivity, the professional’s photo on the right with the circles pattern and the signature at the bottom', 'Post B: the same message with the photo featured in the center, a graphite-blue card below and the signature with logo on the right'],
+          d5: ['Post with the photo covered by an orange gradient, white headline and the symbol at large scale at the bottom', 'Post with a white panel on the left, photo on the right, graphite-blue footer and the circles pattern', 'Post on a graphite-blue background with a grid of two photos and white and orange blocks', 'Post on a white background with a graphite-blue card over the photo cropped by the symbol', 'Post with a wide photo at the top and white and orange blocks with the signature at the bottom', 'Post on an orange background with the photo inside the symbol and the circles pattern in the footer'],
+          feed: 'Phone on an orange sofa showing, on Instagram, a Grupo Strategi post with a graphite-blue card and a photo cropped by the symbol',
+          duo: ['Two Grupo Strategi presentation slides: a client map of Brazil and an AI Development services page with cards', 'Grupo Strategi About us slide: orange background, translucent text card and a photo cropped by the brand symbol'],
+          grid: ['Event booth with Hub Sebrae RN on one wall and Grupo Strategi with its service lines on the other', 'Digital totem in a mall showing a Grupo Strategi piece about its Blip partnership', 'Grupo Strategi roll-up banner with logo, tagline and the symbol as a watermark', 'Grupo Strategi ID badges, front and back, with an orange lanyard']
+        }
       }
     };
-    var M = {
-      pt: [{ k: 'Empresa', v: 'Grupo Strategi' }, { k: 'Escopo', v: 'Identidade Visual · Comunicação Digital · Material Institucional' }, { k: 'Ano', v: '2024–2025' }],
-      en: [{ k: 'Company', v: 'Grupo Strategi' }, { k: 'Scope', v: 'Visual Identity · Digital Communication · Corporate Materials' }, { k: 'Year', v: '2024–2025' }]
+    var c = C[lang] || C.pt;
+    // Imagens finais (case-strategi-handoff/images, copiadas para assets/<md5>): id, largura, altura.
+    var IMG = {
+      cover: ['5f09bd949fb27b7302e23feae1ffd250', 1920, 1440],
+      anat: ['f5abc4e272e0465bb35bd05515f10fbb', 2744, 1265],
+      d1: [['a5669df5165be56289a768bba08f6188', 1075, 985], ['29b95def2d78de95db3306f20f906eae', 1080, 1080], ['f8760343bfcf4500720717a3327bbca6', 1080, 1080]],
+      d4: [['1f8e91ed9fb0370d8763cdd5e35754b3', 1080, 1080], ['b80e404560ce7d7641c27f4161d06e2c', 1080, 1080]],
+      d5: [['cf94280cfc738f6702e64a08b0ce5485', 1080, 1080], ['4afc37efe904b8d85f523cab9594779b', 1080, 1080], ['d28b24c552b4c931e37e92231c19dac2', 1080, 1080], ['66e6eba2b39fe6665df563d603986ecf', 1080, 1080], ['1a10f4e581a8ecdbd93e2571b9267f77', 1080, 1080], ['207c958f2da08a9a84b3365bf58d06ed', 1080, 1080]],
+      feed: ['95483489198d2079e38ff00723f6131c', 1920, 1080],
+      duo: [['ba9c69149e9fd8306bfc4b2d5e9d0cf3', 1920, 1440], ['4545e5bdedb2e2b2dbb37b92e2516956', 1920, 1440]],
+      grid: [['86319af77906fd5ddb6cb32f9147d822', 1920, 1440], ['f22cf601334b7c9afbbede0f5ff75f37', 1920, 1440], ['19ea215a7a824f2746ddb6e67fc50839', 1920, 1440], ['be6ad09f81fa9b999d1b805c24e38d96', 1920, 1440]]
     };
-    var F = {
-      pt: ['RM', 'Inteligência Artificial', 'Desenvolvimento de Sistemas', 'Automação de Processos', 'Business Intelligence'],
-      en: ['RM', 'Artificial Intelligence', 'Systems Development', 'Process Automation', 'Business Intelligence']
+    // Marcadores em % da imagem (HANDOFF §7).
+    var MK = {
+      anat: [['A', 5.8, 40.5], ['B', 75.6, 24], ['C', 33, 29], ['D', 27.8, 72], ['E', 15.5, 85], ['F', 61.7, 81]],
+      d4: [[['1', 17, 9], ['2', 15, 76]], [['1', 18, 8], ['2', 80, 67]]]
     };
-    var D = {
-      pt: [
-        { n: '01', title: 'Grafismos', text: 'O sistema se apoia em três grafismos com funções distintas. O padrão de círculos entrelaçados atua como demarcador visual, com formas dinâmicas que transmitem movimento e versatilidade. O símbolo da marca aparece como reforço conceitual, aplicado de forma secundária e com transparência. E o símbolo também funciona como máscara para imagens, criando um reforço conceitual mais dinâmico e trazendo pessoas para dentro da identidade. Com funções bem definidas, os grafismos podem ser combinados de formas diferentes sem perder coerência, o que ajuda a evitar a repetição no feed.' },
-        { n: '02', title: 'Paleta e texturas', text: 'A paleta é contida, com um azul-grafite como base, o laranja da marca como cor de destaque e um azul acinzentado de apoio. O laranja é usado com parcimônia, em pontos de atenção como o símbolo e as chamadas para ação. Texturas de linhas em onda, que remetem a tecnologia e fluxo de dados, e de granulado, que acrescenta profundidade às superfícies, completam a linguagem. Juntas, essas escolhas sustentam a percepção premium da comunicação.' },
-        { n: '03', title: 'Tipografia e hierarquia', text: 'Uma sans-serif geométrica em diferentes pesos organiza a leitura: títulos em negrito para a mensagem principal, texto de apoio em peso regular e informações complementares em tamanho reduzido. A hierarquia clara garante legibilidade em formatos pequenos, como os posts, e mantém um tom moderno e objetivo, coerente com uma empresa de tecnologia.' },
-        { n: '04', title: 'Composição', text: 'As peças combinam um card com cantos arredondados, que concentra o texto, e imagens recortadas pelo símbolo da marca. A assinatura com logo e tagline em posições fixas cria uma moldura reconhecível, enquanto o centro da peça varia de acordo com a mensagem. Nos carrosséis, um indicador de navegação na cor de destaque orienta a leitura.' },
-        { n: '05', title: 'Escalabilidade', text: 'Os modelos foram organizados em uma biblioteca de templates no Figma, disponibilizada para a equipe de social media. Com isso, o time passou a produzir peças com autonomia, aplicando a linguagem visual de forma consistente sem depender da criação de cada peça do zero.' }
-      ],
-      en: [
-        { n: '01', title: 'Graphic elements', text: 'The system relies on three graphic elements with distinct roles. The interlaced-circles pattern acts as a visual marker, with dynamic shapes that convey movement and versatility. The brand symbol appears as a conceptual reinforcement, applied in a secondary role with transparency. The symbol also works as an image mask, creating a more dynamic conceptual reinforcement and bringing people into the identity. With clearly defined roles, the elements can be combined in different ways without losing coherence, which helps avoid repetition in the feed.' },
-        { n: '02', title: 'Palette and textures', text: 'The palette is restrained: a graphite blue as the base, the brand orange as the accent and a greyish blue for support. Orange is used sparingly, at points of attention such as the symbol and calls to action. Wave-line textures, evoking technology and data flow, and grain, which adds depth to surfaces, complete the language. Together, these choices support the premium feel of the communication.' },
-        { n: '03', title: 'Typography and hierarchy', text: 'A geometric sans-serif in different weights structures reading: bold headlines for the main message, regular weight for supporting copy and smaller sizes for complementary information. The clear hierarchy keeps small formats like posts legible and maintains a modern, objective tone that fits a technology company.' },
-        { n: '04', title: 'Composition', text: 'Pieces combine a rounded card that holds the text with images masked by the brand symbol. The signature, with logo and tagline in fixed positions, creates a recognizable frame while the center of each piece changes with the message. In carousels, a navigation indicator in the accent color guides reading.' },
-        { n: '05', title: 'Scalability', text: 'The layouts were organized into a template library in Figma, shared with the social media team. The team could then produce pieces autonomously, applying the visual language consistently without designing each piece from scratch.' }
-      ]
+    var blob = function (id) { return '/_blob/' + id; };
+    var zoom = function (n, step, im, title, alt, cap, mk, labels) {
+      return {
+        g: n, fig: 'FIG. ' + n, cap: cap, step: step || '', title: title, src: blob(im[0]), w: im[1], h: im[2], alt: alt, aria: c.zoom + title,
+        marks: (mk || []).map(function (m) { return { n: m[0], x: m[1], y: m[2] }; }),
+        notes: (mk || []).map(function (m, i) { return m[0] + '|' + m[1] + '|' + m[2] + '|' + (labels ? labels[i] : ''); }).join(';')
+      };
     };
-    var A = {
-      pt: [
-        { title: 'Canais digitais', text: 'Nas redes sociais, a linguagem foi adaptada para diferentes mensagens e formatos, mantendo unidade entre as publicações e permitindo que a comunicação se desdobrasse conforme a necessidade.', ph: '[Imagens: posts e carrosséis]' },
-        { title: 'Comunicação institucional', text: 'A mesma linguagem estruturou apresentações e materiais usados para apresentar a marca, seus serviços e sua atuação.', ph: '[Imagens: apresentações e materiais institucionais]' },
-        { title: 'A marca fora das telas', text: 'Totens, stands, banners e materiais de identificação estenderam o sistema para eventos e ambientes físicos, conectando a comunicação digital ao contato presencial com a marca.', ph: '[Imagens: totens, stands e banners]' }
-      ],
-      en: [
-        { title: 'Digital channels', text: 'On social media, the language was adapted to different messages and formats, keeping unity across posts and letting the communication unfold as needed.', ph: '[Images: posts and carousels]' },
-        { title: 'Corporate communication', text: 'The same language shaped presentations and materials used to introduce the brand, its services and its work.', ph: '[Images: presentations and corporate materials]' },
-        { title: 'The brand beyond screens', text: 'Standing displays, booths, banners and signage extended the system to events and physical spaces, connecting digital communication with in-person contact with the brand.', ph: '[Images: displays, booths and banners]' }
-      ]
-    };
-    var R = {
-      pt: [
-        { title: 'Uma linguagem para cinco frentes', text: 'O sistema visual passou a sustentar a comunicação das cinco frentes do Grupo Strategi com uma linguagem única, reconhecível em todos os pontos de contato: redes sociais, apresentações para clientes e parceiros, eventos e ambientes físicos.' },
-        { title: 'Autonomia e agilidade', text: 'Com a biblioteca de templates no Figma, a equipe de social media ganhou autonomia para produzir conteúdo sem depender da criação de cada peça do zero. A produção deixou de ser caso a caso e passou a seguir padrões definidos, tornando-se mais ágil e consistente.' },
-        { title: 'Variedade com percepção premium', text: 'A variedade de modelos permitiu manter um volume constante de publicações sobre temas distintos sem tornar o feed repetitivo, enquanto a paleta contida, as texturas e os grafismos reforçaram a percepção premium da marca.' }
-      ],
-      en: [
-        { title: 'One language for five business lines', text: 'The visual system now supports communication for all five Grupo Strategi business lines with a single language, recognizable at every touchpoint: social media, presentations to clients and partners, events and physical spaces.' },
-        { title: 'Autonomy and speed', text: 'With the Figma template library, the social media team gained the autonomy to produce content without designing each piece from scratch. Production moved from case-by-case to defined standards, becoming faster and more consistent.' },
-        { title: 'Variety with a premium feel', text: 'The range of layouts made it possible to keep a steady volume of posts on different topics without a repetitive feed, while the restrained palette, textures and graphic elements reinforced the brand’s premium feel.' }
-      ]
+    var dstep = function (n) { return c.dk + ' 0' + n + ' · ' + c['d' + n].t; };
+    var st = {
+      back: c.back, tag: c.tag, caseN: c.caseN, h1: c.h1, lead: c.lead, time: c.time, timeShort: c.timeShort, railTimeRest: c.railTimeRest, railName: c.railName,
+      ficha: c.ficha.map(function (f, i, a) { return { k: f[0], v: f[1], cls: i === 2 ? 'is-scope' : i === a.length - 1 ? 'is-year' : '' }; }),
+      cover: { src: blob(IMG.cover[0]), alt: c.alt.cover },
+      sumTitle: c.sumTitle,
+      summary: c.summary.map(function (s) { return { href: s[0], k: s[1], v: s[2] }; }),
+      rail: c.rail.map(function (r, i) { return { id: r[0], label: r[1], n: '0' + (i + 1) }; }),
+      des: c.des, role: c.role, ch: c.ch,
+      chg: { ey: c.chg.ey, p: c.chg.p, before: c.chg.before, after: c.chg.after, rows: c.chg.rows.map(function (r) { return { a: r[0], b: r[1] }; }) },
+      anat: {
+        ey: c.anat.ey, h3: c.anat.h3, p: c.anat.p, cap: c.anat.cap,
+        img: zoom('01', '', IMG.anat, c.anat.title, c.alt.anat, c.anat.cap, MK.anat, c.anat.legend.map(function (l) { return l[1]; })),
+        legend: c.anat.legend.map(function (l) { return { n: l[0], t: l[1], f: l[2] }; })
+      },
+      idxLabel: c.idxLabel, dk: c.dk,
+      idx: c.idx.map(function (x, i) { return { id: x[0], n: '0' + (i + 1), t: x[1], d: x[2] }; }),
+      d1: { t: c.d1.t, p: c.d1.p, cap: c.d1.cap, posts: IMG.d1.map(function (im, i) { var z = zoom('02', dstep(1), im, c.d1.posts[i][0], c.alt.d1[i], c.d1.cap); z.n = String(i + 1); z.desc = c.d1.posts[i][1]; return z; }) },
+      d2: { t: c.d2.t, p: c.d2.p, cap: c.d2.cap, note: c.d2.note, pal: c.d2.pal.map(function (p) { return { k: p[0], u: p[1], name: p[2], hex: p[3], rgb: p[4], fg: p[5], aa: p[6] }; }) },
+      d3: c.d3,
+      d4: {
+        t: c.d4.t, p: c.d4.p, cap: c.d4.cap, fixK: c.d4.fixK, varK: c.d4.varK, var: c.d4.var,
+        fix: c.d4.fix.map(function (f) { return { n: f[0], t: f[1], hasN: !!f[0], noN: !f[0] }; }),
+        posts: IMG.d4.map(function (im, i) { return zoom('05', dstep(4), im, c.d4.posts[i], c.alt.d4[i], c.d4.cap, MK.d4[i], c.d4.marks); })
+      },
+      d5: {
+        t: c.d5.t, p: c.d5.p, cap: c.d5.cap, cap7: c.d5.cap7,
+        models: IMG.d5.map(function (im, i) { var z = zoom('06', dstep(5), im, c.d5.models[i], c.alt.d5[i], c.d5.cap); z.k = c.d5.mk + ' 0' + (i + 1); z.n = i + 1; return z; }),
+        feed: zoom('07', dstep(5), IMG.feed, c.d5.feedTitle, c.alt.feed, c.d5.cap7)
+      },
+      app: {
+        h2: c.app.h2, sub: c.app.sub, p: c.app.p, k1: c.app.k1, h1: c.app.h1, p1: c.app.p1, cap8: c.app.cap8, k2: c.app.k2, h2b: c.app.h2b, p2: c.app.p2, cap9: c.app.cap9,
+        duo: IMG.duo.map(function (im, i) { var z = zoom('08', c.app.k1 + ' · ' + c.app.h1, im, c.app.duo[i], c.alt.duo[i], c.app.cap8); z.pill = i === 1; z.pillT = c.app.pill; z.cls = i === 1 ? 'st-has-pill' : ''; return z; }),
+        grid: IMG.grid.map(function (im, i) { return zoom('09', c.app.k2 + ' · ' + c.app.h2b, im, c.app.grid[i], c.alt.grid[i], c.app.cap9); })
+      },
+      res: { h2: c.res.h2, sub: c.res.sub, lead: c.res.lead, cards: c.res.cards.map(function (r, i) { return { n: '0' + (i + 1), t: r[0], p: r[1] }; }) }
     };
     return {
       docLang: lang === 'en' ? 'en' : 'pt-BR',
       stkClass: this.state.stuck ? 'ro-stk ro-on' : 'ro-stk',
-      t: T[lang], meta: M[lang], fronts: F[lang], decisions: D[lang], results: R[lang],
-      apps: A[lang].map(function (a, i) {
-        var IMGS = [
-          lang === 'en'
-            ? [
-                { src: '/_blob/316e819ab74c51c84933eb866f5ab3e7', alt: 'Two Grupo Strategi posts: one with a graphite-to-orange gradient and the symbol masking a photo, another with a photo grid and an orange block' },
-                { src: '/_blob/1b94c3f717c4e2ca5d3f09fa2512a082', alt: 'Grupo Strategi carousel post on Instagram, shown on a phone' },
-                { src: '/_blob/1da879ecadbee997e2d1e94a19a9dbbf', alt: 'Two Grupo Strategi vertical pieces, in orange and graphite blue, with the interlaced-circles pattern over the photo' }
-              ]
-            : [
-                { src: '/_blob/316e819ab74c51c84933eb866f5ab3e7', alt: 'Dois posts do Grupo Strategi: um com degradê grafite para laranja e o símbolo recortando a foto, outro com grade de fotos e bloco laranja' },
-                { src: '/_blob/1b94c3f717c4e2ca5d3f09fa2512a082', alt: 'Post em carrossel do Grupo Strategi no Instagram, exibido em um celular' },
-                { src: '/_blob/1da879ecadbee997e2d1e94a19a9dbbf', alt: 'Duas peças verticais do Grupo Strategi, em laranja e azul-grafite, com o padrão de círculos entrelaçados sobre a foto' }
-              ],
-          lang === 'en'
-            ? [
-                { src: '/_blob/9bbac7b386b32d4c12f8c823335d1612', alt: 'Grupo Strategi presentation slide “About us”: orange background, translucent text card and a photo masked by the brand symbol' },
-                { src: '/_blob/92774e03b84a66b1220a9e1beaaa8ac3', alt: 'Two Grupo Strategi presentation slides: a client map of Brazil and an “AI Development” services page with cards' }
-              ]
-            : [
-                { src: '/_blob/9bbac7b386b32d4c12f8c823335d1612', alt: 'Slide de apresentação do Grupo Strategi “About us”: fundo laranja, card translúcido com texto e foto recortada pelo símbolo da marca' },
-                { src: '/_blob/92774e03b84a66b1220a9e1beaaa8ac3', alt: 'Dois slides de apresentação do Grupo Strategi: mapa de clientes no Brasil e página de serviços “AI Development” com cards' }
-              ],
-          lang === 'en'
-            ? [
-                { src: '/_blob/8b23dc6226fcd541b8ee810798ae6622', alt: 'Grupo Strategi ID badges, front and back, with an orange lanyard' },
-                { src: '/_blob/9b7b2dccdfc8776a997b4b1bec62fd0c', alt: 'Grupo Strategi roll-up banner with logo, tagline and the symbol as a watermark' },
-                { src: '/_blob/64ad99a31c1da4533bce4b4ab6773353', alt: 'Event booth combining Hub Sebrae RN on one wall and Grupo Strategi with its service tags on the other' },
-                { src: '/_blob/67a013d920288bb6207ec3951c3a7084', alt: 'Digital totem in a mall showing a Grupo Strategi piece about its Blip partnership' }
-              ]
-            : [
-                { src: '/_blob/8b23dc6226fcd541b8ee810798ae6622', alt: 'Crachás do Grupo Strategi, frente e verso, com cordão laranja' },
-                { src: '/_blob/9b7b2dccdfc8776a997b4b1bec62fd0c', alt: 'Banner roll-up do Grupo Strategi com logo, tagline e o símbolo como marca d’água' },
-                { src: '/_blob/64ad99a31c1da4533bce4b4ab6773353', alt: 'Stand de evento com o Hub Sebrae RN em uma parede e o Grupo Strategi com suas frentes de serviço na outra' },
-                { src: '/_blob/67a013d920288bb6207ec3951c3a7084', alt: 'Totem digital em shopping exibindo peça do Grupo Strategi sobre a parceria com a Blip' }
-              ]
-        ];
-        var imgs = IMGS[i] || [];
-        return Object.assign({}, a, { imgs: imgs, hasImgs: imgs.length > 0, noImgs: imgs.length === 0 });
-      }),
+      s: st, t: T[lang],
       isPt: lang === 'pt', isEn: lang === 'en',
       setPt: function () { try { localStorage.setItem('ro-lang', 'pt'); } catch (e) {} self.setState({ lang: 'pt' }); },
       setEn: function () { try { localStorage.setItem('ro-lang', 'en'); } catch (e) {} self.setState({ lang: 'en' }); }

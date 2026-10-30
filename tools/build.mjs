@@ -186,19 +186,29 @@ const FOR_ATTRS = {
 // é lazy. As demais ganham width/height (proporção) e, quando listadas em SIZES,
 // srcset com versões JPG menores. Os originais em assets/ não são alterados.
 const EAGER = ['dead834c', '77e36605', '988a63b4'];      // logos do topo e retrato do hero
-const PRIORITY = ['988a63b4', 'a727831e'];               // retrato do hero e capa do case Hub: fetchpriority="high"
-const EAGER_BY_PAGE = { 'Projetos.dc.html': ['e9d6ba4d', '4cb226fe'], 'Case.dc.html': ['a727831e'] };  // capas na primeira tela
+const PRIORITY = ['988a63b4', 'a727831e', '5f09bd94'];   // retrato do hero e capas dos cases Hub e Strategi: fetchpriority="high"
+const EAGER_BY_PAGE = { 'Projetos.dc.html': ['e9d6ba4d', '4cb226fe'], 'Case.dc.html': ['a727831e'], 'CaseStrategi.dc.html': ['5f09bd94'] };  // capas na primeira tela
 const VARIANT_WIDTHS = [800, 1280];
 const CASE_SIZES = '(min-width: 1280px) 1232px, calc(100vw - 48px)';
 const BROWSER_SIZES = '(min-width: 1280px) 963px, calc(100vw - 96px)';
 // Janela desktop das figuras A+ do template de case (até 620px; some no celular).
 const WINDOW_SIZES = '(min-width: 761px) 620px, 100vw';
+const ST_TRIO = '(min-width: 761px) 300px, 90vw';
+const ST_HALF = '(min-width: 761px) 440px, 82vw';
+const ST_DUO = '(min-width: 761px) 440px, 90vw';
+const ST_SIX = '(min-width: 761px) 290px, 90vw';
+const ST_FOUR = '(min-width: 761px) 375px, 90vw';
 const PHONE_SIZES = '(min-width: 400px) 320px, calc(100vw - 96px)';
 const SIZES = {
   // Capas recortadas em altura fixa (420px e 520px, proporção 4:3): largura efetiva.
   'Main.dc.html': { e9d6ba4d: '560px', '4cb226fe': '694px' },
   // Projetos fica sem srcset: com o filtro, um card sozinho ocupa 1232px.
-  'CaseStrategi.dc.html': { '*': CASE_SIZES },
+  // Case Strategi: posts do trio (3 colunas), par Post A/B e slides (2 colunas), modelos (grade de 720px),
+  // peças físicas (grade de 760px) e o post no feed (coluna das decisões).
+  'CaseStrategi.dc.html': { '*': CASE_SIZES,
+    a5669df5: ST_TRIO, '29b95def': ST_TRIO, f8760343: ST_TRIO, '1f8e91ed': ST_HALF, b80e4045: ST_HALF, ba9c6914: ST_DUO, '4545e5bd': ST_DUO,
+    cf94280c: ST_SIX, '4afc37ef': ST_SIX, d28b24c5: ST_SIX, '66e6eba2': ST_SIX, '1a10f4e5': ST_SIX, '207c958f': ST_SIX,
+    '86319af7': ST_FOUR, f22cf601: ST_FOUR, '19ea215a': ST_FOUR, be6ad09f: ST_FOUR, '95483489': '(min-width: 1280px) 900px, calc(100vw - 32px)' },
   // Telas do portal: janela de navegador (até 963px) e moldura de celular (até 320px).
   'Case.dc.html': { '*': CASE_SIZES, '8ae49585': WINDOW_SIZES, '86ed6147': WINDOW_SIZES, fe033db3: WINDOW_SIZES, '90e81c12': WINDOW_SIZES, bb4e355b: BROWSER_SIZES, '0a9d15cb': BROWSER_SIZES, '47112719': BROWSER_SIZES, db98f269: BROWSER_SIZES, '333ce80d': PHONE_SIZES, '059b5753': PHONE_SIZES }
 };

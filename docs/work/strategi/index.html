@@ -150,228 +150,1002 @@ html.ro-menu-lock{overflow:hidden}
 </div>
 </header>
 
-<div style="max-width: 1280px; margin: 0 auto; padding: 40px 24px 0">
-<a class="ro-bk" href="../" style="min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font: 500 14px 'Geist', sans-serif"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>All projects</a>
-<div class="ro-up" style="margin: 56px 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #253CEA">Branding · Visual system</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #CFCFCF"></span></div>
-<h1 class="ro-up ro-d1" style="margin: 0; max-width: 1000px; font: 500 clamp(48px, 6.6vw, 108px)/0.94 'Geist', sans-serif; letter-spacing: -0.055em">Grupo Strategi visual system</h1>
-<div class="ro-up ro-d2" style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #000000; display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start">
-<p style="flex: 2 1 480px; max-width: 680px; margin: 0; font: 500 clamp(20px, 1.7vw, 24px)/1.45 'Geist', sans-serif; letter-spacing: -0.01em; color: #333333">A single, versatile visual language for the group’s five business lines, applied from social media to events, with a premium feel and faster production.</p>
-<dl style="flex: 1 1 320px; margin: 0">
-
-<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #E4E4E4">
-<dt style="font: 500 12px/1.6 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Company</dt>
-<dd style="margin: 0; font: 500 15px/1.5 'Geist', sans-serif; color: #000000">Grupo Strategi</dd>
+<div class="ck ck-hero">
+<a class="ck-back" href="../">← All projects</a>
+<p class="ck-hero__tag">Branding · Visual system<i aria-hidden="true"></i><span>Case 03</span></p>
+<h1>Grupo Strategi visual system</h1>
+<div class="ck-hero__row">
+<p class="ck-hero__lead">A versatile visual language focused on premium perception for the group’s five business fronts, applied from social media to institutional materials and events.</p>
+<div class="ck-hero__aside">
+<span class="ck-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>4 min read</span>
+<a href="#resumo">Jump to summary ↓</a>
 </div>
-
-<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #E4E4E4">
-<dt style="font: 500 12px/1.6 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Scope</dt>
-<dd style="margin: 0; font: 500 15px/1.5 'Geist', sans-serif; color: #000000">Visual Identity · Digital Communication · Corporate Materials</dd>
 </div>
-
-<div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid #E4E4E4">
-<dt style="font: 500 12px/1.6 'Geist', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #5C5C5C">Year</dt>
-<dd style="margin: 0; font: 500 15px/1.5 'Geist', sans-serif; color: #000000">2024–2025</dd>
-</div>
-
+<dl class="ck-ficha">
+<div class=""><dt>Company</dt><dd>Grupo Strategi</dd></div><div class=""><dt>My role</dt><dd>Designer</dd></div><div class="is-scope"><dt>Scope</dt><dd>Visual Identity · Digital Communication · Corporate Materials</dd></div><div class="is-year"><dt>Year</dt><dd>2024–2025</dd></div>
 </dl>
 </div>
+</section>
+
+<!-- =====================================================================
+     Template de case (case kit + strategi kit; handoff case-strategi-handoff), da capa até o rodapé,
+     nas duas línguas.
+     ===================================================================== -->
+<div class="ck">
+<style>/* =====================================================================
+   Case kit · template de case (case-hub-sebrae-handoff-02: HANDOFF §4–§6)
+   Tokens e componentes restritos a .ck: não alteram o resto da página.
+   Barras fixas: --ck-stk é a altura real do menu fixo do site (medida no site.js);
+   a barra de seções fica logo abaixo dele e --top soma as duas.
+   ===================================================================== */
+.ck{
+  --blue:#253CEA;--ink:#0A0A0A;--text:#333333;--muted:#5E5E66;--line:#E6E6E8;--frame-line:#E1E1E6;
+  --surface:#F5F5F5;--stage:#F3F3F5;--ph:#ECECEF;
+  --graphite:#232327;--graphite-line:#4A4A50;--graphite-muted:#A8A8B0;--blue-on-dark:#8C9BFF;
+  --pad:clamp(16px,5.5vw,80px);--rail:58px;--stk:var(--ck-stk,69px);--top:calc(var(--stk) + var(--rail));
+  color:var(--text);font-family:'Manrope',system-ui,sans-serif
+}
+/* o contêiner da página usa overflow-x: hidden, que impede position: sticky; clip corta igual sem criar rolagem */
+div:has(> .ck){overflow-x:clip !important}
+@media (prefers-reduced-motion:no-preference){html:has(.ck){scroll-behavior:smooth}}
+.ck *,.ck *::before,.ck *::after{box-sizing:border-box}
+.ck-wrap{max-width:calc(1280px + 2 * var(--pad));margin:0 auto;padding-inline:var(--pad)}
+.ck-sec{padding-top:120px}
+.ck-sec--main{padding-top:160px}
+.ck [id]{scroll-margin-top:calc(var(--top) + 24px)}
+.ck-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:where(.ck) button{font:inherit;color:inherit}
+
+/* ---------- tipografia ---------- */
+.ck-ey{margin:0;display:flex;align-items:center;gap:12px;font:600 12px 'Geist',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.ck-ey::before{content:"";flex:none;width:24px;height:1px;background:currentColor}
+.ck-h2{margin:0;font:600 40px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:var(--ink)}
+.ck-sub{margin:0;font:500 18px/1.4 'Geist',sans-serif;color:var(--muted)}
+.ck-h3{margin:0;font:600 32px/1.2 'Geist',sans-serif;letter-spacing:-.01em;color:var(--ink)}
+.ck-h4{margin:0;font:600 24px/1.25 'Geist',sans-serif;color:var(--ink)}
+.ck-p{margin:0;font-size:17px;line-height:1.7;max-width:620px}
+.ck-lead{margin:0;font-size:20px;line-height:1.6;color:var(--ink);max-width:680px}
+.ck-quote{margin:0;max-width:980px;font:500 40px/1.25 'Geist',sans-serif;letter-spacing:-.015em;color:var(--ink)}
+.ck-mb{display:none}
+
+/* ---------- hero ---------- */
+.ck-hero{max-width:calc(1280px + 2 * var(--pad));margin:0 auto;padding:40px var(--pad) 0}
+.ck-back{display:inline-flex;align-items:center;gap:8px;min-height:44px;font:500 14px 'Geist',sans-serif;color:var(--muted);text-decoration:none}
+.ck-back:hover{color:var(--ink)}
+.ck-hero__tag{margin:48px 0 0;display:flex;align-items:center;gap:16px;font:600 12px 'Geist',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.ck-hero__tag::before{content:"";flex:none;width:24px;height:1px;background:currentColor}
+.ck-hero__tag i{flex:1 1 auto;height:1px;background:var(--line)}
+.ck-hero__tag span{color:var(--muted)}
+.ck-hero h1{margin:32px 0 0;max-width:1120px;font:500 clamp(42px,6.2vw,88px)/.98 'Geist',sans-serif;letter-spacing:-.05em;color:var(--ink)}
+.ck-hero__row{margin-top:48px;display:flex;flex-wrap:wrap;gap:24px 64px;align-items:flex-start;justify-content:space-between}
+.ck-hero__lead{flex:0 1 640px;margin:0;font:400 clamp(18px,1.7vw,24px)/1.45 'Geist',sans-serif;color:var(--text)}
+.ck-hero__aside{display:flex;flex-direction:column;gap:8px;align-items:flex-end;padding-top:6px;font:500 13px 'Geist',sans-serif;color:var(--muted)}
+.ck-hero__aside a{display:inline-flex;align-items:center;min-height:44px;margin-top:-12px;color:var(--blue);text-decoration:none}
+.ck-time{display:inline-flex;align-items:center;gap:6px}
+.ck-ficha{margin:56px 0 0;padding:24px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px 40px;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+.ck-ficha div{flex:0 1 auto;display:flex;flex-direction:column;gap:8px}
+.ck-ficha .is-scope{max-width:340px}
+.ck-ficha .is-year{text-align:right}
+.ck-ficha dt{font:600 11px 'Geist',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ck-ficha dd{margin:0;font:500 16px/1.4 'Geist',sans-serif;color:var(--ink)}
+
+/* ---------- capa e Em resumo ---------- */
+.ck-cover{padding-top:56px}
+.ck-cover__img{height:min(580px,65vh);border-radius:20px;background:#E6E8EC;overflow:hidden}
+.ck-cover__img img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.ck-summary{padding-top:96px}
+.ck-summary__grid{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.ck-summary__grid a{display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid var(--ink);color:inherit;text-decoration:none}
+.ck-summary__grid a:last-child{border-top-color:var(--blue)}
+.ck-summary__grid b{font:600 13px 'Geist',sans-serif;color:var(--muted)}
+.ck-summary__grid a:last-child b{color:var(--blue)}
+.ck-summary__grid span{font:500 22px/1.35 'Geist',sans-serif;color:var(--ink)}
+.ck-summary__grid a:hover span{color:var(--blue)}
+
+/* ---------- barra de seções ---------- */
+.ck-rail{position:sticky;top:var(--stk);z-index:40;margin-top:96px;background:var(--ink)}
+.ck-rail__in{display:flex;align-items:center;gap:8px;height:56px;overflow-x:auto;scrollbar-width:none;font:500 13px 'Geist',sans-serif;white-space:nowrap}
+.ck-rail__in::-webkit-scrollbar{display:none}
+.ck-rail__name{margin-right:16px;color:#FFFFFF;font-weight:600}
+.ck-rail__in a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:99px;color:var(--graphite-muted);text-decoration:none;transition:color .2s,background .2s}
+.ck-rail__in a:hover{color:#FFFFFF}
+.ck-rail__in a[aria-current=true]{background:var(--blue);color:#FFFFFF}
+.ck-rail__in a:focus-visible,.ck-rail button:focus-visible{outline:2px solid #FFFFFF;outline-offset:-2px}
+.ck-rail__time{margin-left:auto;padding-left:16px;display:inline-flex;align-items:center;gap:8px;color:var(--graphite-muted)}
+.ck-rail__time b{font-weight:500;color:#FFFFFF}
+.ck-progress{height:2px;background:#2A2A2E}
+.ck-progress i{display:block;width:var(--ck-pr,0%);height:2px;background:var(--blue-on-dark)}
+.ck-rail__m{display:none}
+.ck-sheet{position:absolute;left:0;right:0;top:100%;padding:8px 0 16px;background:var(--ink);border-top:1px solid #26262A}
+.ck-sheet[hidden]{display:none}
+.ck-sheet a{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 var(--pad);color:#FFFFFF;text-decoration:none;font:500 16px 'Geist',sans-serif}
+.ck-sheet a span{width:28px;font:600 12px 'Geist',sans-serif;color:var(--blue-on-dark)}
+.ck-sheet a[aria-current=true]{background:#1A1A1E}
+
+/* métricas do Contexto */
+.ck-metrics{margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.ck-metrics div{display:flex;flex-direction:column;gap:10px;padding-top:24px;border-top:1px solid var(--ink)}
+.ck-metrics strong{font:600 clamp(40px,6vw,88px)/.9 'Geist',sans-serif;letter-spacing:-.045em;color:var(--ink)}
+.ck-metrics strong span{color:var(--blue)}
+.ck-metrics div>span{font:400 15px 'Manrope',sans-serif;color:var(--muted)}
+
+/* ---------- split ---------- */
+.ck-split{display:flex;flex-wrap:wrap;gap:48px 64px;align-items:flex-start}
+.ck-split--center{align-items:center}
+.ck-split__text{flex:1 1 340px;max-width:420px;display:flex;flex-direction:column;gap:20px}
+/* título fixo ao lado do conteúdo só quando as colunas ficam lado a lado (empilhadas, ele cobriria o texto) */
+@media (min-width:1100px){.ck-split__text--stick{position:sticky;top:calc(var(--top) + 24px)}}
+.ck-split__main{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:28px}
+.ck-head{padding-top:40px;border-top:1px solid var(--ink);display:flex;flex-wrap:wrap;gap:24px 64px}
+.ck-head__t{flex:1 1 340px;max-width:420px;display:flex;flex-direction:column;gap:12px}
+
+/* ---------- figuras: base ---------- */
+.ck-fig{margin:0;display:flex;flex-direction:column;gap:14px;min-width:0}
+.ck-cap{display:flex;gap:12px;font:400 14px/1.5 'Manrope',sans-serif;color:var(--muted)}
+.ck-cap b{flex:none;font:600 12px/1.8 'Geist',sans-serif;letter-spacing:.06em;color:var(--blue)}
+.ck-zoom{display:block;padding:0;margin:0;border:0;background:none;cursor:zoom-in;line-height:0;text-align:left}
+.ck-zoom:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.ck-zoom img{display:block;width:100%;height:auto}
+/* Sinal de ampliação: toda imagem que abre o visualizador leva o selo (visível sem hover).
+   As janelas A+ e os celulares A+ no mobile já têm a pílula "Ver … completa", que cumpre o mesmo papel. */
+.ck-zoom{position:relative}
+.ck-zoom::before{content:"";position:absolute;z-index:3;right:12px;bottom:12px;width:32px;height:32px;border-radius:50%;background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9'/%3E%3C/svg%3E") center/14px no-repeat;box-shadow:0 0 0 2px #FFFFFF;pointer-events:none;transition:background-color .2s}
+.ck-zoom:hover::before,.ck-zoom:focus-visible::before{background-color:var(--blue)}
+.ck-win .ck-zoom::before{display:none}
+/* FIG. 01: camadas sobrepostas escondem os cantos; o ícone entra no rótulo de cada camada */
+.ck-layers .ck-zoom::before{display:none}
+.ck-layers .ck-tagpill{display:flex;align-items:center;gap:6px;transition:background-color .2s}
+.ck-layers .ck-tagpill::after{content:"";width:12px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9'/%3E%3C/svg%3E") center/contain no-repeat}
+.ck-layers .ck-zoom:hover .ck-tagpill,.ck-layers .ck-zoom:focus-visible .ck-tagpill{background:var(--blue)}
+.ck-mark{position:absolute;z-index:2;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:var(--blue);color:#FFFFFF;font:600 12px/26px 'Geist',sans-serif;text-align:center;box-shadow:0 0 0 4px rgba(37,60,234,.2);pointer-events:none}
+.ck-mark--dark{width:28px;height:28px;margin:-14px 0 0 -14px;background:var(--ink);font-size:13px;line-height:28px;box-shadow:0 0 0 4px rgba(255,255,255,.35)}
+.ck-num{flex:none;width:24px;height:24px;border-radius:50%;background:var(--blue);color:#FFFFFF;font:600 12px/24px 'Geist',sans-serif;text-align:center}
+.ck-num--ink{background:var(--ink)}
+.ck-marks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.6}
+.ck-marks li{display:flex;gap:12px;align-items:flex-start}
+.ck-marks--row{flex-direction:row;flex-wrap:wrap;gap:8px 24px}
+.ck-marks--row li{align-items:center;gap:10px}
+
+/* FIG. 01 · referência em camadas */
+.ck-layers{position:relative;height:min(520px,65vh);border-radius:16px;background:#EDEDF0;overflow:hidden}
+.ck-layers .ck-zoom{position:absolute;border:1px solid var(--frame-line);border-radius:8px;overflow:hidden;background:#FFFFFF}
+.ck-layers__home{z-index:2;left:6%;top:10%;width:50%;box-shadow:0 18px 40px rgba(10,10,10,.14)}
+.ck-layers__ghost{position:absolute;z-index:1;left:calc(6% + 20px);top:calc(10% + 20px);width:50%;aspect-ratio:1346/1121;border:1px solid #C4C4CC;border-radius:10px}
+.ck-layers__list{z-index:1;right:-6%;top:5.4%;width:54%}
+.ck-layers__cat{z-index:3;left:46%;top:50%;width:33%;box-shadow:0 28px 56px rgba(10,10,10,.24)}
+.ck-tagpill{position:absolute;left:10px;bottom:10px;padding:4px 8px;border-radius:99px;background:rgba(10,10,10,.8);color:#FFFFFF;font:500 11px/1.4 'Geist',sans-serif}
+
+/* FIG. 02 · duas logos */
+.ck-logos{height:min(460px,65vh);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ck-logos .ck-zoom{height:100%;border-radius:16px;overflow:hidden;background:#1D57E9}
+.ck-logos .ck-zoom+.ck-zoom{background:#FFFFFF;border:1px solid var(--line)}
+.ck-logos .ck-zoom img{height:100%;object-fit:cover}
+
+/* dupla editorial (FIG. 03 e 04) */
+.ck-dual{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px 48px}
+.ck-dual__item{display:flex;flex-direction:column;gap:20px;min-width:0}
+.ck-dual__head{display:none}
+.ck-frame43{position:relative;aspect-ratio:4/3;max-height:min(460px,65vh);border-radius:16px;overflow:hidden}
+.ck-frame43 .ck-zoom{width:100%;height:100%}
+.ck-frame43 .ck-zoom img{height:100%;object-fit:cover}
+.ck-frame43--symbol{background:#1D57E9}
+.ck-frame43--type{background:#EEF3FE}
+.ck-frame43--type .ck-zoom{display:flex;justify-content:center}
+.ck-frame43--type .ck-zoom img{width:auto;object-fit:contain}
+
+/* FIG. 05 · peça no split */
+.ck-piece{border-radius:16px;overflow:hidden;background:#0A5BBF;max-height:min(580px,65vh)}
+.ck-piece img{max-height:min(580px,65vh);object-fit:cover}
+.ck-chips{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:10px;font:500 14px 'Geist',sans-serif;color:var(--ink)}
+.ck-chips li{padding:10px 16px;border:1px solid #D4D4DA;border-radius:99px}
+
+/* paleta detalhada (§8) */
+.ck-pal{margin-top:72px;padding-top:32px;border-top:1px solid var(--ink);display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:40px 24px}
+.ck-pal__c{display:flex;flex-direction:column;gap:14px}
+.ck-pal__head{display:none}
+.ck-pal__k{min-height:15px;font:600 12px 'Geist',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.ck-pal__u{min-height:40px;font:400 13px/1.5 'Manrope',sans-serif;color:var(--muted)}
+.ck-pal__dot{width:112px;height:112px;border-radius:50%}
+.ck-pal__n{font:600 18px 'Geist',sans-serif;color:var(--ink)}
+.ck-pal__hex{display:flex;flex-direction:column;gap:2px}
+.ck-pal__hex b{font:500 14px 'Geist',sans-serif;color:var(--ink)}
+.ck-pal__hex span{font:400 13px 'Manrope',sans-serif;color:var(--muted)}
+.ck-pal__aa{display:flex;align-items:center;gap:8px;font:500 12px 'Geist',sans-serif;color:var(--muted)}
+.ck-pal__aa b{padding:4px 8px;border-radius:6px;font:600 13px 'Geist',sans-serif}
+.ck-neutral{margin-top:40px;padding-top:28px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:20px}
+.ck-neutral__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:28px 24px}
+.ck-neutral__grid div{display:flex;align-items:center;gap:14px}
+.ck-neutral__dot{flex:none;width:64px;height:64px;border-radius:50%}
+.ck-neutral__grid p{margin:0;display:flex;flex-direction:column;gap:3px;font:400 12px 'Manrope',sans-serif;color:var(--muted)}
+.ck-neutral__grid p b{font:500 14px 'Geist',sans-serif;color:var(--ink)}
+
+/* abertura de capítulo */
+.ck-chapter{margin-top:160px;padding:96px var(--pad);background:var(--surface)}
+.ck-chapter__in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 64px;align-items:flex-end}
+.ck-chapter__n{flex:1 1 340px;max-width:420px;margin:0;font:700 120px/.9 'Geist',sans-serif;letter-spacing:-.04em;color:var(--blue)}
+.ck-chapter__t{flex:999 1 560px;display:flex;flex-direction:column;gap:12px}
+.ck-chapter__k{margin:0;font:600 12px 'Geist',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ck-chapter__h{margin:0;font:600 56px/1.05 'Geist',sans-serif;letter-spacing:-.025em;color:var(--ink)}
+.ck-chapter__p{margin:0;font-size:18px;line-height:1.6;max-width:600px}
+
+/* tabela Antes / Nova direção */
+.ck-compare{width:100%;border-collapse:collapse;table-layout:fixed}
+.ck-compare th{padding:0 24px 14px 0;border-bottom:1px solid var(--ink);text-align:left;font:600 12px 'Geist',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ck-compare th+th{color:var(--blue)}
+.ck-compare td{padding:20px 24px 20px 0;border-bottom:1px solid var(--line);font-size:18px;line-height:1.45;vertical-align:top}
+.ck-compare td:first-child{color:var(--muted)}
+.ck-compare td+td{color:var(--ink);font-weight:600}
+
+/* mapa do case */
+.ck-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.ck-map a{display:flex;flex-direction:column;gap:12px;min-height:44px;padding:32px;border:1px solid var(--line);border-radius:16px;color:inherit;text-decoration:none;transition:border-color .2s}
+.ck-map a:hover{border-color:var(--blue);color:inherit}
+.ck-map__n{font:600 14px 'Geist',sans-serif;color:var(--blue)}
+.ck-map__t{font:600 24px 'Geist',sans-serif;color:var(--ink)}
+.ck-map__p{font-size:16px;line-height:1.6}
+.ck-map__go{margin-top:8px;font:500 13px 'Geist',sans-serif;color:var(--blue)}
+
+/* listas */
+.ck-list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0 24px;font-size:16px}
+.ck-list li{padding:14px 0;border-bottom:1px solid var(--line)}
+.ck-concept{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:12px;font:600 16px 'Geist',sans-serif;color:var(--ink)}
+.ck-concept li{padding:12px 20px;border-radius:99px;background:var(--stage)}
+.ck-concept li[aria-hidden]{padding:0;background:none;color:var(--muted)}
+
+/* FIG. 06 · respiro */
+.ck-respiro{height:min(560px,65vh);border-radius:20px;background:#0E1A3A;overflow:hidden}
+.ck-respiro .ck-zoom,.ck-respiro .ck-zoom img{width:100%;height:100%}
+.ck-respiro .ck-zoom img{object-fit:cover;object-position:center 40%}
+
+/* personas */
+.ck-card{display:flex;flex-direction:column;gap:16px;padding:32px;border:1px solid var(--line);border-radius:16px}
+.ck-card__k{font:600 12px 'Geist',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.ck-card__t{margin:0;font:600 24px/1.25 'Geist',sans-serif;color:var(--ink)}
+.ck-steps{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px;font:500 14px 'Geist',sans-serif;color:var(--ink)}
+.ck-steps li{padding:8px 14px;border-radius:8px;background:var(--stage)}
+.ck-steps li.is-on{background:var(--blue);color:#FFFFFF}
+.ck-steps li[aria-hidden]{align-self:center;padding:0;background:none;color:var(--muted)}
+
+/* ---------- jornada · índice fixo ---------- */
+.ck-jr{display:flex;flex-wrap:wrap;gap:48px 64px;align-items:flex-start}
+.ck-jr__idx{flex:1 1 240px;max-width:280px;position:sticky;top:calc(var(--top) + 24px);display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.ck-jr__idx a{display:flex;flex-direction:column;gap:2px;min-height:44px;margin-left:-1px;padding:14px 0 14px 20px;border-left:2px solid transparent;text-decoration:none}
+.ck-jr__idx a span:first-child{font:600 12px 'Geist',sans-serif;color:var(--muted)}
+.ck-jr__idx a span:nth-child(2){font:500 18px 'Geist',sans-serif;color:var(--muted)}
+.ck-jr__idx a span:nth-child(3){display:none;font:400 13px 'Manrope',sans-serif;color:var(--muted)}
+.ck-jr__idx a[aria-current=true]{border-left-color:var(--blue)}
+.ck-jr__idx a[aria-current=true] span:first-child{color:var(--blue)}
+.ck-jr__idx a[aria-current=true] span:nth-child(2){font-weight:600;color:var(--ink)}
+.ck-jr__idx a[aria-current=true] span:nth-child(3){display:block}
+.ck-jr__idx a:hover span:nth-child(2){color:var(--ink)}
+.ck-jr__steps{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:140px}
+.ck-step{display:flex;flex-direction:column;gap:28px}
+.ck-step__head{display:flex;flex-direction:column;gap:14px;max-width:640px}
+.ck-step__k{font:600 13px 'Geist',sans-serif;color:var(--blue)}
+
+/* ---------- figura A+ · página longa (§6.1) ----------
+   --row: altura da linha (janela + régua + celular); acompanha a tela, com mínimo que mantém a interface legível. */
+.ck-ap{--row:clamp(400px,calc(100vh - var(--top) - 260px),540px);display:flex;flex-direction:column;gap:20px;padding:24px 24px 20px;border-radius:16px;background:var(--stage)}
+.ck-ap--solo{padding:24px}
+.ck-ap__row{height:var(--row);display:flex;gap:16px;justify-content:center}
+.ck-win{position:relative;flex:0 1 620px;min-width:0;align-self:flex-start;display:flex;flex-direction:column;border:1px solid var(--frame-line);border-radius:8px;overflow:hidden;background:#FFFFFF}
+.ck-win__bar{flex:none;height:20px;display:flex;align-items:center;gap:5px;padding:0 10px;border-bottom:1px solid var(--frame-line)}
+.ck-win__bar i{width:7px;height:7px;border-radius:50%;background:#D4D4DA}
+.ck-win .ck-zoom{display:block;width:100%;height:calc(var(--row) - 22px);overflow:hidden;position:relative}
+.ck-shot{position:relative;line-height:0}
+.ck-fade{position:absolute;left:0;right:0;bottom:0;height:110px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:0 16px 14px;background:linear-gradient(rgba(255,255,255,0),#FFFFFF 78%);line-height:1.4}
+.ck-fade small{font:500 12px 'Geist',sans-serif;color:var(--muted)}
+.ck-fade span{flex:none;padding:9px 14px;border-radius:99px;background:var(--ink);color:#FFFFFF;font:500 13px 'Geist',sans-serif}
+.ck-zoom:hover .ck-fade span{background:var(--blue)}
+.ck-ruler{flex:none;width:24px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.ck-ruler__page{position:relative;width:24px;border:1px solid #D4D4DA;background:#FFFFFF;line-height:0}
+.ck-ruler__page img{display:block;width:22px;height:auto}
+.ck-ruler__vis{position:absolute;left:-3px;right:-3px;top:0;height:var(--vis);border:2px solid var(--blue);border-radius:2px}
+.ck-ruler__mark{position:absolute;right:-12px;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--blue);color:#FFFFFF;font:600 8px/14px 'Geist',sans-serif;text-align:center}
+.ck-ruler small{font:600 9px 'Geist',sans-serif;color:var(--muted);writing-mode:vertical-rl}
+.ck-phone{flex:none;display:flex;flex-direction:column;align-items:center;gap:8px;margin-left:8px}
+/* proporção de aparelho real (~1 : 2,08, com a borda) */
+.ck-phone .ck-zoom{position:relative;width:min(calc((var(--row) - 52px) * .48),240px);height:calc(var(--row) - 52px);border:6px solid var(--ink);border-radius:28px;overflow:hidden;background:#FFFFFF}
+.ck-phone .ck-zoom::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(rgba(255,255,255,0),#FFFFFF 80%)}
+.ck-phone--tall .ck-zoom::after{height:24px}
+.ck-phone small{font:500 12px 'Geist',sans-serif;color:var(--muted)}
+.ck-phone__m{display:none}
+.ck-legend{margin:0;padding:20px 0 0;border-top:1px solid var(--frame-line);list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px 32px}
+.ck-legend li{display:flex;gap:12px;align-items:baseline}
+.ck-legend b{font:600 16px/1.4 'Geist',sans-serif;color:var(--ink)}
+.ck-legend--s b{font-size:15px}
+.ck-legend em{display:block;margin-top:4px;font:normal 400 14px/1.5 'Manrope',sans-serif;color:var(--muted)}
+.ck-legend small{font:500 12px 'Geist',sans-serif;color:var(--muted)}
+.ck-legend .ck-legend__hint{align-items:center;gap:8px;font:500 12px 'Geist',sans-serif;color:var(--muted)}
+
+/* FIG. 11 · fluxo + detalhe */
+.ck-flow11{display:flex;flex-direction:column;gap:24px;padding:28px 32px 24px;border-radius:16px;background:var(--stage)}
+.ck-chain{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font:500 13px 'Geist',sans-serif;color:var(--muted)}
+.ck-chain li{padding:7px 12px;border-radius:99px;background:#FFFFFF}
+.ck-chain li.is-blue,.ck-chain li.is-ink{display:flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;color:#FFFFFF;font-weight:600}
+.ck-chain li.is-blue{background:var(--blue)}
+.ck-chain li.is-ink{background:var(--ink)}
+.ck-chain li i{width:22px;height:22px;border-radius:50%;background:#FFFFFF;font:normal 700 11px/22px 'Geist',sans-serif;text-align:center}
+.ck-chain li.is-blue i{color:var(--blue)}
+.ck-chain li.is-ink i{color:var(--ink)}
+.ck-chain li.is-dash{padding:6px 12px;background:none;border:1px dashed #A8A8B0}
+.ck-chain li[aria-hidden]{padding:0;background:none;color:var(--ink);font-size:16px}
+.ck-stage11{--sh:clamp(360px,calc(100vh - var(--top) - 300px),460px);position:relative;height:var(--sh)}
+.ck-stage11 .ck-zoom{position:absolute;overflow:hidden;background:#FFFFFF}
+.ck-stage11__desk{z-index:1;left:calc(var(--sh) * .286);top:0;width:min(calc(var(--sh) * 1.238),calc(100% - var(--sh) * .73));border:1px solid var(--frame-line);border-radius:10px}
+.ck-stage11__mob{z-index:1;right:0;top:0;width:calc(var(--sh) * .438);border:6px solid var(--ink);border-radius:26px}
+.ck-stage11__card{z-index:3;left:0;bottom:0;width:calc(var(--sh) * .524);border:1px solid var(--frame-line);border-radius:12px;box-shadow:0 24px 48px rgba(10,10,10,.22)}
+.ck-seal{position:absolute;z-index:4;width:26px;height:26px;border-radius:50%;color:#FFFFFF;font:700 12px/26px 'Geist',sans-serif;text-align:center;box-shadow:0 0 0 4px var(--stage);pointer-events:none}
+.ck-seal--1{left:-10px;bottom:calc(var(--sh) * .5);background:var(--blue)}
+.ck-seal--2{left:calc(var(--sh) * .257);top:-10px;background:var(--ink)}
+.ck-seal--go{left:calc(var(--sh) * .495);bottom:calc(var(--sh) * .15);width:30px;height:30px;font:600 15px/30px 'Geist',sans-serif;background:var(--blue);box-shadow:0 0 0 4px rgba(37,60,234,.2)}
+.ck-stage11__down{display:none}
+
+/* FIG. 12 e 13 · peças inteiras */
+.ck-full{border-radius:16px;overflow:hidden;background:#0B4FBF}
+.ck-full .ck-zoom{width:100%;display:flex;justify-content:center}
+.ck-full .ck-zoom img{width:100%;height:auto}
+
+/* ---------- resultados ---------- */
+.ck-results{margin-top:160px;padding:120px var(--pad);background:var(--graphite);color:var(--line)}
+.ck-results__in{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:64px}
+.ck-results .ck-h2{color:#FFFFFF}
+.ck-results .ck-sub{color:var(--graphite-muted)}
+.ck-results .ck-lead{color:#FFFFFF}
+.ck-results .ck-p{max-width:620px}
+.ck-results__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.ck-results__col{display:flex;flex-direction:column;gap:14px;padding-top:28px;border-top:1px solid var(--graphite-line)}
+.ck-results__col .ck-n{font:600 13px 'Geist',sans-serif;color:var(--blue-on-dark)}
+.ck-results__col h3{margin:0;font:600 24px 'Geist',sans-serif;color:#FFFFFF}
+.ck-results__col p{margin:0;font-size:16px;line-height:1.7}
+.ck-results__num{gap:10px;border-top-color:var(--blue-on-dark)}
+.ck-results__num strong{font:600 48px/1 'Geist',sans-serif;letter-spacing:-.03em;color:#FFFFFF}
+.ck-results__num div{display:flex;flex-direction:column;gap:4px}
+.ck-results__num b{font:600 16px 'Geist',sans-serif;color:#FFFFFF}
+.ck-results__num span{font:400 15px 'Manrope',sans-serif;color:var(--graphite-muted)}
+
+/* ---------- próximo case ---------- */
+.ck-next{display:block;padding:112px var(--pad);background:#FFFFFF;color:var(--ink);text-decoration:none}
+.ck-next:hover{color:var(--ink)}
+.ck-next__in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px}
+.ck-next__k{display:flex;align-items:center;gap:24px;font:500 14px 'Geist',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ck-next__k::after{content:"";flex:1 1 80px;height:1px;background:var(--line)}
+.ck-next__t{display:block;margin-top:20px;font:500 clamp(44px,6vw,88px)/.95 'Geist',sans-serif;letter-spacing:-.055em}
+.ck-next__go{flex:none;width:88px;height:88px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;transition:transform .35s}
+.ck-next:hover .ck-next__go{transform:rotate(-45deg) scale(1.08)}
+
+/* ---------- visualizador (§6.4) ---------- */
+.ck-lb{width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(10,10,10,.96);color:#FFFFFF;font-family:'Geist',sans-serif}
+.ck-lb::backdrop{background:rgba(10,10,10,.96)}
+.ck-lb[open]{display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-rows:64px minmax(0,1fr)}
+.ck-lb button{min-width:44px;min-height:44px;border:0;border-radius:99px;background:transparent;color:#FFFFFF;font:500 13px 'Geist',sans-serif;cursor:pointer}
+.ck-lb button:focus-visible,.ck-lb__stage:focus-visible{outline:2px solid #FFFFFF;outline-offset:-2px}
+.ck-lb__top{grid-column:1 / -1;display:flex;align-items:center;gap:16px;padding:0 16px 0 24px;border-bottom:1px solid #26262A}
+.ck-lb__fig{font:600 12px 'Geist',sans-serif;letter-spacing:.06em;color:var(--blue-on-dark)}
+.ck-lb__title{margin:0;font:600 15px 'Geist',sans-serif;color:#FFFFFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ck-lb__count{font:500 13px 'Geist',sans-serif;color:var(--graphite-muted);white-space:nowrap}
+.ck-lb__tools{margin-left:auto;display:flex;align-items:center;gap:12px}
+.ck-seg{display:flex;padding:3px;border-radius:99px;background:#1F1F23}
+.ck-seg button{min-height:38px;padding:0 14px;color:var(--graphite-muted)}
+.ck-seg button[aria-pressed=true]{background:#FFFFFF;color:var(--ink)}
+.ck-seg button:disabled{display:none}
+.ck-lb__close{border:1px solid #4A4A50 !important;font-size:20px !important}
+.ck-lb__body{position:relative;min-height:0;display:flex}
+.ck-lb__stage{flex:1 1 auto;min-width:0;overflow:auto;overscroll-behavior:contain;padding:24px 72px}
+.ck-lb__page{position:relative;margin:0 auto;line-height:0;background:#FFFFFF}
+.ck-lb__page img{display:block;width:100%;height:auto}
+.ck-lb__arrow{position:absolute;top:50%;z-index:2;transform:translateY(-50%);border:1px solid #4A4A50 !important;font-size:18px !important;background:rgba(10,10,10,.6) !important}
+.ck-lb__arrow:disabled{opacity:.3;cursor:default}
+.ck-lb__prev{left:16px}
+.ck-lb__next{right:16px}
+.ck-lb__side{position:relative;display:flex;flex-direction:column;gap:14px;padding:24px;border-left:1px solid #26262A;background:#111114;overflow:auto}
+.ck-lb__step{margin:0;font:600 12px 'Geist',sans-serif;color:var(--blue-on-dark)}
+.ck-lb__h{margin:0;font:600 20px/1.3 'Geist',sans-serif;color:#FFFFFF}
+.ck-lb__text{margin:0;font:400 14px/1.6 'Manrope',sans-serif;color:#D6D6DC}
+.ck-lb__notes{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font:400 14px/1.5 'Manrope',sans-serif;color:#D6D6DC}
+.ck-lb__notes li{display:flex;gap:10px}
+.ck-lb__notes b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#FFFFFF;font:600 11px/22px 'Geist',sans-serif;text-align:center}
+.ck-lb__map{display:flex;gap:12px;align-items:flex-start;padding-top:14px;border-top:1px solid #26262A}
+.ck-lb__mini{position:relative;flex:none;width:44px;line-height:0;background:#FFFFFF}
+.ck-lb__mini img{display:block;width:100%;height:auto;max-height:220px;object-fit:cover;object-position:top}
+.ck-lb__rect{position:absolute;left:-3px;right:-3px;top:0;height:20px;border:2px solid var(--blue-on-dark);border-radius:2px}
+.ck-lb__where{margin:0;display:flex;flex-direction:column;gap:4px;font:400 13px/1.5 'Manrope',sans-serif;color:var(--graphite-muted)}
+.ck-lb__where b{font:600 13px 'Geist',sans-serif;color:#FFFFFF}
+.ck-lb__hint{margin:auto 0 0;font:400 12px/1.5 'Manrope',sans-serif;color:var(--graphite-muted)}
+.ck-lb__bar{display:none}
+.ck-lb__more{display:none}
+
+/* ---------- tablet: índice da jornada vira barra de etapas ---------- */
+@media (max-width:960px){
+  .ck-rail__name,.ck-rail__time{display:none}
+  .ck-jr{gap:0}
+  .ck-jr__idx{flex:1 1 100%;max-width:none;top:calc(var(--top) + 2px);z-index:30;flex-direction:row;gap:6px;margin:0 calc(-1 * var(--pad)) 32px;padding:10px var(--pad);border:0;border-bottom:1px solid var(--line);background:#FFFFFF}
+  .ck-jr__idx a{flex:1 1 0;min-width:0;margin:0;padding:0;border:0;justify-content:center;gap:4px}
+  .ck-jr__idx a::before{content:"";height:3px;border-radius:2px;background:#E1E1E6}
+  .ck-jr__idx a[aria-current=true]::before{background:var(--blue)}
+  .ck-jr__idx a span:first-child{font:500 12px 'Geist',sans-serif;color:var(--muted)}
+  .ck-jr__idx a span:nth-child(2){display:none;font:600 12px 'Geist',sans-serif;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ck-jr__idx a[aria-current=true]{flex-grow:2.2}
+  .ck-jr__idx a[aria-current=true] span:first-child{display:none}
+  .ck-jr__idx a[aria-current=true] span:nth-child(2){display:block}
+  .ck-jr__idx a span:nth-child(3),.ck-jr__idx a[aria-current=true] span:nth-child(3){display:none}
+  .ck-jr__idx a.ck-jr__extra{display:none}
+  .ck-jr .ck-step{scroll-margin-top:calc(var(--top) + 80px)}
+  .ck-jr__steps{gap:96px}
+  .ck-stage11__desk{left:96px}
+}
+
+/* ---------- mobile ---------- */
+@media (max-width:760px){
+  .ck{--rail:52px}
+  .ck-sec{padding-top:64px}
+  .ck-sec--main{padding-top:80px}
+  .ck-dt{display:none}
+  .ck-mb{display:block}
+  .ck-hero{padding-top:16px}
+  .ck-back{font-size:13px}
+  .ck-hero__tag{margin-top:20px;gap:10px;font-size:11px}
+  .ck-hero__tag::before{width:20px}
+  .ck-hero__tag i,.ck-hero__tag span{display:none}
+  .ck-hero h1{margin-top:20px;font-size:42px;line-height:1;letter-spacing:-.045em}
+  .ck-hero__row{margin-top:20px;gap:16px}
+  .ck-hero__lead{font-size:18px;line-height:1.5}
+  .ck-hero__aside{align-items:flex-start;padding:0}
+  .ck-hero__aside a{display:none}
+  .ck-ficha{margin-top:24px;padding:18px 0 0;border-bottom:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}
+  .ck-ficha div{gap:4px}
+  .ck-ficha .is-scope{grid-column:span 2;order:5;max-width:none}
+  .ck-ficha .is-year{text-align:left}
+  .ck-ficha dt{font-size:10px}
+  .ck-ficha dd{font-size:14px}
+  .ck-cover{padding-top:28px}
+  .ck-cover__img{height:auto;aspect-ratio:2/1;border-radius:14px}
+  .ck-summary{padding-top:48px}
+  .ck-summary__grid{margin-top:20px;gap:20px}
+  .ck-summary__grid a{padding-top:14px;gap:6px}
+  .ck-summary__grid b{font-size:12px}
+  .ck-summary__grid span{font-size:17px;line-height:1.4}
+  /* barra de seções: seção atual + botão "Seções" */
+  .ck-rail{margin-top:48px}
+  .ck-rail__in{display:none}
+  .ck-rail__m{display:flex;align-items:center;gap:10px;height:52px;padding:0 8px 0 16px}
+  .ck-rail__n{font:600 11px 'Geist',sans-serif;color:var(--blue-on-dark)}
+  .ck-rail__cur{flex:1 1 auto;min-width:0;font:600 15px 'Geist',sans-serif;color:#FFFFFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ck-rail__m .ck-time{font:500 12px 'Geist',sans-serif;color:var(--graphite-muted)}
+  .ck-rail__btn{min-height:44px;display:inline-flex;align-items:center;gap:6px;padding:0 14px;border:0;border-radius:99px;background:var(--graphite);color:#FFFFFF;font:500 13px 'Geist',sans-serif;cursor:pointer}
+  .ck-rail__btn svg{transition:transform .2s}
+  .ck-rail__btn[aria-expanded=true] svg{transform:rotate(180deg)}
+  .ck-split{gap:16px}
+  .ck-split__text{gap:16px}
+  .ck-head{padding-top:28px}
+  .ck-h2{font-size:30px;line-height:1.15}
+  .ck-h3{font-size:26px}
+  .ck-h4{font-size:20px}
+  .ck-p{font-size:16px}
+  .ck-lead{font-size:18px}
+  .ck-quote{font-size:24px;line-height:1.3}
+  .ck-cap{font-size:13px;gap:8px}
+  .ck-cap b{font-size:11px}
+  .ck-layers{height:auto;aspect-ratio:4/3;border-radius:12px}
+  .ck-logos{height:180px;gap:8px}
+  .ck-logos .ck-zoom{border-radius:12px}
+  .ck-compare thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .ck-compare,.ck-compare tbody,.ck-compare tr,.ck-compare td{display:block}
+  .ck-compare tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  .ck-compare td{padding:0;border:0}
+  .ck-compare td:first-child{font-size:14px;text-decoration:line-through}
+  .ck-compare td+td{margin-top:4px;font-size:17px}
+  /* dupla editorial vira carrossel com snap */
+  /* conceito e tipografia empilhados na largura da coluna (o carrossel do handoff cortava a 2ª peça) */
+  .ck-dual{grid-template-columns:1fr;gap:48px}
+  .ck-dual__item{gap:12px}
+  .ck-chapter{margin-top:80px;padding:48px var(--pad)}
+  .ck-chapter__in{flex-direction:column;align-items:flex-start;gap:8px}
+  .ck-chapter__n,.ck-chapter__t{flex:none;max-width:none}
+  .ck-chapter__n{font-size:64px}
+  .ck-chapter__k{margin-top:12px;font-size:11px}
+  .ck-chapter__h{font-size:36px}
+  .ck-chapter__p{font-size:16px}
+  .ck-map a{padding:20px}
+  .ck-map__t{font-size:18px}
+  .ck-card{padding:20px}
+  .ck-card__t{font-size:18px}
+  .ck-respiro{height:auto;aspect-ratio:4/3;border-radius:14px}
+  .ck-pal{margin-top:40px;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 12px}
+  .ck-pal__c{gap:6px}
+  .ck-pal__c--base{grid-column:1 / -1;display:grid;grid-template-columns:64px 1fr;column-gap:14px;align-items:center}
+  .ck-pal__c--base .ck-pal__k,.ck-pal__c--base .ck-pal__u{grid-column:1 / -1}
+  .ck-pal__c--base .ck-pal__dot{grid-row:span 3;width:64px;height:64px}
+  .ck-pal__head{display:block;grid-column:1 / -1;margin:8px 0 0}
+  .ck-pal__c--first .ck-pal__k,.ck-pal__c--first .ck-pal__u{display:none}
+  .ck-pal__u:empty,.ck-pal__k:empty{display:none}
+  .ck-pal__dot{width:48px;height:48px}
+  .ck-pal__n{font-size:14px}
+  .ck-pal__hex span,.ck-pal__aa{display:none}
+  .ck-pal__c--base .ck-pal__hex span,.ck-pal__c--base .ck-pal__aa{display:flex}
+  .ck-neutral__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}
+  .ck-neutral__dot{width:40px;height:40px}
+  .ck-neutral__grid p span:last-child{display:none}
+  /* jornada: barra de etapas logo abaixo da barra de seções */
+  .ck-jr__idx{top:calc(var(--top) + 2px)}
+  /* A+ no celular: só a versão mobile, com rótulo e pílula "Ver completa" */
+  .ck-ap,.ck-ap--solo{--row:auto;padding:16px;gap:16px}
+  .ck-ap__row{height:auto}
+  .ck-win,.ck-ruler,.ck-phone>small{display:none}
+  .ck-phone{width:100%;margin:0}
+  /* proporção de aparelho real, sem depender da altura da tela */
+  .ck-phone .ck-zoom{width:min(240px,64vw);height:auto;aspect-ratio:240/496;border-width:7px;border-radius:30px}
+  .ck-ap .ck-phone .ck-zoom::before{display:none}
+  .ck-zoom::before{right:8px;bottom:8px;width:28px;height:28px;background-size:12px}
+  .ck-phone__m{display:flex;width:100%;justify-content:space-between;align-items:center;gap:8px}
+  .ck-phone__m small{font:500 11px 'Geist',sans-serif;color:var(--muted)}
+  .ck-phone__m span{padding:8px 12px;border-radius:99px;background:var(--ink);color:#FFFFFF;font:500 12px 'Geist',sans-serif}
+  .ck-legend{padding-top:14px;gap:10px;grid-template-columns:1fr}
+  .ck-legend b{font-size:14px}
+  .ck-legend em{font-size:13px}
+  .ck-legend .ck-dt{display:none}
+  .ck-flow11{padding:16px;gap:16px}
+  .ck-chain{display:none}
+  .ck-stage11{height:auto;min-height:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .ck-stage11 .ck-zoom{position:relative;left:auto;right:auto;top:auto;bottom:auto}
+  .ck-stage11{--sh:auto}
+  .ck-stage11__desk,.ck-seal{display:none}
+  .ck-stage11__card{width:100%;box-shadow:none}
+  .ck-stage11__mob{width:240px;min-width:0}
+  .ck-stage11__down{display:block;font:500 20px 'Geist',sans-serif;color:var(--muted)}
+  .ck-results{margin-top:80px;padding:56px var(--pad)}
+  .ck-results__in{gap:32px}
+  .ck-results__grid{grid-template-columns:1fr;gap:20px}
+  .ck-results__col{padding-top:20px;gap:8px}
+  .ck-results__col h3{font-size:18px}
+  .ck-results__col p{font-size:15px;line-height:1.6}
+  .ck-results__num{flex-direction:row;flex-wrap:wrap;align-items:baseline;column-gap:16px}
+  .ck-results__num strong{font-size:40px}
+  .ck-next{padding:56px var(--pad)}
+  .ck-next__go{width:64px;height:64px}
+  /* visualizador no celular: tela cheia, abas no topo, folha "Detalhes" embaixo */
+  .ck-lb[open]{display:flex;flex-direction:column}
+  .ck-lb__top{flex:none;flex-wrap:wrap;gap:8px 12px;padding:10px 12px 10px 16px}
+  .ck-lb__title{display:none}
+  .ck-lb__tools{width:100%;order:3;justify-content:center;margin:0}
+  .ck-lb__fit{display:none !important}
+  .ck-lb__close{margin-left:auto}
+  .ck-lb__bar{display:block;flex:none;height:2px;background:#2A2A2E}
+  .ck-lb__bar i{display:block;height:2px;width:var(--lb-pr,0%);background:var(--blue-on-dark)}
+  .ck-lb__body{flex:1 1 auto}
+  .ck-lb__stage{padding:0}
+  .ck-lb__arrow{display:none}
+  .ck-lb__side{flex:none;max-height:56px;padding:12px 16px;border:0;border-top:1px solid #26262A;overflow:hidden;transition:max-height .25s}
+  .ck-lb__side.is-open{max-height:60vh;overflow:auto}
+  .ck-lb__more{display:inline-flex;align-items:center;justify-content:flex-end;position:absolute;right:8px;bottom:0;height:56px;color:var(--blue-on-dark) !important}
+  .ck-lb__map,.ck-lb__hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){.ck *{transition:none !important}}</style>
+<dialog class="ck-lb" aria-modal="true" aria-labelledby="ck-lb-title" data-ck-lightbox data-of="of" data-fit="67% scale · fit to width" data-real="100% scale · actual size" data-notes="notes" data-page="% of the page" data-pinch="Pinch to zoom" data-open="Details ⌃" data-close="Close ⌄">
+<div class="ck-lb__top">
+<span class="ck-lb__fig" data-ck-lb-fig></span>
+<h2 class="ck-lb__title" id="ck-lb-title" data-ck-lb-title></h2>
+<span class="ck-lb__count" data-ck-lb-count></span>
+<div class="ck-lb__tools">
+<div class="ck-seg" role="group" aria-label="Version"><button type="button" data-ck-lb-tab="desktop" aria-pressed="false">Desktop</button><button type="button" data-ck-lb-tab="mobile" aria-pressed="false">Mobile</button></div>
+<div class="ck-seg ck-lb__fit" role="group" aria-label="Scale"><button type="button" data-ck-lb-fit="fit" aria-pressed="true">Fit</button><button type="button" data-ck-lb-fit="real" aria-pressed="false">100%</button></div>
+</div>
+<button type="button" class="ck-lb__close" data-ck-lb-close aria-label="Close viewer">×</button>
+</div>
+<div class="ck-lb__bar" aria-hidden="true"><i data-ck-lb-progress></i></div>
+<div class="ck-lb__body">
+<button type="button" class="ck-lb__arrow ck-lb__prev" data-ck-lb-prev aria-label="Previous image">←</button>
+<div class="ck-lb__stage" data-ck-lb-stage tabindex="0" role="region" aria-labelledby="ck-lb-title"><div class="ck-lb__page" data-ck-lb-page></div></div>
+<button type="button" class="ck-lb__arrow ck-lb__next" data-ck-lb-next aria-label="Next image">→</button>
+</div>
+<div class="ck-lb__side" data-ck-lb-side>
+<p class="ck-lb__step" data-ck-lb-step></p>
+<p class="ck-lb__h" data-ck-lb-h></p>
+<p class="ck-lb__text" data-ck-lb-text></p>
+<ol class="ck-lb__notes" data-ck-lb-notes></ol>
+<div class="ck-lb__map" aria-hidden="true"><span class="ck-lb__mini" data-ck-lb-mini><span class="ck-lb__rect" data-ck-lb-rect></span></span><p class="ck-lb__where"><b>You are here</b><span data-ck-lb-pct></span><span data-ck-lb-scale></span></p></div>
+<p class="ck-lb__hint">← → switch versions · Esc closes · scroll moves through the page</p>
+<button type="button" class="ck-lb__more" data-ck-lb-more aria-expanded="false">Details ⌃</button>
+</div>
+</dialog>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Poppins:wght@600;700&amp;display=swap">
+<style>/* =====================================================================
+   Strategi kit · componentes novos do case Grupo Strategi (case-strategi-handoff: HANDOFF §5.2)
+   Usa os tokens do case kit (.ck). A paleta Strategi aparece só como conteúdo (amostras e FIG. 04).
+   ===================================================================== */
+.st-cover .ck-cover__img img{object-position:center 52%}
+.st-stage{padding:20px;border-radius:16px;background:var(--stage)}
+.st-k{font:600 13px 'Geist',sans-serif;color:var(--blue)}
+.ck .st-zoom{display:block;width:100%;border:1px solid var(--frame-line);border-radius:12px;overflow:hidden;background:#FFFFFF}
+.st-zoom img{height:100%;object-fit:cover}
+.st-sq{aspect-ratio:1/1}
+.st-43{aspect-ratio:4/3}
+.st-pill{position:absolute;z-index:3;right:12px;bottom:12px;padding:9px 14px;border-radius:99px;background:var(--ink);color:#FFFFFF;font:500 13px/1.2 'Geist',sans-serif}
+.ck-zoom:hover .st-pill,.ck-zoom:focus-visible .st-pill{background:var(--blue)}
+.ck-zoom.st-has-pill::before{display:none}
+
+/* FIG. 01 · figura larga com legenda em grade */
+/* a imagem ocupa toda a largura do palco; quando 65vh a limita (§3, regra 1), o palco acompanha a imagem
+   e fica centralizado, sem faixas vazias nas laterais */
+.st-anat{width:min(100%,calc(65vh * 2744 / 1265 + 40px));margin-inline:auto}
+.st-anat .ck-zoom{width:100%;aspect-ratio:2744/1265;border-radius:8px;overflow:hidden;background:#FFFFFF}
+.st-anat .ck-zoom img{height:100%;object-fit:contain}
+.st-legend{margin:20px 0 0;padding:20px 0 0;border-top:1px solid var(--frame-line);list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 32px}
+.st-legend li{display:flex;gap:12px;align-items:flex-start}
+/* numeração das legendas (FIG. 01 e 06) em neutro secundário: só identifica; o azul fica nos marcadores sobre as imagens */
+.st-legend .ck-num{background:var(--muted)}
+.st-legend b{display:block;font:600 15px/1.4 'Geist',sans-serif;color:var(--ink)}
+.st-legend span:not(.ck-num){display:block;margin-top:2px;font:400 13px/1.5 'Manrope',sans-serif;color:var(--muted)}
+
+/* FIG. 02 · trio de posts */
+.st-trio{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.st-trio li{display:flex;flex-direction:column;gap:12px;min-width:0}
+.st-trio .st-zoom img{object-fit:contain}
+.st-trio__t{display:flex;gap:10px;align-items:flex-start}
+.st-trio__t b{display:block;font:600 15px/1.4 'Geist',sans-serif;color:var(--ink)}
+.st-trio__t span:not(.ck-num){display:block;margin-top:2px;font:400 13px/1.5 'Manrope',sans-serif;color:var(--muted)}
+
+/* FIG. 03 · paleta circular (componente .ck-pal do case kit) */
+.st-palbox{padding:28px;border:1px solid var(--line);border-radius:16px;background:#FFFFFF}
+.st-palbox .ck-pal{margin:0;padding:0;border:0;grid-template-columns:repeat(3,minmax(0,1fr))}
+.st-palbox__note{margin:28px 0 0;padding-top:20px;border-top:1px solid var(--line);font:400 13px/1.6 'Manrope',sans-serif;color:var(--muted)}
+
+/* FIG. 04 · especificação tipográfica (Poppins e Inter só aqui) */
+.st-type{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px 56px;padding:40px;border-radius:16px;background:#38424E;color:#FFFFFF}
+.st-type__lv{display:flex;flex-direction:column}
+.st-type__lv div{display:flex;flex-direction:column;gap:8px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+.st-type__lv div:first-child{padding-top:0}
+.st-type__lv div:last-child{border-bottom:0;padding-bottom:0}
+.st-type__t1{font:700 40px/1.15 'Poppins',sans-serif}
+.st-type__t2{font:400 20px/1.5 'Inter',sans-serif}
+.st-type__t3{font:400 13px/1.5 'Inter',sans-serif}
+.st-type small{font:500 12px/1.4 'Geist',sans-serif;color:#C3C9D1}
+.st-type__aa{display:flex;flex-direction:column;justify-content:center;gap:24px;padding-left:40px;border-left:1px solid rgba(255,255,255,.16)}
+.st-type__aa div{display:flex;flex-direction:column;gap:4px}
+.st-type__aa b{font:600 14px 'Geist',sans-serif}
+.st-type__p{font:700 96px/1 'Poppins',sans-serif;color:#ED6E1A}
+.st-type__i{font:400 56px/1 'Inter',sans-serif;color:#FFFFFF}
+
+/* FIG. 05 · par comparativo Fixo / Varia */
+.st-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.st-fv{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px}
+.st-fv div{padding-top:16px;border-top:2px solid var(--ink)}
+.st-fv div+div{border-top-color:var(--blue)}
+.st-fv p{margin:0 0 12px;font:600 12px 'Geist',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.st-fv div+div p{color:var(--blue)}
+.st-fv ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.5;color:var(--ink)}
+.st-fv li{display:flex;gap:10px;align-items:flex-start}
+.st-fv .ck-num{margin-top:-1px}
+.st-dot{flex:none;width:24px;height:24px;display:flex;align-items:center;justify-content:center}
+.st-dot::before{content:"";width:10px;height:10px;border:2px solid var(--blue);border-radius:50%}
+
+/* FIG. 06 · grade de repertório: 3 × 2 no maior tamanho que cabe em 65vh. Os nomes saem de baixo de cada
+   modelo para uma legenda numerada (como na FIG. 01), e a altura inteira fica para as imagens.
+   O palco acompanha a grade e fica centralizado na coluna. */
+.st-fig6{width:min(100%,calc((65vh - 16px) * 1.5 + 32px + 40px));margin-inline:auto}
+.st-grid6{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.st-grid6 li{position:relative;display:flex;flex-direction:column;gap:8px;min-width:0}
+/* número encaixado no canto, por fora da peça, para não cobrir o logo dos modelos */
+.st-n{position:absolute;z-index:2;top:-8px;left:-8px;box-shadow:0 0 0 3px var(--stage);pointer-events:none}
+.st-grid6__t{display:none}
+.st-grid6__t span,.st-legend6 span:not(.ck-num){font:600 11px/1.2 'Geist',sans-serif;color:var(--blue)}
+.st-grid6__t b{display:block;margin-top:2px;font:600 14px/1.3 'Geist',sans-serif;color:var(--ink)}
+.st-legend6 div{display:flex;flex-direction:column-reverse;gap:2px}
+.ck .st-legend6 span:not(.ck-num){margin-top:0;color:var(--muted)}
+
+/* FIG. 07 · respiro de contexto */
+.ck .st-feed{display:block;width:100%;aspect-ratio:16/9;max-height:560px;border-radius:16px;overflow:hidden;background:#E9E3DE}
+.st-feed img{height:100%;object-fit:cover}
+
+/* FIG. 08 e 09 · par institucional e grade 2 × 2 */
+.st-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+/* 2 × 2 no maior tamanho que cabe em 65vh; a coluna da figura acompanha a grade (sem faixas no palco),
+   alinhada à direita como a FIG. 08, e a coluna de texto absorve a sobra */
+@media (min-width:761px){
+  .st-split9{justify-content:space-between}
+  .st-split9 .ck-split__main{flex:0 1 calc((65vh - 12px) * 4 / 3 + 12px + 40px)}
+}
+.st-grid4{max-width:min(100%,calc((65vh - 12px) * 4 / 3 + 12px));margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+
+
+/* visualizador: dica própria desta página (a do case kit fala em rolar a página, o que não vale aqui) */
+.ck-lb__hint{display:none}
+.ck-lb__side::after{content:"← → percorrem as imagens · Esc fecha";margin-top:auto;font:400 12px/1.5 'Manrope',sans-serif;color:var(--graphite-muted)}
+:lang(en) .ck-lb__side::after{content:"← → move through the images · Esc closes"}
+
+/* ---------- mobile ---------- */
+@media (max-width:760px){
+  .ck .st-cover .ck-cover__img{aspect-ratio:4/3}
+  .st-cover .ck-cover__img img{object-position:center}
+  .st-stage{padding:12px}
+  .st-legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px}
+  .st-legend b{font-size:13px}
+  .st-legend span:not(.ck-num){font-size:12px}
+  .ck-lb__side::after{display:none}
+  .ck-jr .ck-step{gap:20px}
+  .st-trio li{gap:8px}
+  /* FIG. 02, 06, 08 e 09 em coluna única: cada peça inteira na largura da coluna, seguida do próprio rótulo */
+  .st-trio,.st-grid6,.st-duo,.st-grid4{grid-template-columns:minmax(0,1fr);gap:24px}
+  .st-stage--car{padding:0;background:none}
+  .st-fig6{width:auto;margin-inline:0}
+  .st-anat{width:auto;margin-inline:0}
+  .st-grid4{max-width:none}
+  /* cada modelo leva o próprio nome; número e legenda numerada só no desktop */
+  .st-n,.st-legend6{display:none}
+  .st-grid6__t{display:block}
+  .st-palbox{padding:16px}
+  .st-palbox .ck-pal__u{display:none}
+  .st-type{grid-template-columns:1fr;gap:24px;padding:24px}
+  .st-type__t1{font-size:28px}
+  .st-type__t2{font-size:17px}
+  .st-type__aa{flex-direction:row;align-items:flex-end;gap:32px;padding:20px 0 0;border-left:0;border-top:1px solid rgba(255,255,255,.16)}
+  .st-type__p{font-size:64px}
+  .st-type__i{font-size:40px}
+  .st-pair{gap:10px}
+  .st-fv{grid-template-columns:1fr 1fr;gap:16px}
+  .st-fv ul{font-size:13px}
+  .ck .st-feed{aspect-ratio:4/3}
+  .st-feed img{object-position:45% center}
+}</style>
+
+
+<!-- CAPA · respiro -->
+<div class="ck-wrap ck-cover st-cover"><div class="ck-cover__img"><img src="../../assets/img/5f09bd949fb27b7302e23feae1ffd250.jpg" alt="Grupo Strategi case cover: a tilted card over an orange and blue background, with a system post (photo cropped by the symbol and a graphite-blue card) beside the graphics, textures and palette" srcset="../../assets/img/5f09bd949fb27b7302e23feae1ffd250-800.jpg 800w, ../../assets/img/5f09bd949fb27b7302e23feae1ffd250-1280.jpg 1280w, ../../assets/img/5f09bd949fb27b7302e23feae1ffd250.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="eager" fetchpriority="high"></div></div>
+
+<!-- EM RESUMO -->
+<section id="resumo" class="ck-wrap ck-summary" aria-labelledby="ck-summary">
+<h2 id="ck-summary" class="ck-ey">In short</h2>
+<div class="ck-summary__grid">
+<a href="#desafio"><b>Challenge</b><span>Unify the group’s communication without making the feed monotonous.</span></a><a href="#sistema"><b>Delivery</b><span>Visual system, application patterns, a Figma template library and every piece.</span></a><a href="#resultados"><b>Outcome</b><span>A recognizable language across every touchpoint; a library of post patterns that optimizes production time for the design and social media team.</span></a>
 </div>
 </section>
 
-<!-- DESAFIO -->
-<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec); display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">The challenge</h2>
+<!-- BARRA DE SEÇÕES -->
+<nav class="ck-rail" aria-label="Case sections" data-ck-rail>
+<div class="ck-wrap ck-rail__in">
+<span class="ck-rail__name">Grupo Strategi</span>
+<a href="#desafio">Challenge</a><a href="#atuacao">My role</a><a href="#sistema">System</a><a href="#aplicacoes">Applications</a><a href="#resultados">Results</a>
+<span class="ck-rail__time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span><b>4 min</b> read</span></span>
 </div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 24px">
-<p style="margin: 0; font: 500 clamp(21px, 1.9vw, 26px)/1.45 'Geist', sans-serif; letter-spacing: -0.015em">Grupo Strategi operates across five distinct business lines. Each has its own audience, type of message and communication pace, yet all of them needed to be recognized as part of the same brand, whether on social media, in presentations to clients and partners, or at events.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 8px">
-<span style="padding: 10px 18px; border-radius: 999px; background: #F7F7F8; font: 500 14px 'Geist', sans-serif">RM</span><span style="padding: 10px 18px; border-radius: 999px; background: #F7F7F8; font: 500 14px 'Geist', sans-serif">Artificial Intelligence</span><span style="padding: 10px 18px; border-radius: 999px; background: #F7F7F8; font: 500 14px 'Geist', sans-serif">Systems Development</span><span style="padding: 10px 18px; border-radius: 999px; background: #F7F7F8; font: 500 14px 'Geist', sans-serif">Process Automation</span><span style="padding: 10px 18px; border-radius: 999px; background: #F7F7F8; font: 500 14px 'Geist', sans-serif">Business Intelligence</span>
+<div class="ck-rail__m">
+<span class="ck-rail__n" data-ck-n>1/5</span>
+<span class="ck-rail__cur" data-ck-cur>Challenge</span>
+<span class="ck-time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>4 min</span>
+<button type="button" class="ck-rail__btn" data-ck-sheet-btn aria-expanded="false" aria-controls="ck-sheet">Sections<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
 </div>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">However, each piece was created in isolation, without well-defined standards. The result was inconsistent communication that was hard to recognize and slow to produce.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">Solving this required a visual language versatile enough to support a constant flow of content and serve every business line consistently. At the same time, it had to avoid monotony: a feed with many posts on different topics needed to keep brand unity while staying visually interesting.</p>
-<p style="margin: 0; padding-left: 20px; border-left: 3px solid #253CEA; font: 500 19px/1.6 'Geist', sans-serif; color: #000000">On top of that, the communication had to convey a premium feel, matching the group’s positioning as a provider of high-value technology solutions for strategic business decisions.</p>
+<div class="ck-progress" aria-hidden="true"><i></i></div>
+<div class="ck-sheet" id="ck-sheet" data-ck-sheet hidden>
+<a href="#desafio"><span>01</span><span data-name>Challenge</span></a><a href="#atuacao"><span>02</span><span data-name>My role</span></a><a href="#sistema"><span>03</span><span data-name>System</span></a><a href="#aplicacoes"><span>04</span><span data-name>Applications</span></a><a href="#resultados"><span>05</span><span data-name>Results</span></a>
+</div>
+</nav>
+
+<!-- O DESAFIO -->
+<section id="desafio" class="ck-wrap ck-sec--main" aria-labelledby="st-challenge">
+<div class="ck-head" style="gap: 40px 64px">
+<div class="ck-head__t"><h2 id="st-challenge" class="ck-h2">The challenge</h2><p class="ck-sub">One brand, many kinds of content</p></div>
+<div class="ck-split__main" style="gap: 20px">
+<p class="ck-lead" style="font: 500 clamp(20px, 2vw, 26px)/1.4 'Geist', sans-serif; letter-spacing: -0.01em">Constant production, with content of different kinds, had to be recognized as a single brand.</p>
+<p class="ck-p">Grupo Strategi operates across five distinct business lines. Each has its own audience, type of message and communication pace, yet all of them needed to be recognized as part of the same brand, whether on social media, in presentations to clients and partners, or at events.</p>
+<p class="ck-p">However, the communication was becoming outdated as the brand expanded, and the existing patterns could not keep up with the variety of content each area required.</p>
+</div>
 </div>
 </section>
 
-<!-- ATUAÇÃO -->
-<section style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec); display: flex; flex-wrap: wrap; gap: 32px 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">My role</h2>
+<!-- O QUE PRECISAVA MUDAR · tabela -->
+<section class="ck-wrap ck-sec" aria-labelledby="st-change">
+<div class="ck-split" style="gap: 32px 64px">
+<div class="ck-split__text"><h3 id="st-change" class="ck-ey">What needed to change</h3><p class="ck-p">The language had to be versatile enough to sustain constant production. On social media, it had to avoid monotony in a feed with diverse topics and, more broadly, convey a premium perception worthy of a high-value technology provider across every brand touchpoint.</p></div>
+<div class="ck-split__main">
+<table class="ck-compare">
+<caption class="ck-sr">What needed to change</caption>
+<thead><tr><th scope="col">Before</th><th scope="col">New direction</th></tr></thead>
+<tbody><tr><td>Communication outdated as the brand expanded</td><td>A language that matches the brand’s new moment</td></tr><tr><td>Patterns that couldn’t keep up with content variety</td><td>A repertoire of templates for varied content</td></tr><tr><td>Slow, piece-by-piece production</td><td>Agile production, with patterns and templates used by the team</td></tr><tr><td>Risk of a repetitive feed</td><td>Variety without losing unity</td></tr><tr><td>Ordinary perception</td><td>Premium perception, matching the positioning</td></tr></tbody>
+</table>
 </div>
-<div style="flex: 2 1 560px; max-width: 760px; display: flex; flex-direction: column; gap: 24px">
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">I was directly responsible for defining the elements of the visual system, creating the application standards and producing every piece.</p>
-<p style="margin: 0; font-size: 18px; line-height: 1.75; color: #333333">I worked closely with leadership, based on needs assessments, expectation alignment and visual tests to validate the language and ensure it was applied correctly.</p>
 </div>
 </section>
 
-<!-- COVER -->
-<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px var(--sec)">
-<figure style="margin: 0">
-<div style="aspect-ratio: 4 / 3; max-height: 860px; width: 100%; border-radius: 20px; overflow: hidden; background: #F7F7F8">
-<img src="../../assets/img/e9d6ba4d719df87015e9603c3ea94f09.jpg" alt="Grupo Strategi visual system: a piece with a text card and an image masked by the symbol, graphics, textures and color palette" style="width: 100%; height: 100%; object-fit: cover; display: block" srcset="../../assets/img/e9d6ba4d719df87015e9603c3ea94f09-800.jpg 800w, ../../assets/img/e9d6ba4d719df87015e9603c3ea94f09-1280.jpg 1280w, ../../assets/img/e9d6ba4d719df87015e9603c3ea94f09.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
+<!-- MINHA ATUAÇÃO -->
+<section id="atuacao" class="ck-wrap ck-sec--main" aria-labelledby="st-role">
+<div class="ck-head" style="gap: 40px 64px">
+<div class="ck-head__t"><h2 id="st-role" class="ck-h2">My role</h2><p class="ck-sub">From system to pieces</p></div>
+<div class="ck-split__main">
+<p class="ck-lead">I was directly responsible for defining the elements of the visual system, creating the application standards and producing every piece.</p>
+<ul class="ck-list"><li>Defining the system’s elements</li><li>Application patterns</li><li>Producing every piece</li><li>Figma template library</li><li>Needs assessment with leadership</li><li>Visual validation tests</li></ul>
+<p class="ck-p" style="font-size: 16px; color: var(--muted)">I worked closely with leadership, based on needs assessments, expectation alignment and visual tests to validate the language and ensure it was applied correctly.</p>
 </div>
-<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">System elements: graphics, textures and palette applied to a piece.</figcaption>
+</div>
+</section>
+
+<!-- CAPÍTULO 01 · SISTEMA -->
+<section id="sistema" class="ck-chapter" aria-labelledby="st-ch1">
+<div class="ck-chapter__in">
+<p class="ck-chapter__n" aria-hidden="true">01</p>
+<div class="ck-chapter__t"><p class="ck-chapter__k">System decisions</p><h2 id="st-ch1" class="ck-chapter__h">System</h2><p class="ck-chapter__p">Instead of designing isolated pieces, the work started by defining a system: a set of elements and rules that could be reapplied at any touchpoint.</p></div>
+</div>
+</section>
+
+<!-- ANATOMIA · FIG. 01 -->
+<section id="anatomia" class="ck-wrap ck-sec" aria-labelledby="st-anat">
+<div class="ck-head" style="border-top: 0; padding-top: 0; margin-bottom: 32px">
+<div class="ck-head__t"><p class="ck-ey">Anatomy</p><h3 id="st-anat" class="ck-h3">Six elements, one piece</h3></div>
+<p class="ck-p" style="flex: 999 1 560px; align-self: flex-end">The piece on the left brings the system’s elements together; on the right, each graphic and texture appears on its own, with its role.</p>
+</div>
+<figure class="ck-fig">
+<div class="st-stage st-anat">
+<button type="button" class="ck-zoom" data-ck-zoom data-ck-g="01" data-ck-fig="FIG. 01" data-ck-name="System anatomy: the elements applied in one piece and shown on their own, with their roles." data-ck-step="" data-ck-title="System anatomy" data-ck-text="System anatomy: the elements applied in one piece and shown on their own, with their roles." data-ck-v="" data-ck-src="../../assets/img/f5abc4e272e0465bb35bd05515f10fbb.jpg" data-ck-w="2744" data-ck-h="1265" data-ck-notes="A|5.8|40.5|Interlaced circles pattern;B|75.6|24|Symbol with transparency;C|33|29|Symbol as a mask;D|27.8|72|Rounded-corner card;E|15.5|85|Signature: logo + tagline;F|61.7|81|Textures: waves and grain" aria-label="Enlarge: System anatomy"><img src="../../assets/img/f5abc4e272e0465bb35bd05515f10fbb.jpg" alt="Grupo Strategi visual system: on the left, a post with a graphite-blue card, a photo cropped by the symbol, logo and tagline; on the right, the three graphics with their roles and the wave and grain textures" srcset="../../assets/img/f5abc4e272e0465bb35bd05515f10fbb-800.jpg 800w, ../../assets/img/f5abc4e272e0465bb35bd05515f10fbb-1280.jpg 1280w, ../../assets/img/f5abc4e272e0465bb35bd05515f10fbb.jpg 2744w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="2744" height="1265" loading="lazy" decoding="async"><span class="ck-mark" style="left: 5.8%; top: 40.5%" aria-hidden="true">A</span><span class="ck-mark" style="left: 75.6%; top: 24%" aria-hidden="true">B</span><span class="ck-mark" style="left: 33%; top: 29%" aria-hidden="true">C</span><span class="ck-mark" style="left: 27.8%; top: 72%" aria-hidden="true">D</span><span class="ck-mark" style="left: 15.5%; top: 85%" aria-hidden="true">E</span><span class="ck-mark" style="left: 61.7%; top: 81%" aria-hidden="true">F</span></button>
+<ul class="st-legend"><li><span class="ck-num">A</span><div><b>Interlaced circles pattern</b><span>visual marker</span></div></li><li><span class="ck-num">B</span><div><b>Symbol with transparency</b><span>conceptual reinforcement</span></div></li><li><span class="ck-num">C</span><div><b>Symbol as a mask</b><span>brings people into the identity</span></div></li><li><span class="ck-num">D</span><div><b>Rounded-corner card</b><span>holds the text</span></div></li><li><span class="ck-num">E</span><div><b>Signature: logo + tagline</b><span>fixed frame</span></div></li><li><span class="ck-num">F</span><div><b>Textures: waves and grain</b><span>depth and technology</span></div></li></ul>
+</div>
+<figcaption class="ck-cap"><b>FIG. 01</b><span>System anatomy: the elements applied in one piece and shown on their own, with their roles.</span></figcaption>
+</figure>
+</section>
+
+<!-- DECISÕES · índice fixo -->
+<section class="ck-wrap ck-sec" aria-label="System decisions">
+<div class="ck-jr">
+<nav class="ck-jr__idx" aria-label="System decisions" data-ck-journey>
+<a href="#grafismos"><span>01</span><span>Graphics</span><span>three roles</span></a><a href="#paleta"><span>02</span><span>Palette and textures</span><span></span></a><a href="#tipografia"><span>03</span><span>Typography and hierarchy</span><span></span></a><a href="#composicao"><span>04</span><span>Composition</span><span></span></a><a href="#escalabilidade"><span>05</span><span>Scalability</span><span></span></a>
+</nav>
+<div class="ck-jr__steps">
+
+<!-- 01 GRAFISMOS · FIG. 02 -->
+<article id="grafismos" class="ck-step" aria-labelledby="st-d1">
+<div class="ck-step__head"><span class="ck-step__k">Decision 01</span><h3 id="st-d1" class="ck-h3">Graphics</h3><p class="ck-p">The system relies on three graphics with distinct roles, shown on their own in the anatomy (FIG. 01). With well-defined roles, they can be combined in different ways without losing coherence, which helps avoid repetition in the feed.</p></div>
+<figure class="ck-fig">
+<div class="st-stage st-stage--car">
+<ul class="st-trio"><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="02" data-ck-fig="FIG. 02" data-ck-name="The graphics in use: the same message with each graphic in its role." data-ck-step="Decision 01 · Graphics" data-ck-title="Interlaced circles pattern" data-ck-text="The graphics in use: the same message with each graphic in its role." data-ck-v="" data-ck-src="../../assets/img/a5669df5165be56289a768bba08f6188.jpg" data-ck-w="1075" data-ck-h="985" data-ck-notes="" aria-label="Enlarge: Interlaced circles pattern"><img src="../../assets/img/a5669df5165be56289a768bba08f6188.jpg" alt="Square post with the orange interlaced circles pattern next to the headline Reduce errors and increase productivity" srcset="../../assets/img/a5669df5165be56289a768bba08f6188-800.jpg 800w, ../../assets/img/a5669df5165be56289a768bba08f6188.jpg 1075w" sizes="(min-width: 761px) 300px, 90vw" width="1075" height="985" loading="lazy" decoding="async"></button><div class="st-trio__t"><span class="ck-num">1</span><div><b>Interlaced circles pattern</b><span>As a visual marker, next to the headline.</span></div></div></li><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="02" data-ck-fig="FIG. 02" data-ck-name="The graphics in use: the same message with each graphic in its role." data-ck-step="Decision 01 · Graphics" data-ck-title="Symbol with transparency" data-ck-text="The graphics in use: the same message with each graphic in its role." data-ck-v="" data-ck-src="../../assets/img/29b95def2d78de95db3306f20f906eae.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="" aria-label="Enlarge: Symbol with transparency"><img src="../../assets/img/29b95def2d78de95db3306f20f906eae.jpg" alt="Orange square post with the brand symbol at large scale cutting across the piece" srcset="../../assets/img/29b95def2d78de95db3306f20f906eae-800.jpg 800w, ../../assets/img/29b95def2d78de95db3306f20f906eae.jpg 1080w" sizes="(min-width: 761px) 300px, 90vw" width="1080" height="1080" loading="lazy" decoding="async"></button><div class="st-trio__t"><span class="ck-num">2</span><div><b>Symbol with transparency</b><span>At large scale and in the background, as conceptual reinforcement of the brand.</span></div></div></li><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="02" data-ck-fig="FIG. 02" data-ck-name="The graphics in use: the same message with each graphic in its role." data-ck-step="Decision 01 · Graphics" data-ck-title="Symbol as a mask" data-ck-text="The graphics in use: the same message with each graphic in its role." data-ck-v="" data-ck-src="../../assets/img/f8760343bfcf4500720717a3327bbca6.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="" aria-label="Enlarge: Symbol as a mask"><img src="../../assets/img/f8760343bfcf4500720717a3327bbca6.jpg" alt="Grayish-blue square post with the brand symbol in the background, behind the orange card and the photo" srcset="../../assets/img/f8760343bfcf4500720717a3327bbca6-800.jpg 800w, ../../assets/img/f8760343bfcf4500720717a3327bbca6.jpg 1080w" sizes="(min-width: 761px) 300px, 90vw" width="1080" height="1080" loading="lazy" decoding="async"></button><div class="st-trio__t"><span class="ck-num">3</span><div><b>Symbol as a mask</b><span>Cropping the photo and bringing the person into the brand.</span></div></div></li></ul>
+</div>
+<figcaption class="ck-cap"><b>FIG. 02</b><span>The graphics in use: the same message with each graphic in its role.</span></figcaption>
+</figure>
+</article>
+
+<!-- 02 PALETA E TEXTURAS · FIG. 03 -->
+<article id="paleta" class="ck-step" aria-labelledby="st-d2">
+<div class="ck-step__head"><span class="ck-step__k">Decision 02</span><h3 id="st-d2" class="ck-h3">Palette and textures</h3><p class="ck-p">The palette is restrained, with a graphite blue as the base, the brand’s orange as the accent and a grayish blue in support. Which color dominates depends on the post pattern: sometimes orange, sometimes graphite blue or white. Wave-line and grain textures, shown in the anatomy (FIG. 01), complete the language.</p></div>
+<figure class="ck-fig">
+<div class="st-palbox">
+<div class="ck-pal" role="group" aria-label="Palette and textures">
+<div class="ck-pal__c">
+<span class="ck-pal__k">Base</span>
+<span class="ck-pal__u">Backgrounds, cards and symbol</span>
+<span class="ck-pal__dot" style="background: #38424E" aria-hidden="true"></span>
+<span class="ck-pal__n">Graphite blue</span>
+<span class="ck-pal__hex"><b>#38424E</b><span>RGB 56 · 66 · 78</span></span>
+<span class="ck-pal__aa"><b style="background: #38424E; color: #FFFFFF" aria-hidden="true">Aa</b>White text · 10.2:1</span>
+</div><div class="ck-pal__c">
+<span class="ck-pal__k">Accent</span>
+<span class="ck-pal__u">Symbol, calls to action and backgrounds</span>
+<span class="ck-pal__dot" style="background: #ED6E1A" aria-hidden="true"></span>
+<span class="ck-pal__n">Strategi orange</span>
+<span class="ck-pal__hex"><b>#ED6E1A</b><span>RGB 237 · 110 · 26</span></span>
+<span class="ck-pal__aa"><b style="background: #ED6E1A; color: #0A0A0A" aria-hidden="true">Aa</b>Dark text · 6.5:1 · white 3.1:1 for large headings only</span>
+</div><div class="ck-pal__c">
+<span class="ck-pal__k">Support</span>
+<span class="ck-pal__u">Gradients and supporting text</span>
+<span class="ck-pal__dot" style="background: #7F96B5" aria-hidden="true"></span>
+<span class="ck-pal__n">Grayish blue</span>
+<span class="ck-pal__hex"><b>#7F96B5</b><span>RGB 127 · 150 · 181</span></span>
+<span class="ck-pal__aa"><b style="background: #7F96B5; color: #0A0A0A" aria-hidden="true">Aa</b>Dark text · 6.5:1</span>
+</div>
+</div>
+<p class="st-palbox__note">There is no fixed proportion: depending on the post pattern, orange, graphite blue or white dominates. HEX values taken from the final pieces.</p>
+</div>
+<figcaption class="ck-cap"><b>FIG. 03</b><span>Palette: graphite blue, orange and grayish blue, with no fixed proportion across patterns.</span></figcaption>
+</figure>
+</article>
+
+<!-- 03 TIPOGRAFIA E HIERARQUIA · FIG. 04 -->
+<article id="tipografia" class="ck-step" aria-labelledby="st-d3">
+<div class="ck-step__head"><span class="ck-step__k">Decision 03</span><h3 id="st-d3" class="ck-h3">Typography and hierarchy</h3><p class="ck-p">Poppins, a geometric sans-serif, takes the headings in bold; Inter carries the supporting text and complementary information. The clear hierarchy ensures legibility in small formats such as posts and keeps a modern, objective tone, consistent with a technology company.</p></div>
+<figure class="ck-fig">
+<div class="st-type">
+<div class="st-type__lv">
+<div><span class="st-type__t1">Technology for strategic decisions</span><small>Heading · Poppins Bold · main message</small></div>
+<div><span class="st-type__t2">Supporting text in regular weight that develops the message.</span><small>Support · Inter Regular</small></div>
+<div><span class="st-type__t3">Complementary information in a smaller size</span><small>Complementary · Inter Regular, smaller size</small></div>
+</div>
+<div class="st-type__aa">
+<div><span class="st-type__p" aria-hidden="true">Aa</span><b>Poppins</b><small>primary · headings</small></div>
+<div><span class="st-type__i" aria-hidden="true">Aa</span><b>Inter</b><small>support · text and information</small></div>
+</div>
+</div>
+<figcaption class="ck-cap"><b>FIG. 04</b><span>Poppins for headings and Inter for support: three levels of hierarchy, legible even in small formats.</span></figcaption>
+</figure>
+</article>
+
+<!-- 04 COMPOSIÇÃO · FIG. 05 -->
+<article id="composicao" class="ck-step" aria-labelledby="st-d4">
+<div class="ck-step__head"><span class="ck-step__k">Decision 04</span><h3 id="st-d4" class="ck-h3">Composition</h3><p class="ck-p">Pieces combine a rounded card that holds the text with images masked by the brand symbol. The signature, with logo and tagline in fixed positions, creates a recognizable frame while the center of each piece changes with the message. In carousels, a navigation indicator in the accent color guides reading.</p></div>
+<figure class="ck-fig">
+<div class="st-stage">
+<div class="st-pair"><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="05" data-ck-fig="FIG. 05" data-ck-name="The same message in two compositions: the system varies the layout without losing unity." data-ck-step="Decision 04 · Composition" data-ck-title="Post A" data-ck-text="The same message in two compositions: the system varies the layout without losing unity." data-ck-v="" data-ck-src="../../assets/img/1f8e91ed9fb0370d8763cdd5e35754b3.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="1|17|9|Brand symbol at the top;2|15|76|Signature with logo and tagline" aria-label="Enlarge: Post A"><img src="../../assets/img/1f8e91ed9fb0370d8763cdd5e35754b3.jpg" alt="Post A: orange card on the left with the headline Reduce errors and increase productivity, the professional’s photo on the right with the circles pattern and the signature at the bottom" srcset="../../assets/img/1f8e91ed9fb0370d8763cdd5e35754b3-800.jpg 800w, ../../assets/img/1f8e91ed9fb0370d8763cdd5e35754b3.jpg 1080w" sizes="(min-width: 761px) 440px, 82vw" width="1080" height="1080" loading="lazy" decoding="async"><span class="ck-mark" style="left: 17%; top: 9%" aria-hidden="true">1</span><span class="ck-mark" style="left: 15%; top: 76%" aria-hidden="true">2</span><span class="ck-tagpill">Post A</span></button><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="05" data-ck-fig="FIG. 05" data-ck-name="The same message in two compositions: the system varies the layout without losing unity." data-ck-step="Decision 04 · Composition" data-ck-title="Post B" data-ck-text="The same message in two compositions: the system varies the layout without losing unity." data-ck-v="" data-ck-src="../../assets/img/b80e404560ce7d7641c27f4161d06e2c.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="1|18|8|Brand symbol at the top;2|80|67|Signature with logo and tagline" aria-label="Enlarge: Post B"><img src="../../assets/img/b80e404560ce7d7641c27f4161d06e2c.jpg" alt="Post B: the same message with the photo featured in the center, a graphite-blue card below and the signature with logo on the right" srcset="../../assets/img/b80e404560ce7d7641c27f4161d06e2c-800.jpg 800w, ../../assets/img/b80e404560ce7d7641c27f4161d06e2c.jpg 1080w" sizes="(min-width: 761px) 440px, 82vw" width="1080" height="1080" loading="lazy" decoding="async"><span class="ck-mark" style="left: 18%; top: 8%" aria-hidden="true">1</span><span class="ck-mark" style="left: 80%; top: 67%" aria-hidden="true">2</span><span class="ck-tagpill">Post B</span></button></div>
+<div class="st-fv">
+<div><p>Fixed · keeps unity</p><ul><li><span class="ck-num">1</span><span>Brand symbol at the top</span></li><li><span class="ck-num">2</span><span>Signature with logo and tagline</span></li><li><span class="st-dot" aria-hidden="true"></span><span>Rounded-corner card</span></li><li><span class="st-dot" aria-hidden="true"></span><span>Palette and typography</span></li></ul></div>
+<div><p>Varies · avoids repetition</p><ul><li><span class="st-dot" aria-hidden="true"></span><span>Photo and card arrangement</span></li><li><span class="st-dot" aria-hidden="true"></span><span>Dominant color: orange, graphite blue or white</span></li><li><span class="st-dot" aria-hidden="true"></span><span>Graphic applied</span></li></ul></div>
+</div>
+</div>
+<figcaption class="ck-cap"><b>FIG. 05</b><span>The same message in two compositions: the system varies the layout without losing unity.</span></figcaption>
+</figure>
+</article>
+
+<!-- 05 ESCALABILIDADE · FIG. 06 e FIG. 07 -->
+<article id="escalabilidade" class="ck-step" aria-labelledby="st-d5">
+<div class="ck-step__head"><span class="ck-step__k">Decision 05</span><h3 id="st-d5" class="ck-h3">Scalability</h3><p class="ck-p">Instead of tying each template to a type of content, the system offers a repertoire of visual architectures: the social media team picks the template that best serves each post. The templates were organized into a Figma library made available to the social media team. As a result, the team started producing pieces autonomously, applying the visual language consistently without having to create each piece from scratch.</p></div>
+<figure class="ck-fig st-fig6">
+<div class="st-stage st-stage--car">
+<ul class="st-grid6"><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="06" data-ck-fig="FIG. 06" data-ck-name="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-step="Decision 05 · Scalability" data-ck-title="Photo with orange gradient" data-ck-text="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-v="" data-ck-src="../../assets/img/cf94280cfc738f6702e64a08b0ce5485.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="" aria-label="Enlarge: Photo with orange gradient"><img src="../../assets/img/cf94280cfc738f6702e64a08b0ce5485.jpg" alt="Post with the photo covered by an orange gradient, white headline and the symbol at large scale at the bottom" srcset="../../assets/img/cf94280cfc738f6702e64a08b0ce5485-800.jpg 800w, ../../assets/img/cf94280cfc738f6702e64a08b0ce5485.jpg 1080w" sizes="(min-width: 761px) 290px, 90vw" width="1080" height="1080" loading="lazy" decoding="async"></button><span class="ck-num st-n" aria-hidden="true">1</span><div class="st-grid6__t"><span>Template 01</span><b>Photo with orange gradient</b></div></li><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="06" data-ck-fig="FIG. 06" data-ck-name="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-step="Decision 05 · Scalability" data-ck-title="White panel + side photo" data-ck-text="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-v="" data-ck-src="../../assets/img/4afc37efe904b8d85f523cab9594779b.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="" aria-label="Enlarge: White panel + side photo"><img src="../../assets/img/4afc37efe904b8d85f523cab9594779b.jpg" alt="Post with a white panel on the left, photo on the right, graphite-blue footer and the circles pattern" srcset="../../assets/img/4afc37efe904b8d85f523cab9594779b-800.jpg 800w, ../../assets/img/4afc37efe904b8d85f523cab9594779b.jpg 1080w" sizes="(min-width: 761px) 290px, 90vw" width="1080" height="1080" loading="lazy" decoding="async"></button><span class="ck-num st-n" aria-hidden="true">2</span><div class="st-grid6__t"><span>Template 02</span><b>White panel + side photo</b></div></li><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="06" data-ck-fig="FIG. 06" data-ck-name="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-step="Decision 05 · Scalability" data-ck-title="Photo grid and blocks" data-ck-text="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-v="" data-ck-src="../../assets/img/d28b24c552b4c931e37e92231c19dac2.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="" aria-label="Enlarge: Photo grid and blocks"><img src="../../assets/img/d28b24c552b4c931e37e92231c19dac2.jpg" alt="Post on a graphite-blue background with a grid of two photos and white and orange blocks" srcset="../../assets/img/d28b24c552b4c931e37e92231c19dac2-800.jpg 800w, ../../assets/img/d28b24c552b4c931e37e92231c19dac2.jpg 1080w" sizes="(min-width: 761px) 290px, 90vw" width="1080" height="1080" loading="lazy" decoding="async"></button><span class="ck-num st-n" aria-hidden="true">3</span><div class="st-grid6__t"><span>Template 03</span><b>Photo grid and blocks</b></div></li><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="06" data-ck-fig="FIG. 06" data-ck-name="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-step="Decision 05 · Scalability" data-ck-title="Card + symbol as a mask" data-ck-text="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-v="" data-ck-src="../../assets/img/66e6eba2b39fe6665df563d603986ecf.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="" aria-label="Enlarge: Card + symbol as a mask"><img src="../../assets/img/66e6eba2b39fe6665df563d603986ecf.jpg" alt="Post on a white background with a graphite-blue card over the photo cropped by the symbol" srcset="../../assets/img/66e6eba2b39fe6665df563d603986ecf-800.jpg 800w, ../../assets/img/66e6eba2b39fe6665df563d603986ecf.jpg 1080w" sizes="(min-width: 761px) 290px, 90vw" width="1080" height="1080" loading="lazy" decoding="async"></button><span class="ck-num st-n" aria-hidden="true">4</span><div class="st-grid6__t"><span>Template 04</span><b>Card + symbol as a mask</b></div></li><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="06" data-ck-fig="FIG. 06" data-ck-name="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-step="Decision 05 · Scalability" data-ck-title="Wide photo + blocks" data-ck-text="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-v="" data-ck-src="../../assets/img/1a10f4e581a8ecdbd93e2571b9267f77.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="" aria-label="Enlarge: Wide photo + blocks"><img src="../../assets/img/1a10f4e581a8ecdbd93e2571b9267f77.jpg" alt="Post with a wide photo at the top and white and orange blocks with the signature at the bottom" srcset="../../assets/img/1a10f4e581a8ecdbd93e2571b9267f77-800.jpg 800w, ../../assets/img/1a10f4e581a8ecdbd93e2571b9267f77.jpg 1080w" sizes="(min-width: 761px) 290px, 90vw" width="1080" height="1080" loading="lazy" decoding="async"></button><span class="ck-num st-n" aria-hidden="true">5</span><div class="st-grid6__t"><span>Template 05</span><b>Wide photo + blocks</b></div></li><li><button type="button" class="ck-zoom st-zoom st-sq" data-ck-zoom data-ck-g="06" data-ck-fig="FIG. 06" data-ck-name="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-step="Decision 05 · Scalability" data-ck-title="Orange background + photo in the symbol" data-ck-text="A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content." data-ck-v="" data-ck-src="../../assets/img/207c958f2da08a9a84b3365bf58d06ed.jpg" data-ck-w="1080" data-ck-h="1080" data-ck-notes="" aria-label="Enlarge: Orange background + photo in the symbol"><img src="../../assets/img/207c958f2da08a9a84b3365bf58d06ed.jpg" alt="Post on an orange background with the photo inside the symbol and the circles pattern in the footer" srcset="../../assets/img/207c958f2da08a9a84b3365bf58d06ed-800.jpg 800w, ../../assets/img/207c958f2da08a9a84b3365bf58d06ed.jpg 1080w" sizes="(min-width: 761px) 290px, 90vw" width="1080" height="1080" loading="lazy" decoding="async"></button><span class="ck-num st-n" aria-hidden="true">6</span><div class="st-grid6__t"><span>Template 06</span><b>Orange background + photo in the symbol</b></div></li></ul>
+<ul class="st-legend st-legend6"><li><span class="ck-num">1</span><div><b>Photo with orange gradient</b><span>Template 01</span></div></li><li><span class="ck-num">2</span><div><b>White panel + side photo</b><span>Template 02</span></div></li><li><span class="ck-num">3</span><div><b>Photo grid and blocks</b><span>Template 03</span></div></li><li><span class="ck-num">4</span><div><b>Card + symbol as a mask</b><span>Template 04</span></div></li><li><span class="ck-num">5</span><div><b>Wide photo + blocks</b><span>Template 05</span></div></li><li><span class="ck-num">6</span><div><b>Orange background + photo in the symbol</b><span>Template 06</span></div></li></ul>
+</div>
+<figcaption class="ck-cap"><b>FIG. 06</b><span>A repertoire of visual architectures: the same message in six templates. The team picks the one that best serves each piece of content.</span></figcaption>
+</figure>
+<figure class="ck-fig">
+<button type="button" class="ck-zoom st-feed" data-ck-zoom data-ck-g="07" data-ck-fig="FIG. 07" data-ck-name="From template to feed: the piece produced by the team, published on Instagram." data-ck-step="Decision 05 · Scalability" data-ck-title="Instagram post" data-ck-text="From template to feed: the piece produced by the team, published on Instagram." data-ck-v="" data-ck-src="../../assets/img/95483489198d2079e38ff00723f6131c.jpg" data-ck-w="1920" data-ck-h="1080" data-ck-notes="" aria-label="Enlarge: Instagram post"><img src="../../assets/img/95483489198d2079e38ff00723f6131c.jpg" alt="Phone on an orange sofa showing, on Instagram, a Grupo Strategi post with a graphite-blue card and a photo cropped by the symbol" srcset="../../assets/img/95483489198d2079e38ff00723f6131c-800.jpg 800w, ../../assets/img/95483489198d2079e38ff00723f6131c-1280.jpg 1280w, ../../assets/img/95483489198d2079e38ff00723f6131c.jpg 1920w" sizes="(min-width: 1280px) 900px, calc(100vw - 32px)" width="1920" height="1080" loading="lazy" decoding="async"></button>
+<figcaption class="ck-cap"><b>FIG. 07</b><span>From template to feed: the piece produced by the team, published on Instagram.</span></figcaption>
+</figure>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- APLICAÇÕES · ALÉM DO FEED -->
+<section id="aplicacoes" class="ck-wrap ck-sec--main" aria-labelledby="st-apps">
+<div class="ck-head" style="margin-bottom: 80px">
+<div class="ck-head__t"><h2 id="st-apps" class="ck-h2">Applications</h2><p class="ck-sub">Beyond the feed</p></div>
+<p class="ck-p" style="flex: 999 1 560px">Beyond social media, the system structured institutional communication and took the brand to events and physical spaces.</p>
+</div>
+<div class="ck-split" style="gap: 32px 64px">
+<div class="ck-split__text"><span class="st-k">Context 01</span><h3 class="ck-h3">Corporate communication</h3><p class="ck-p">The same language shaped presentations and materials used to introduce the brand, its services and its work.</p></div>
+<figure class="ck-fig ck-split__main" style="gap: 14px">
+<div class="st-duo"><button type="button" class="ck-zoom st-zoom st-43 " data-ck-zoom data-ck-g="08" data-ck-fig="FIG. 08" data-ck-name="Institutional presentations structured by the same system." data-ck-step="Context 01 · Corporate communication" data-ck-title="Client and services slides" data-ck-text="Institutional presentations structured by the same system." data-ck-v="" data-ck-src="../../assets/img/ba9c69149e9fd8306bfc4b2d5e9d0cf3.jpg" data-ck-w="1920" data-ck-h="1440" data-ck-notes="" aria-label="Enlarge: Client and services slides"><img src="../../assets/img/ba9c69149e9fd8306bfc4b2d5e9d0cf3.jpg" alt="Two Grupo Strategi presentation slides: a client map of Brazil and an AI Development services page with cards" srcset="../../assets/img/ba9c69149e9fd8306bfc4b2d5e9d0cf3-800.jpg 800w, ../../assets/img/ba9c69149e9fd8306bfc4b2d5e9d0cf3-1280.jpg 1280w, ../../assets/img/ba9c69149e9fd8306bfc4b2d5e9d0cf3.jpg 1920w" sizes="(min-width: 761px) 440px, 90vw" width="1920" height="1440" loading="lazy" decoding="async"></button><button type="button" class="ck-zoom st-zoom st-43 st-has-pill" data-ck-zoom data-ck-g="08" data-ck-fig="FIG. 08" data-ck-name="Institutional presentations structured by the same system." data-ck-step="Context 01 · Corporate communication" data-ck-title="About us slide" data-ck-text="Institutional presentations structured by the same system." data-ck-v="" data-ck-src="../../assets/img/4545e5bdedb2e2b2dbb37b92e2516956.jpg" data-ck-w="1920" data-ck-h="1440" data-ck-notes="" aria-label="Enlarge: About us slide"><img src="../../assets/img/4545e5bdedb2e2b2dbb37b92e2516956.jpg" alt="Grupo Strategi About us slide: orange background, translucent text card and a photo cropped by the brand symbol" srcset="../../assets/img/4545e5bdedb2e2b2dbb37b92e2516956-800.jpg 800w, ../../assets/img/4545e5bdedb2e2b2dbb37b92e2516956-1280.jpg 1280w, ../../assets/img/4545e5bdedb2e2b2dbb37b92e2516956.jpg 1920w" sizes="(min-width: 761px) 440px, 90vw" width="1920" height="1440" loading="lazy" decoding="async"><span class="st-pill" aria-hidden="true">See both pieces ↗</span></button></div>
+<figcaption class="ck-cap"><b>FIG. 08</b><span>Institutional presentations structured by the same system.</span></figcaption>
 </figure>
 </div>
-
-<!-- DECISÕES -->
-<section style="background: #F7F7F8">
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px">
-<div style="display: flex; flex-wrap: wrap; gap: 32px 64px; margin-bottom: 64px">
-<div style="flex: 1 1 280px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">System decisions</h2>
+<div class="ck-split st-split9" style="margin-top: 120px; gap: 32px 64px">
+<div class="ck-split__text"><span class="st-k">Context 02</span><h3 class="ck-h3">The brand beyond screens</h3><p class="ck-p">Standing displays, booths, banners and signage extended the system to events and physical spaces, connecting digital communication with in-person contact with the brand.</p></div>
+<figure class="ck-fig ck-split__main" style="gap: 14px">
+<div class="st-stage st-stage--car">
+<div class="st-grid4"><button type="button" class="ck-zoom st-zoom st-43" data-ck-zoom data-ck-g="09" data-ck-fig="FIG. 09" data-ck-name="Events and physical spaces: booth, totem, roll-up and badges." data-ck-step="Context 02 · The brand beyond screens" data-ck-title="Event booth" data-ck-text="Events and physical spaces: booth, totem, roll-up and badges." data-ck-v="" data-ck-src="../../assets/img/86319af77906fd5ddb6cb32f9147d822.jpg" data-ck-w="1920" data-ck-h="1440" data-ck-notes="" aria-label="Enlarge: Event booth"><img src="../../assets/img/86319af77906fd5ddb6cb32f9147d822.jpg" alt="Event booth with Hub Sebrae RN on one wall and Grupo Strategi with its service lines on the other" srcset="../../assets/img/86319af77906fd5ddb6cb32f9147d822-800.jpg 800w, ../../assets/img/86319af77906fd5ddb6cb32f9147d822-1280.jpg 1280w, ../../assets/img/86319af77906fd5ddb6cb32f9147d822.jpg 1920w" sizes="(min-width: 761px) 375px, 90vw" width="1920" height="1440" loading="lazy" decoding="async"><span class="ck-tagpill">Event booth</span></button><button type="button" class="ck-zoom st-zoom st-43" data-ck-zoom data-ck-g="09" data-ck-fig="FIG. 09" data-ck-name="Events and physical spaces: booth, totem, roll-up and badges." data-ck-step="Context 02 · The brand beyond screens" data-ck-title="Digital totem" data-ck-text="Events and physical spaces: booth, totem, roll-up and badges." data-ck-v="" data-ck-src="../../assets/img/f22cf601334b7c9afbbede0f5ff75f37.jpg" data-ck-w="1920" data-ck-h="1440" data-ck-notes="" aria-label="Enlarge: Digital totem"><img src="../../assets/img/f22cf601334b7c9afbbede0f5ff75f37.jpg" alt="Digital totem in a mall showing a Grupo Strategi piece about its Blip partnership" srcset="../../assets/img/f22cf601334b7c9afbbede0f5ff75f37-800.jpg 800w, ../../assets/img/f22cf601334b7c9afbbede0f5ff75f37-1280.jpg 1280w, ../../assets/img/f22cf601334b7c9afbbede0f5ff75f37.jpg 1920w" sizes="(min-width: 761px) 375px, 90vw" width="1920" height="1440" loading="lazy" decoding="async"><span class="ck-tagpill">Digital totem</span></button><button type="button" class="ck-zoom st-zoom st-43" data-ck-zoom data-ck-g="09" data-ck-fig="FIG. 09" data-ck-name="Events and physical spaces: booth, totem, roll-up and badges." data-ck-step="Context 02 · The brand beyond screens" data-ck-title="Roll-up banner" data-ck-text="Events and physical spaces: booth, totem, roll-up and badges." data-ck-v="" data-ck-src="../../assets/img/19ea215a7a824f2746ddb6e67fc50839.jpg" data-ck-w="1920" data-ck-h="1440" data-ck-notes="" aria-label="Enlarge: Roll-up banner"><img src="../../assets/img/19ea215a7a824f2746ddb6e67fc50839.jpg" alt="Grupo Strategi roll-up banner with logo, tagline and the symbol as a watermark" srcset="../../assets/img/19ea215a7a824f2746ddb6e67fc50839-800.jpg 800w, ../../assets/img/19ea215a7a824f2746ddb6e67fc50839-1280.jpg 1280w, ../../assets/img/19ea215a7a824f2746ddb6e67fc50839.jpg 1920w" sizes="(min-width: 761px) 375px, 90vw" width="1920" height="1440" loading="lazy" decoding="async"><span class="ck-tagpill">Roll-up banner</span></button><button type="button" class="ck-zoom st-zoom st-43" data-ck-zoom data-ck-g="09" data-ck-fig="FIG. 09" data-ck-name="Events and physical spaces: booth, totem, roll-up and badges." data-ck-step="Context 02 · The brand beyond screens" data-ck-title="ID badges" data-ck-text="Events and physical spaces: booth, totem, roll-up and badges." data-ck-v="" data-ck-src="../../assets/img/be6ad09f81fa9b999d1b805c24e38d96.jpg" data-ck-w="1920" data-ck-h="1440" data-ck-notes="" aria-label="Enlarge: ID badges"><img src="../../assets/img/be6ad09f81fa9b999d1b805c24e38d96.jpg" alt="Grupo Strategi ID badges, front and back, with an orange lanyard" srcset="../../assets/img/be6ad09f81fa9b999d1b805c24e38d96-800.jpg 800w, ../../assets/img/be6ad09f81fa9b999d1b805c24e38d96-1280.jpg 1280w, ../../assets/img/be6ad09f81fa9b999d1b805c24e38d96.jpg 1920w" sizes="(min-width: 761px) 375px, 90vw" width="1920" height="1440" loading="lazy" decoding="async"><span class="ck-tagpill">ID badges</span></button></div>
 </div>
-<p style="flex: 2 1 560px; max-width: 760px; margin: 0; font: 500 clamp(21px, 1.9vw, 26px)/1.45 'Geist', sans-serif; letter-spacing: -0.015em">Instead of designing isolated pieces, the work started by defining a system: a set of elements and rules that could be reapplied at any touchpoint.</p>
-</div>
-<div style="border-top: 1px solid #000000">
-
-<div class="ro-dec" style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-bottom: 1px solid #000000">
-<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #253CEA">01</span>
-<h3 class="ro-dec-t" style="flex: 1 1 280px; margin: 0; font: 500 clamp(28px, 2.8vw, 40px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">Graphic elements</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The system relies on three graphic elements with distinct roles. The interlaced-circles pattern acts as a visual marker, with dynamic shapes that convey movement and versatility. The brand symbol appears as a conceptual reinforcement, applied in a secondary role with transparency. The symbol also works as an image mask, creating a more dynamic conceptual reinforcement and bringing people into the identity. With clearly defined roles, the elements can be combined in different ways without losing coherence, which helps avoid repetition in the feed.</p>
-</div>
-
-<div class="ro-dec" style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-bottom: 1px solid #000000">
-<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #253CEA">02</span>
-<h3 class="ro-dec-t" style="flex: 1 1 280px; margin: 0; font: 500 clamp(28px, 2.8vw, 40px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">Palette and textures</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The palette is restrained: a graphite blue as the base, the brand orange as the accent and a greyish blue for support. Orange is used sparingly, at points of attention such as the symbol and calls to action. Wave-line textures, evoking technology and data flow, and grain, which adds depth to surfaces, complete the language. Together, these choices support the premium feel of the communication.</p>
-</div>
-
-<div class="ro-dec" style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-bottom: 1px solid #000000">
-<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #253CEA">03</span>
-<h3 class="ro-dec-t" style="flex: 1 1 280px; margin: 0; font: 500 clamp(28px, 2.8vw, 40px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">Typography and hierarchy</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">A geometric sans-serif in different weights structures reading: bold headlines for the main message, regular weight for supporting copy and smaller sizes for complementary information. The clear hierarchy keeps small formats like posts legible and maintains a modern, objective tone that fits a technology company.</p>
-</div>
-
-<div class="ro-dec" style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-bottom: 1px solid #000000">
-<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #253CEA">04</span>
-<h3 class="ro-dec-t" style="flex: 1 1 280px; margin: 0; font: 500 clamp(28px, 2.8vw, 40px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">Composition</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">Pieces combine a rounded card that holds the text with images masked by the brand symbol. The signature, with logo and tagline in fixed positions, creates a recognizable frame while the center of each piece changes with the message. In carousels, a navigation indicator in the accent color guides reading.</p>
-</div>
-
-<div class="ro-dec" style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-bottom: 1px solid #000000">
-<span style="flex: 0 0 64px; font: 500 15px 'Geist', sans-serif; color: #253CEA">05</span>
-<h3 class="ro-dec-t" style="flex: 1 1 280px; margin: 0; font: 500 clamp(28px, 2.8vw, 40px)/1.05 'Geist', sans-serif; letter-spacing: -0.04em; color: #000000">Scalability</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The layouts were organized into a template library in Figma, shared with the social media team. The team could then produce pieces autonomously, applying the visual language consistently without designing each piece from scratch.</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- IMAGEM: POSTS -->
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px 0">
-<figure style="margin: 0">
-<div style="aspect-ratio: 4 / 3; max-height: 860px; width: 100%; border-radius: 20px; overflow: hidden; background: #F7F7F8">
-<img src="../../assets/img/774c2015646b11c37cd009c41dda71ef.jpg" alt="Two Grupo Strategi posts with the same message: one with an orange card beside the photo, another with a central photo, a graphite-blue card and the brand signature" style="width: 100%; height: 100%; object-fit: cover; display: block" srcset="../../assets/img/774c2015646b11c37cd009c41dda71ef-800.jpg 800w, ../../assets/img/774c2015646b11c37cd009c41dda71ef-1280.jpg 1280w, ../../assets/img/774c2015646b11c37cd009c41dda71ef.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
-</div>
-<figcaption style="margin-top: 14px; font: 500 13px 'Geist', sans-serif; color: #5C5C5C">The same message in two compositions: the system varies the layout without losing unity.</figcaption>
+<figcaption class="ck-cap"><b>FIG. 09</b><span>Events and physical spaces: booth, totem, roll-up and badges.</span></figcaption>
 </figure>
 </div>
-
-<!-- APLICAÇÕES -->
-<section style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px var(--sec)">
-<div style="margin-bottom: 64px">
-<h2 style="margin: 0; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">Applications</h2>
-</div>
-<div style="display: flex; flex-direction: column; gap: var(--sub)">
-
-<article style="display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
-<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em">Digital channels</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">On social media, the language was adapted to different messages and formats, keeping unity across posts and letting the communication unfold as needed.</p>
-</div>
-
-<div style="display: flex; flex-direction: column; gap: 16px">
-
-<img src="../../assets/img/316e819ab74c51c84933eb866f5ab3e7.jpg" alt="Two Grupo Strategi posts: one with a graphite-to-orange gradient and the symbol masking a photo, another with a photo grid and an orange block" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8" srcset="../../assets/img/316e819ab74c51c84933eb866f5ab3e7-800.jpg 800w, ../../assets/img/316e819ab74c51c84933eb866f5ab3e7-1280.jpg 1280w, ../../assets/img/316e819ab74c51c84933eb866f5ab3e7.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
-
-<img src="../../assets/img/1b94c3f717c4e2ca5d3f09fa2512a082.jpg" alt="Grupo Strategi carousel post on Instagram, shown on a phone" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8" srcset="../../assets/img/1b94c3f717c4e2ca5d3f09fa2512a082-800.jpg 800w, ../../assets/img/1b94c3f717c4e2ca5d3f09fa2512a082-1280.jpg 1280w, ../../assets/img/1b94c3f717c4e2ca5d3f09fa2512a082.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1080" loading="lazy" decoding="async">
-
-<img src="../../assets/img/1da879ecadbee997e2d1e94a19a9dbbf.jpg" alt="Two Grupo Strategi vertical pieces, in orange and graphite blue, with the interlaced-circles pattern over the photo" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8" srcset="../../assets/img/1da879ecadbee997e2d1e94a19a9dbbf-800.jpg 800w, ../../assets/img/1da879ecadbee997e2d1e94a19a9dbbf-1280.jpg 1280w, ../../assets/img/1da879ecadbee997e2d1e94a19a9dbbf.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
-
-</div>
-
-
-</article>
-
-<article style="display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
-<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em">Corporate communication</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">The same language shaped presentations and materials used to introduce the brand, its services and its work.</p>
-</div>
-
-<div style="display: flex; flex-direction: column; gap: 16px">
-
-<img src="../../assets/img/9bbac7b386b32d4c12f8c823335d1612.jpg" alt="Grupo Strategi presentation slide “About us”: orange background, translucent text card and a photo masked by the brand symbol" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8" srcset="../../assets/img/9bbac7b386b32d4c12f8c823335d1612-800.jpg 800w, ../../assets/img/9bbac7b386b32d4c12f8c823335d1612-1280.jpg 1280w, ../../assets/img/9bbac7b386b32d4c12f8c823335d1612.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
-
-<img src="../../assets/img/92774e03b84a66b1220a9e1beaaa8ac3.jpg" alt="Two Grupo Strategi presentation slides: a client map of Brazil and an “AI Development” services page with cards" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8" srcset="../../assets/img/92774e03b84a66b1220a9e1beaaa8ac3-800.jpg 800w, ../../assets/img/92774e03b84a66b1220a9e1beaaa8ac3-1280.jpg 1280w, ../../assets/img/92774e03b84a66b1220a9e1beaaa8ac3.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
-
-</div>
-
-
-</article>
-
-<article style="display: flex; flex-direction: column; gap: 40px">
-<div style="display: flex; flex-wrap: wrap; gap: 16px 64px; padding-top: 28px; border-top: 1px solid #000000">
-<h3 style="flex: 1 1 280px; margin: 0; font: 500 clamp(26px, 2.4vw, 34px)/1.1 'Geist', sans-serif; letter-spacing: -0.035em">The brand beyond screens</h3>
-<p style="flex: 2 1 480px; max-width: 640px; margin: 0; font-size: 17px; line-height: 1.75; color: #333333">Standing displays, booths, banners and signage extended the system to events and physical spaces, connecting digital communication with in-person contact with the brand.</p>
-</div>
-
-<div style="display: flex; flex-direction: column; gap: 16px">
-
-<img src="../../assets/img/8b23dc6226fcd541b8ee810798ae6622.jpg" alt="Grupo Strategi ID badges, front and back, with an orange lanyard" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8" srcset="../../assets/img/8b23dc6226fcd541b8ee810798ae6622-800.jpg 800w, ../../assets/img/8b23dc6226fcd541b8ee810798ae6622-1280.jpg 1280w, ../../assets/img/8b23dc6226fcd541b8ee810798ae6622.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
-
-<img src="../../assets/img/9b7b2dccdfc8776a997b4b1bec62fd0c.jpg" alt="Grupo Strategi roll-up banner with logo, tagline and the symbol as a watermark" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8" srcset="../../assets/img/9b7b2dccdfc8776a997b4b1bec62fd0c-800.jpg 800w, ../../assets/img/9b7b2dccdfc8776a997b4b1bec62fd0c-1280.jpg 1280w, ../../assets/img/9b7b2dccdfc8776a997b4b1bec62fd0c.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
-
-<img src="../../assets/img/64ad99a31c1da4533bce4b4ab6773353.jpg" alt="Event booth combining Hub Sebrae RN on one wall and Grupo Strategi with its service tags on the other" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8" srcset="../../assets/img/64ad99a31c1da4533bce4b4ab6773353-800.jpg 800w, ../../assets/img/64ad99a31c1da4533bce4b4ab6773353-1280.jpg 1280w, ../../assets/img/64ad99a31c1da4533bce4b4ab6773353.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
-
-<img src="../../assets/img/67a013d920288bb6207ec3951c3a7084.jpg" alt="Digital totem in a mall showing a Grupo Strategi piece about its Blip partnership" style="width: 100%; height: auto; border-radius: 20px; display: block; background: #F7F7F8" srcset="../../assets/img/67a013d920288bb6207ec3951c3a7084-800.jpg 800w, ../../assets/img/67a013d920288bb6207ec3951c3a7084-1280.jpg 1280w, ../../assets/img/67a013d920288bb6207ec3951c3a7084.jpg 1920w" sizes="(min-width: 1280px) 1232px, calc(100vw - 48px)" width="1920" height="1440" loading="lazy" decoding="async">
-
-</div>
-
-
-</article>
-
-</div>
 </section>
 
-<!-- RESULTADOS -->
-<section style="background: #F7F7F8">
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px">
-<h2 style="margin: 0 0 64px; font: 500 clamp(36px, 3.8vw, 56px)/1 'Geist', sans-serif; letter-spacing: -0.045em; color: #253CEA">Results</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 40px; border-top: 1px solid #000000">
-
-<div style="padding: 32px 0 0; display: flex; flex-direction: column; gap: 16px">
-<h3 style="margin: 0; font: 500 26px/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #253CEA">One language for five business lines</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #333333">The visual system now supports communication for all five Grupo Strategi business lines with a single language, recognizable at every touchpoint: social media, presentations to clients and partners, events and physical spaces.</p>
+<!-- RESULTADOS · grafite -->
+<section id="resultados" class="ck-results" aria-labelledby="st-results">
+<div class="ck-results__in">
+<div class="ck-split" style="gap: 24px 64px">
+<div class="ck-split__text" style="gap: 12px"><h2 id="st-results" class="ck-h2">Results</h2><p class="ck-sub">Unity, autonomy and premium perception</p></div>
+<p class="ck-lead" style="flex: 999 1 560px">A single language for all of the group’s communication, produced with more agility and autonomy by the team, without losing variety.</p>
 </div>
-
-<div style="padding: 32px 0 0; display: flex; flex-direction: column; gap: 16px">
-<h3 style="margin: 0; font: 500 26px/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #253CEA">Autonomy and speed</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #333333">With the Figma template library, the social media team gained the autonomy to produce content without designing each piece from scratch. Production moved from case-by-case to defined standards, becoming faster and more consistent.</p>
-</div>
-
-<div style="padding: 32px 0 0; display: flex; flex-direction: column; gap: 16px">
-<h3 style="margin: 0; font: 500 26px/1.15 'Geist', sans-serif; letter-spacing: -0.03em; color: #253CEA">Variety with a premium feel</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #333333">The range of layouts made it possible to keep a steady volume of posts on different topics without a repetitive feed, while the restrained palette, textures and graphic elements reinforced the brand’s premium feel.</p>
-</div>
-
+<div class="ck-results__grid">
+<div class="ck-results__col"><span class="ck-n">01</span><h3>One language for five business lines</h3><p>The visual system now supports communication for all five Grupo Strategi business lines with a single language, recognizable at every touchpoint: social media, presentations to clients and partners, events and physical spaces.</p></div><div class="ck-results__col"><span class="ck-n">02</span><h3>Autonomy and speed</h3><p>With the Figma template library, the social media team gained the autonomy to produce content without designing each piece from scratch. Production moved from case-by-case to defined standards, becoming faster and more consistent.</p></div><div class="ck-results__col"><span class="ck-n">03</span><h3>Variety with a premium feel</h3><p>The range of layouts made it possible to keep a steady volume of posts on different topics without a repetitive feed, while the restrained palette, textures and graphic elements reinforced the brand’s premium feel.</p></div>
 </div>
 </div>
 </section>
 
-<!-- NEXT + FOOTER -->
-<footer style="position: relative; overflow: hidden; background: #000000; color: #FFFFFF">
-<div style="max-width: 1280px; margin: 0 auto; padding: var(--sec) 24px 40px">
-<a class="ro-next" href="../hub-sebrae-rn/" style="padding-bottom: 72px; border-bottom: 1px solid #262626; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px">
-<div style="flex: 1 1 480px">
-<div style="margin: 0 0 20px; display: flex; align-items: center; gap: 24px"><p style="margin: 0; flex: none; font: 500 14px 'Geist', sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #8A8A8A">Next case</p><span aria-hidden="true" style="flex: 1 1 80px; height: 1px; background: #333333"></span></div>
-<p style="margin: 0; font: 500 clamp(44px, 6vw, 96px)/0.95 'Geist', sans-serif; letter-spacing: -0.055em; max-width: 900px">Hub Sebrae RN Identity and Portal</p>
-</div>
-<span class="ro-dot" style="width: 88px; height: 88px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+<!-- PRÓXIMO CASE · faixa branca -->
+<a class="ck-next" href="../hub-sebrae-rn/">
+<span class="ck-next__in">
+<span style="flex: 1 1 480px"><span class="ck-next__k">Next case</span><span class="ck-next__t">Hub Sebrae RN Identity and Portal</span></span>
+<span class="ck-next__go"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</span>
 </a>
+</div>
+
+<!-- RODAPÉ PADRÃO DO SITE -->
+<footer style="position: relative; overflow: hidden; background: #000000; color: #FFFFFF">
+<div aria-hidden="true" style="position: absolute; right: -220px; top: -300px; width: 560px; height: 560px; border: 72px solid #253CEA; border-radius: 50%; pointer-events: none"></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 112px 24px 40px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 40px; padding-bottom: 72px; border-bottom: 1px solid #262626">
+<div style="max-width: 820px">
+<h2 style="margin: 0; font: 500 clamp(44px, 6vw, 96px)/0.92 'Geist', sans-serif; letter-spacing: -0.055em">Let’s get started.</h2>
+<p style="margin: 28px 0 0; max-width: 600px; font: 400 clamp(20px, 1.8vw, 26px)/1.4 'Geist', sans-serif; letter-spacing: -0.015em; color: #BDBDBD">Have a product, an idea or a challenge in mind? Let’s make it happen.</p>
+</div>
+<a class="ro-pill" href="../../#contato" style="position: relative; min-height: 56px; padding: 0 24px 0 10px; display: inline-flex; align-items: center; gap: 12px; background: #FFFFFF; color: #000000; border-radius: 999px; font: 600 16px 'Geist', sans-serif"><span class="ro-dot" style="width: 38px; height: 38px; border-radius: 50%; background: #253CEA; display: inline-flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>Start a conversation</a>
+</div>
 <div style="position: relative; padding: 32px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px">
 
 <img src="../../assets/img/45a024ad2fa8c9154f2a5a5a69c4d2b1.png" alt="Renato Oliveira" style="width: 36px; height: 36px; object-fit: contain; display: block" width="776" height="785" loading="lazy" decoding="async">
@@ -380,6 +1154,7 @@ html.ro-menu-lock{overflow:hidden}
 </div>
 </div>
 </footer>
+
 </div>
 </body>
 </html>
